@@ -19,7 +19,45 @@ export default class FetchClases extends Component {
         console.log(data.results);  
         // return data;      
     }
-    
+      
+    mapeo() {
+        var inSemestre = 2;
+        var inMencion = 'telecomunicaciones';
+        var inAmbiente='Aula-306';
+        if (!inAmbiente) {
+            if (inSemestre < 7) {
+                const semestres = this.state.clases.filter(clase => clase.semestre == inSemestre);
+                this.setState({ test: semestres })
+            }
+            else {
+                switch (inMencion) {
+                    case 'control':
+                        const control = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.control == "si");
+                        this.setState({ test: control })
+                        return "control";
+                    case 'sistemas':
+                        const sistemas = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.sistemas == "si");
+                        this.setState({ test: sistemas })
+                    case 'telecomunicaciones':
+                        const telecomunicaciones = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.telecomunicaciones == "si");
+                        this.setState({ test: telecomunicaciones })
+                    default:
+                        return "opcion invalida";
+                }
+
+            }
+        }
+        else{
+            const ambiente = this.state.clases.filter(clase=>clase.ambiente == inAmbiente);
+            this.setState({test:ambiente});
+        }
+
+        //const ambientes = this.state.clases.filter(clase=>clase.ambiente == "Aula-306",clase.mencion);
+        //this.setState({test:semestres})
+        console.log(this.state.test);
+        return "exito";
+
+    }
     render() {
         if (this.state.loading) {
             return <div>cargando todavia</div>

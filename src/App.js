@@ -36,7 +36,6 @@ class App extends Component {
 
       <div className='App'>
         <div className='container' onClick={console.log("cambio")}>
-          {/* <Dropdown title="Titulo" items={items} handleSelect={this.handleSelect}/> */}
           <NavItem handleSelect={this.handleSelect}/>
         </div>
         <div>
