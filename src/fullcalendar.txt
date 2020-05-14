@@ -1,0 +1,13 @@
+Para implementar fullcalendar
+https://fullcalendar.io/docs/react
+ejecutar
+npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid
+npm i @fullcalendar/timegrid
+instalar vistas
+npm install node-sass
+
+para navegacion
+npm install react-router-dom
+npm install react-bootstrap bootstrap
+
+

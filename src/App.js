@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component ,useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import EventCalendar from "./components/EventCalendar";
+import Calendario from "./components/Calendario";
+import NavItem from "./components/NavItem";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Dropdown from "./components/Dropdown";
+//import Menu from "./components/menu";
+const items =[{id:1,value:"aula 1"},{id:2,value:"aula 2"}];
+let fuentes="http://127.0.0.1:8000/clases/show";
+const calendario=<Calendario fuente={fuentes} />
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      
+      fuente: fuentes,
+      
+    }
+  }
+  handleSelect=(evento)=>{
+    console.log(evento)
+  }
+
+ 
+
+  render() {
+    console.log(this.state.fuente);
+    console.log(items)
+    
+    return (
+
+      <div className='App'>
+        <div className='container' onClick={console.log("cambio")}>
+          {/* <Dropdown title="Titulo" items={items} handleSelect={this.handleSelect}/> */}
+          <NavItem handleSelect={this.handleSelect}/>
+        </div>
+        <div>
+          <div className='calendario'>
+            {calendario}
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    );
+  }
 }
 
 export default App;
