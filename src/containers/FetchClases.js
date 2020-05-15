@@ -26,20 +26,20 @@ export default class FetchClases extends Component {
         var inAmbiente='Aula-306';
         if (!inAmbiente) {
             if (inSemestre < 7) {
-                const semestres = this.state.clases.filter(clase => clase.semestre == inSemestre);
+                const semestres = this.state.clases.filter(clase => clase.semestre === inSemestre);
                 this.setState({ test: semestres })
             }
             else {
                 switch (inMencion) {
                     case 'control':
-                        const control = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.control == "si");
+                        const control = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.control === "si");
                         this.setState({ test: control })
                         return "control";
                     case 'sistemas':
-                        const sistemas = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.sistemas == "si");
+                        const sistemas = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.sistemas === "si");
                         this.setState({ test: sistemas })
                     case 'telecomunicaciones':
-                        const telecomunicaciones = this.state.clases.filter(clase => clase.semestre == inSemestre && clase.telecomunicaciones == "si");
+                        const telecomunicaciones = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.telecomunicaciones == "si");
                         this.setState({ test: telecomunicaciones })
                     default:
                         return "opcion invalida";
