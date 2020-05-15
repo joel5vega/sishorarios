@@ -6,6 +6,7 @@ import Calendario from "./components/Calendario";
 import NavItem from "./components/NavItem";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dropdown from "./components/Dropdown";
+import FetchClases from "./containers/FetchClases";
 //import Menu from "./components/menu";
 const items =[{id:1,value:"aula 1"},{id:2,value:"aula 2"}];
 // let fuentes="http://127.0.0.1:8000/clases/show";
@@ -40,7 +41,8 @@ class App extends Component {
         </div>
         <div>
           <div className='calendario'>
-          <Calendario fuente={this.state.fuente} />
+            <FetchClases/>
+          {/* <Calendario fuente={this.state.fuente} /> */}
           </div>
 
         </div>
