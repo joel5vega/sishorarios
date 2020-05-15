@@ -7,7 +7,7 @@ instalar vistas
 npm install node-sass
 
 para navegacion
-npm install react-router-dom
+npm install react-router-dom --save
 npm install react-bootstrap bootstrap
 
 

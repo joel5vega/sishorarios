@@ -1,16 +1,14 @@
 import React, { Component ,useState} from "react";
 
 import "./App.css";
-import EventCalendar from "./components/EventCalendar";
 import Calendario from "./components/Calendario";
 import NavItem from "./components/NavItem";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Dropdown from "./components/Dropdown";
+import { BrowserRouter as Router, Route ,NavLink,HashRouter} from 'react-router-dom'
 import FetchClases from "./containers/FetchClases";
-//import Menu from "./components/menu";
+import Home from "./views/Home";
+import Stuff from "./views/Stuff";
 const items =[{id:1,value:"aula 1"},{id:2,value:"aula 2"}];
-// let fuentes="http://127.0.0.1:8000/clases/show";
-// const calendario=
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +19,7 @@ class App extends Component {
       
     }
   }
+
   handleSelect=(evento)=>{
     console.log(evento)
     var nuevaFuente = "http://127.0.0.1:8000/ambientes/"+evento;
@@ -30,15 +29,37 @@ class App extends Component {
  
 
   render() {
-    console.log(this.state.fuente);
-    console.log(items)
     
     return (
-
       <div className='App'>
         <div className='container' onClick={console.log("cambio")}>
           <NavItem handleSelect={this.handleSelect}/>
         </div>
+        
+<HashRouter>
+<div>
+<h1>Simple SPA</h1>
+
+<ul className="header">
+
+  <li><NavLink exact to="/">Home</NavLink></li>
+
+  <li><NavLink to="/stuff">Stuff</NavLink></li>
+
+  <li><a href="/contact">Contact</a></li>
+
+</ul>
+
+<div className="content">
+<Route exact path="/" component={Home}/>
+<Route path="/stuff" component={Stuff}/>
+</div>
+
+</div>
+</HashRouter>
+
+
+
         <div>
           <div className='calendario'>
             <FetchClases/>
