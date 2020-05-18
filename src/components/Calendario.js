@@ -47,7 +47,7 @@ export default class Calendario extends Component {
                 slotDuration='00:45:00'
                 height='auto'
                 nowIndicator='true'
-                width='parent'
+                // width='parent'
 
             />
         )
