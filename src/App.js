@@ -49,7 +49,7 @@ class App extends Component {
         </div>
 
         <div>
-          <NavBar />
+          <NavBar handleSelect={this.handleSelect}/>
         </div>
 
 

@@ -28,9 +28,8 @@ class NavBar extends Component {
 
             selectedSemestre: "",
             selectedAmbiente: ""
-
-
         }
+        const {handleSelect}=this.props
     }
 
     componentDidMount = () => {
@@ -65,7 +64,10 @@ class NavBar extends Component {
 
     }
 
-
+    handleChange = (item)=>{
+        this.setState({ selected: item.nombre, selectedAmbiente: item.id })
+        
+    }
     render() {
 
         const styles = {
@@ -75,10 +77,10 @@ class NavBar extends Component {
             }
         };
         const { containerStyle } = styles;
-
+        const {handleSelect }= this.props;
         return (
             <div>
-                <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark"  fixed="top">
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
                     <Nav>
                         <Navbar.Brand href="/">
                             <img src={this.state.imagen} id="logo_header" height='48px' width='111px' alt='commitSRL' />
@@ -100,14 +102,20 @@ class NavBar extends Component {
 
                                         <NavDropdown.Item
                                             key={item.id} value={item.id}
-                                            onClick={(e) => this.setState({ selected: item.nombre, selectedAmbiente: item.id })}>
+                                            onClick={() =>{ 
+                                                this.handleChange(item)
+                                                handleSelect(item)}}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
 
                                     <NavDropdown.Divider />
                                     {this.state.laboratorios.map((item) =>
                                         <NavDropdown.Item key={item.id} value={item.id}
-                                            onClick={(e) => this.setState({ selected: 'Ambiente' + item.id, selectedAmbiente: item.id })}>
+                                            onClick={(e) =>
+                                                 {
+                                                     this.handleChange(item)
+                                                }
+                                            }>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
                                 </Navbar.Toggle>
