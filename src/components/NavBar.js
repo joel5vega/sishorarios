@@ -65,8 +65,10 @@ class NavBar extends Component {
     }
 
     handleChange = (item)=>{
-        this.setState({ selected: item.nombre, selectedAmbiente: item.id })
-        
+        this.setState({ selected: item.nombre, selectedAmbiente: item.id,selectedSemestre:"" })
+    }
+    handleSemestreChange = (item)=>{
+        this.setState({ selected: item.nombre, selectedSemestre: item.id,selectedAmbiente:"" })
     }
     render() {
 
@@ -77,7 +79,7 @@ class NavBar extends Component {
             }
         };
         const { containerStyle } = styles;
-        const {handleSelect }= this.props;
+        const {handleSelect,handleSemestreSelect }= this.props;
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
@@ -104,7 +106,8 @@ class NavBar extends Component {
                                             key={item.id} value={item.id}
                                             onClick={() =>{ 
                                                 this.handleChange(item)
-                                                handleSelect(item)}}>
+                                                handleSelect(item.id)
+                                                }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
 
@@ -114,8 +117,8 @@ class NavBar extends Component {
                                             onClick={(e) =>
                                                  {
                                                      this.handleChange(item)
-                                                }
-                                            }>
+                                                     handleSelect(item.id)
+                                                }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
                                 </Navbar.Toggle>
@@ -130,7 +133,11 @@ class NavBar extends Component {
                                 <Navbar.Toggle>
                                     {this.state.semestres.map((semestre) =>
                                         <NavDropdown.Item key={semestre.id} value={semestre.value}
-                                            onClick={(e) => this.setState({ selected: semestre.nombre, selectedAmbiente: semestre.id })}>
+                                            onClick={(e) => {
+                                                this.handleSemestreChange(semestre)
+                                                handleSemestreSelect(semestre.id)
+                                            }
+                                            }>
                                             {semestre.nombre}
                                         </NavDropdown.Item>)}
                                 </Navbar.Toggle>

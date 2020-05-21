@@ -31,6 +31,12 @@ class App extends Component {
     var nuevaFuente = "http://127.0.0.1:8000/ambientes/" + evento;
     this.setState({ fuente: nuevaFuente })
   }
+  handleSemestreSelect = (evento) => {
+    console.log(evento)
+    var nuevaFuente = "http://127.0.0.1:8000/semestre/" + evento;
+    this.setState({ fuente: nuevaFuente })
+  }
+
 
 
 
@@ -49,7 +55,7 @@ class App extends Component {
         </div>
 
         <div>
-          <NavBar handleSelect={this.handleSelect}/>
+          <NavBar handleSelect={this.handleSelect} handleSemestreSelect={this.handleSemestreSelect}/>
         </div>
 
 
