@@ -32,9 +32,57 @@ class App extends Component {
     this.setState({ fuente: nuevaFuente })
   }
   handleSemestreSelect = (evento) => {
-    console.log(evento)
-    var nuevaFuente = "http://127.0.0.1:8000/semestre/" + evento;
-    this.setState({ fuente: nuevaFuente })
+    // console.log(evento)
+    // var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento;
+    // this.setState({ fuente: nuevaFuente })
+    this.changeEvents();
+  }
+  changeEvents = () => {
+    console.log("cambio de eventos");
+    var nuevaFuente = {
+      "id": 1,
+      "materia_id": 1,
+      "responsable_id": 1,
+      "ambiente_id": 1,
+      "periodo_id": 1,
+      "daysOfWeek": 1,
+      "startTime": "11:11",
+      "endTime": "12:11",
+      "deleted_at": null,
+      "created_at": null,
+      "updated_at": null,
+      "sigla": "FIS 100",
+      "nombre": "Aula 304",
+      "tipo": "aula",
+      "semestre": "1",
+      "control": null,
+      "telecomunicaciones": null,
+      "sistemas": null,
+      "requisito": null,
+      "pensum": "2000",
+      "nivel": "auxiliar",
+      "paralelo": "A",
+      "ap_paterno": "Vega",
+      "ap_materno": "Cruz",
+      "puesto": "Ingeniero",
+      "titulo": "ING",
+      "estado": "titular",
+      "gestion": "2020",
+      "start_date": "2020-01-01",
+      "end_date": "2020-12-12",
+      "capacidad": 100,
+      "edificio": "1",
+      "piso": "75"
+    }
+    var ejemplo = [{
+      groupId: "1",
+      title: "Hols",
+      startTime: "10:00",
+      endTime: "11:00",
+      daysOfWeek: [1]
+    }]
+    this.setState({ fuente: ejemplo })
+    console.log(ejemplo);
   }
 
 
@@ -47,7 +95,6 @@ class App extends Component {
 
         <div className='home' >
           <Router>
-            {/* <NavBar/> */}
             <Route exact path="/" />
             <Route path="/stuff" component={Stuff} />
           </Router>
@@ -55,14 +102,16 @@ class App extends Component {
         </div>
 
         <div>
-          <NavBar handleSelect={this.handleSelect} handleSemestreSelect={this.handleSemestreSelect}/>
+          <NavBar handleSelect={this.handleSelect} handleSemestreSelect={this.handleSemestreSelect} />
         </div>
 
 
         <div >
-          <Calendario fuente={this.state.fuente} />
+          {/* <Calendario fuente={this.state.fuente} /> */}
         </div>
-
+        <div>
+          <FetchClases />
+        </div>
         <div className='container' onClick={console.log("cambio")}>
           <NavItem handleSelect={this.handleSelect} />
         </div>
