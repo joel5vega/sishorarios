@@ -14,6 +14,7 @@ export default class FetchClases extends Component {
     async componentDidMount() {
         const url = "https://api.randomuser.me"
         const url1 = "http://127.0.0.1:8000/ambientes/1"
+        // const url2 = "http://192.168.100.44:8000/ambientes/1"
         const response = await fetch(url1);
         const data = await response.json();
         this.setState({ clases: data, loading: false })
@@ -39,7 +40,7 @@ export default class FetchClases extends Component {
                         const control = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.control === "si");
                         this.setState({ test: control })
                         return "control";
-                    case 'sistemas':
+                    case 'sistemas':  
                         const sistemas = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.sistemas === "si");
                         this.setState({ test: sistemas })
                     case 'telecomunicaciones':

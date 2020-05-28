@@ -32,10 +32,10 @@ class App extends Component {
     this.setState({ fuente: nuevaFuente })
   }
   handleSemestreSelect = (evento) => {
-    // console.log(evento)
-    // var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento;
-    // this.setState({ fuente: nuevaFuente })
-    this.changeEvents();
+    console.log(evento)
+    var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento;
+    this.setState({ fuente: nuevaFuente })
+    // this.changeEvents();
   }
   changeEvents = () => {
     console.log("cambio de eventos");
@@ -81,7 +81,8 @@ class App extends Component {
       endTime: "11:00",
       daysOfWeek: [1]
     }]
-    this.setState({ fuente: ejemplo })
+    var fuenteDatos="http://127.0.0.1:8000/datos/"
+    this.setState({ fuente: fuenteDatos })
     console.log(ejemplo);
   }
 
@@ -107,10 +108,10 @@ class App extends Component {
 
 
         <div >
-          {/* <Calendario fuente={this.state.fuente} /> */}
+          <Calendario fuente={this.state.fuente} />
         </div>
         <div>
-          <FetchClases />
+          {/* <FetchClases /> */}
         </div>
         <div className='container' onClick={console.log("cambio")}>
           <NavItem handleSelect={this.handleSelect} />
