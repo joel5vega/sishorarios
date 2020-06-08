@@ -5,6 +5,14 @@
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
 
+.texto-peque{
+  font-size: small;
+}
+.texto-grande{
+  font-size: smaller;
+  font-weight: bolder;
+}
+
 .demo-app {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;

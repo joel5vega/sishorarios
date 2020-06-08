@@ -9,5 +9,11 @@ npm install node-sass
 para navegacion
 npm install react-router-dom --save
 npm install react-bootstrap bootstrap
-npm install @material-ui/core
+
+ejemplo de calendario 
+https://codesandbox.io/s/stackoverflow-56111232-9ilnk?file=/src/Calendar.jsnpm install @material-ui/core
+
+
+para los formularios
+npm install formik --save
 

@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Calendario from "./components/Calendario";
-import NavItem from "./components/NavItem";
+
 import NavBar from "./components/NavBar";
 
-import FetchClases from "./containers/FetchClases";
+import FetchDatos from "./containers/FetchDatos";
 
 
 import Home from "./views/Home";
 import Stuff from "./views/Stuff";
+import CrearClase from "./views/crearClase";
 
 
 const items = [{ id: 1, value: "aula 1" }, { id: 2, value: "aula 2" }];
@@ -20,6 +21,7 @@ class App extends Component {
     super(props)
     this.state = {
       loading: true,
+      index: {},
 
       fuente: "http://127.0.0.1:8000/clases/show"
 
@@ -33,11 +35,24 @@ class App extends Component {
   }
   handleSemestreSelect = (evento) => {
     console.log(evento)
-    var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento;
-    this.setState({ fuente: nuevaFuente })
-    // this.changeEvents();
+    if (evento != 'undefined') {
+      if (evento.value < 7) {
+        var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento.value;
+        this.setState({ fuente: nuevaFuente })
+      }
+      else
+        //this.changeEvents(evento);
+        var fuenteDatos = "http://127.0.0.1:8000/semestres/" + evento.value + "?mencion=" + evento.mencion;
+      this.setState({ fuente: fuenteDatos })
+    }
+
   }
-  changeEvents = () => {
+
+  ask = (value) => {
+    console.log(value)
+  }
+
+  changeEvents = (evento) => {
     console.log("cambio de eventos");
     var nuevaFuente = {
       "id": 1,
@@ -79,10 +94,12 @@ class App extends Component {
       title: "Hols",
       startTime: "10:00",
       endTime: "11:00",
-      daysOfWeek: [1]
+      daysOfWeek: [1],
+      description: "descripcion",
+      sigla: "ETN",
+      responsable: "Joel"
     }]
-    var fuenteDatos="http://127.0.0.1:8000/datos/"
-    this.setState({ fuente: fuenteDatos })
+    this.setState({ fuente: ejemplo })
     console.log(ejemplo);
   }
 
@@ -93,29 +110,28 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <div className="container">
+          <NavBar handleSelect={this.handleSelect} handleSemestreSelect={this.handleSemestreSelect} />
+        </div>
 
         <div className='home' >
           <Router>
-            <Route exact path="/" />
-            <Route path="/stuff" component={Stuff} />
+            <Route exact path="/" component={Home} />
+            <Route path="/clase/crear" component={CrearClase} />
           </Router>
 
         </div>
 
-        <div>
-          <NavBar handleSelect={this.handleSelect} handleSemestreSelect={this.handleSemestreSelect} />
-        </div>
 
 
-        <div >
-          <Calendario fuente={this.state.fuente} />
+
+        <div className='container'>
+          Datos
+          {/* <FetchDatos semestre='7' ask={this.ask} /> */}
+
+          {/* <Calendario fuente={this.state.fuente} titulo="titulo" periodo="I/2020" /> */}
         </div>
-        <div>
-          {/* <FetchClases /> */}
-        </div>
-        <div className='container' onClick={console.log("cambio")}>
-          <NavItem handleSelect={this.handleSelect} />
-        </div>
+
 
 
       </div>
