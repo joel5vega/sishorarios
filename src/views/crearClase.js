@@ -10,20 +10,30 @@ export default class CrearClase extends Component {
     constructor(args) {
         super(args)
         this.state = {
-
+            url:"http://127.0.0.1:8000",
             ambientes: [],
             materias: [],
             responsables: [],
+            periodos: [],
             loading: true,
             choqueSemestre: [],
             choqueAmbiente: [],
             eventos: [],
             evento: [],
+
+            selectedPeriodo: "",
+            selectedMateria: "",
+            selectedAmbiente: "",
+            day: "",
+            startTime: "",
+            endTime: "",
+
             selectedSemestre: 0,
             selectedMencion: "",
-            selectedAmbiente: "",
-            selectedNivel: "docente",
+
+            selectedNivel: "",
             selectedTipo: "",
+
             selectedResponsable: "",
             isSubmitting: false,
             semestres: [
@@ -38,11 +48,12 @@ export default class CrearClase extends Component {
                 { id: 9, nombre: "Noveno Semestre", value: 9 },
                 { id: 10, nombre: "Decimo Semestre", value: 10 }
 
-            ],
-            day: "",
-            startTime: "",
-            endTime: ""
+            ]
+
+
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     //fetch materias
     async fetchMaterias(semestre, mencion) {
@@ -68,17 +79,34 @@ export default class CrearClase extends Component {
         }
 
     }
+    //fetch Ambientes
+    async fetchAmbientes(tipo) {
+        const url = "http://127.0.0.1:8000";
+        try {
+            this.setState({ loading: true })
+            var urlAmbientes = url + "/index/ambientes?tipo=" + tipo;
+            const data = await fetch(urlAmbientes).then(value => value.json());
+            //asignamos las aulas del tipo  correspondiente
+            this.setState({ ambientes: data.ambientes })
+            // console.log(data)
+        }
+        catch (e) {
+            console.log(e);
+            this.setState({ ...this.state, loading: false })
+        }
+
+    }
     //fetch responsables
     async fetchResponsables(nivel) {
         const url = "http://127.0.0.1:8000";
         try {
             this.setState({ loading: true })
             const urlResponsables = url + "/index/responsables?nivel=" + nivel;
-            console.log(urlResponsables)
+            // console.log(urlResponsables)
             const data = await fetch(urlResponsables).then(value => value.json());
             //asignamos las materias del semestre correspondiente
             this.setState({ responsables: data.responsables })
-            console.log(data.responsable)
+            // console.log(data.responsable)
         }
         catch (e) {
             console.log(e);
@@ -92,10 +120,10 @@ export default class CrearClase extends Component {
         try {
             this.setState({ loading: true })
             if (mencion !== "") {
-                var urlSemestre = url + "/semestres/" + semestre + "?mencion=" + mencion;
+                var urlSemestre = url + "/semestres/" + semestre + "?mencion=" + mencion + "&periodo=" + this.state.selectedPeriodo;
             }
             else {
-                var urlSemestre = url + "/semestres/" + semestre;
+                var urlSemestre = url + "/semestres/" + semestre + "?periodo=" + this.state.selectedPeriodo;
             }
             // console.log(urlSemestre)
             const data = await fetch(urlSemestre).then(value => value.json());
@@ -126,13 +154,14 @@ export default class CrearClase extends Component {
 
             else {
                 if (item.title == "evento") {
-                    console.log("evento crado")
+                    // console.log("evento crado")
                     let anterior = this.state.choqueAmbiente.concat(this.state.choqueSemestre);
-                    console.log(anterior)
+                    // console.log(anterior)
                     // this.setState({eventos:anterior});
                     this.setState({ eventos: [...anterior, item] });
 
-                    console.log("funciono")
+                    // console.log("funciono")
+                    // console.log(this.state.eventos)
                     // this.setState({eventos:this.state.choqueAmbiente})
 
                 }
@@ -144,7 +173,7 @@ export default class CrearClase extends Component {
         const url = "http://127.0.0.1:8000";
         try {
             this.setState({ loading: true })
-            const urlChoque = url + "/ambientes/" + ambiente;
+            const urlChoque = url + "/ambientes/" + ambiente + "?periodo=" + this.state.selectedPeriodo;
             // console.log(urlChoque)
             const data = await fetch(urlChoque).then(value => value.json());
             //asignamos las materias del semestre correspondiente
@@ -171,25 +200,22 @@ export default class CrearClase extends Component {
             urlAmbientes = url + "/index/ambientes?tipo=" + this.state.selectedAmbiente
         )
         const urlResponsables = url + "/index/responsables";
-
-        // const urlSemestre = url + "/semestres/" + this.state.selectedSemestre;
-        // const urlAmbiente = url + "/ambientes/" + this.state.selectedAmbiente;
+        const urlPeriodos = url + "/index?index=periodos"
         Promise.all([
             fetch(urlMaterias).then(value => value.json()),
             fetch(urlAmbientes).then(value => value.json()),
             fetch(urlResponsables).then(value => value.json()),
-            //fetch(urlSemestre).then(value => value.json()),
-            //fetch(urlAmbiente).then(value => value.json())
+            fetch(urlPeriodos).then(value => value.json()),
+
         ]).then(allResponses => {
             const materias = allResponses[0];
             const ambientes = allResponses[1];
             const responsables = allResponses[2]
-            //const choqueSemestre = allResponses[2];
-            //const choqueAmbiente = allResponses[3];
-            this.setState({ materias: materias.materias, ambientes: ambientes.ambientes, responsables: responsables.responsables, loading: false })
-            // console.log(this.state);
-            // console.log(responsables)
-            // console.log(materias)
+            const periodos = allResponses[3];
+            this.setState({
+                periodos: periodos.periodos, materias: materias.materias,
+                ambientes: ambientes.ambientes, responsables: responsables.responsables, loading: false
+            })
 
         }).catch((err) => {
             console.log(err);
@@ -200,10 +226,20 @@ export default class CrearClase extends Component {
     async componentDidMount() {
         this.fetchData();
     }
+    handlePeriodoChange = (event) => {
+        var periodo = event.target.value
+        // console.log(periodo)
+        this.setState({
+            selectedPeriodo: periodo,
+            selectedSemestre: "0", selectedAmbiente: "",
+            choqueAmbientes: "", choqueSemestre: "", eventos: this.state.evento
+        })
+
+    }
     handleSemestreChange = (event) => {
         var semestre = event.target.value
         var mencion = ""
-        console.log(semestre)
+        // console.log(semestre)
         this.setState({ selectedSemestre: event.target.value, selectedMencion: "" })
         this.fetchMaterias(semestre, mencion)
         this.fetchChoqueSemestre(semestre, mencion)
@@ -217,6 +253,10 @@ export default class CrearClase extends Component {
         this.fetchChoqueSemestre(semestre, mencion)
 
     }
+    handleMateriaChange = (event) => {
+        var materia = event.target.value
+        this.setState({ selectedMateria: materia })
+    }
     handleAmbienteChange = (event) => {
         var ambiente = event.target.value
         this.setState({ selectedAmbiente: ambiente })
@@ -228,6 +268,12 @@ export default class CrearClase extends Component {
         this.setState({ selectedNivel: nivel })
         this.fetchResponsables(nivel);
         // console.log(ambiente)
+
+    }
+    handleTipoChange = (event) => {
+        var tipo = event.target.value
+        this.setState({ selectedTipo: tipo })
+        this.fetchAmbientes(tipo);
 
     }
     handleResponsableChange = (event) => {
@@ -262,24 +308,59 @@ export default class CrearClase extends Component {
     }
     getDateClick = (event) => {
         let startTime = event.startTime
-        let day = event.day
+        let day = event.day.toString()
         let date = event.date
         let minutes = 90
-        let nuevo = new Date(date.getTime() + minutes * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         // console.log(nuevo)
-        this.setState({ startTime: startTime, day: day, endTime: nuevo })
-
+        var evento = [{ title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin }]
+        // console.log(evento)
+        this.setState({ startTime: startTime, day: day, endTime: fin })
+        this.pushArray(evento)
     }
     addTime(time, minutes) {
         let now = new Date("January 25, 1994 " + time)
         let nuevo = new Date(now.getTime() + minutes * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         // console.log(now)
-        console.log(nuevo)
         return nuevo;
     }
+    handleSubmit(event) {
+        event.preventDefault();
+        var evento = {
+            materia: this.state.selectedMateria, responsable: this.state.selectedResponsable,
+            ambiente: this.state.selectedAmbiente, periodo: this.state.selectedPeriodo,
+            tipo: this.state.selectedTipo, nivel: this.state.selectedNivel,
+            day: this.state.day, startTime: this.state.startTime, endTime: this.state.endTime
+        }
 
-    onSubmit(datos) {
-        console.log(datos)
+        
+        
+        // var myRequest = new Request('flowers.jpg', myInit);
+        let urlPost = this.state.url + "/api/crear"
+        fetch(urlPost,{
+            method: 'post',
+            mode: 'cors',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(evento)
+        })
+            .then(res=>res.json())
+            .then(res=>console.log(res))
+            .then(this.limpiarForm());
+        
+        // alert(evento)
+        console.log(evento)
+
+
+    }
+    limpiarForm(){
+        this.setState({selectedPeriodo:"",selectedAmbiente:"",selectedMateria:"",selectedMencion:"",
+        selectedNivel:"",selectedResponsable:"",selectedSemestre:0,selectedTipo:""})
+    }
+    onSubmit(event) {
+        alert("se cambio")
         /*
         (values, { setSubmitting, resetForm }) => {
             setSubmitting(true);
@@ -289,16 +370,30 @@ export default class CrearClase extends Component {
             resetForm();
             setSubmitting(false);
      
-     
         }*/
     }
+
 
     render() {
         var message = "you selected" + this.state.selectedSemestre;
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <div className="input-row">
+                        <label htmlFor="periodo">Periodo </label>
+                        <select
+                            type="text"
+                            name="periodo"
+                            id="periodo"
+                            value={this.state.selectedPeriodo}
+                            onChange={this.handlePeriodoChange}
+                        >
+                            <option disabled={true} value="">Seleccione periodo</option>
+                            {this.state.periodos.map(item =>
+                                <option key={item.id} value={item.id} >
+                                    {item.nombre}
+                                </option>)}
+                        </select>
                         <label htmlFor="semestre">Semestre </label>
                         <select
                             type="text"
@@ -332,39 +427,26 @@ export default class CrearClase extends Component {
                                     <option value="telecomunicaciones">Telecomunicaciones</option>
                                 </select>
                             </div>
-
                         }
-                    </div>
-                    <div className="input-row">
-                        <label htmlFor="ambiente">Ambiente:</label>
-                        <select
-                            type="text"
-                            name="ambiente"
-                            id="ambiente"
-                            placeholder="ambiente"
-                            value={this.state.selectedAmbiente}
-                            onChange={this.handleAmbienteChange}
-
-                        >
-                            {this.state.ambientes.map(item =>
-                                <option key={item.id} value={item.id}>
-                                    {item.nombre}
-                                </option>)}
-                        </select>
-                    </div>
-                    <div className="input-row">
-                        <label htmlFor="materia">Materia:</label>
-                        <select
-                            type="text"
-                            name="materia"
-                            id="materia"
-                            placeholder="materia"
-                        >
-                            {this.state.materias.map(item =>
-                                <option key={item.id}>
-                                    {item.nombre}
-                                </option>)}
-                        </select>
+                        {this.state.selectedSemestre != 0 &&
+                            <div className="input-row">
+                                <label htmlFor="materia">Materia:</label>
+                                <select
+                                    type="text"
+                                    name="materia"
+                                    id="materia"
+                                    placeholder="materia"
+                                    value={this.state.selectedMateria}
+                                    onChange={this.handleMateriaChange}
+                                >
+                                    <option value="" disabled={true}>Seleccione Materia</option>
+                                    {this.state.materias.map(item =>
+                                        <option key={item.id} value={item.id}>
+                                            {item.nombre}
+                                        </option>)}
+                                </select>
+                            </div>
+                        }
                     </div>
                     <div className="input-row">
                         <label htmlFor="nivel">Nivel</label>
@@ -376,25 +458,30 @@ export default class CrearClase extends Component {
                             value={this.state.selectedNivel}
                             onChange={this.handleNivelChange}
                         >
-
+                            <option value="" disabled={true}>Docente/Auxiliar</option>
                             <option value="docente">Docencia</option>
                             <option value="auxiliar">Auxiliatura</option>
                         </select>
+                        {this.state.selectedNivel != "" &&
+                            <div>
+                                <label htmlFor="responsable">Responsable:</label>
+                                <select
+                                    type="text"
+                                    name="responsable"
+                                    id="responsable"
+                                    placeholder="responsable"
+                                    value={this.state.selectedResponsable}
+                                    onChange={this.handleResponsableChange}
+                                >
+                                    <option value="" disabled={true}>Seleccione Responsable</option>
+                                    {this.state.responsables.map(item =>
+                                        <option key={item.id} value={item.id}>
+                                            {item.titulo} {item.ap_paterno} {item.nombre}
+                                        </option>)}
+                                </select>
 
-                        <label htmlFor="responsable">Responsable:</label>
-                        <select
-                            type="text"
-                            name="responsable"
-                            id="responsable"
-                            placeholder="responsable"
-                            defaultValue={this.state.selectedResponsable}
-                            onChange={this.handleResponsableChange}
-                        >
-                            {this.state.responsables.map(item =>
-                                <option key={item.id} value={item.id}>
-                                    {item.titulo} {item.ap_paterno} {item.nombre}
-                                </option>)}
-                        </select>
+                            </div>
+                        }
                     </div>
 
                     <div className="input-row">
@@ -404,12 +491,34 @@ export default class CrearClase extends Component {
                             name="tipo"
                             id="tipo"
                             placeholder="teoria/laboratorio"
+                            value={this.state.selectedTipo}
+                            onChange={this.handleTipoChange}
                         >
-
-                            <option >Teoria</option>
-                            <option>Laboratorio</option>
+                            <option value="" disabled={true}>Teoria/Laboratorio</option>
+                            <option value="aula">Teoria</option>
+                            <option value="laboratorio">Laboratorio</option>
                         </select>
                     </div>
+                    {this.state.selectedTipo != "" &&
+                        <div className="input-row">
+                            <label htmlFor="ambiente">Ambiente:</label>
+                            <select
+                                type="text"
+                                name="ambiente"
+                                id="ambiente"
+                                placeholder="ambiente"
+                                value={this.state.selectedAmbiente}
+                                onChange={this.handleAmbienteChange}
+
+                            >
+                                <option value="" disabled={true}>Seleccionar ambiente</option>
+                                {this.state.ambientes.map(item =>
+                                    <option key={item.id} value={item.id}>
+                                        {item.nombre}
+                                    </option>)}
+                            </select>
+                        </div>
+                    }
                     <div className="input-row">
                         <div>
                             <label htmlFor="day">Dia:</label>
@@ -453,7 +562,7 @@ export default class CrearClase extends Component {
                     </div>
                     <div>
                         <div className="input-row">
-                            <button type="submit" disabled={this.state.isSubmitting}>Submit</button>
+                            <button type="submit" disabled={this.state.isSubmitting} >Crear</button>
                         </div>
                     </div>
 

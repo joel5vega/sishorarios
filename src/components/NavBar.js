@@ -10,9 +10,16 @@ class NavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            url: 'http://127.0.0.1:8000',
             backgroundColor: 'black',
             titulo: 'Home',
-            periodo: '',
+            periodo: "",
+
+            periodos: [],
+            ambientes: [],
+            aulas: [],
+            laboratorios: [],
+
             imagen: mainlogo,
             colorbtn: 'btn btn-danger my-2 my-sm-0 ',
             semestres: [
@@ -36,12 +43,10 @@ class NavBar extends Component {
                 { id: 18, nombre: "Decimo Semestre: Telecomunicaciones", value: 10, mencion: "telecomunicaciones" },
 
             ],
-            ambientes: [],
-            aulas: [{ id: 1, nombre: "Aula 304" }, { id: 2, nombre: "Aula 306" }],
-            laboratorios: [{ id: 3, nombre: "Labo de Telecomunicaciones" }, { id: 4, nombre: "Labo de Control" }],
 
             selectedSemestre: "",
-            selectedAmbiente: ""
+            selectedAmbiente: "",
+            selectedPeriodo: ""
         }
         const { handleSelect } = this.props
     }
@@ -50,47 +55,60 @@ class NavBar extends Component {
         const url = "http://127.0.0.1:8000/index?index=ambientes"
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ ambientes: data.ambientes, periodo: data.periodo })
+        this.setState({ ambientes: data.ambientes })
         // console.log(data)
+        this.fetchData();
+        // this.getPeriodo()
     }
-    /*
-    componentDidMount = () => {
-        window.addEventListener('scroll', this.handleScroll);
+    async getPeriodo() {
+        const urlPeriodo = this.state.url + "/index?index=periodos"
+        const data = await fetch(urlPeriodo).then(value => value.json())
+        this.setState({ periodos: data.periodos, periodo: data.periodo[0].nombre, selectedPeriodo: data.periodo[0].id })
     }
-*/
-    componentWillUnmount = () => {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
+    //fetch responsables
+    async fetchData() {
+        const url = this.state.url;
 
-    handleScroll = (event) => {
-        let scrollTop = window.scrollY;
-        // itemTranslate = Math.min(0, scrollTop/3 - 60);
-        if (scrollTop > 60) {
+        const urlPeriodos = url + "/index?index=periodos"
+        const urlAmbientes = url + "/index/ambientes";
+        const urlAulas = url + "/index/ambientes?tipo=aula"
+        const urlLaboratorios = url + "/index/ambientes?tipo=laboratorio"
+        const urlResponsables = url + "/index/responsables";
+        Promise.all([
+            fetch(urlPeriodos).then(value => value.json()),
+            fetch(urlAmbientes).then(value => value.json()),
+            fetch(urlAulas).then(value => value.json()),
+            fetch(urlLaboratorios).then(value => value.json()),
+            fetch(urlResponsables).then(value => value.json()),
+        ]).then(allResponses => {
+            const periodos = allResponses[0];
+            const ambientes = allResponses[1];
+            const aulas = allResponses[2]
+            const laboratorios = allResponses[3]
+            const responsables = allResponses[4]
             this.setState({
-                backgroundColor: 'black',
-                imagen: secondlogo,
-                colorbtn: 'btn btn-outline-danger my-2 my-sm-0 '
+                periodos: periodos.periodos, periodo: periodos.periodo[0].nombre, selectedPeriodo: periodos.periodo[0].id,
+                ambientes: ambientes.ambientes, aulas: aulas.ambientes, laboratorios: laboratorios.ambientes,
+                responsables: responsables.responsables, loading: false
+            })
 
-            });
-
-
-        }
-        else {
-            this.setState({
-                backgroundColor: 'transparent',
-                imagen: mainlogo,
-                colorbtn: 'btn btn-danger my-2 my-sm-0 '
-            });
-
-        }
-
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
-    handleChange = (item) => {
+
+    handleAmbienteChange = (item) => {
         this.setState({ titulo: item.nombre, selectedAmbiente: item.id, selectedSemestre: "" })
     }
     handleSemestreChange = (item) => {
         this.setState({ titulo: item.nombre, selectedSemestre: item.id, selectedAmbiente: "" })
+    }
+    handlePeriodoChange = (item) => {
+        this.setState({ selectedPeriodo: item.id, periodo: item.nombre,titulo:"Todo",selectedAmbiente: "", selectedSemestre: "" })
+    }
+    titulo(){
+        return this.state.titulo;
     }
     render() {
 
@@ -101,7 +119,7 @@ class NavBar extends Component {
             }
         };
         const { containerStyle } = styles;
-        const { handleSelect, handleSemestreSelect } = this.props;
+        const {handlePeriodoSelect, handleAmbienteSelect, handleSemestreSelect } = this.props;
         return (
             <div>
                 <Navbar collapseOnSelect expand="xxl" bg="dark" variant="dark" >
@@ -112,7 +130,7 @@ class NavBar extends Component {
                         <Navbar.Text style={{ marginRight: 5 }}>Sistema de Horarios</Navbar.Text>
                     </Nav>
                     <Nav style={{ marginRight: 50 }}> <Navbar.Text>{this.state.periodo}</Navbar.Text> </Nav>
-                    <Nav style={{ marginRight: 50 }}> <Navbar.Text>{this.state.titulo}</Navbar.Text> </Nav>
+                    <Nav style={{ marginRight: 50 }}> <Navbar.Text>{this.titulo()}</Navbar.Text> </Nav>
 
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -120,14 +138,27 @@ class NavBar extends Component {
 
                         <Nav className="r-auto" href="/" >
 
-                            <NavDropdown title="Ambiente" id="collasible-nav-dropdown">
+                            <NavDropdown title="Periodo" id="collasible-nav-dropdown">
                                 <Navbar.Toggle >
-                                    {this.state.ambientes.map((item) =>
+                                    {this.state.periodos.map((item) =>
                                         <NavDropdown.Item
                                             key={item.id} value={item.id}
                                             onClick={() => {
-                                                this.handleChange(item)
-                                                handleSelect(item.id)
+                                                this.handlePeriodoChange(item)
+                                                handlePeriodoSelect(item.id)
+                                            }}>
+                                            {item.nombre}
+                                        </NavDropdown.Item>)}
+                                </Navbar.Toggle>
+                            </NavDropdown>
+                            <NavDropdown title="Ambiente" id="collasible-nav-dropdown">
+                                <Navbar.Toggle >
+                                    {this.state.aulas.map((item) =>
+                                        <NavDropdown.Item
+                                            key={item.id} value={item.id}
+                                            onClick={() => {
+                                                this.handleAmbienteChange(item)
+                                                handleAmbienteSelect(item.id)
                                             }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
@@ -135,29 +166,29 @@ class NavBar extends Component {
                                     {this.state.laboratorios.map((item) =>
                                         <NavDropdown.Item key={item.id} value={item.id}
                                             onClick={(e) => {
-                                                this.handleChange(item)
-                                                handleSelect(item.id)
+                                                this.handleAmbienteChange(item)
+                                                handleAmbienteSelect(item.id)
                                             }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
                                 </Navbar.Toggle>
                             </NavDropdown>
-                        
+
 
                             <NavDropdown children title="Semestre" id="collasible-nav-dropdown">
                                 <Navbar.Toggle>
 
-                                {this.state.semestres.map((semestre) =>
-                                    <NavDropdown.Item key={semestre.id} value={semestre.value}
-                                        onClick={(e) => {
-                                            this.handleSemestreChange(semestre)
-                                            handleSemestreSelect(semestre)
-                                        }
-                                        }
+                                    {this.state.semestres.map((semestre) =>
+                                        <NavDropdown.Item key={semestre.id} value={semestre.value}
+                                            onClick={(e) => {
+                                                this.handleSemestreChange(semestre)
+                                                handleSemestreSelect(semestre)
+                                            }
+                                            }
 
-                                    >
-                                        {semestre.nombre}
-                                    </NavDropdown.Item>)}
+                                        >
+                                            {semestre.nombre}
+                                        </NavDropdown.Item>)}
 
                                 </Navbar.Toggle>
                             </NavDropdown>
