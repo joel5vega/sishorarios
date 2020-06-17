@@ -10,7 +10,7 @@ export default class CrearClase extends Component {
     constructor(args) {
         super(args)
         this.state = {
-            url:"http://127.0.0.1:8000",
+            url: "http://127.0.0.1:8000",
             ambientes: [],
             materias: [],
             responsables: [],
@@ -20,7 +20,7 @@ export default class CrearClase extends Component {
             choqueAmbiente: [],
             eventos: [],
             evento: [],
-
+            valido:false,
             selectedPeriodo: "",
             selectedMateria: "",
             selectedAmbiente: "",
@@ -28,7 +28,7 @@ export default class CrearClase extends Component {
             startTime: "",
             endTime: "",
 
-            selectedSemestre: 0,
+            selectedSemestre: "",
             selectedMencion: "",
 
             selectedNivel: "",
@@ -191,7 +191,7 @@ export default class CrearClase extends Component {
 
     async fetchData() {
         const url = "http://127.0.0.1:8000";
-        const urlMaterias = url + "/index/materias/" + this.state.selectedSemestre;
+        //const urlMaterias = url + "/index/materias/" + this.state.selectedSemestre;
         if (this.state.selectedAmbiente == 'undefined') {
             var urlAmbientes = url + "/index/ambientes";
             // var urlAmbientes = url + "/index?index=ambientes";
@@ -202,18 +202,18 @@ export default class CrearClase extends Component {
         const urlResponsables = url + "/index/responsables";
         const urlPeriodos = url + "/index?index=periodos"
         Promise.all([
-            fetch(urlMaterias).then(value => value.json()),
+            //fetch(urlMaterias).then(value => value.json()),
             fetch(urlAmbientes).then(value => value.json()),
             fetch(urlResponsables).then(value => value.json()),
             fetch(urlPeriodos).then(value => value.json()),
 
         ]).then(allResponses => {
-            const materias = allResponses[0];
-            const ambientes = allResponses[1];
-            const responsables = allResponses[2]
-            const periodos = allResponses[3];
+            //const materias = allResponses[4];
+            const ambientes = allResponses[0];
+            const responsables = allResponses[1]
+            const periodos = allResponses[2];
             this.setState({
-                periodos: periodos.periodos, materias: materias.materias,
+                periodos: periodos.periodos, 
                 ambientes: ambientes.ambientes, responsables: responsables.responsables, loading: false
             })
 
@@ -231,7 +231,7 @@ export default class CrearClase extends Component {
         // console.log(periodo)
         this.setState({
             selectedPeriodo: periodo,
-            selectedSemestre: "0", selectedAmbiente: "",
+            selectedSemestre: "", selectedAmbiente: "",
             choqueAmbientes: "", choqueSemestre: "", eventos: this.state.evento
         })
 
@@ -324,6 +324,9 @@ export default class CrearClase extends Component {
         // console.log(now)
         return nuevo;
     }
+    verValido(){
+        // let $vKalido = 
+    }
     handleSubmit(event) {
         event.preventDefault();
         var evento = {
@@ -333,31 +336,33 @@ export default class CrearClase extends Component {
             day: this.state.day, startTime: this.state.startTime, endTime: this.state.endTime
         }
 
-        
-        
+
+
         // var myRequest = new Request('flowers.jpg', myInit);
         let urlPost = this.state.url + "/api/crear"
-        fetch(urlPost,{
+        fetch(urlPost, {
             method: 'post',
             mode: 'cors',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(evento)
         })
-            .then(res=>res.json())
-            .then(res=>console.log(res))
+            .then(res => res.json())
+            .then(res => console.log(res))
             .then(this.limpiarForm());
-        
+
         // alert(evento)
         console.log(evento)
 
 
     }
-    limpiarForm(){
-        this.setState({selectedPeriodo:"",selectedAmbiente:"",selectedMateria:"",selectedMencion:"",
-        selectedNivel:"",selectedResponsable:"",selectedSemestre:0,selectedTipo:""})
+    limpiarForm() {
+        this.setState({
+            selectedPeriodo: "", selectedAmbiente: "", selectedMateria: "", selectedMencion: "",
+            selectedNivel: "", selectedResponsable: "", selectedSemestre: 0, selectedTipo: ""
+        })
     }
     onSubmit(event) {
         alert("se cambio")
@@ -387,6 +392,7 @@ export default class CrearClase extends Component {
                             id="periodo"
                             value={this.state.selectedPeriodo}
                             onChange={this.handlePeriodoChange}
+                            required
                         >
                             <option disabled={true} value="">Seleccione periodo</option>
                             {this.state.periodos.map(item =>
@@ -402,8 +408,9 @@ export default class CrearClase extends Component {
                             placeholder="semestre"
                             value={this.state.selectedSemestre}
                             onChange={this.handleSemestreChange}
+                            required
                         >
-                            <option disabled={true} value="0">Seleccione Semestre</option>
+                            <option disabled={true} value="">Seleccione Semestre</option>
                             {this.state.semestres.map(item =>
                                 <option key={item.id} value={item.value} data-mencion={item.mencion}>
                                     {item.nombre}
@@ -428,7 +435,7 @@ export default class CrearClase extends Component {
                                 </select>
                             </div>
                         }
-                        {this.state.selectedSemestre != 0 &&
+                        {this.state.selectedSemestre != ""&&
                             <div className="input-row">
                                 <label htmlFor="materia">Materia:</label>
                                 <select
@@ -438,6 +445,7 @@ export default class CrearClase extends Component {
                                     placeholder="materia"
                                     value={this.state.selectedMateria}
                                     onChange={this.handleMateriaChange}
+                                    required
                                 >
                                     <option value="" disabled={true}>Seleccione Materia</option>
                                     {this.state.materias.map(item =>
@@ -457,6 +465,7 @@ export default class CrearClase extends Component {
                             placeholder="Docencia/Auxiliatura"
                             value={this.state.selectedNivel}
                             onChange={this.handleNivelChange}
+                            required
                         >
                             <option value="" disabled={true}>Docente/Auxiliar</option>
                             <option value="docente">Docencia</option>
@@ -472,6 +481,7 @@ export default class CrearClase extends Component {
                                     placeholder="responsable"
                                     value={this.state.selectedResponsable}
                                     onChange={this.handleResponsableChange}
+                                    required
                                 >
                                     <option value="" disabled={true}>Seleccione Responsable</option>
                                     {this.state.responsables.map(item =>
@@ -493,6 +503,7 @@ export default class CrearClase extends Component {
                             placeholder="teoria/laboratorio"
                             value={this.state.selectedTipo}
                             onChange={this.handleTipoChange}
+                            required
                         >
                             <option value="" disabled={true}>Teoria/Laboratorio</option>
                             <option value="aula">Teoria</option>
@@ -509,7 +520,7 @@ export default class CrearClase extends Component {
                                 placeholder="ambiente"
                                 value={this.state.selectedAmbiente}
                                 onChange={this.handleAmbienteChange}
-
+                                required
                             >
                                 <option value="" disabled={true}>Seleccionar ambiente</option>
                                 {this.state.ambientes.map(item =>
@@ -527,7 +538,9 @@ export default class CrearClase extends Component {
                                 id="day"
                                 placeholder={this.state.day}
                                 value={this.state.day}
-                                onChange={this.handleDayChange}>
+                                onChange={this.handleDayChange}
+                                required
+                                >
                                 <option value="" disabled={true}>Seleccione dia</option>
                                 <option value="1">Lunes</option>
                                 <option value="2">Martes</option>
@@ -545,7 +558,8 @@ export default class CrearClase extends Component {
                                     id="startTime"
                                     placeholder={this.state.startTime}
                                     value={this.state.startTime}
-                                    onChange={this.handleStartChange}>
+                                    onChange={this.handleStartChange}
+                                    required>
                                 </input>
 
                                 <label htmlFor="endTime">Hora de fin:</label>
@@ -561,9 +575,11 @@ export default class CrearClase extends Component {
 
                     </div>
                     <div>
-                        <div className="input-row">
-                            <button type="submit" disabled={this.state.isSubmitting} >Crear</button>
-                        </div>
+                        {!this.state.valido &&
+                            < div className="input-row">
+                                <button type="submit" disabled={this.state.isSubmitting} >Crear</button>
+                            </div>
+                        }
                     </div>
 
                     {/* <pre>{JSON.stringify(this.state.choqueAmbiente, null, 2)}</pre>
