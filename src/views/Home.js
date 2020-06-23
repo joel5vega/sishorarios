@@ -1,57 +1,54 @@
 import React, { Component } from "react";
-import NavItem from "../components/NavItem";
 import Calendario from "../components/Calendario";
+import ReactDOM from "react-dom";
+import html2canvas from "html2canvas";
+import jsPdf from "jspdf";
+
+// import "./styles.css";
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       url: "http://127.0.0.1:8000",
-      fuente:"http://127.0.0.1:8000/index?periodo=1",
+      fuente: "http://127.0.0.1:8000/index?periodo=1",
       selectedPeriodo: "",
     }
   }
 
-  /*
-  componentDidMount() {
-   this.getPeriodo()
-  }
-  async getPeriodo() {
-    const urlPeriodo = this.state.url + "/index?index=periodos"
-    const data = await fetch(urlPeriodo).then(value => value.json())
-    this.setState({selectedPeriodo: data.periodo[0].id })
-  }
-  handlePeriodoSelect = (evento) => {
-    console.log(evento)
-    this.setState({ selectedPeriodo: evento })
-  }
-  handleAmbienteSelect = (evento) => {
-    console.log(evento)
-    var nuevaFuente = "http://127.0.0.1:8000/ambientes/" + evento;
-    this.setState({ fuente: nuevaFuente })
-  }
-  handleSemestreSelect = (evento) => {
-    console.log(evento)
-    if (evento != 'undefined') {
-      if (evento.value < 7) {
-        var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento.value;
-        this.setState({ fuente: nuevaFuente })
+  printPDF = () => {
+    const domElement = document.getElementById("root");
+    html2canvas(domElement, {
+      onclone: document => {
+        document.getElementById("print").style.visibility = "hidden";
       }
-      else
-        //this.changeEvents(evento);
-        var fuenteDatos = "http://127.0.0.1:8000/semestres/" + evento.value + "?mencion=" + evento.mencion;
-      this.setState({ fuente: fuenteDatos })
-    }
+    }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPdf({
+        orientation: 'landscape'
+        
+      });
+      // 180,160
+      pdf.addImage(imgData, "JPEG", 5, 5,265,200);
+      pdf.save(`${new Date().toISOString()} Horario.pdf`);
+    });
+    alert("home sweet home")
+  };
 
-  }
-  */
+
   render() {
+
 
     return (
 
       <div className='container'>
 
         <h2>HOME</h2>
+        <div>
+          <button id="print" onClick={this.printPDF}>
+            PRINT
+          </button>
+        </div>
 
         <div className='container' >
           <Calendario fuente={this.props.fuente} />

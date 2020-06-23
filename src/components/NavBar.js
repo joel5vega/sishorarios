@@ -197,6 +197,7 @@ class NavBar extends Component {
 
 
                             <Nav.Link href="/clase/crear">Crear Nueva Clase</Nav.Link>
+                            <Nav.Link href="/exportar/pdf">Exportar PDF</Nav.Link>
 
                         </Nav>
                     </Navbar.Collapse>

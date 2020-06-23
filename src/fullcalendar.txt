@@ -17,3 +17,9 @@ https://codesandbox.io/s/stackoverflow-56111232-9ilnk?file=/src/Calendar.jsnpm i
 para los formularios
 npm install formik --save
 
+para exportacion a pdf
+npm install @react-pdf/renderer --save
+
+para tomar una captura de pantalla del calendario
+npm install html2canvas
+npm install jspdf
