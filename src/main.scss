@@ -6,7 +6,7 @@
 @import '~@fullcalendar/timegrid/main.css';
 
 .texto-peque{
-  font-size: small;
+  font-size: x-small;
 }
 .texto-grande{
   font-size: smaller;
@@ -22,7 +22,11 @@
   margin: 0 0 3em;
 }
 
-.demo-app-calendar {
+.calendar {
   margin: 0 auto;
   max-width: 900px;
+  padding-top: 10px;
+}
+.center-block{
+  float:none;
 }

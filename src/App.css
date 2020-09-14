@@ -4,14 +4,9 @@
   text-align: center;
 }
 body {
-  
-  /* padding-top: 100px; */
+  padding-top: 110px; 
   background: transparent;
-  
- 
-  
- 
-}
+  }
 
 .App-logo {
   height: 40vmin;
@@ -48,3 +43,8 @@ body {
   }
 }
 
+.title{
+  display: table;
+  margin: 0 auto;
+  border: 1px solid blue;
+}

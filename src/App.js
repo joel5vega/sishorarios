@@ -3,18 +3,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Calendario from "./components/Calendario";
-
 import NavBar from "./components/NavBar";
-
-import FetchDatos from "./containers/FetchDatos";
-
-
 import Home from "./views/Home";
-import Stuff from "./views/Stuff";
+import Ambientes from "./views/ambientes";
+import Materias from "./views/materias";
+import Responsables from "./views/responsables"
+import Clases from "./views/clases"
 import CrearClase from "./views/crearClase";
 
-
-const items = [{ id: 1, value: "aula 1" }, { id: 2, value: "aula 2" }];
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +21,9 @@ class App extends Component {
       index: {},
 
       fuente: "http://127.0.0.1:8000/clases/show",
-      selectedPeriodo: ""
+      selectedPeriodo: "",
+      selectedTitle:"Home",
+      periodo:""
     }
   }
 
@@ -37,26 +35,28 @@ class App extends Component {
     const urlPeriodo = this.state.url + "/index?index=periodos"
     
     const data = await fetch(urlPeriodo).then(value => value.json())
-    console.log(data)
+    // console.log(data)
     var periodo=data.periodo[0].id
+    var periodo_nombre=data.periodo[0].nombre
     const fuentePeriodo = this.state.url+"/index?periodo="+periodo;
-    this.setState({ selectedPeriodo:periodo ,fuente:fuentePeriodo})
+    this.setState({ selectedPeriodo:periodo, periodo:periodo_nombre ,fuente:fuentePeriodo})
     // this.fuente()
   }
   handlePeriodoSelect = (periodo) => {
     // console.log(evento)
-    const fuentePeriodo = this.state.url+"/index?periodo="+periodo;
-    this.setState({ selectedPeriodo: periodo,fuente:fuentePeriodo })
+    const fuentePeriodo = this.state.url+"/index?periodo="+periodo.id;
+    this.setState({ selectedPeriodo: periodo.id,fuente:fuentePeriodo, periodo:periodo.nombre })
     // this.fuente()
   }
   handleAmbienteSelect = (evento) => {
     console.log(evento)
-    var nuevaFuente = "http://127.0.0.1:8000/ambientes/" + evento+"?periodo="+this.state.selectedPeriodo;;
-    this.setState({ fuente: nuevaFuente })
+    var nuevaFuente = "http://127.0.0.1:8000/ambientes/" + evento.id+"?periodo="+this.state.selectedPeriodo;;
+    let title = "Ambiente:  "+evento.nombre;
+    this.setState({ fuente: nuevaFuente ,selectedTitle: title});
   }
 
   handleSemestreSelect = (evento) => {
-    console.log(evento.value)
+    console.log(evento)
     if (evento != 'undefined') {
       if (evento.value < 7) {
         var nuevaFuente = "http://127.0.0.1:8000/semestres/" + evento.value+"?periodo="+this.state.selectedPeriodo;
@@ -66,6 +66,7 @@ class App extends Component {
         var fuenteDatos = "http://127.0.0.1:8000/semestres/" + evento.value + "?periodo="+this.state.selectedPeriodo+"&mencion=" + evento.mencion;
         this.setState({ fuente: fuenteDatos })
       }
+      this.setState({selectedTitle:evento.nombre})
     }
     // console.log("fuente es : " + this.state.fuente)
     // this.fuente()
@@ -86,28 +87,26 @@ class App extends Component {
           <NavBar handleAmbienteSelect={this.handleAmbienteSelect} handleSemestreSelect={this.handleSemestreSelect} handlePeriodoSelect={this.handlePeriodoSelect} />
         </div>
 
-        <div className='home' >
+        <div className='container'>
           <Router>
             <Route exact path="/" 
-            render={(props)=><Home {...props} fuente={this.fuente()}/>}
+            render={(props)=><Home {...props} fuente={this.fuente()} 
+            periodo={this.state.periodo} titulo={this.state.selectedTitle}/>}
              />
-            <Route path="/clase/crear" component={CrearClase} />
+            <Route path="/crear/clase" component={CrearClase} />
+            <Route path="/ambiente" component={Ambientes} />
+            <Route path="/materia" component={Materias} />
+            <Route path="/responsable" component={Responsables} />
+            <Route path="/clase" 
+            render={(props)=><Clases {...props} fuente={this.fuente()} 
+            periodo={this.state.periodo} titulo={this.state.selectedTitle} />}
+            />
           </Router>
 
         </div>
-
-
-
-
-        <div className='container'>
-          Datos
-          {/* <FetchDatos semestre='7' ask={this.ask} /> */}
-
-          {/* <Calendario fuente={this.state.fuente}/> */}
+        <div>
+          (c) Sistema de horarios de Ingenieria Electrónica
         </div>
-
-
-
       </div>
 
     );

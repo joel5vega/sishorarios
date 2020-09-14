@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Dropdown, NavDropdown } from 'react-bootstrap';
+import { Dropdown, NavDropdown, DropdownButton } from 'react-bootstrap';
 import FetchDatos from "../containers/FetchDatos";
 import Calendario from "../components/Calendario";
 import { asRoughMinutes } from "@fullcalendar/core";
+import '../css/crear.css';
 
 export default class CrearClase extends Component {
 
@@ -20,7 +21,8 @@ export default class CrearClase extends Component {
             choqueAmbiente: [],
             eventos: [],
             evento: [],
-            valido:false,
+            view: "timeGridWeek",
+            valido: false,
             selectedPeriodo: "",
             selectedMateria: "",
             selectedAmbiente: "",
@@ -131,6 +133,13 @@ export default class CrearClase extends Component {
             let anterior = this.state.evento.concat(this.state.choqueAmbiente)
             this.setState({ choqueSemestre: data, eventos: anterior })
 
+            //anadimos al array de eventos
+            /*
+            data.map(item => {
+                console.log(item)
+                this.setState({ eventos: [...this.state.eventos, item] });
+            })
+            */
             this.pushArray(data);
 
         }
@@ -145,11 +154,16 @@ export default class CrearClase extends Component {
     pushArray(data) {
         data.map(item => {
 
+
             if (item.title !== "evento") {
-                if (!(this.state.eventos.filter(e => e.ambiente_id === item.ambiente_id).length > 0)) {
+
+
+                // if (!(this.state.eventos.filter(e => e.ambiente_id === item.ambiente_id).length > 0)) {
+                if (!(this.state.eventos.filter(e => e.groupId === item.groupId).length > 0)) {
 
                     this.setState({ eventos: [...this.state.eventos, item] });
                 }
+
             }
 
             else {
@@ -213,7 +227,7 @@ export default class CrearClase extends Component {
             const responsables = allResponses[1]
             const periodos = allResponses[2];
             this.setState({
-                periodos: periodos.periodos, 
+                periodos: periodos.periodos,
                 ambientes: ambientes.ambientes, responsables: responsables.responsables, loading: false
             })
 
@@ -260,7 +274,7 @@ export default class CrearClase extends Component {
     handleAmbienteChange = (event) => {
         var ambiente = event.target.value
         this.setState({ selectedAmbiente: ambiente })
-        // console.log(ambiente)
+        console.log(ambiente)
         this.fetchChoqueAmbiente(ambiente)
     }
     handleNivelChange = (event) => {
@@ -274,8 +288,8 @@ export default class CrearClase extends Component {
         var tipo = event.target.value
         this.setState({ selectedTipo: tipo })
         this.fetchAmbientes(tipo);
-
     }
+    
     handleResponsableChange = (event) => {
         var responsable = event.target.value
         this.setState({ selectedResponsable: responsable })
@@ -286,7 +300,7 @@ export default class CrearClase extends Component {
     handleDayChange = (event) => {
         var dia = event.target.value
         var evento = [{ title: "evento", daysOfWeek: dia, startTime: this.state.startTime, endTime: this.state.endTime }]
-        this.setState({ day: dia, evento: evento })
+        this.setState({ day: dia, evento: evento, view: "dayGrid" })
         this.pushArray(evento)
         // console.log(evento)
     }
@@ -324,7 +338,7 @@ export default class CrearClase extends Component {
         // console.log(now)
         return nuevo;
     }
-    verValido(){
+    verValido() {
         // let $vKalido = 
     }
     handleSubmit(event) {
@@ -335,9 +349,6 @@ export default class CrearClase extends Component {
             tipo: this.state.selectedTipo, nivel: this.state.selectedNivel,
             day: this.state.day, startTime: this.state.startTime, endTime: this.state.endTime
         }
-
-
-
         // var myRequest = new Request('flowers.jpg', myInit);
         let urlPost = this.state.url + "/api/crear"
         fetch(urlPost, {
@@ -353,8 +364,8 @@ export default class CrearClase extends Component {
             .then(res => console.log(res))
             .then(this.limpiarForm());
 
-        // alert(evento)
-        console.log(evento)
+        alert("El evento se creo exitosamente")
+        // console.log(evento)
 
 
     }
@@ -377,218 +388,283 @@ export default class CrearClase extends Component {
      
         }*/
     }
+    view = (event) => {
+        let view = this.state.view;
+        return view;
+    }
+
+
 
 
     render() {
         var message = "you selected" + this.state.selectedSemestre;
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="input-row">
-                        <label htmlFor="periodo">Periodo </label>
-                        <select
-                            type="text"
-                            name="periodo"
-                            id="periodo"
-                            value={this.state.selectedPeriodo}
-                            onChange={this.handlePeriodoChange}
-                            required
-                        >
-                            <option disabled={true} value="">Seleccione periodo</option>
-                            {this.state.periodos.map(item =>
-                                <option key={item.id} value={item.id} >
-                                    {item.nombre}
-                                </option>)}
-                        </select>
-                        <label htmlFor="semestre">Semestre </label>
-                        <select
-                            type="text"
-                            name="semestre"
-                            id="semestre"
-                            placeholder="semestre"
-                            value={this.state.selectedSemestre}
-                            onChange={this.handleSemestreChange}
-                            required
-                        >
-                            <option disabled={true} value="">Seleccione Semestre</option>
-                            {this.state.semestres.map(item =>
-                                <option key={item.id} value={item.value} data-mencion={item.mencion}>
-                                    {item.nombre}
-                                </option>)}
-                        </select>
-
-                        {this.state.selectedSemestre > 6 &&
-                            <div>
-                                <label htmlFor="mencion">Mencion </label>
-                                <select
-                                    type="text"
-                                    name="mencion"
-                                    id="mencion"
-                                    placeholder="mencion"
-                                    value={this.state.selectedMencion}
-                                    onChange={this.handleMencionChange}
-                                >
-                                    <option disabled={true} value="">Seleccione Mencion</option>
-                                    <option value="control">Control</option>
-                                    <option value="sistemas">Sistemas</option>
-                                    <option value="telecomunicaciones">Telecomunicaciones</option>
-                                </select>
-                            </div>
-                        }
-                        {this.state.selectedSemestre != ""&&
-                            <div className="input-row">
-                                <label htmlFor="materia">Materia:</label>
-                                <select
-                                    type="text"
-                                    name="materia"
-                                    id="materia"
-                                    placeholder="materia"
-                                    value={this.state.selectedMateria}
-                                    onChange={this.handleMateriaChange}
-                                    required
-                                >
-                                    <option value="" disabled={true}>Seleccione Materia</option>
-                                    {this.state.materias.map(item =>
-                                        <option key={item.id} value={item.id}>
-                                            {item.nombre}
-                                        </option>)}
-                                </select>
-                            </div>
-                        }
-                    </div>
-                    <div className="input-row">
-                        <label htmlFor="nivel">Nivel</label>
-                        <select
-                            type="text"
-                            name="nivel"
-                            id="nivel"
-                            placeholder="Docencia/Auxiliatura"
-                            value={this.state.selectedNivel}
-                            onChange={this.handleNivelChange}
-                            required
-                        >
-                            <option value="" disabled={true}>Docente/Auxiliar</option>
-                            <option value="docente">Docencia</option>
-                            <option value="auxiliar">Auxiliatura</option>
-                        </select>
-                        {this.state.selectedNivel != "" &&
-                            <div>
-                                <label htmlFor="responsable">Responsable:</label>
-                                <select
-                                    type="text"
-                                    name="responsable"
-                                    id="responsable"
-                                    placeholder="responsable"
-                                    value={this.state.selectedResponsable}
-                                    onChange={this.handleResponsableChange}
-                                    required
-                                >
-                                    <option value="" disabled={true}>Seleccione Responsable</option>
-                                    {this.state.responsables.map(item =>
-                                        <option key={item.id} value={item.id}>
-                                            {item.titulo} {item.ap_paterno} {item.nombre}
-                                        </option>)}
-                                </select>
-
-                            </div>
-                        }
-                    </div>
-
-                    <div className="input-row">
-                        <label htmlFor="tipo">Tipo</label>
-                        <select
-                            type="text"
-                            name="tipo"
-                            id="tipo"
-                            placeholder="teoria/laboratorio"
-                            value={this.state.selectedTipo}
-                            onChange={this.handleTipoChange}
-                            required
-                        >
-                            <option value="" disabled={true}>Teoria/Laboratorio</option>
-                            <option value="aula">Teoria</option>
-                            <option value="laboratorio">Laboratorio</option>
-                        </select>
-                    </div>
-                    {this.state.selectedTipo != "" &&
-                        <div className="input-row">
-                            <label htmlFor="ambiente">Ambiente:</label>
-                            <select
-                                type="text"
-                                name="ambiente"
-                                id="ambiente"
-                                placeholder="ambiente"
-                                value={this.state.selectedAmbiente}
-                                onChange={this.handleAmbienteChange}
-                                required
-                            >
-                                <option value="" disabled={true}>Seleccionar ambiente</option>
-                                {this.state.ambientes.map(item =>
-                                    <option key={item.id} value={item.id}>
-                                        {item.nombre}
-                                    </option>)}
-                            </select>
-                        </div>
-                    }
-                    <div className="input-row">
-                        <div>
-                            <label htmlFor="day">Dia:</label>
-                            <select type="number"
-                                name="day"
-                                id="day"
-                                placeholder={this.state.day}
-                                value={this.state.day}
-                                onChange={this.handleDayChange}
-                                required
-                                >
-                                <option value="" disabled={true}>Seleccione dia</option>
-                                <option value="1">Lunes</option>
-                                <option value="2">Martes</option>
-                                <option value="3">Miercoles</option>
-                                <option value="4">Jueves</option>
-                                <option value="5">Viernes</option>
-                                <option value="6">Sabado</option>
-                            </select>
-                        </div>
-                        {this.state.day > 0 &&
-                            <div>
-                                <label htmlFor="startTime">Hora de inicio:</label>
-                                <input type="time"
-                                    name="startTime"
-                                    id="startTime"
-                                    placeholder={this.state.startTime}
-                                    value={this.state.startTime}
-                                    onChange={this.handleStartChange}
-                                    required>
-                                </input>
-
-                                <label htmlFor="endTime">Hora de fin:</label>
-                                <input type="time"
-                                    name="endTime"
-                                    id="endTime"
-                                    placeholder={this.state.endTime}
-                                    value={this.state.endTime}
-                                    onChange={this.handleEndChange}>
-                                </input>
-                            </div>
-                        }
-
-                    </div>
-                    <div>
-                        {!this.state.valido &&
-                            < div className="input-row">
-                                <button type="submit" disabled={this.state.isSubmitting} >Crear</button>
-                            </div>
-                        }
-                    </div>
-
-                    {/* <pre>{JSON.stringify(this.state.choqueAmbiente, null, 2)}</pre>
-                    <pre>{JSON.stringify(this.state.choqueSemestre, null, 2)}</pre> */}
-                    {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-                </form>
+            <div className="container">
                 <div className="container">
-                    <Calendario fuente={this.state.eventos} getDateClick={this.getDateClick} />
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            {/* <h2 >Materia</h2> */}
+                            <div className="form-row align-items-center">
+                                <div className="col-auto">
+                                    <label className="src-only" htmlFor="periodo">Periodo </label>
+                                    <select
+                                        type="text"
+                                        className="form-control"
+                                        name="periodo"
+                                        id="periodo"
+                                        value={this.state.selectedPeriodo}
+                                        onChange={this.handlePeriodoChange}
+                                        required
+                                    >
+                                        <option disabled={true} value="">Periodo</option>
+                                        {this.state.periodos.map(item =>
+                                            <option key={item.id} value={item.id} >
+                                                {item.nombre}
+                                            </option>)}
+                                    </select>
+                                </div>
+                                <div className="col-auto">
+                                    <label className="src-only" htmlFor="semestre">Semestre </label>
+                                    <select
+                                        type="text"
+                                        className="form-control"
+                                        name="semestre"
+                                        id="semestre"
+                                        placeholder="semestre"
+                                        value={this.state.selectedSemestre}
+                                        onChange={this.handleSemestreChange}
+                                        required
+                                    >
+                                        <option disabled={true} value="">Semestre</option>
+                                        {this.state.semestres.map(item =>
+                                            <option className="align-items-center" key={item.id} value={item.value} data-mencion={item.mencion}>
+                                                {item.value}
+                                            </option>)}
+                                    </select>
+                                </div>
+                                <div className="col-auto">
+                                    {this.state.selectedSemestre > 6 &&
+                                        <div>
+                                            <label htmlFor="mencion">Mencion </label>
+                                            <select
+                                                type="text"
+                                                name="mencion"
+                                                id="mencion"
+                                                className="form-control"
+                                                placeholder="mencion"
+                                                value={this.state.selectedMencion}
+                                                onChange={this.handleMencionChange}
+                                            >
+                                                <option disabled={true} value="">Seleccione Mencion</option>
+                                                <option value="control">Control</option>
+                                                <option value="sistemas">Sistemas</option>
+                                                <option value="telecomunicaciones">Telecomunicaciones</option>
+                                            </select>
+                                        </div>
+                                    }
+
+                                </div>
+
+                                <div className="col-auto">
+                                    {this.state.selectedSemestre != "" &&
+                                        <div className="input-row">
+                                            <label htmlFor="materia">Materia:</label>
+                                            <select
+                                                type="text"
+                                                name="materia"
+                                                id="materia"
+                                                className="form-control"
+                                                placeholder="materia"
+                                                value={this.state.selectedMateria}
+                                                onChange={this.handleMateriaChange}
+                                                required
+                                            >
+                                                <option value="" disabled={true}>Materia</option>
+                                                {this.state.materias.map(item =>
+                                                    <option key={item.id} value={item.id}>
+                                                        {item.sigla}
+                                                    </option>)}
+                                            </select>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* <label >Ambientes</label> */}
+                        <div className="form-group">
+                            <div className="form-row align-items-center">
+
+                                <div className="col-auto">
+                                    <label htmlFor="nivel">Nivel de docencia</label>
+                                    <select
+                                        type="text"
+                                        name="nivel"
+                                        id="nivel"
+                                        className="form-control"
+                                        placeholder="Docencia/Auxiliatura"
+                                        value={this.state.selectedNivel}
+                                        onChange={this.handleNivelChange}
+                                        required
+                                    >
+                                        <option value="" disabled={true}>Docente/Auxiliar</option>
+                                        <option value="docente">Docencia</option>
+                                        <option value="auxiliar">Auxiliatura</option>
+                                    </select>
+                                </div>
+
+                                <div className="col-auto">
+                                    {this.state.selectedNivel != "" &&
+                                        <div>
+                                            <label htmlFor="responsable">Responsable:</label>
+                                            <select
+                                                type="text"
+                                                name="responsable"
+                                                id="responsable"
+                                                className="form-control"
+                                                placeholder="responsable"
+                                                value={this.state.selectedResponsable}
+                                                onChange={this.handleResponsableChange}
+                                                required
+                                            >
+                                                <option value="" disabled={true}>Responsable</option>
+                                                {this.state.responsables.map(item =>
+                                                    <option key={item.id} value={item.id}>
+                                                        {item.titulo} {item.ap_paterno} {item.nombre}
+                                                    </option>)}
+                                            </select>
+
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="form-group">
+                            <div className="form-row align-items-center">
+
+                                <div className="col-auto">
+                                    <label htmlFor="tipo">Tipo de ambiente</label>
+                                    <select
+                                        type="text"
+                                        name="tipo"
+                                        id="tipo"
+                                        className="form-control"
+                                        placeholder="teoria/laboratorio"
+                                        value={this.state.selectedTipo}
+                                        onChange={this.handleTipoChange}
+                                        required
+                                    >
+                                        <option value="" disabled={true}>Teoria/Laboratorio</option>
+                                        <option value="aula">Teoria</option>
+                                        <option value="laboratorio">Laboratorio</option>
+                                    </select>
+                                </div>
+
+                                {this.state.selectedTipo != "" &&
+                                    <div className="col-auto">
+                                        <label htmlFor="ambiente">Ambiente:</label>
+                                        <select
+                                            type="text"
+                                            name="ambiente"
+                                            id="ambiente"
+                                            className="form-control"
+                                            placeholder="ambiente"
+                                            value={this.state.selectedAmbiente}
+                                            onChange={this.handleAmbienteChange}
+                                            required
+                                        >
+                                            <option value="" disabled={true}>ambiente</option>
+                                            {this.state.ambientes.map(item =>
+                                                <option key={item.id} value={item.id}>
+                                                    {item.nombre}
+                                                </option>)}
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div className="form-group">
+                            <div className="form-row align-items-center">
+                                <div className="col-auto">
+                                    <div>
+                                        <label htmlFor="day">Dia:</label>
+                                        <select type="number"
+                                            name="day"
+                                            id="day"
+                                            className="form-control"
+                                            placeholder={this.state.day}
+                                            value={this.state.day}
+                                            onChange={this.handleDayChange}
+                                            required
+                                        >
+                                            <option value="" disabled={true}>dia</option>
+                                            <option value="1">Lunes</option>
+                                            <option value="2">Martes</option>
+                                            <option value="3">Miercoles</option>
+                                            <option value="4">Jueves</option>
+                                            <option value="5">Viernes</option>
+                                            <option value="6">Sabado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {this.state.day > 0 &&
+
+                                    <div className="col-auto">
+                                        <label htmlFor="startTime">Hora de inicio:</label>
+                                        <input type="time"
+                                            name="startTime"
+                                            id="startTime"
+                                            className="form-control"
+                                            placeholder={this.state.startTime}
+                                            value={this.state.startTime}
+                                            onChange={this.handleStartChange}
+                                            required>
+                                        </input>
+                                    </div>
+                                }
+                                {this.state.startTime != "" &&
+                                    <div className="col-auto">
+                                        <label htmlFor="endTime">Hora de fin:</label>
+                                        <input type="time"
+                                            name="endTime"
+                                            id="endTime"
+                                            disabled={true}
+                                            className="form-control"
+                                            placeholder={this.state.endTime}
+                                            value={this.state.endTime}
+                                            onChange={this.handleEndChange}>
+                                        </input>
+                                    </div>
+
+                                }
+
+
+                            </div>
+
+                        </div>
+
+                        <div className="form-row align-items-center">
+                            {!this.state.valido &&
+
+                                <button className="btn btn-primary mb-2" type="submit" disabled={this.state.isSubmitting} >Crear</button>
+
+                            }
+                        </div>
+
+                    </form>
+
                 </div>
+                
+                {this.state.selectedSemestre != "" &&
+                    <div className="container">
+                        <Calendario fuente={this.state.eventos} getDateClick={this.getDateClick} size="small" />
+
+                    </div>
+                }
             </div >
 
 

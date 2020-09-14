@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, HashRouter } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav, Button, FormControl, NavDropdown, Form } from 'react-bootstrap'
-// import '../css/estiloNavbar.css'
+import '../css/estiloNavbar.css'
 import mainlogo from '../images/logo-UMSA.png';
 import secondlogo from '../images/logo-canaan.png';
 
@@ -53,7 +53,7 @@ class NavBar extends Component {
     //fetch data
     async componentDidMount() {
         const url = "http://127.0.0.1:8000/index?index=ambientes"
-        const response = await fetch(url);
+        const response = await fetch(url,);
         const data = await response.json();
         this.setState({ ambientes: data.ambientes })
         // console.log(data)
@@ -104,6 +104,7 @@ class NavBar extends Component {
     handleSemestreChange = (item) => {
         this.setState({ titulo: item.nombre, selectedSemestre: item.id, selectedAmbiente: "" })
     }
+    
     handlePeriodoChange = (item) => {
         this.setState({ selectedPeriodo: item.id, periodo: item.nombre,titulo:"Todo",selectedAmbiente: "", selectedSemestre: "" })
     }
@@ -122,30 +123,29 @@ class NavBar extends Component {
         const {handlePeriodoSelect, handleAmbienteSelect, handleSemestreSelect } = this.props;
         return (
             <div>
-                <Navbar collapseOnSelect expand="xxl" bg="dark" variant="dark" >
-                    <Nav style={{ marginRight: 50 }}>
+                <Navbar collapseOnSelect expand="xxl" bg="dark" variant="dark" fixed="top" height="80px" >
+                    <Nav>
                         <Navbar.Brand href="/">
                             <img src={this.state.imagen} id="logo_header" height='50px' alt='logo-UMSA' />
                         </Navbar.Brand>
-                        <Navbar.Text style={{ marginRight: 5 }}>Sistema de Horarios</Navbar.Text>
+                        
                     </Nav>
-                    <Nav style={{ marginRight: 50 }}> <Navbar.Text>{this.state.periodo}</Navbar.Text> </Nav>
-                    <Nav style={{ marginRight: 50 }}> <Navbar.Text>{this.titulo()}</Navbar.Text> </Nav>
-
+                    <Nav><Navbar.Text className="header" >Sistema de Horarios</Navbar.Text></Nav>
+                    
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
                     <Navbar.Collapse id="responsive-navbar-nav">
 
                         <Nav className="r-auto" href="/" >
 
-                            <NavDropdown title="Periodo" id="collasible-nav-dropdown">
+                             {/* <NavDropdown title="Periodo" id="collasible-nav-dropdown">
                                 <Navbar.Toggle >
                                     {this.state.periodos.map((item) =>
                                         <NavDropdown.Item
                                             key={item.id} value={item.id}
                                             onClick={() => {
                                                 this.handlePeriodoChange(item)
-                                                handlePeriodoSelect(item.id)
+                                                handlePeriodoSelect(item)
                                             }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
@@ -158,7 +158,7 @@ class NavBar extends Component {
                                             key={item.id} value={item.id}
                                             onClick={() => {
                                                 this.handleAmbienteChange(item)
-                                                handleAmbienteSelect(item.id)
+                                                handleAmbienteSelect(item)
                                             }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
@@ -167,7 +167,7 @@ class NavBar extends Component {
                                         <NavDropdown.Item key={item.id} value={item.id}
                                             onClick={(e) => {
                                                 this.handleAmbienteChange(item)
-                                                handleAmbienteSelect(item.id)
+                                                handleAmbienteSelect(item)
                                             }}>
                                             {item.nombre}
                                         </NavDropdown.Item>)}
@@ -191,13 +191,13 @@ class NavBar extends Component {
                                         </NavDropdown.Item>)}
 
                                 </Navbar.Toggle>
-                            </NavDropdown>
-
-
-
-
+                            </NavDropdown> 
+ */}
                             <Nav.Link href="/clase/crear">Crear Nueva Clase</Nav.Link>
-                            <Nav.Link href="/exportar/pdf">Exportar PDF</Nav.Link>
+                            <Nav.Link href="/clase">Clases</Nav.Link>
+                            <Nav.Link href="/materia">Materia</Nav.Link>
+                            <Nav.Link href="/responsable">Responsable</Nav.Link>
+                            <Nav.Link href="/ambiente">Ambientes</Nav.Link>
 
                         </Nav>
                     </Navbar.Collapse>

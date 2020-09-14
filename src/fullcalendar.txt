@@ -23,3 +23,8 @@ npm install @react-pdf/renderer --save
 para tomar una captura de pantalla del calendario
 npm install html2canvas
 npm install jspdf
+
+
+estilos
+npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome
+npm i -S @fortawesome/free-solid-svg-icons

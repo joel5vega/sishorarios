@@ -22,11 +22,11 @@ export default class Calendario extends Component {
 
 
     render() {
-        const {getDateClick}=this.props;
+        const { getDateClick } = this.props;
         if (this.state.loading) {
             return <div>cargando todavia</div>
         }
-        if(this.state.fuente=='undefined'){
+        if (this.state.fuente == 'undefined') {
             return <div>No se encuentra fuente</div>
         }
 
@@ -35,20 +35,22 @@ export default class Calendario extends Component {
 
                 plugins={[timeGrid, dayGrid, interaction, list]}
                 defaultView="timeGridWeek"
+                // defaultView={this.props.view}
                 //para ocultar el encabezado
                 header={false}
                 //Para simplificar los dias 'long' nos dara el nombre completo
-                columnHeaderFormat={{weekday: 'short'}}
+                columnHeaderFormat={{ weekday: 'short' }}
+                slotLabelFormat={{hour:"numeric",minute:'2-digit', omitZeroMinute:false}}
                 //idioma
                 locale='es'
                 //EVENTOS
                 events={this.props.fuente}
                 //para poner datos especificos en el cuadro
                 eventRender={this.EventDetail}
-                
+
                 hiddenDays='0'
                 allDaySlot={false}
-                
+
                 navLinks='true' // can click day/week names to navigate views
                 editable='true'
                 //eje del tiempo
@@ -56,11 +58,10 @@ export default class Calendario extends Component {
                 maxTime='21:00'
                 slotDuration='00:45:00'
                 height='auto'
-                nowIndicator='true'
-                aspectRatio={5}
+                nowIndicator={false}
+                // aspectRatio={5}
                 dateClick={this.dateClick}
                 eventClick={this.eventClick}
-
             />
         )
     }
@@ -68,29 +69,35 @@ export default class Calendario extends Component {
         // extendedProps is used to access additional event properties.
         const content = (
             <div>
-                <div className="texto-grande">{event.extendedProps.semestre} {event.title} {event.extendedProps.paralelo}</div>
+                
                 <div className="texto-peque">{event.extendedProps.ambiente}</div>
-                <div className="texto-peque">{event.extendedProps.tituloResponsable} {event.extendedProps.responsable}</div>
+                {this.props.size != "small" &&
+                    <div>
+                        <div className="texto-grande">{event.extendedProps.semestre} {event.title} {event.extendedProps.paralelo}</div>
+                        <div className="texto-peque">{event.extendedProps.tituloResponsable} {event.extendedProps.responsable}</div>
+                    </div>
+
+                }
             </div>
         );
         ReactDOM.render(content, el);
         return el;
     };
-    dateClick=(event)=>{
-        const {getDateClick}=this.props;
+    dateClick = (event) => {
+        const { getDateClick } = this.props;
         // console.log(event)
         //Dia
-        let day=event.date.getDay()
+        let day = event.date.getDay()
         //hora inicio
-        let horaini=event.date.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})
-        let date=event.date
+        let horaini = event.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        let date = event.date
         // console.log("horaIni:  "+horaini)
-        let evento={day:day,startTime:horaini,date:date}
+        let evento = { day: day, startTime: horaini, date: date }
         // console.log(evento)
         getDateClick(evento)
         // return evento
     }
-    eventClick=(event)=>{
+    eventClick = (event) => {
         console.log(event)
         //mostrar datos extras
         console.log(event.event.extendedProps.semestre)
@@ -98,15 +105,15 @@ export default class Calendario extends Component {
         console.log(event.event.start.getDay())
         console.log(event.event.start.toLocaleTimeString())
         console.log(event.event.end.toLocaleTimeString())
-        
+
     }
 
-    DefinirColor = ({ event}) => {
+    DefinirColor = ({ event }) => {
         // extendedProps is used to access additional event properties.
-        if(event.tipo="teoria"){
+        if (event.tipo = "teoria") {
             return "green";
         }
         else
-        return 'blue';
+            return 'blue';
     };
 }
