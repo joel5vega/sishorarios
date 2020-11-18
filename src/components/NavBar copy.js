@@ -4,7 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import { Nav, Button, FormControl, NavDropdown, Form } from "react-bootstrap";
 import "../css/estiloNavbar.css";
 import mainlogo from "../images/logo-UMSA.png";
-import Responsables from "../views/responsables/HomeResponsables";
+import Responsables from "../views/responsables/homeResponsables";
+
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -237,30 +239,24 @@ class NavBar extends Component {
             <Nav>
               <Navbar.Text className="header">{this.state.titulo}</Navbar.Text>
             </Nav>
-          </Navbar>
-          {/* <Navbar>
             <Nav>
               <NavLink exact to="/responsable/" activeStyle={NavActive}>
                 Responsable
               </NavLink>
-              <NavLink to="/responsable/lista" activeStyle={NavActive}>
-                Responsable Lista
-              </NavLink>
             </Nav>
-          </Navbar> */}
-          <div className="container">
-            {/* <Route
+
+            <Route
               exact
               path="/responsable/"
-              render={(props) => <Responsables {...props} tipo="responsable" />}
-            /> */}
-          </div>
+              render={(props) => (
+                <Responsables {...props} tipo="responsable" />
+              )}
+            />
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="r-auto" href="/">
-              {/* <NavDropdown title="Periodo" id="collasible-nav-dropdown">
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="r-auto" href="/">
+                {/* <NavDropdown title="Periodo" id="collasible-nav-dropdown">
                                 <Navbar.Toggle >
                                     {this.state.periodos.map((item) =>
                                         <NavDropdown.Item
@@ -315,22 +311,26 @@ class NavBar extends Component {
                                 </Navbar.Toggle>
                             </NavDropdown>  */}
 
-              {/* <Nav.Link href="/clase/crear">Crear Nueva Clase</Nav.Link> */}
-              <Nav.Link href="/clase" name="Clase" onClick={this.handleChange}>
-                Clases
-              </Nav.Link>
-              <Nav.Link href="/materia" name="Materia">
-                Materia
-              </Nav.Link>
-              <Nav.Link href="/responsable" name="Responsable">
-                Responsable
-              </Nav.Link>
-              <Nav.Link href="/ambiente" name="Ambientes">
-                Ambientes
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          {/* </Navbar> */}
+                {/* <Nav.Link href="/clase/crear">Crear Nueva Clase</Nav.Link> */}
+                <Nav.Link
+                  href="/clase"
+                  name="Clase"
+                  onClick={this.handleChange}
+                >
+                  Clases
+                </Nav.Link>
+                <Nav.Link href="/materia" name="Materia">
+                  Materia
+                </Nav.Link>
+                <Nav.Link href="/responsable" name="Responsable">
+                  Responsable
+                </Nav.Link>
+                <Nav.Link href="/ambiente" name="Ambientes">
+                  Ambientes
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
         </BrowserRouter>
       </div>
     );

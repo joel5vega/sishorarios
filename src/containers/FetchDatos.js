@@ -11,11 +11,11 @@ export default class FetchDatos extends Component {
             choqueAmbiente: [],
             materias: [],
             ambientes: [],
-            response:[]
-            
+            response: []
+
         }
     }
-    askMaterias(materias){
+    askMaterias(materias) {
         this.props.ask(materias)
     }
 
@@ -28,9 +28,9 @@ export default class FetchDatos extends Component {
             var urlAmbientes = url + "/index/ambientes";
         }
         else (
-             urlAmbientes = url + "/index/ambientes?tipo=" + this.props.tipo
+            urlAmbientes = url + "/index/ambientes?tipo=" + this.props.tipo
         )
-             
+
         const urlSemestre = url + "/semestres/" + this.props.semestre;
         const urlAmbiente = url + "/ambientes/" + this.props.ambiente;
         Promise.all([
@@ -50,8 +50,8 @@ export default class FetchDatos extends Component {
             console.log(err);
         });
         this.askMaterias(this.state.materias.materias)
-        
-        this.setState({response:this.state.materias.materias})
+
+        this.setState({ response: this.state.materias.materias })
     }
 
     traduccion() {
@@ -72,12 +72,15 @@ export default class FetchDatos extends Component {
                         const control = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.control === "si");
                         this.setState({ test: control })
                         return "control";
+                        break;
                     case 'sistemas':
                         const sistemas = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.sistemas === "si");
                         this.setState({ test: sistemas })
+                        break;
                     case 'telecomunicaciones':
-                        const telecomunicaciones = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.telecomunicaciones == "si");
+                        const telecomunicaciones = this.state.clases.filter(clase => clase.semestre === inSemestre && clase.telecomunicaciones === "si");
                         this.setState({ test: telecomunicaciones })
+                        break;
                     default:
                         return "opcion invalida";
                 }
@@ -85,7 +88,7 @@ export default class FetchDatos extends Component {
             }
         }
         else {
-            const ambiente = this.state.clases.filter(clase => clase.ambiente == inAmbiente);
+            const ambiente = this.state.clases.filter(clase => clase.ambiente === inAmbiente);
             this.setState({ test: ambiente });
         }
 
@@ -97,7 +100,7 @@ export default class FetchDatos extends Component {
     }
     render() {
         const { ask } = this.props;
-        
+
         if (this.state.loading) {
             return <div>cargando todavia</div>
         }
@@ -107,9 +110,9 @@ export default class FetchDatos extends Component {
 
 
         return (
-        
+
             "HOla"
-            
+
 
         );
     }

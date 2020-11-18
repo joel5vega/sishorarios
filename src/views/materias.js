@@ -192,7 +192,7 @@ export default class Materias extends Component {
                                         <label>Pensum</label>
                                         <select name="pensum" onChange={this.handleChange} required>
                                             <option value="" disabled={true}></option>
-                                            <option value="2000">Pensum 2000</option>option>
+                                            <option value="2000">Pensum 2000</option>
                                             <option>...</option>
                                         </select>
                                     </div>

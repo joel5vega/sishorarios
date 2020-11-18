@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
-import '../fontawesome';
+import '../../fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Ambientes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            materias: [],
+            ambientes: [],
             url: "http://127.0.0.1:8000",
             data: [],
             show: false, guardar: false, editar: false,
@@ -21,9 +21,10 @@ export default class Ambientes extends Component {
         this.fetchData();
     }
     async fetchData() {
-        let urlMaterias = "http://127.0.0.1:8000/index/materias"
-        const data = await fetch(urlMaterias)
-        this.setState({ data: data })
+        let urlAmbientes = "http://127.0.0.1:8000/index/ambientes"
+        const data = await fetch(urlAmbientes).then(value => value.json());
+        this.setState({ data: data, ambientes: data.ambientes })
+
     }
     //editar
     editar(e) {
@@ -73,7 +74,7 @@ export default class Ambientes extends Component {
         console.log(value);
 
     }
-    
+
     render() {
         return (
             <div>
@@ -102,7 +103,8 @@ export default class Ambientes extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+
+                                    {/* <tr>
                                         <td>
                                             <a type="button" href="#"
                                                 className='btn ml-4'
@@ -118,7 +120,8 @@ export default class Ambientes extends Component {
                                             </a>
                                         </td>
                                     </tr>
-                                    {this.state.materias.map(item =>
+                                     */}
+                                    {this.state.ambientes.map(item =>
                                         <tr key={item.id}>
                                             <td>{item.sigla}</td>
                                             <td>{item.nombre}</td>

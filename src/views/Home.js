@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import Calendario from "../components/Calendario";
 import ReactDOM from "react-dom";
+import { Link } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
 import '../fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../css/home.css";
+import Button from "../components/button";
+
+//temporal
+import Lista from "../components/Lista";
 
 class Home extends Component {
   constructor(props) {
@@ -15,6 +20,7 @@ class Home extends Component {
       fuente: "http://127.0.0.1:8000/index?periodo=1",
       selectedPeriodo: ""
     }
+
   }
 
   printPDF = () => {
@@ -48,27 +54,41 @@ class Home extends Component {
   }
 
   render() {
+    const lista = {
+      titulo: "este es el titulo",
+      modo: "admin",
+      tipo: "materia",
+      datos: [
+        {
+          id: 5,
+          sigla: "esta es la sigla",
+          nombre: "este es el nombre",
+          libro: "Biblia",
+          capacidad: 10
+        }
+        ,
+        {
+          id: 2,
+          sigla: "Joel",
+          nombre: "Dayelin",
+          libro: "Amor"
+        },
+        {
+          id: 3,
+          sigla: "prueba",
+          nombre: "examen",
+          libro: "Timoteo"
+        }
+      ]
 
+    }
 
     return (
       <div>
-        <div className="row align-items-center">
-          <div className="col-auto col-md-offset-5">
-            <div id="periodo">
-              {/* <h3>{this.props.periodo}</h3> */}
-              <h1>Sistema de horarios</h1>
-            </div>
-          </div>
-        </div>
         <div>
-          <div className="col-auto center-block">
-
-            <div id="title">
-              <h2>{this.props.titulo}</h2>
-              <button variant="contained" color="primary" href={"clase"} >Clases</button>
-            </div>
+          <div>
+            {/* <Lista {...lista} /> */}
           </div>
-
 
           {/* <div className="col-auto">
             <button id="print" onClick={this.printPDF}>
@@ -77,13 +97,30 @@ class Home extends Component {
             <small className="sr-only">Exportar a PDF</small>
           </div> */}
 
+        </div >
+
+
+        {/* <div className="col-auto center-block">
+          <div id="title">
+            <h2>{this.props.titulo}</h2>
+          </div>
+          <div className="col-auto">
+            <Button href="/clase" label="Clase" />
+          </div>
+          <div className="col-auto">
+            <Button href="/ambiente" label="Ambiente" />
+          </div>
+          <div className="col-auto">
+            <Button href="/materia" label="Materia" />
+          </div>
+          <div className="col-auto">
+            <Button href="/responsable" label="Responsable" />
+          </div>
+          <div className="col-auto">
+            <Button href="/lista" label="Lista" />
+          </div>
         </div>
-
-        <div id='calendario' >
-          {/* <Calendario fuente={this.props.fuente} getDateClick={this.getDateClick} /> */}
-        </div>
-
-
+ */}
 
       </div >
 
