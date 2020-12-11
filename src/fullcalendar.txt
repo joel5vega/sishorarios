@@ -28,3 +28,7 @@ npm install jspdf
 estilos
 npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome
 npm i -S @fortawesome/free-solid-svg-icons
+
+
+para tarjetas
+npm install @material-ui/core

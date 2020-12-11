@@ -66,6 +66,7 @@ export default class Lista extends Component {
   };
   eliminar(e) {
     console.log("eliminar: " + e);
+    fetch()
   }
   //end of CRUD
   selectCrear(e) {

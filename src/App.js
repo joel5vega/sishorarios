@@ -20,6 +20,7 @@ import HomeResponsables from "./views/responsables/HomeResponsables";
 import ListaResponsables from "./views/responsables/ListaResponsables";
 import HomeAmbientes from "./views/ambientes/HomeAmbientes";
 import ListaAmbientes from "./views/ambientes/ListaAmbientes";
+import WindowProvider from "./containers/WindowProvider";
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends Component {
       loading: true,
       url: "http://127.0.0.1:8000",
       index: {},
-
+      loading: true,
       fuente: "http://127.0.0.1:8000/clases/show",
       selectedPeriodo: "",
       selectedTitle: "Home",
@@ -41,6 +42,7 @@ class App extends Component {
     // this.getPeriodo()
     this.fetchResponsables();
     this.fetchAmbientes();
+    this.setState({ loading: false });
   }
 
   async fetchData() {
@@ -132,43 +134,94 @@ class App extends Component {
     const navStyles = {
       display: "flex",
       justifyContent: "space-around",
+      border: "2px",
+      margin: "5px",
+      color: "green",
     };
     const NavActive = {
       color: "red",
     };
+    if (this.state.loading) {
+      return <h1>Cargando</h1>;
+    }
 
     return (
       <div className="App">
-        <div className="container">
-          <NavBar
-            handleAmbienteSelect={this.handleAmbienteSelect}
-            handleSemestreSelect={this.handleSemestreSelect}
-            handlePeriodoSelect={this.handlePeriodoSelect}
-          />
-        </div>
+        <BrowserRouter>
+          <div className="container">
+            <NavBar
+              handleAmbienteSelect={this.handleAmbienteSelect}
+              handleSemestreSelect={this.handleSemestreSelect}
+              handlePeriodoSelect={this.handlePeriodoSelect}
+            />
+          </div>
+          <div className="container">
+            <nav style={navStyles}>
+              <NavLink
+                exact
+                to="/responsable/"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Responsable Home
+              </NavLink>
+              <NavLink
+                exact
+                to="/responsable/lista"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Responsable Lista
+              </NavLink>
 
-        <div className="container">
-          <BrowserRouter>
-            {/* NavBar */}
-            <div className="container">
-              <nav style={navStyles}>
-                <NavLink exact to="/responsable/" activeStyle={NavActive}>
-                  Responsable Home
-                </NavLink>
-                <NavLink exact to="/responsable/lista" activeStyle={NavActive}>
-                  Responsable Lista
-                </NavLink>
-                <NavLink exact to="/ambientes/" activeStyle={NavActive}>
-                  Ambientes
-                </NavLink>
-                <NavLink exact to="/ambiente/" activeStyle={NavActive}>
-                  Ambiente Home
-                </NavLink>
-                <NavLink exact to="/ambiente/lista" activeStyle={NavActive}>
-                  Ambiente Lista
-                </NavLink>
-              </nav>
-            </div>
+              <NavLink
+                exact
+                to="/ambiente/"
+                className="p-2"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Ambiente Home
+              </NavLink>
+              <NavLink
+                exact
+                to="/ambiente/lista"
+                className="p-2"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Ambiente Lista
+              </NavLink>
+              <NavLink
+                exact
+                to="/materia"
+                className="p-2"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Materia
+              </NavLink>
+              <NavLink
+                exact
+                to="/ambientes/"
+                className="p-2"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Lista Materias
+              </NavLink>
+              <NavLink
+                exact
+                to="/clases/"
+                className="p-2"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Clases
+              </NavLink>
+            </nav>
+          </div>
+          <div className="container">
             <Route
               exact
               path="/"
@@ -181,11 +234,6 @@ class App extends Component {
                 />
               )}
             />
-            {/* homepage */}
-            {/* <Route  path="/">
-              <Redirect to="/clase" />
-            </Route> */}
-            {/* Responsables */}
 
             <Route
               exact
@@ -216,25 +264,29 @@ class App extends Component {
                 <ListaAmbientes {...props} datos={this.state.ambientes} />
               )}
             />
+            <WindowProvider>
+              <Route path="/clases" component={Clases} />
 
-            <Route path="/crear/clase" component={CrearClase} />
-            <Route path="/ambientes" component={Ambientes} />
-            <Route path="/materia" component={Materias} />
-            <Route path="/lista" component={Lista} />
+              <Route path="/ambientes" component={Ambientes} />
+              <Route path="/materia" component={Materias} />
+              <Route path="/lista" component={Lista} />
+              <Route exact path="/" component={Clases} />
 
-            <Route
-              path="/clase"
-              render={(props) => (
-                <Clases
-                  {...props}
-                  fuente={this.fuente()}
-                  periodo={this.state.periodo}
-                  titulo={this.state.selectedTitle}
-                />
-              )}
-            />
-          </BrowserRouter>
-        </div>
+              <Route
+                path="/clase"
+                render={(props) => (
+                  <Clases
+                    {...props}
+                    fuente={this.fuente()}
+                    periodo={this.state.periodo}
+                    titulo={this.state.selectedTitle}
+                  />
+                )}
+              />
+            </WindowProvider>
+          </div>
+        </BrowserRouter>
+
         <div>(c) Sistema de horarios de Ingenieria Electrónica</div>
       </div>
     );

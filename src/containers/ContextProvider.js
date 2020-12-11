@@ -113,6 +113,6 @@ async function responsable() {
 // export const responsables = responsable();
 export const ContextProvider = createContext(
   //   themes.dark, // default value,
-  responsables
+  { width: 0, heigth: 0, responsables }
 );
 export default ContextProvider;

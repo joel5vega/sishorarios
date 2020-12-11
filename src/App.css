@@ -1,12 +1,13 @@
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
 .App {
   text-align: center;
 }
 body {
-  padding-top: 110px; 
+  padding-top: 50px;
   background: transparent;
-  }
+  width: auto;
+}
 
 .App-logo {
   height: 40vmin;
@@ -43,7 +44,7 @@ body {
   }
 }
 
-.title{
+.title {
   display: table;
   margin: 0 auto;
   border: 1px solid blue;
