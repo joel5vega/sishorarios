@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import '../css/materias.css'
-import '../fontawesome';
+import '../../css/materias.css'
+import '../../fontawesome';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal, Button } from 'react-bootstrap';
