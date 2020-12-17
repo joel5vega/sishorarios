@@ -189,11 +189,7 @@ export default class HorariosResponsables extends Component {
       }
     });
 
-    // if (!nombre.lenght) {
-    //   var hola = { titulo: "no", nombre: "", ap_paterno: " se encontro" };
-
-    //   return hola;
-    // } else {
+    
     return nombre[0];
     // }
   };

@@ -19,18 +19,11 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard(props) {
   const classes = useStyles();
-  const { nombre, tipo, capacidad, lugar } = props;
+  const { nombre, tipo, capacidad } = props;
   const size = capacidad / 5;
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        {/* <CardMedia
-          component="img"
-          alt={tipo}
-          heignt="{toString(size)}"
-          image="{aula}"
-          title="Contemplative Reptile"
-        /> */}
         <CardContent>
           <Typography gutterBottom variant="body1" component="p" width="50">
             {nombre}
