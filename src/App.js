@@ -1,27 +1,32 @@
 import React, { Component, useState } from "react";
 import { BrowserRouter, Route, NavLink, Redirect } from "react-router-dom";
 import "./App.css";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Calendario from "./components/Calendario";
 import NavBar from "./components/NavBar";
-import Lista from "./components/Lista";
-import Home from "./views/Home";
-import Ambientes from "./views/ambientes/ambientes";
-import Materias from "./views/materias/materias";
 
-import Clases from "./views/clases";
-import CrearClase from "./views/crearClase";
-import Responsables from "./views/responsables/Responsables";
 
-//Contexto
-import ContextProvider from "./containers/ContextProvider";
+
 //Componentes
+import Home from "./views/Home";
 import HomeResponsables from "./views/responsables/HomeResponsables";
 import ListaResponsables from "./views/responsables/ListaResponsables";
 import HorariosResponsables from "./views/responsables/HorariosResponsables";
+
 import HomeAmbientes from "./views/ambientes/HomeAmbientes";
 import ListaAmbientes from "./views/ambientes/ListaAmbientes";
-import WindowProvider from "./containers/WindowProvider";
+import CrearAmbiente from "./views/ambientes/crearAmbiente"
+import HomeClases from "./views/clases/HomeClases";
+import Clases from "./views/clases";
+import CrearClase from "./views/crearClase";
+
+import HomeMaterias from "./views/materias/HomeMaterias";
+import ListaMaterias from "./views/materias/ListaMaterias";
+import CrearMateria from "./views/materias/CrearMateria"
+
+import HomeAdmin from "./views/admin/HomeAdmin"
+import DatosAdmin from "./views/admin/DatosAdmin"
+import ClasesAdmin from "./views/admin/ClasesAdmin"
 
 class App extends Component {
   constructor(props) {
@@ -38,44 +43,22 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.fetchData();
-    // this.getPeriodo()
-    //this.fetchResponsables();
-    //this.fetchAmbientes();
+    //this.fetchData();
+    this.fetchIndex();
   }
-  ////
-  async fetchData() {
-    let url = this.state.url;
-    var urlPeriodos = url + "/index?index=periodos";
-    var urlAmbientes = url + "/index?index=ambientes";
-    // var urlAmbientes = url + "/index/ambientes?tipo=aula";
-    var urlSemestres = url + "/index?index=semestres";
-    var urlMenciones = url + "/index?index=menciones";
-    var urlResponsables = url + "/index?index=responsables";
-    Promise.all([
-      fetch(urlAmbientes).then((value) => value.json()),
-      fetch(urlResponsables).then((value) => value.json()),
-      fetch(urlPeriodos).then((value) => value.json()),
-      fetch(urlSemestres).then((value) => value.json()),
-    ])
-      .then((allResponses) => {
-        //const materias = allResponses[4];
-        const ambientes = allResponses[0];
-        const responsables = allResponses[1];
-        const periodos = allResponses[2];
-        const semestres = allResponses[3];
-        this.setState({
-          periodos: periodos.periodos,
-          ambientes: ambientes.ambientes,
-          responsables: responsables.responsables,
-          semestres: semestres.semestres,
-          menciones: semestres.menciones,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+  async fetchIndex() {
+    axios.get(this.state.url + "/api/index").then((response) => {
+      this.setState({
+        materias: response.data.materias,
+        ambientes: response.data.ambientes,
+        menciones: response.data.menciones,
+        periodos: response.data.periodos,
+        periodoActual: response.data.periodoActual,
+        responsables: response.data.responsables,
+        clases: response.data.clases,
+        loading: false,
       });
+    });
   }
 
   ////
@@ -200,7 +183,16 @@ class App extends Component {
               >
                 Horarios responsable
               </NavLink>
-
+              <NavLink
+                exact
+                to="/responsable/crear"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Crear Responsable
+              </NavLink>
+            </nav>
+            <nav style={navStyles}>
               <NavLink
                 exact
                 to="/ambiente/"
@@ -219,20 +211,20 @@ class App extends Component {
               >
                 Ambiente Lista
               </NavLink>
-            </nav>
-            <nav style={navStyles}>
               <NavLink
                 exact
-                to="/materia"
-                className="p-2"
+                to="/ambiente/crear"
                 style={navStyles}
                 activeStyle={NavActive}
               >
-                Materia
+                Crear Ambiente
               </NavLink>
+            </nav>
+
+            <nav style={navStyles}>
               <NavLink
                 exact
-                to="/materia/"
+                to="/materia/lista"
                 className="p-2"
                 style={navStyles}
                 activeStyle={NavActive}
@@ -241,12 +233,64 @@ class App extends Component {
               </NavLink>
               <NavLink
                 exact
+                to="/materia/"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Home Materia
+              </NavLink>
+              <NavLink
+                exact
+                to="/materia/crear"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Crear materia
+              </NavLink>
+            </nav>
+            <nav style={navStyles}>
+              <NavLink
+                exact
                 to="/clases/"
                 className="p-2"
                 style={navStyles}
                 activeStyle={NavActive}
               >
                 Clases
+              </NavLink>
+              <NavLink
+                exact
+                to="/clase/crear"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Crear CLase
+              </NavLink>
+            </nav>
+            <nav style={navStyles}>
+              <NavLink
+                exact
+                to="/admin"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Admin
+              </NavLink>
+              <NavLink
+                exact
+                to="/admin/datos"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Pensum y Periodos
+              </NavLink>
+              <NavLink
+                exact
+                to="/admin/clases"
+                style={navStyles}
+                activeStyle={NavActive}
+              >
+                Listado de clases
               </NavLink>
             </nav>
           </div>
@@ -258,7 +302,6 @@ class App extends Component {
                 <Home
                   {...props}
                   fuente={this.fuente()}
-                  periodo={this.state.periodo}
                   titulo={this.state.selectedTitle}
                 />
               )}
@@ -303,23 +346,89 @@ class App extends Component {
                 <ListaAmbientes {...props} datos={this.state.ambientes} />
               )}
             />
-            <WindowProvider>
-              <Route path="/clases" component={Clases} />
-              <Route path="/ambientes" component={Ambientes} />
-              <Route path="/materia" component={Materias} />
-              <Route exact path="/" component={Clases} />
-              <Route
-                path="/clase"
-                render={(props) => (
-                  <Clases
-                    {...props}
-                    fuente={this.fuente()}
-                    periodo={this.state.periodo}
-                    titulo={this.state.selectedTitle}
-                  />
-                )}
-              />
-            </WindowProvider>
+            <Route
+              exact
+              path="/ambiente/crear"
+              render={(props) => (
+                <CrearAmbiente {...props} datos={this.state.ambientes} />
+              )}
+            />
+
+            <Route
+              exact
+              path="/clase"
+              render={(props) => (
+                <HomeClases
+                  {...props}
+                  datos={this.state.clases}
+                  periodoActual={this.state.periodoActual}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/clase/crear"
+              render={(props) => (
+                <CrearClase
+                  {...props}
+                  datos={this.state.ambientes}
+                  periodoActual={this.state.periodoActual}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/materia"
+              render={(props) => (
+                <HomeMaterias {...props} datos={this.state.materias} />
+              )}
+            />
+            <Route
+              exact
+              path="/materia/lista"
+              render={(props) => (
+                <ListaMaterias {...props} datos={this.state.materias} />
+              )}
+            />
+            <Route
+              exact
+              path="/materia/crear"
+              render={(props) => (
+                <CrearMateria {...props} datos={this.state.materias} />
+              )}
+            />
+             <Route
+              exact
+              path="/admin"
+              render={(props) => (
+                <HomeAdmin {...props} datos={this.state.materias} />
+              )}
+            />
+             <Route
+              exact
+              path="/admin/datos"
+              render={(props) => (
+                <DatosAdmin {...props} datos={this.state.materias} />
+              )}
+            />
+             <Route
+              exact
+              path="/admin/clases"
+              render={(props) => (
+                <ClasesAdmin {...props} datos={this.state.materias} />
+              )}
+            />
+            {/* <Route
+              path="/clase"
+              render={(props) => (
+                <Clases
+                  {...props}
+                  fuente={this.fuente()}
+                  periodo={this.state.periodo}
+                  titulo={this.state.selectedTitle}
+                />
+              )}
+            /> */}
           </div>
         </BrowserRouter>
 
