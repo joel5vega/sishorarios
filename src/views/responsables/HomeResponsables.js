@@ -32,9 +32,10 @@ export default class HomeResponsables extends Component {
                 {item.puesto === "docente" && (
                   <Tarjeta
                     titulo={item.titulo}
-                    apellido={item.ap_paterno}
-                    puesto={item.puesto}
-                    estado={item.estado}
+                    subtitulo={item.ap_paterno}
+                    detalle={item.puesto}
+                    accion={item.estado}
+                    enlace={"http://localhost:3000/responsable/"+item.id}
                   />
                 )}
               </div>
@@ -49,9 +50,10 @@ export default class HomeResponsables extends Component {
                 {item.puesto === "auxiliar" && (
                   <Tarjeta
                     titulo={item.titulo}
-                    apellido={item.ap_paterno}
-                    puesto={item.puesto}
-                    estado={item.estado}
+                    subtitulo={item.ap_paterno}
+                    detalle={item.puesto}
+                    accion={item.estado}
+                    enlace={"http://localhost:3000/responsable/"+item.id}
                   />
                 )}
               </div>
