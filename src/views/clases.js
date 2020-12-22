@@ -11,7 +11,7 @@ export default class clases extends Component {
     super(props);
     this.state = {
       url: "http://127.0.0.1:8000",
-      fuente: "http://127.0.0.1:8000/index?periodo=1",
+      fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
       loading: true,
@@ -33,8 +33,16 @@ export default class clases extends Component {
     };
   }
   async componentDidMount() {
-    this.fetchData();
+    // this.fetchData();
     let periodo = this.props.periodo;
+    if (this.props.periodoActual) {
+      console.log(this.props.periodoActual);
+      this.setState({
+        loading: false,
+        selectedPeriodo: this.props.periodoActual,
+      });
+    }
+
     window.addEventListener("resize", this.handleResize);
     this.setState({ periodo: periodo });
   }
@@ -60,40 +68,6 @@ export default class clases extends Component {
   };
   ///////////////////////////////////////////////
 
-  //descargaremos el periodo y los semestres
-  async fetchData() {
-    let url = this.state.url;
-    var urlPeriodos = url + "/index?index=periodos";
-    var urlAmbientes = url + "/index?index=ambientes";
-    // var urlAmbientes = url + "/index/ambientes?tipo=aula";
-    var urlSemestres = url + "/index?index=semestres";
-    var urlMenciones = url + "/index?index=menciones";
-    var urlResponsables = url + "/index?index=responsables";
-    Promise.all([
-      fetch(urlAmbientes).then((value) => value.json()),
-      fetch(urlResponsables).then((value) => value.json()),
-      fetch(urlPeriodos).then((value) => value.json()),
-      fetch(urlSemestres).then((value) => value.json()),
-    ])
-      .then((allResponses) => {
-        //const materias = allResponses[4];
-        const ambientes = allResponses[0];
-        const responsables = allResponses[1];
-        const periodos = allResponses[2];
-        const semestres = allResponses[3];
-        this.setState({
-          periodos: periodos.periodos,
-          ambientes: ambientes.ambientes,
-          responsables: responsables.responsables,
-          semestres: semestres.semestres,
-          menciones: semestres.menciones,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
   //Exportar PDF
   printPDF = () => {
     const domElement = document.getElementById("root");
@@ -155,6 +129,7 @@ export default class clases extends Component {
       eventos: this.state.evento,
     });
   };
+
   handleSemestreChange = (event) => {
     var semestre = event.target.value;
     let title = "Semestre:  " + semestre;

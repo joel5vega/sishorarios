@@ -14,9 +14,11 @@ import HorariosResponsables from "./views/responsables/HorariosResponsables";
 import HomeAmbientes from "./views/ambientes/HomeAmbientes";
 import ListaAmbientes from "./views/ambientes/ListaAmbientes";
 import CrearAmbiente from "./views/ambientes/crearAmbiente";
+//Clases
 import HomeClases from "./views/clases/HomeClases";
 import Clases from "./views/clases";
-import CrearClase from "./views/crearClase";
+import CrearClase from "./views/clases/crearClase";
+import ListaClases from "./views/clases";
 
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
@@ -25,6 +27,7 @@ import CrearMateria from "./views/materias/CrearMateria";
 import HomeAdmin from "./views/admin/HomeAdmin";
 import DatosAdmin from "./views/admin/DatosAdmin";
 import ClasesAdmin from "./views/admin/ClasesAdmin";
+import CrearResponsable from "./views/responsables/CrearResponsable";
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +44,6 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    //this.fetchData();
     this.fetchIndex();
   }
   async fetchIndex() {
@@ -55,6 +57,7 @@ class App extends Component {
         periodoActual: response.data.periodoActual,
         responsables: response.data.responsables,
         clases: response.data.clases,
+        index: response.data,
         loading: false,
       });
     });
@@ -168,6 +171,13 @@ class App extends Component {
             />
             <Route
               exact
+              path="/responsable/crear"
+              render={(props) => (
+                <CrearResponsable {...props} datos={this.state.responsables} />
+              )}
+            />
+            <Route
+              exact
               path="/responsable/horario"
               render={(props) => (
                 <HorariosResponsables
@@ -212,11 +222,27 @@ class App extends Component {
             />
             <Route
               exact
+              path="/clase/lista"
+              render={(props) => (
+                <ListaClases
+                  {...props}
+                  index={this.state.index}
+                  periodoActual={this.state.periodoActual}
+                  ambientes={this.state.ambientes}
+                  responsables={this.state.responsables}
+                  semestres={this.state.semestres}
+                  menciones={this.state.menciones}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/clase/crear"
               render={(props) => (
                 <CrearClase
                   {...props}
                   periodoActual={this.state.periodoActual}
+                  index={this.state.index}
                 />
               )}
             />

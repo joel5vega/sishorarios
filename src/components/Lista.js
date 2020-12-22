@@ -66,7 +66,7 @@ export default class Lista extends Component {
   };
   eliminar(e) {
     console.log("eliminar: " + e);
-    fetch()
+    fetch();
   }
   //end of CRUD
   selectCrear(e) {
@@ -79,7 +79,11 @@ export default class Lista extends Component {
         break;
       case "responsable":
         return (
-          <CrearResponsable {...this.state.selected} onChange={this.onChange} />
+          <CrearResponsable
+            selected={this.state.selected}
+            onChange={this.onChange}
+          />
+          // <CrearResponsable {...this.state.selected} onChange={this.onChange} />
         );
         break;
       case "materia":

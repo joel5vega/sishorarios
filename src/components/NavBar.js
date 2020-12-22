@@ -92,7 +92,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="lg"
+          expand="sm"
           bg="dark"
           variant="dark"
           fixed="top"
@@ -259,17 +259,8 @@ class NavBar extends Component {
                   Crear
                 </NavDropdown.Item>
               </NavDropdown>
-
-              <NavDropdown.Item
-                as={NavLink}
-                exact
-                to="/login/"
-                activeStyle={NavActive}
-              >
+              <Nav.Link as={NavLink} to="/login/" activeStyle={NavActive}>
                 Login
-              </NavDropdown.Item>
-              <Nav.Link as={NavLink} to="/clases">
-                anywords
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

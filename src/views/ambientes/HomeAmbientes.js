@@ -1,76 +1,154 @@
 import React, { Component } from "react";
-import Lista from "../../components/Lista";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+
+import axios from "axios";
 export default class HomeAmbientes extends Component {
   constructor(args) {
     super(args);
     this.state = {
       loading: true,
+      url: "http://127.0.0.1:8000",
       libres: [],
       ocupados: [],
+      showLib: true,
+      showOcu: false,
+      show: true,
     };
   }
   componentDidMount() {
-    this.fetchData();
+    this.getAmbientes();
+    window.addEventListener("resize", this.handleResize);
   }
-  async fetchData() {
-    const url = "http://127.0.0.1:8000";
-    var ocupado = url + "/now?ambientes=ocupado";
-    var libre = url + "/now?ambientes=libre";
-    Promise.all([
-      fetch(ocupado).then((value) => value.json()),
-      fetch(libre).then((value) => value.json()),
-    ])
-      .then((allResponses) => {
-        const ocupados = allResponses[0];
-        const libres = allResponses[1];
-        this.setState({
-          ocupados: ocupados.ambientes,
-          libres: libres.ambientes,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+  handleResize = () => {
+    this.setState({ width: window.innerWidth });
+
+    if (window.innerWidth > 361) {
+      this.setState({ show: false, showLib: true, showOcu: true });
+      console.log(this.state.width);
+    }
+  };
+
+  showHandler = () => {
+    this.setState((prevState) => ({
+      showOcu: !prevState.showOcu,
+      showLib: !prevState.showLib,
+    }));
+  };
+  async getAmbientes() {
+    axios.get(this.state.url + "/api/now?index=ambientes").then((response) => {
+      this.setState({
+        ocupados: response.data.ocupados,
+        libres: response.data.libres,
+        loading: false,
+        width: window.innerWidth,
       });
+    });
   }
+
   render() {
-    var { datos } = this.props;
-    var libres = this.state.libres;
-    var ocupados = this.state.ocupados;
+    const columna = {
+      columnCount: 2,
+      columnGap: "3em",
+      columnRule: "1px solid #bbb",
+      columnWidth: "400px",
+    };
+    const categoria = {
+      border: "1px solid #bbb",
+      borderStyle: "solid",
+      borderRadius: "5px",
+    };
+    var { libres, ocupados, showLib, showOcu } = this.state;
     return (
       <div>
-        <h3>Ocupados</h3>
-        {this.state.ocupados.length > 0 && (
-          <div className="d-flex flex-wrap">
-            {ocupados.map((item) => {
-              return (
-                <div key={item.id} className="p-2">
-                  <TarjetaAmbiente
-                    nombre={item.nombre}
-                    tipo={item.tipo}
-                    capacidad={item.capacidad}
-                    lugar={item.edificio}
-                  />
+        <div style={columna}>
+          {libres.length > 0 && (
+            <div style={categoria}>
+              <div className="row no-gutter">
+                <div className="col-auto">
+                  <h5>Ambientes Ocupados</h5>
                 </div>
-              );
-            })}
-          </div>
-        )}
-        <h3>Disponibles</h3>
-        <div className="d-flex flex-wrap">
-          {libres.map((item) => {
-            return (
-              <div key={item.id} className="p-2">
-                <TarjetaAmbiente
-                  nombre={item.nombre}
-                  tipo={item.tipo}
-                  capacidad={item.capacidad}
-                  lugar={item.edificio}
-                />
+                {this.state.show && (
+                  <div className="col-auto">
+                    <button
+                      className="btn btn-outline-dark btn-sm"
+                      name="showOcu"
+                      onClick={this.showHandler}
+                    >
+                      Ver {showOcu ? "Menos" : "Mas"}
+                    </button>
+                  </div>
+                )}
               </div>
-            );
-          })}
+
+              {showOcu && (
+                <div className="d-flex flex-wrap">
+                  {libres.map((item) => {
+                    return (
+                      <div key={item.id} className="p-2">
+                        <TarjetaAmbiente
+                          nombre={item.nombre}
+                          tipo={item.tipo}
+                          capacidad={item.capacidad}
+                          lugar={item.edificio}
+                          color={
+                            item.tipo === "laboratorio"
+                              ? "#006600"
+                              : item.tipo === "auditorio"
+                              ? "#ffa500"
+                              : "#0066CC"
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {libres.length > 0 && (
+            <div className={categoria}>
+              <div className="row no-gutter">
+                <div className="col-auto">
+                  <h5>Ambientes Libres</h5>
+                </div>
+                {this.state.show && (
+                  <div className="col-auto">
+                    <button
+                      className="btn btn-outline-dark btn-sm"
+                      name="showOcu"
+                      onClick={this.showHandler}
+                    >
+                      Ver {showLib ? "Menos" : "Mas"}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {showLib && (
+                <div className="d-flex flex-wrap">
+                  {libres.map((item) => (
+                    <div key={item.id} className="p-2">
+                      <TarjetaAmbiente
+                        nombre={item.nombre}
+                        tipo={item.tipo}
+                        capacidad={item.capacidad}
+                        color={
+                          item.tipo === "laboratorio"
+                            ? "#006600"
+                            : item.tipo === "auditorio"
+                            ? "#ffa500"
+                            : "#0066CC"
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     );

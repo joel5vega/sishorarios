@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../fontawesome";
 import "../../css/nav.css";
-import ListaResponsables from "./ListaResponsables";
-import HomeResponsables from "./HomeResponsables";
 
 export default class Responsables extends Component {
   constructor(props) {
@@ -31,36 +29,20 @@ export default class Responsables extends Component {
     const NavActive = {
       color: "red",
     };
-    console.log("<Responsables/>")
+    console.log("<Responsables/>");
 
     return (
       <div className="container">
         <h1>Responsables</h1>
-        {/* <BrowserRouter> */}
-          <nav className="container" style={navStyles}>
-            <NavLink exact to="/responsable/" activeStyle={NavActive}>
-              Home
-            </NavLink>
-            <NavLink exact to="/responsable/lista" activeStyle={NavActive}>
-              Lista
-            </NavLink>
-          </nav>
-          <div className="container">
-            {/* <Route
-              path="/responsable/lista"
-              render={(props) => (
-                <ListaResponsables {...props} datos={this.state.data} />
-              )}
-            /> */}
-            {/* <Route
-              exact
-              path="/responsable/"
-              render={(props) => (
-                <HomeResponsables {...props} datos={this.state.data} />
-              )}
-            /> */}
-          </div>
-        {/* </BrowserRouter> */}
+
+        <nav className="container" style={navStyles}>
+          <NavLink exact to="/responsable/" activeStyle={NavActive}>
+            Home
+          </NavLink>
+          <NavLink exact to="/responsable/crear" activeStyle={NavActive}>
+            Crear
+          </NavLink>
+        </nav>
       </div>
     );
   }

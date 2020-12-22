@@ -22,6 +22,13 @@ class Home extends Component {
       url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
+
+    // agregar esto
+    /*
+    onClick={() => {
+      this.onClick(item);
+    }}
+    */
   };
   render() {
     const datos = this.props.semestres;
@@ -32,27 +39,11 @@ class Home extends Component {
         {this.props.semestres.length > 0 && (
           <div>
             <h3>Ver horarios por Semestre</h3>
-            <NavLink
-              to={{
-                pathname: "/clase/",
-                state: {
-                  fuente: this.state.fuente,
-                },
-              }}
-            >
-              Tyler McGinnis
-            </NavLink>
+
             <div className="d-flex flex-wrap">
               {this.props.semestres.map((item) => {
                 return (
-                  <div
-                    key={item.id}
-                    value={item.id}
-                    className="p-2"
-                    onClick={() => {
-                      this.onClick(item);
-                    }}
-                  >
+                  <div key={item.id} value={item.id} className="p-2">
                     <NavLink
                       to={{
                         pathname: "/clase/",

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Dropdown, NavDropdown, DropdownButton } from "react-bootstrap";
-import FetchDatos from "../containers/FetchDatos";
-import Calendario from "../components/Calendario";
-import { asRoughMinutes } from "@fullcalendar/core";
-import "../css/crear.css";
+import Calendario from "../../components/Calendario";
+// import "../css/crear.css";
+import InputControlado from "../../components/InputControlado";
+import SelectControlado from "../../components/SelectControlado";
 
 export default class CrearClase extends Component {
   constructor(args) {
@@ -408,30 +406,43 @@ export default class CrearClase extends Component {
   }
   onSubmit(event) {
     alert("se cambio");
-    /*
-        (values, { setSubmitting, resetForm }) => {
-            setSubmitting(true);
-            setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-            }, 500)
-            resetForm();
-            setSubmitting(false);
-     
-        }*/
   }
   view = (event) => {
     let view = this.state.view;
     return view;
   };
 
+  //manejador de eventos global
+  handleChange = (evento) => {
+    const target = evento.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({ selected: { ...this.state.selected, [name]: value } });
+    console.log(name + " es: " + value);
+  };
   render() {
-    var message = "you selected" + this.state.selectedSemestre;
+    var {
+      periodo,
+      ap_paterno,
+      ap_materno,
+      puesto,
+      titulo,
+      estado,
+    } = this.props;
+    var { periodos } = this.props.index;
     return (
       <div className="container">
         <div className="container">
           <form onSubmit={this.handleSubmit}>
+            <SelectControlado
+              label="Periodo"
+              value={periodo}
+              name="periodo_id"
+              handleChange={this.handleChange}
+              datos={periodos}
+            />
+
             <div className="form-group">
-              {/* <h2 >Materia</h2> */}
               <div className="form-row align-items-center">
                 <div className="col-auto">
                   <label className="src-only" htmlFor="periodo">
