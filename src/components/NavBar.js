@@ -102,7 +102,6 @@ class NavBar extends Component {
           bg="dark"
           variant="dark"
           fixed="top"
-          activeKey="home"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
             Sistema de horarios
@@ -111,7 +110,7 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <NavDropdown eventKey="claseSelect" title="Clases" id="collasible-nav-dropdown">
+              <NavDropdown title="Clases" id="collasible-nav-dropdown">
                 <NavDropdown.Item
                   eventKey="clase"
                   as={NavLink}
@@ -234,7 +233,7 @@ class NavBar extends Component {
               </NavDropdown>
             </Nav>
 
-            <Nav variant="tabs" activeKey="home" onSelect={this.handleSelect}>
+            <Nav variant="tabs" onSelect={this.handleSelect}>
               <NavDropdown title="Admin" id="collasible-nav-dropdown">
                 <NavDropdown.Item
                   as={NavLink}

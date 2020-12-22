@@ -14,8 +14,8 @@ theme = responsiveFontSizes(theme);
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
+    alignItems: "center",
+    justifyContent:"center",
     flex: "1 2 5rem",
     maxWidth: (props) => props.ancho,
     maxHeight: (props) => props.alto,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import TarjetaAmbiente from "../../components/TarjetaAmbiente";
-import MateriasSemestre from "./MateriasSemestre";
+import MateriasMencion from "./MateriasMencion";
+import Sidebar from "../../components/Sidebar";
 
 export default class HomeMaterias extends Component {
   constructor(props) {
@@ -9,117 +9,25 @@ export default class HomeMaterias extends Component {
       usuario: "",
       ancho: "7rem",
       alto: "10rem",
+      mencion: "Control",
+      semestre: "7",
+      titulo: "HOme",
+      semestres: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
   }
 
   render() {
     var { datos } = this.props;
-    var { ancho, alto } = this.state;
+    var { mencion, titulo, semestre } = this.state;
     return (
       <div>
-        <div className="box">
-          <MateriasSemestre
-            datos={datos}
-            semestre='1'
-            titulo="Primer Semestre"
-          />
-          <div className="col">
-            <h3>Segundo Semestre</h3>
-            <div>
-              {datos.map((item) => {
-                return (
-                  <div key={item.id} className="tarjetas">
-                    {item.semestre === "2" && (
-                      <TarjetaAmbiente
-                        tipo={item.nombre}
-                        nombre={item.sigla}
-                        detalle={item.tipo}
-                        ancho={ancho}
-                        alto={alto}
-                        color={
-                          item.tipo === "laboratorio" ? "#006600" : "#0066CC"
-                        }
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="box">
-          <div className="col">
-            <h3>Tercer Semestre</h3>
-            <div className="tarjeta">
-              {datos.map((item) => {
-                return (
-                  <div key={item.id} className="p-2">
-                    {item.semestre === "3" && (
-                      <TarjetaAmbiente
-                        tipo={item.nombre}
-                        nombre={item.sigla}
-                        detalle={item.tipo}
-                        ancho={ancho}
-                        alto={alto}
-                        color={
-                          item.tipo === "laboratorio" ? "#006600" : "#0066CC"
-                        }
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="col-auto">
-            <h3>Cuarto Semestre</h3>
-            <div className="tarjeta">
-              {datos.map((item) => {
-                return (
-                  <div key={item.id} className="p-2">
-                    {item.semestre === "" && (
-                      <TarjetaAmbiente
-                        tipo={item.nombre}
-                        nombre={item.sigla}
-                        detalle={item.tipo}
-                        ancho={ancho}
-                        alto={alto}
-                        color={
-                          item.tipo === "laboratorio" ? "#006600" : "#0066CC"
-                        }
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="box">
-          <div className="col">
-            <h1>5</h1>
-          </div>
-
-          <div className="box">
-            <h1>6</h1>
-          </div>
-        </div>
-        <div className="box">
-          <h1>7d</h1>
-          <div className="col">
-            <h2>Control</h2>
-          </div>
-
-          <div className="col">
-            <h2>Sistemas</h2>
-          </div>
-          <div className="col">
-            <h2>Telecomunicaciones</h2>
-          </div>
-        </div>
+        <div className="tarjetas-titulo">{titulo}</div>
+        <Sidebar />
+        <MateriasMencion
+          datos={datos}
+          titulo={"Materias de " + mencion}
+          mencion={mencion}
+        />
       </div>
     );
   }

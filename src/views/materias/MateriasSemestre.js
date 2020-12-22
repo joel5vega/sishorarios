@@ -1,40 +1,67 @@
 import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import TarjetaMateria from "../../components/TarjetaMateria";
 
 export default class MateriasSemestre extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      ancho: "7rem",
-      alto: "10rem",
+       ancho:"5rem",
+      // alto: "1rem",
     };
   }
 
   render() {
-    var { datos, semestre, titulo } = this.props;
+    var { datos, semestre, mencion, titulo } = this.props;
     var { ancho, alto } = this.state;
     return (
       <div className="col">
-        materias semestre
-        <h3>{titulo}</h3>
         <div className="tarjetas">
-          {this.props.datos.map((item) => {
+          <div className="tarjetas-titulo">{titulo}</div>
+          {datos.map((item) => {
             return (
               <div key={item.id}>
                 {item.semestre == semestre && (
-                  <div className="tarjeta">
-                    <TarjetaAmbiente
-                      tipo={item.nombre}
-                      nombre={item.sigla}
-                      detalle={item.tipo}
-                      ancho={ancho}
-                      alto={alto}
-                      color={
-                        item.tipo === "laboratorio" ? "#006600" : "#0066CC"
-                      }
-                      enlace={"http://localhost:3000/responsable/" + item.id}
-                    />
+                  <div>
+                    {item.semestre < 7 ? (
+                      <TarjetaMateria
+                        nombre={item.nombre}
+                        sigla={item.sigla}
+                        tipo={item.tipo}
+                        ancho={ancho}
+                        alto={alto}
+                        color={
+                          item.tipo === "laboratorio" ? "#006600" : "#0066CC"
+                        }
+                        enlace={"http://localhost:3000/responsable/" + item.id}
+                      />
+                    ) : (
+                      item.menciones.length &&
+                      item.menciones.map((menciones) => {
+                        return (
+                          <div key={menciones.nombre}>
+                            {menciones.nombre === mencion && (
+                              <TarjetaMateria
+                                nombre={item.nombre}
+                                sigla={item.sigla}
+                                tipo={item.tipo}
+                                ancho={ancho}
+                                alto={alto}
+                                color={
+                                  item.tipo === "laboratorio"
+                                    ? "#006600"
+                                    : "#0066CC"
+                                }
+                                enlace={
+                                  "http://localhost:3000/responsable/" + item.id
+                                }
+                              />
+                            )}
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                 )}
               </div>
