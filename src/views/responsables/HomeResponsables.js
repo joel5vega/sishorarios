@@ -1,7 +1,7 @@
 import React, { Component, Contetxt } from "react";
 import Lista from "../../components/Lista";
 import ContextProvider from "../../containers/ContextProvider";
-import Tarjeta from "../../components/Tarjeta";
+import TarjetaAmbiente from "../../components/TarjetaAmbiente";
 export default class HomeResponsables extends Component {
   componentDidMount() {}
   render() {
@@ -24,41 +24,58 @@ export default class HomeResponsables extends Component {
     };
     return (
       <div>
-        <h3>Docentes</h3>
-        <div className="d-flex flex-wrap">
-          {datos.map((item) => {
-            return (
-              <div key={item.id} className="p-2">
-                {item.puesto === "docente" && (
-                  <Tarjeta
-                    titulo={item.titulo}
-                    subtitulo={item.ap_paterno}
-                    detalle={item.puesto}
-                    accion={item.estado}
-                    enlace={"http://localhost:3000/responsable/"+item.id}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
-        <h3>Auxiliares</h3>
-        <div className="d-flex flex-sm-wrap">
-          {datos.map((item) => {
-            return (
-              <div key={item.id} className="p-2">
-                {item.puesto === "auxiliar" && (
-                  <Tarjeta
-                    titulo={item.titulo}
-                    subtitulo={item.ap_paterno}
-                    detalle={item.puesto}
-                    accion={item.estado}
-                    enlace={"http://localhost:3000/responsable/"+item.id}
-                  />
-                )}
-              </div>
-            );
-          })}
+        <div className="row">
+          <div className="col">
+            <h3>Docentes</h3>
+            <div className="d-flex flex-sm-wrap">
+              {datos.map((item) => {
+                return (
+                  <div key={item.id} className="p-2">
+                    {item.puesto === "docente" && (
+                      <TarjetaAmbiente
+                        nombre={
+                          item.titulo +
+                          " " +
+                          item.nombre +
+                          " " +
+                          item.ap_paterno
+                        }
+                        tipo={item.puesto}
+                        enlace={"http://localhost:3000/responsable/" + item.id}
+                        color="#0066CC"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="col">
+            <h3>Auxiliares</h3>
+            <div className="d-flex flex-sm-wrap">
+              {datos.map((item) => {
+                return (
+                  <div key={item.id} className="p-2">
+                    {item.puesto === "auxiliar" && (
+                      <TarjetaAmbiente
+                        nombre={
+                          item.titulo +
+                          " " +
+                          item.nombre +
+                          " " +
+                          item.ap_paterno
+                        }
+                        tipo={item.puesto}
+                        accion={item.estado}
+                        color="#00CCFF"
+                        enlace={"http://localhost:3000/responsable/" + item.id}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     );

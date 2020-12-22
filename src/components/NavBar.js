@@ -9,10 +9,9 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navExpanded: false,
-
       url: "http://127.0.0.1:8000",
       backgroundColor: "black",
+      key: "home",
       titulo: "Sistema de Horarios",
       periodo: "",
 
@@ -28,10 +27,17 @@ class NavBar extends Component {
       selectedAmbiente: "",
       selectedPeriodo: "",
     };
+    this.handleSelect = this.handleSelect.bind(this);
     const { handleSelect } = this.props;
   }
   componentDidMount() {}
-
+  //Para ver elemento seleccionado
+  handleSelect(key) {
+    this.setState({
+      key: key,
+    });
+    alert(`selected ${key}`);
+  }
   handleAmbienteChange = (item) => {
     this.setState({
       titulo: item.nombre,
@@ -96,36 +102,41 @@ class NavBar extends Component {
           bg="dark"
           variant="dark"
           fixed="top"
+          activeKey="home"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
             Sistema de horarios
           </Navbar.Brand>
+          <Navbar.Text>{this.props.titulo}</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <NavDropdown title="Clases" id="collasible-nav-dropdown">
+              <NavDropdown eventKey="claseSelect" title="Clases" id="collasible-nav-dropdown">
                 <NavDropdown.Item
+                  eventKey="clase"
                   as={NavLink}
                   exact
                   to="/clase/"
-                  activeStyle={NavActive}
+                  // activeStyle={NavActive}
                 >
                   Ver todas las clases
                 </NavDropdown.Item>
                 <NavDropdown.Item
+                  eventKey="claseLista"
                   as={NavLink}
                   exact
                   to="/clase/lista"
-                  activeStyle={NavActive}
+                  // activeStyle={NavActive}
                 >
                   Lista de Ambientes
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
+                  eventKey="claseCrear"
                   as={NavLink}
                   exact
                   to="/clase/crear"
-                  activeStyle={NavActive}
+                  // activeStyle={NavActive}
                 >
                   Crear
                 </NavDropdown.Item>
@@ -223,7 +234,7 @@ class NavBar extends Component {
               </NavDropdown>
             </Nav>
 
-            <Nav>
+            <Nav variant="tabs" activeKey="home" onSelect={this.handleSelect}>
               <NavDropdown title="Admin" id="collasible-nav-dropdown">
                 <NavDropdown.Item
                   as={NavLink}
@@ -259,7 +270,12 @@ class NavBar extends Component {
                   Crear
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link as={NavLink} to="/login/" activeStyle={NavActive}>
+              <Nav.Link
+                eventKey="login"
+                as={NavLink}
+                to="/login/"
+                activeStyle={NavActive}
+              >
                 Login
               </Nav.Link>
             </Nav>

@@ -5,30 +5,40 @@ import { sizing } from "@material-ui/system";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { Box } from "@material-ui/core";
+
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import { ThemeProvider } from "react-bootstrap";
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 200,
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    flex: "1 2 5rem",
+    maxWidth: (props) => props.ancho,
+    maxHeight: (props) => props.alto,
     backgroundColor: (props) => props.color,
-    boxSizing: "5%",
   },
 });
 
 export default function ImgMediaCard(props) {
   const classes = useStyles(props);
-  const { nombre, tipo, capacidad, color } = props;
+  const { nombre, tipo, detalle } = props;
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="body1" component="p">
-            {nombre}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {tipo}
-          </Typography>
-          {capacidad}
+          <ThemeProvider>
+            <Typography gutterBottom variant="body2" component="p">
+              {nombre}
+            </Typography>
+            <Typography variant="caption" color="textSecondary" component="p">
+              {tipo}
+            </Typography>
+            <Typography variant="overline">{detalle}</Typography>
+          </ThemeProvider>
         </CardContent>
       </CardActionArea>
     </Card>

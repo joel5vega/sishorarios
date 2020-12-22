@@ -11,7 +11,7 @@ export default class HomeAmbientes extends Component {
       libres: [],
       ocupados: [],
       showLib: true,
-      showOcu: false,
+      showOcu: true,
       show: true,
     };
   }
@@ -53,24 +53,24 @@ export default class HomeAmbientes extends Component {
       columnCount: 2,
       columnGap: "3em",
       columnRule: "1px solid #bbb",
-      columnWidth: "400px",
+      // columnWidth: "400px",
     };
     const categoria = {
       border: "1px solid #bbb",
       borderStyle: "solid",
       borderRadius: "5px",
     };
-    var { libres, ocupados, showLib, showOcu } = this.state;
+    var { libres, ocupados, showLib, showOcu, show } = this.state;
     return (
       <div>
-        <div style={columna}>
-          {libres.length > 0 && (
-            <div style={categoria}>
+        <div className="row">
+          {ocupados.length > 0 && (
+            <div className="col">
               <div className="row no-gutter">
                 <div className="col-auto">
                   <h5>Ambientes Ocupados</h5>
                 </div>
-                {this.state.show && (
+                {show && (
                   <div className="col-auto">
                     <button
                       className="btn btn-outline-dark btn-sm"
@@ -85,14 +85,13 @@ export default class HomeAmbientes extends Component {
 
               {showOcu && (
                 <div className="d-flex flex-wrap">
-                  {libres.map((item) => {
+                  {ocupados.map((item) => {
                     return (
                       <div key={item.id} className="p-2">
                         <TarjetaAmbiente
                           nombre={item.nombre}
                           tipo={item.tipo}
-                          capacidad={item.capacidad}
-                          lugar={item.edificio}
+                          detalle={item.capacidad}
                           color={
                             item.tipo === "laboratorio"
                               ? "#006600"
@@ -110,12 +109,12 @@ export default class HomeAmbientes extends Component {
           )}
 
           {libres.length > 0 && (
-            <div className={categoria}>
+            <div className="col">
               <div className="row no-gutter">
                 <div className="col-auto">
                   <h5>Ambientes Libres</h5>
                 </div>
-                {this.state.show && (
+                {show && (
                   <div className="col-auto">
                     <button
                       className="btn btn-outline-dark btn-sm"
@@ -134,7 +133,7 @@ export default class HomeAmbientes extends Component {
                       <TarjetaAmbiente
                         nombre={item.nombre}
                         tipo={item.tipo}
-                        capacidad={item.capacidad}
+                        detalle={item.capacidad}
                         color={
                           item.tipo === "laboratorio"
                             ? "#006600"

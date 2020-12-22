@@ -6,7 +6,8 @@
 body {
   padding-top: 70px;
   background: transparent;
-  width: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .App-logo {
@@ -48,4 +49,59 @@ body {
   display: table;
   margin: 0 auto;
   border: 1px solid blue;
+}
+
+.box {
+  display: flex;
+  width: 100%;
+  flex: 0 1 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1rem #282c34;
+  border-color: gold;
+  background-color: cadetblue;
+}
+
+.col {
+  display: -ms-inline-flexbox;
+  flex-grow: 1;
+  flex-shrink: 2;
+  flex-basis: 50%;
+  background-color: transparent;
+}
+.tarjetas {
+  background-color: paleturquoise;
+  display: flex;
+  align-items: baseline;
+  justify-content: baseline;
+  flex-wrap: wrap;
+  margin: 0.375rem;
+  flex-shrink: 2;
+}
+.tarjeta {
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.2rem;
+  flex-shrink: 4;
+  flex-grow: 2;
+  flex-basis: 7rem;
+}
+
+@media screen and (min-width: 980px) {
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .col {
+    flex: 1;
+  }
+  .col-30 {
+    flex: 3;
+  }
+  .col-70 {
+    flex: 7;
+  }
 }

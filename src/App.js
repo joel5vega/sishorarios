@@ -135,7 +135,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div className="container">
+          <div>
             <NavBar
               handleAmbienteSelect={this.handleAmbienteSelect}
               handleSemestreSelect={this.handleSemestreSelect}
@@ -146,7 +146,7 @@ class App extends Component {
             />
           </div>
 
-          <div className="container">
+          <div name="rutas">
             <Route
               exact
               path="/"
