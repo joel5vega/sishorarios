@@ -5,7 +5,9 @@ import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
-import WindowConsumer from "../../containers/WindowProvider";
+import InputControlado from "../../components/InputControlado";
+import SelectControlado from "../../components/SelectControlado";
+
 export default class clases extends Component {
   constructor(props) {
     super(props);
@@ -24,12 +26,13 @@ export default class clases extends Component {
       semestres: [],
       menciones: [],
 
-      selectedBuscar: "",
+      selectedBuscar: "default",
       selectedPeriodo: "",
-      selectedSemestre: "",
-      selectedTipo: "",
-      selectedMencion: "",
-      selectedAmbiente: "",
+      selectedSemestre: "default",
+      selectedTipo: "default",
+      selectedMencion: "default",
+      selectedAmbiente: "default",
+      selectedResponsable: "default",
     };
   }
   async componentDidMount() {
@@ -40,6 +43,12 @@ export default class clases extends Component {
       this.setState({
         loading: false,
         selectedPeriodo: this.props.periodoActual.id,
+        periodos: this.props.periodos,
+        ambientes: this.props.ambientes,
+        materias: this.props.materias,
+        menciones: this.props.menciones,
+        responsables: this.props.responsables,
+        semestres: this.props.semestres,
       });
     }
 
@@ -115,11 +124,11 @@ export default class clases extends Component {
   handlePeriodoChange = (event) => {
     var periodo = event.target.value;
     var nombre = this.filtro(this.state.periodos, periodo);
-    // console.log(nombre.nombre);
-    const fuentePeriodo = this.state.url + "/index?periodo=" + periodo;
+    console.log(nombre);
+    const fuentePeriodo = this.state.url + "/api/clases?periodo=" + periodo;
 
     this.setState({
-      periodo: nombre.nombre,
+      // periodo: nombre.nombre,
       selectedPeriodo: periodo,
       fuente: fuentePeriodo,
       selectedSemestre: "",
@@ -135,7 +144,7 @@ export default class clases extends Component {
     let title = "Semestre:  " + semestre;
     var nuevaFuente =
       this.state.url +
-      "/semestres/" +
+      "/api/clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo;
@@ -153,7 +162,7 @@ export default class clases extends Component {
     let title = "Semestre:  " + semestre + " - " + mencion;
     var fuenteDatos =
       this.state.url +
-      "/semestres/" +
+      "/api/clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo +
@@ -164,8 +173,6 @@ export default class clases extends Component {
       fuente: fuenteDatos,
       titulo: title,
     });
-    // this.fetchMaterias(semestre, mencion)
-    // this.fetchChoqueSemestre(semestre, mencion)
   };
   handleAmbienteChange = (event) => {
     console.log(event.target.value);
@@ -173,21 +180,42 @@ export default class clases extends Component {
     var ambientes = this.state.ambientes;
     var nuevaFuente =
       this.state.url +
-      "/ambientes/" +
+      "/api/clases/ambiente/" +
       ambiente +
       "?periodo=" +
       this.state.selectedPeriodo;
     // var nombre = ambientes.filter(item => item.id === ambiente)
     var nombre = this.filtro(ambientes, ambiente);
-    let title = "Ambiente: " + nombre.nombre;
+    // let title = "Ambiente: " + nombre.nombre;
     this.setState({
       selectedAmbiente: ambiente,
       selectedSemestre: "",
-      titulo: title,
+      // titulo: title,
       fuente: nuevaFuente,
     });
-    console.log(nombre.nombre);
+    console.log(ambiente);
   };
+
+  handleResponsableChange = (event) => {
+    console.log(event.target.value);
+    var responsable = event.target.value;
+    // var ambientes = this.state.ambientes;
+    var nuevaFuente =
+      this.state.url +
+      "/api/clases/responsable/" +
+      responsable +
+      "?periodo=" +
+      this.state.selectedPeriodo;
+
+    this.setState({
+      selectedResponsable: responsable,
+      selectedSemestre: "",
+      selectedAmbiente: "",
+      fuente: nuevaFuente,
+    });
+    console.log(responsable);
+  };
+
   filtro = (array, id) => {
     let filtrar = array;
     var nombre = filtrar.filter((item) => {
@@ -202,134 +230,108 @@ export default class clases extends Component {
   };
 
   render() {
+    var {
+      selectedPeriodo,
+      periodos,
+      selectedBuscar,
+      selectedSemestre,
+      selectedMencion,
+      menciones,
+      selectedAmbiente,
+      ambientes,
+      selectedResponsable,
+      responsables,
+    } = this.state;
+    const buscar = [
+      { id: "semestre", nombre: "Semestre" },
+      { id: "ambiente", nombre: "Ambiente" },
+      { id: "responsable", nombre: "Responsable" },
+    ];
+    const nivel = [
+      { id: "docente", nombre: "Docente" },
+      { id: "auxiliar", nombre: "Auxiliar" },
+    ];
+    const listaSemestres = [
+      { id: "1", nombre: "1" },
+      { id: "2", nombre: "2" },
+      { id: "3", nombre: "3" },
+      { id: "4", nombre: "4" },
+      { id: "5", nombre: "5" },
+      { id: "6", nombre: "6" },
+      { id: "7", nombre: "7" },
+      { id: "8", nombre: "8" },
+      { id: "9", nombre: "9" },
+      { id: "10", nombre: "10" },
+    ];
+
     return (
       <div>
         <div className="container" id="print">
           <div className="row align-items-center">
             {this.state.loading === false && (
-
-              
               <div className="col-auto">
-                <label className="src-only" htmlFor="periodo">
-                  Periodo{" "}
-                </label>
-                <select
-                  type="text"
-                  className="form-control"
+                <SelectControlado
+                  label="Periodo"
+                  value={selectedPeriodo}
                   name="periodo"
-                  id="periodo"
-                  value={this.state.selectedPeriodo}
-                  onChange={this.handlePeriodoChange}
-                  required
-                >
-                  <option disabled={true} value="">
-                    Periodo
-                  </option>
-                  {this.state.periodos.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.nombre}
-                    </option>
-                  ))}
-                </select>
+                  handleChange={this.handlePeriodoChange}
+                  datos={periodos}
+                />
               </div>
             )}
 
             {this.state.selectedPeriodo && (
               <div className="col-auto">
-                <label className="src-only" htmlFor="tipo">
-                  Tipo{" "}
-                </label>
-                <select
-                  type="text"
-                  className="form-control"
-                  id="tipo"
-                  value={this.state.selectedBuscar}
-                  onChange={this.handleBuscarChange}
-                  required
-                >
-                  <option value="" disabled={true}>
-                    Seleccione
-                  </option>
-                  <option value="semestre">Semestre</option>
-                  <option value="ambiente">Ambiente</option>
-                </select>
+                <SelectControlado
+                  label="Tipo"
+                  value={selectedBuscar}
+                  name="tipo"
+                  handleChange={this.handleBuscarChange}
+                  datos={buscar}
+                />
               </div>
             )}
             {this.state.selectedBuscar === "semestre" && (
-              <div className="col-auto">
-                <label className="src-only" htmlFor="semestre">
-                  Semestre{" "}
-                </label>
-                <select
-                  type="text"
-                  className="form-control"
-                  name="semestre"
-                  id="semestre"
-                  placeholder="semestre"
-                  value={this.state.selectedSemestre}
-                  onChange={this.handleSemestreChange}
-                  required
-                >
-                  <option disabled={true} value="">
-                    Semestre
-                  </option>
-                  {this.state.semestres.map((item) => (
-                    <option key={item.semestre} value={item.semestre}>
-                      {item.semestre}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <SelectControlado
+                label="Semestre"
+                value={selectedSemestre}
+                name="tipo"
+                handleChange={this.handleSemestreChange}
+                datos={listaSemestres}
+              />
             )}
 
             {this.state.selectedSemestre > 6 && (
-              <div className="col-auto">
-                <label htmlFor="mencion">Mencion </label>
-                <select
-                  type="text"
-                  name="mencion"
-                  id="mencion"
-                  className="form-control"
-                  placeholder="mencion"
-                  value={this.state.selectedMencion}
-                  onChange={this.handleMencionChange}
-                >
-                  <option disabled={true} value="">
-                    Mencion
-                  </option>
-                  {this.state.menciones.map((item) => (
-                    <option key={item.mencion} value={item.mencion}>
-                      {item.mencion}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <SelectControlado
+                label="Mencion"
+                value={selectedMencion}
+                name="tipo"
+                handleChange={this.handleMencionChange}
+                datos={menciones}
+              />
             )}
             {this.state.selectedBuscar === "ambiente" && (
-              <div className="col-auto">
-                <label htmlFor="ambiente">Ambiente:</label>
-                <select
-                  type="text"
-                  name="ambiente"
-                  id="ambiente"
-                  className="form-control"
-                  placeholder="ambiente"
-                  value={this.state.selectedAmbiente}
-                  onChange={this.handleAmbienteChange}
-                  required
-                >
-                  <option value="" disabled={true}>
-                    ambiente
-                  </option>
-                  {this.state.ambientes.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.nombre}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <SelectControlado
+                label="Ambiente"
+                value={selectedAmbiente}
+                name="ambiente"
+                handleChange={this.handleAmbienteChange}
+                datos={ambientes}
+              />
+            )}
+            {this.state.selectedBuscar === "responsable" && (
+              <SelectControlado
+                label="Responsable"
+                value={selectedResponsable}
+                name="responsable"
+                handleChange={this.handleResponsableChange}
+                datos={responsables}
+                index={`item.titulo+" "+item.ap_paterno`}
+              />
             )}
           </div>
+
+
           <div className="row align-items-center">
             <div className="col-auto">
               <div>
