@@ -7,33 +7,35 @@ import Typography from "@material-ui/core/Typography";
 const useBasicProfileStyles = makeStyles({
   root: {
     display: "flex",
-    flexShrink: "200",
-    flexBasis: "3rem",
-    minWidth: (props) => props.ancho,
-    // maxWidth: (props) => props.ancho,
-    maxHeight: (props) => props.alto,
+    flexDirection:"column",
+    flexShrink: 3,
+    flexGrow:2,
+    // flexBasis: "100rem",
+    // minWidth: "4rem"
+     maxWidth: (props) => props.ancho,
+    // maxHeight: (props) => props.alto,
   },
   info: {
     marginRight: 5,
   },
   avatar: {
-    fontSize: "0.8em",
+    fontSize: (props) => props.size,
     borderRadius: 8,
     alignContent: "center",
     backgroundColor: (props) => props.color,
   },
   overline: {
-    fontSize: "0.6em",
+    fontSize: (props) => props.size,
     textTransform: "uppercase",
     letterSpacing: "0.01em",
     color: "#8D9CAD",
   },
   name: {
-    fontSize: "0.5em",
+    fontSize: (props) => props.size,
     flex: "wrap",
     fontWeight: 500,
     color: "#495869",
-    maxWidth: (props) => props.ancho,
+    // maxWidth: (props) => props.ancho,
   },
 });
 

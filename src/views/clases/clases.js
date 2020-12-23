@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
-import "../fontawesome";
+import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Calendario from "../components/Calendario";
+import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
-import WindowConsumer from "../containers/WindowProvider";
+import WindowConsumer from "../../containers/WindowProvider";
 export default class clases extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ export default class clases extends Component {
       console.log(this.props.periodoActual);
       this.setState({
         loading: false,
-        selectedPeriodo: this.props.periodoActual,
+        selectedPeriodo: this.props.periodoActual.id,
       });
     }
 
@@ -191,7 +191,7 @@ export default class clases extends Component {
   filtro = (array, id) => {
     let filtrar = array;
     var nombre = filtrar.filter((item) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return item.nombre;
       }
     });
@@ -206,7 +206,9 @@ export default class clases extends Component {
       <div>
         <div className="container" id="print">
           <div className="row align-items-center">
-            {this.state.loading == false && (
+            {this.state.loading === false && (
+
+              
               <div className="col-auto">
                 <label className="src-only" htmlFor="periodo">
                   Periodo{" "}
@@ -253,7 +255,7 @@ export default class clases extends Component {
                 </select>
               </div>
             )}
-            {this.state.selectedBuscar == "semestre" && (
+            {this.state.selectedBuscar === "semestre" && (
               <div className="col-auto">
                 <label className="src-only" htmlFor="semestre">
                   Semestre{" "}
@@ -303,7 +305,7 @@ export default class clases extends Component {
                 </select>
               </div>
             )}
-            {this.state.selectedBuscar == "ambiente" && (
+            {this.state.selectedBuscar === "ambiente" && (
               <div className="col-auto">
                 <label htmlFor="ambiente">Ambiente:</label>
                 <select
@@ -362,14 +364,14 @@ export default class clases extends Component {
         </div>
 
         <div id="calendario">
-          {this.state.view == "timeGrid" && (
+          {this.state.view === "timeGrid" && (
             <Calendario
               fuente={this.state.fuente}
               getDateClick={this.getDateClick}
               view="timeGrid"
             />
           )}
-          {this.state.view == "timeGridWeek" && (
+          {this.state.view === "timeGridWeek" && (
             <Calendario
               fuente={this.state.fuente}
               getDateClick={this.getDateClick}

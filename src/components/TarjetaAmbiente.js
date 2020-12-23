@@ -15,32 +15,46 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     alignItems: "center",
-    justifyContent:"center",
-    flex: "1 2 5rem",
+    justifyContent: "center",
+    flexShrink: "2",
+    flexBasis: "6rem",
     maxWidth: (props) => props.ancho,
-    maxHeight: (props) => props.alto,
+    margin:"0.02rem",
+    // height:"0.2rem",
+    // maxHeight: "fit-content",
+    // maxHeight: (props) => props.alto,
     backgroundColor: (props) => props.color,
+  },
+  informacion: {
+    margin:0,
+    fontWeight: "bold",
+    fontSize: (props) => props.capacidad / 20 + "rem",
   },
 });
 
 export default function ImgMediaCard(props) {
-  const classes = useStyles(props);
-  const { nombre, tipo, detalle } = props;
+  const { nombre, tipo, capacidad } = props;
+  const size = parseInt(capacidad) / 10 / 4;
+  const classes = useStyles(props, size);
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardContent>
-          <ThemeProvider>
-            <Typography gutterBottom variant="body2" component="p">
-              {nombre}
-            </Typography>
-            <Typography variant="caption" color="textSecondary" component="p">
-              {tipo}
-            </Typography>
-            <Typography variant="overline">{detalle}</Typography>
-          </ThemeProvider>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div className="tarjeta">
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardContent>
+            <ThemeProvider>
+              <Typography variant="caption" component="p">
+                {nombre}
+              </Typography>
+              <Typography variant="caption" color="textSecondary" component="p">
+                Capacidad:
+              </Typography>
+              <Typography className={classes.informacion}>
+                {capacidad}
+              </Typography>
+            </ThemeProvider>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 }

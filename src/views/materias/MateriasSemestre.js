@@ -7,7 +7,7 @@ export default class MateriasSemestre extends Component {
     super(props);
     this.state = {
       usuario: "",
-       ancho:"5rem",
+      ancho: "5rem",
       // alto: "1rem",
     };
   }
@@ -16,7 +16,7 @@ export default class MateriasSemestre extends Component {
     var { datos, semestre, mencion, titulo } = this.props;
     var { ancho, alto } = this.state;
     return (
-      <div className="col">
+      <div>
         <div className="tarjetas">
           <div className="tarjetas-titulo">{titulo}</div>
           {datos.map((item) => {
@@ -31,6 +31,7 @@ export default class MateriasSemestre extends Component {
                         tipo={item.tipo}
                         ancho={ancho}
                         alto={alto}
+                        size="0.7em"
                         color={
                           item.tipo === "laboratorio" ? "#006600" : "#0066CC"
                         }
@@ -48,6 +49,7 @@ export default class MateriasSemestre extends Component {
                                 tipo={item.tipo}
                                 ancho={ancho}
                                 alto={alto}
+                                size="0.7em"
                                 color={
                                   item.tipo === "laboratorio"
                                     ? "#006600"

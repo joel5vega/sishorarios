@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import MateriasMencion from "./MateriasMencion";
+import FloatingButton from "../../components/FloatingButton";
 import Sidebar from "../../components/Sidebar";
+import TabPanel from "../../components/Tabs";
 
 export default class HomeMaterias extends Component {
   constructor(props) {
@@ -21,12 +23,31 @@ export default class HomeMaterias extends Component {
     var { mencion, titulo, semestre } = this.state;
     return (
       <div>
-        <div className="tarjetas-titulo">{titulo}</div>
-        <Sidebar />
-        <MateriasMencion
-          datos={datos}
-          titulo={"Materias de " + mencion}
-          mencion={mencion}
+        <TabPanel
+          label01="Materias Mencion Control"
+          label02="Materias Mencion Sistemas"
+          label03="Materias Mencion Telecomunicaciones"
+          item01={
+            <MateriasMencion
+              datos={datos}
+              titulo={"Materias de Control "}
+              mencion="Control"
+            />
+          }
+          item02={
+            <MateriasMencion
+              datos={datos}
+              titulo={"Materias de Sistemas "}
+              mencion="Sistemas"
+            />
+          }
+          item03={
+            <MateriasMencion
+              datos={datos}
+              titulo={"Materias de Telecomunicaciones "}
+              mencion="Telecomunicaciones"
+            />
+          }
         />
       </div>
     );

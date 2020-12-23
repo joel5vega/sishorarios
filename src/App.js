@@ -16,9 +16,9 @@ import ListaAmbientes from "./views/ambientes/ListaAmbientes";
 import CrearAmbiente from "./views/ambientes/crearAmbiente";
 //Clases
 import HomeClases from "./views/clases/HomeClases";
-import Clases from "./views/clases";
+import Clases from "./views/clases/clases";
 import CrearClase from "./views/clases/crearClase";
-import ListaClases from "./views/clases";
+import ListaClases from "./views/clases/clases";
 
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
@@ -220,6 +220,8 @@ class App extends Component {
                 />
               )}
             />
+
+            {/* este es el buscador */}
             <Route
               exact
               path="/clase/lista"
@@ -228,6 +230,7 @@ class App extends Component {
                   {...props}
                   index={this.state.index}
                   periodoActual={this.state.periodoActual}
+                  periodos={this.state.periodos}
                   ambientes={this.state.ambientes}
                   responsables={this.state.responsables}
                   semestres={this.state.semestres}
@@ -302,7 +305,9 @@ class App extends Component {
           </div>
         </BrowserRouter>
 
-        <div>(c) Sistema de horarios de Ingenieria Electrónica</div>
+        <div className="footer">
+          (c) Sistema de horarios de Ingenieria Electrónica
+        </div>
       </div>
     );
   }

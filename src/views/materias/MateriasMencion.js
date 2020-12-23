@@ -15,16 +15,16 @@ export default class MateriasMencion extends Component {
     var { mencion, titulo, datos } = this.props;
     return (
       <div>
-        <div className="tarjetas-titulo">{titulo}</div>
+        {/* <div className="tarjetas-titulo ">{titulo}</div> */}
         {semestres.map((item) => {
           return (
-            <div  key={item}>
-            <MateriasSemestre
-              datos={datos}
-              semestre={item}
-              titulo={item + " Semestre"}
-              mencion={mencion}
-            />
+            <div key={item} >
+              <MateriasSemestre
+                datos={datos}
+                semestre={item}
+                titulo={item + " Semestre - Mención: " + mencion}
+                mencion={mencion}
+              />
             </div>
           );
         })}

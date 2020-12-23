@@ -241,7 +241,7 @@ class NavBar extends Component {
                   to="/admin/"
                   activeStyle={NavActive}
                 >
-                  Home
+                  Datos del sistema
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={NavLink}
@@ -249,7 +249,7 @@ class NavBar extends Component {
                   to="/admin/datos"
                   activeStyle={NavActive}
                 >
-                  Datos de administracion
+                  Usuarios
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={NavLink}

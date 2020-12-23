@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
-
+import TabPanel from "../../components/Tabs";
+import AmbientesLibres from "./AmbientesLibres";
 import axios from "axios";
+
 export default class HomeAmbientes extends Component {
   constructor(args) {
     super(args);
@@ -49,49 +51,24 @@ export default class HomeAmbientes extends Component {
   }
 
   render() {
-    const columna = {
-      columnCount: 2,
-      columnGap: "3em",
-      columnRule: "1px solid #bbb",
-      // columnWidth: "400px",
-    };
-    const categoria = {
-      border: "1px solid #bbb",
-      borderStyle: "solid",
-      borderRadius: "5px",
-    };
     var { libres, ocupados, showLib, showOcu, show } = this.state;
+    const label = ["Ambientes Ocupados", "Ambientes disponibles"];
     return (
       <div>
-        <div className="row">
-          {ocupados.length > 0 && (
-            <div className="col">
-              <div className="row no-gutter">
-                <div className="col-auto">
-                  <h5>Ambientes Ocupados</h5>
-                </div>
-                {show && (
-                  <div className="col-auto">
-                    <button
-                      className="btn btn-outline-dark btn-sm"
-                      name="showOcu"
-                      onClick={this.showHandler}
-                    >
-                      Ver {showOcu ? "Menos" : "Mas"}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {showOcu && (
-                <div className="d-flex flex-wrap">
-                  {ocupados.map((item) => {
+        <TabPanel
+          // label={label}
+          label02="Ambientes Ocupados"
+          label01="Ambientes Libres"
+          item02={
+            <div className="tarjetas">
+              {ocupados.length > 0
+                ? ocupados.map((item) => {
                     return (
-                      <div key={item.id} className="p-2">
+                      <div key={item.id}>
                         <TarjetaAmbiente
                           nombre={item.nombre}
                           tipo={item.tipo}
-                          detalle={item.capacidad}
+                          capacidad={item.capacidad}
                           color={
                             item.tipo === "laboratorio"
                               ? "#006600"
@@ -102,53 +79,13 @@ export default class HomeAmbientes extends Component {
                         />
                       </div>
                     );
-                  })}
-                </div>
-              )}
+                  })
+                : "No existen registros de ambientes ocupados en este momento"}
             </div>
-          )}
-
-          {libres.length > 0 && (
-            <div className="col">
-              <div className="row no-gutter">
-                <div className="col-auto">
-                  <h5>Ambientes Libres</h5>
-                </div>
-                {show && (
-                  <div className="col-auto">
-                    <button
-                      className="btn btn-outline-dark btn-sm"
-                      name="showOcu"
-                      onClick={this.showHandler}
-                    >
-                      Ver {showLib ? "Menos" : "Mas"}
-                    </button>
-                  </div>
-                )}
-              </div>
-              {showLib && (
-                <div className="d-flex flex-wrap">
-                  {libres.map((item) => (
-                    <div key={item.id} className="p-2">
-                      <TarjetaAmbiente
-                        nombre={item.nombre}
-                        tipo={item.tipo}
-                        detalle={item.capacidad}
-                        color={
-                          item.tipo === "laboratorio"
-                            ? "#006600"
-                            : item.tipo === "auditorio"
-                            ? "#ffa500"
-                            : "#0066CC"
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+          }
+          item01={<AmbientesLibres datos={libres} />}
+          item03="Nada por aqui"
+        />
       </div>
     );
   }
