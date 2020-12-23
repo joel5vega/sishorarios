@@ -20,7 +20,7 @@ export default class SelectControlado extends Component {
             </option>
             {datos.map((item) => {
               return (
-                <option key={item.id} value={{ valor }}>
+                <option key={item.id} value={item.id}>
                   {item.nombre}
                 </option>
               );

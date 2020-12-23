@@ -1,7 +1,7 @@
 import React, { Component, Contetxt } from "react";
-import Lista from "../../components/Lista";
 import ContextProvider from "../../containers/ContextProvider";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import TarjetaMateria from "../../components/TarjetaMateria";
 export default class HomeResponsables extends Component {
   componentDidMount() {}
   render() {
@@ -24,57 +24,45 @@ export default class HomeResponsables extends Component {
     };
     return (
       <div>
-        <div className="row">
-          <div className="col">
-            <h3>Docentes</h3>
-            <div className="d-flex flex-sm-wrap">
-              {datos.map((item) => {
-                return (
-                  <div key={item.id} className="p-2">
-                    {item.puesto === "docente" && (
-                      <TarjetaAmbiente
-                        nombre={
-                          item.titulo +
-                          " " +
-                          item.nombre +
-                          " " +
-                          item.ap_paterno
-                        }
-                        tipo={item.puesto}
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                        color="#0066CC"
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+        <div className="box">
+          <div className="tarjetas">
+            <div className="tarjetas-titulo">Docentes</div>
+
+            {datos.map((item) => {
+              return (
+                <div key={item.id}>
+                  {item.puesto === "docente" && (
+                    <TarjetaMateria
+                      nombre={item.nombre + " " + item.ap_paterno}
+                      tipo={item.puesto}
+                      sigla={item.titulo}
+                      size="1rem"
+                      enlace={"http://localhost:3000/responsable/" + item.id}
+                      color="#0066CC"
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
-          <div className="col">
-            <h3>Auxiliares</h3>
-            <div className="d-flex flex-sm-wrap">
-              {datos.map((item) => {
-                return (
-                  <div key={item.id} className="p-2">
-                    {item.puesto === "auxiliar" && (
-                      <TarjetaAmbiente
-                        nombre={
-                          item.titulo +
-                          " " +
-                          item.nombre +
-                          " " +
-                          item.ap_paterno
-                        }
-                        tipo={item.puesto}
-                        accion={item.estado}
-                        color="#00CCFF"
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+          <div className="tarjetas">
+            <div className="tarjetas-titulo">Auxiliares</div>
+
+            {datos.map((item) => {
+              return (
+                <div key={item.id}>
+                  {item.puesto === "auxiliar" && (
+                    <TarjetaMateria
+                      nombre={item.nombre + " " + item.ap_paterno}
+                      tipo={item.puesto}
+                      sigla={item.titulo}
+                      enlace={"http://localhost:3000/responsable/" + item.id}
+                      color="#00CCFF"
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

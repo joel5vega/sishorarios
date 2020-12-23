@@ -32,12 +32,13 @@ export default class CrearResponsable extends Component {
 
   render() {
     const puestos = [
-      { valor: "auxiliar", nombre: "Auxiliar", id: 1 },
-      { valor: "docente", nombre: "Docente", id: 2 },
+      { id: "auxiliar", nombre: "Auxiliar" },
+      { id: "docente", nombre: "Docente" },
     ];
     const titulos = [
-      { valor: "univ", nombre: "Univ.", id: 1 },
-      { valor: "ing", nombre: "Ing", id: 2 },
+      { id: "univ", nombre: "Univ." },
+      { id: "ing", nombre: "Ing" },
+      { id: "msc", nombre: "Msc" },
     ];
 
     var {
@@ -75,12 +76,12 @@ export default class CrearResponsable extends Component {
           handleChange={this.handleChange}
           datos={puestos}
         />
-        <SelectControlado
+
+        <InputControlado
           label="Titulo"
-          value={titulo}
-          name="titulo"
+          nombre="titulo"
+          valor={titulo}
           handleChange={this.handleChange}
-          datos={titulos}
         />
         <div className="form-group col-auto">
           <label className="col-6">Biografia</label>
