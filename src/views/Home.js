@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../fontawesome";
 import "../css/home.css";
-import Tarjeta from "../components/Tarjeta";
+import ListaSemestres from "../views/semestres/ListaSemestres";
+import TarjetaAmbiente from "../components/TarjetaAmbiente";
 
 class Home extends Component {
   constructor(props) {
@@ -34,47 +35,55 @@ class Home extends Component {
     const datos = this.props.semestres;
 
     return (
-      <div className="container">
-        <h2>Bienvenido {this.state.usuario}</h2>
-        {this.props.semestres.length > 0 && (
-          <div>
-            <h3>Ver horarios por Semestre</h3>
+      <div>
+        <h2>
+          Bienvenido al Sistema de Administración de horarios
+          {this.state.usuario}
+        </h2>
+        <div className="row flex">
+          <div className="col">
+            <div className="tarjetas-titulo">Ver horarios por Ambientes</div>
+            <div className="tarjetas">
+              {this.props.ambientes.length > 0
+                ? this.props.ambientes.map((item) => {
+                    return (
+                      <div key={item.id}>
+                        <NavLink
+                          to={{
+                            pathname: "/clase/lista",
+                            state: {
+                              fuente:
+                                "http://localhost:8000/api/clases/ambiente/" +
+                                item.id,
 
-            <div className="d-flex flex-wrap">
-              {this.props.semestres.map((item) => {
-                return (
-                  <div key={item.id} value={item.id} className="p-2">
-                    <NavLink
-                      to={{
-                        pathname: "/clase/",
-                        state: {
-                          fuente:
-                            "http://localhost:8000/api/clases/semestre/" +
-                            item.semestre +
-                            "?mencion=" +
-                            item.mencion_id,
-                        },
-                      }}
-                    >
-                      <Tarjeta
-                        titulo={item.semestre}
-                        subtitulo={item.mencion}
-                        detalle={item.nombre}
-                        accion={this.onClick}
-                        // enlace={
-                        //   "/clase?semestre" +
-                        //   item.semestre +
-                        //   "&mencion=" +
-                        //   item.mencion
-                        // }
-                      />
-                    </NavLink>
-                  </div>
-                );
-              })}
+                              titulo:"Horarios en "+item.nombre,
+                            },
+                          }}
+                        >
+                          <TarjetaAmbiente
+                            nombre={item.nombre}
+                            tipo={item.tipo}
+                            capacidad={item.capacidad}
+                            color={
+                              item.tipo === "laboratorio"
+                                ? "#006600"
+                                : item.tipo === "auditorio"
+                                ? "#ffa500"
+                                : "#0066CC"
+                            }
+                          />
+                        </NavLink>
+                      </div>
+                    );
+                  })
+                : "No existen registros de ambientes ocupados en este momento"}
             </div>
           </div>
-        )}
+
+          <div className="col">
+            <ListaSemestres semestres={this.props.semestres} />
+          </div>
+        </div>
       </div>
     );
   }

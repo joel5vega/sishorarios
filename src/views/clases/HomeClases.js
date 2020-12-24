@@ -1,35 +1,80 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Calendario from "../../components/Calendario";
-
+import BuscarClase from "./BuscarClase";
 export default class HomeClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      fuente: "http://127.0.0.1:8000/api/clases",
-      externo: false,
+      datos: this.props.semestres,
+      fuente: "",
+      fuenteNow: "http://localhost:8000/api/clases/",
     };
   }
+  componentDidMount() {}
+  getDateClick = (event) => {
+    let startTime = event.startTime;
+    let day = event.day.toString();
+    let date = event.date;
+    let minutes = 90;
+    let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString(
+      [],
+      { hour: "2-digit", minute: "2-digit" }
+    );
+    // console.log(nuevo)
+    var evento = [
+      { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
+    ];
+    console.log(evento);
+  };
+  onClick = (e) => {
+    //elaboramos la fuente de consulta
+    const url = "http://localhost:8000/";
+    var fuente =
+      url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+    console.log(fuente);
+    this.setState({ fuente: fuente });
 
-  componentDidMount() {
-    this.verificarEntrada();
-  }
-  verificarEntrada() {
-    var estado = this.props.location.state;
-    if (estado) {
-      console.log(estado);
-      this.setState({ fuente: estado.fuente, externo: true });
-    } else {
-      console.log("no llego");
-    }
-  }
+  };
+  onChange = (e) => {
+    //elaboramos la fuente de consulta
+    const url = "http://localhost:8000/";
+    var fuente =
+      url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+    console.log(fuente);
+    this.setState({ fuente: fuente });
+    alert(e)
+  };
 
   render() {
+    const datos = this.props.semestres;
+
     return (
       <div>
-        <h1>Home Clase</h1>
-        {this.state.externo && <p>LLego</p>}
-        <Calendario fuente={this.state.fuente} />
+        <div className="tarjetas">
+          <div className="col-8 border-right">
+          <div className="tarjeta-titulo">Buscar horarios</div>
+             <BuscarClase 
+                  {...this.props}
+                  index={this.props.index}
+                  periodoActual={this.props.periodoActual}
+                  periodos={this.props.periodos}
+                  ambientes={this.props.ambientes}
+                  responsables={this.props.responsables}
+                  semestres={this.props.semestres}
+                  menciones={this.props.menciones}
+                  onChange={this.onChange}/>
+          </div>
+          <div className="col-4">
+            <div className="tarjeta-titulo">Actividades en curso</div>
+            <Calendario
+              fuente={this.state.fuenteNow}
+              getDateClick={this.getDateClick}
+              view="timeGrid"
+            />
+          </div>
+        </div>
       </div>
     );
   }

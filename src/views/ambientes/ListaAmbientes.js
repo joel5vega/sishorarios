@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Lista from "../../components/Lista";
+import ListaCore from "../../components/ListaCore";
 
 export default class ListaAmbientes extends Component {
   constructor(props) {
@@ -10,9 +10,10 @@ export default class ListaAmbientes extends Component {
   }
   render() {
     var { datos } = this.props;
+    var keys = ["nombre", "tipo", "capacidad"];
     return (
       <div>
-        <Lista datos={datos} titulo="Lista de Ambientes" tipo="ambiente" />
+        <ListaCore datos={datos} titulo="Ambientes" tipo="ambiente" keys={keys} />
       </div>
     );
   }

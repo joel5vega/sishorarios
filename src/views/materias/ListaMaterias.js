@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ListaCore from "../../components/ListaCore";
 
 export default class ListaMaterias extends Component {
   constructor(props) {
@@ -21,9 +22,12 @@ export default class ListaMaterias extends Component {
     }
   }
   render() {
+    var { datos } = this.props;
+    var keys=["sigla", "nombre", "semestre", "tipo"];
     return (
       <div>
-        Lista Materi
+        
+        <ListaCore datos={datos} tipo="materia" titulo="Lista de materias" keys={keys} /> 
         {this.state.externo && <p>LLego</p>}
         <h1>{this.state.fuente}</h1>
       </div>

@@ -7,7 +7,7 @@ export default class SelectControlado extends Component {
     return (
       <div>
         <div className="form-group col-auto">
-          <label className="col-4">{label}</label>
+          <label className="col-5">{label}</label>
           <select
             value={value}
             className="col-auto"
@@ -16,8 +16,7 @@ export default class SelectControlado extends Component {
             // defaultValue="default"
           >
             <option value="default" disabled={true}>
-              Seleccione {label}
-            </option>
+              Seleccione...            </option>
             {datos.map((item) => {
               return (
                 <option key={item.id} value={item.id}>

@@ -38,7 +38,10 @@ export default class Calendario extends Component {
         //para ocultar el encabezado
         header={false}
         //Para simplificar los dias 'long' nos dara el nombre completo
-        columnHeaderFormat={{ weekday: "short" }}
+        columnHeaderFormat={{ weekday: "long" }}
+        // columnHeaderFormat={{ weekday: "short" }}//corto
+        //Para que la altura se ajuste a la de la pantalla
+        contentHeight='auto'
         slotLabelFormat={{
           hour: "numeric",
           minute: "2-digit",

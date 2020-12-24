@@ -20,17 +20,18 @@ export default class CrearAmbiente extends Component {
     console.log(value);
   }
   render() {
-    var { nombre, tipo, capacidad, edificio, piso } = this.props;
+    var { nombre, tipo, capacidad, descripcion } = this.props;
     return (
       <div>
-        <InputControlado
+        {/* <InputControlado
+          label="Nombre"
           nombre="nombre"
           valor={this.props.nombre}
           handleChange={this.handleChange}
-        />
+        /> */}
         <div className="form-group">
           <div className="col-auto">
-            <label className="col-4">M</label>
+            <label className="col-4">Nombre</label>
             <input
               type="text"
               value={nombre}
@@ -72,30 +73,15 @@ export default class CrearAmbiente extends Component {
           </div>
         </div>
         <div className="form-group">
-          <div className="col-auto">
-            <label className="col-4">Edificio</label>
-            <input
-              name="edificio"
-              type="text"
-              value={edificio}
-              onChange={this.handleChange}
-              className="col-4"
-              required
-            />
-          </div>
+        <label className="col-4">Descripcion</label>
+          <textarea
+            name="descripcion"
+            value={descripcion}
+            onChange={this.handleChange}
+            className="col-3"
+          ></textarea>
         </div>
-        <div className="form-group">
-          <div className="col-auto">
-            <label className="col-4">Piso</label>
-            <input
-              name="piso"
-              type="text"
-              value={piso}
-              onChange={this.handleChange}
-              className="col-3"
-            />
-          </div>
-        </div>
+        
       </div>
     );
   }

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import Lista from "../../components/Lista";
+import ListaCore from "../../components/ListaCore";
 
 export default class ListaResponsables extends Component {
   render() {
     var { datos } = this.props;
-    console.log("----componente lista---");
-    console.log(datos);
-
+    var keys = ["nombre","ap_paterno","ap_materno","puesto","titulo","descripcion"]
     return (
       <div>
-        <h1>Lista</h1>
-        <Lista datos={datos} tipo="responsable" />
+        {/* <h1>Lista de Responsables</h1> */}
+        <ListaCore titulo="Responsable" datos={datos} tipo="responsable" keys={keys} />
       </div>
     );
   }

@@ -7,8 +7,9 @@ import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
+import { Modal } from "react-bootstrap";
 
-export default class clases extends Component {
+export default class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +17,7 @@ export default class clases extends Component {
       fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
+      show: true,
       loading: true,
       titulo: "",
       eventos: [],
@@ -95,6 +97,7 @@ export default class clases extends Component {
     });
     alert("Se empezo la descarga de su documento PDF");
   };
+/////////////////////////////
   getDateClick = (event) => {
     let startTime = event.startTime;
     let day = event.day.toString();
@@ -110,8 +113,18 @@ export default class clases extends Component {
     ];
     console.log(evento);
   };
+////////////////////
+//obtenemos cambio de fuente
+/*onClick = (e) => {
+  //elaboramos la fuente de consulta
+  const url = "http://localhost:8000/";
+  var fuente =
+    url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+  console.log(fuente);
+  this.setState({ fuente: fuente });
 
-  ///Handler
+};*/
+  /////////////////////////Handler
   handleBuscarChange = (event) => {
     var buscar = event.target.value;
     this.setState({
@@ -216,6 +229,10 @@ export default class clases extends Component {
     console.log(responsable);
   };
 
+  onHide = () => {
+    this.setState({ show: false });
+  };
+
   filtro = (array, id) => {
     let filtrar = array;
     var nombre = filtrar.filter((item) => {
@@ -266,10 +283,11 @@ export default class clases extends Component {
 
     return (
       <div>
-        <div className="container" id="print">
-          <div className="row align-items-center">
+        <div className="sticky" id="print">
+          
+          <div className="tarjetas">
             {this.state.loading === false && (
-              <div className="col-auto">
+              <div className="tarjeta">
                 <SelectControlado
                   label="Periodo"
                   value={selectedPeriodo}
@@ -281,7 +299,7 @@ export default class clases extends Component {
             )}
 
             {this.state.selectedPeriodo && (
-              <div className="col-auto">
+              <div className="tarjeta">
                 <SelectControlado
                   label="Tipo"
                   value={selectedBuscar}
@@ -292,80 +310,67 @@ export default class clases extends Component {
               </div>
             )}
             {this.state.selectedBuscar === "semestre" && (
-              <SelectControlado
-                label="Semestre"
-                value={selectedSemestre}
-                name="tipo"
-                handleChange={this.handleSemestreChange}
-                datos={listaSemestres}
-              />
+              <div className="tarjeta">
+                <SelectControlado
+                  label="Semestre"
+                  value={selectedSemestre}
+                  name="tipo"
+                  handleChange={this.handleSemestreChange}
+                  datos={listaSemestres}
+                />
+              </div>
             )}
 
             {this.state.selectedSemestre > 6 && (
-              <SelectControlado
-                label="Mencion"
-                value={selectedMencion}
-                name="tipo"
-                handleChange={this.handleMencionChange}
-                datos={menciones}
-              />
+              <div className="tarjeta">
+                <SelectControlado
+                  label="Mencion"
+                  value={selectedMencion}
+                  name="tipo"
+                  handleChange={this.handleMencionChange}
+                  datos={menciones}
+                />
+              </div>
             )}
             {this.state.selectedBuscar === "ambiente" && (
-              <SelectControlado
-                label="Ambiente"
-                value={selectedAmbiente}
-                name="ambiente"
-                handleChange={this.handleAmbienteChange}
-                datos={ambientes}
-              />
+              <div className="tarjeta">
+                <SelectControlado
+                  label="Ambiente"
+                  value={selectedAmbiente}
+                  name="ambiente"
+                  handleChange={this.handleAmbienteChange}
+                  datos={ambientes}
+                />
+              </div>
             )}
             {this.state.selectedBuscar === "responsable" && (
-              <SelectControlado
-                label="Responsable"
-                value={selectedResponsable}
-                name="responsable"
-                handleChange={this.handleResponsableChange}
-                datos={responsables}
-                index={`item.titulo+" "+item.ap_paterno`}
-              />
+              <div className="tarjeta">
+                <SelectControlado
+                  label="Responsable"
+                  value={selectedResponsable}
+                  name="responsable"
+                  handleChange={this.handleResponsableChange}
+                  datos={responsables}
+                  index={`item.titulo+" "+item.ap_paterno`}
+                />
+              </div>
             )}
-          </div>
-
-
-          <div className="row align-items-center">
-            <div className="col-auto">
-              <div>
-                <small>Exportar a PDF</small>
-              </div>
-              <button onClick={this.printPDF}>
-                <FontAwesomeIcon icon={"file-pdf"} size="1x" />
-              </button>
-            </div>
-            <div className="col-auto">
-              <div>
-                <small>Crear Nuevo</small>
-              </div>
-              <Link to={"/crear/clase"}>
-                <FontAwesomeIcon icon={"plus"} size="2x" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="row align-items-center">
-          <div className="col-auto col-md-offset-5">
-            <div id="periodo">
-              <h3>{this.state.periodo}</h3>
-            </div>
-          </div>
-          <div className="col-auto center-block">
-            <div id="title">
-              <h2>{this.state.titulo}</h2>
-            </div>
           </div>
         </div>
 
         <div id="calendario">
+          <div className="row align-items-center">
+            <div className="col-auto col-md-offset-5">
+              <div id="periodo">
+                <h3>{this.state.periodo}</h3>
+              </div>
+            </div>
+            <div className="col-auto center-block">
+              <div id="title">
+                <h2>{this.state.titulo}</h2>
+              </div>
+            </div>
+          </div>
           {this.state.view === "timeGrid" && (
             <Calendario
               fuente={this.state.fuente}
@@ -374,12 +379,33 @@ export default class clases extends Component {
             />
           )}
           {this.state.view === "timeGridWeek" && (
-            <Calendario
-              fuente={this.state.fuente}
-              getDateClick={this.getDateClick}
-              view="timeGridWeek"
-            />
+            <div className="container">
+              <Calendario
+                fuente={this.state.fuente}
+                getDateClick={this.getDateClick}
+                view="timeGridWeek"
+              />
+            </div>
           )}
+        </div>
+
+        <div id="acciones" className="tarjetas">
+          <div className="tarjeta">
+            <div>
+              <small>Exportar a PDF</small>
+            </div>
+            <button onClick={this.printPDF}>
+              <FontAwesomeIcon icon={"file-pdf"} size="1x" />
+            </button>
+          </div>
+          <div className="tarjeta">
+            <div>
+              <small>Crear Nuevo</small>
+            </div>
+            <Link to={"/crear/clase"}>
+              <FontAwesomeIcon icon={"plus"} size="2x" />
+            </Link>
+          </div>
         </div>
       </div>
     );

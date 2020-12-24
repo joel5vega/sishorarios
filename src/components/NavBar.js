@@ -93,6 +93,8 @@ class NavBar extends Component {
       handlePeriodoSelect,
       handleAmbienteSelect,
       handleSemestreSelect,
+      usuario,
+      ambientes,
     } = this.props;
     return (
       <div>
@@ -109,173 +111,199 @@ class NavBar extends Component {
           <Navbar.Text>{this.props.titulo}</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <NavDropdown title="Clases" id="collasible-nav-dropdown">
-                <NavDropdown.Item
-                  eventKey="clase"
-                  as={NavLink}
-                  exact
-                  to="/clase/"
-                  // activeStyle={NavActive}
-                >
-                  Ver todas las clases
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  eventKey="claseLista"
-                  as={NavLink}
-                  exact
-                  to="/clase/lista"
-                  // activeStyle={NavActive}
-                >
-                  Lista de Ambientes
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  eventKey="claseCrear"
-                  as={NavLink}
-                  exact
-                  to="/clase/crear"
-                  // activeStyle={NavActive}
-                >
-                  Crear
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/ambiente/"
-                  activeStyle={NavActive}
-                >
-                  Ambientes Ocupados
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/ambiente/lista"
-                  activeStyle={NavActive}
-                >
-                  Lista de Ambientes
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/responsable/crear"
-                  activeStyle={NavActive}
-                >
-                  Crear
-                </NavDropdown.Item>
-              </NavDropdown>
+            {usuario === "administrativo" ? (
+              <Nav className="mr-auto">
+                <NavDropdown title="Clases" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    eventKey="clase"
+                    as={NavLink}
+                    exact
+                    to="/clase/"
+                    // activeStyle={NavActive}
+                  >
+                    Ver todas las clases
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    eventKey="claseLista"
+                    as={NavLink}
+                    exact
+                    to="/clase/lista"
+                    // activeStyle={NavActive}
+                  >
+                    Buscar Clase
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    eventKey="claseCrear"
+                    as={NavLink}
+                    exact
+                    to="/clase/crear"
+                    // activeStyle={NavActive}
+                  >
+                    Crear
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/ambiente/"
+                    activeStyle={NavActive}
+                  >
+                    Uso de Ambientes
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/ambiente/lista"
+                    activeStyle={NavActive}
+                  >
+                    Listado de Ambientes
+                  </NavDropdown.Item>
+                </NavDropdown>
 
-              <NavDropdown title="Responsables" id="collasible-nav-dropdown">
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/responsable/"
-                  activeStyle={NavActive}
-                >
-                  Docentes y Auxiliares
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/responsable/lista"
-                  activeStyle={NavActive}
-                >
-                  Lista de Responsables
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/responsable/horario"
-                  activeStyle={NavActive}
-                >
-                  Horario de los Responsables
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/responsable/crear"
-                  activeStyle={NavActive}
-                >
-                  Crear
-                </NavDropdown.Item>
-              </NavDropdown>
+                <NavDropdown title="Responsables" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/responsable/"
+                    activeStyle={NavActive}
+                  >
+                    Docentes y Auxiliares
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/responsable/lista"
+                    activeStyle={NavActive}
+                  >
+                    Lista de Responsables
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to={{
+                      pathname: "/clase/lista",
+                      state: {
+                        selectedBuscar: "responsable",
+                      },
+                    }}
+                    activeStyle={NavActive}
+                  >
+                    Horario de los Responsables
+                  </NavDropdown.Item>
+                </NavDropdown>
 
-              <NavDropdown title="Materias" id="collasible-nav-dropdown">
-                <NavDropdown.Item
+                <NavDropdown title="Materias" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/materia/"
+                    activeStyle={NavActive}
+                  >
+                    Malla curricular
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/materia/lista"
+                    activeStyle={NavActive}
+                  >
+                    Lista de Materias
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            ) : (
+              <Nav>
+                <NavDropdown title="Semestres" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/admin/"
+                    activeStyle={NavActive}
+                  >
+                    Primer Semestre
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Segundo Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Tercer Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Cuarto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Quinto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Sexto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Septimo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Septimo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Septimo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Octavo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Octavo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Octavo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Noveno Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Noveno Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Noveno Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Decimo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Decimo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Decimo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
+                  {ambientes.map((item) => (
+                    <NavDropdown.Item>{item.nombre}</NavDropdown.Item>
+                  ))}
+                </NavDropdown>
+                <Nav.Link
                   as={NavLink}
                   exact
                   to="/materia/"
                   activeStyle={NavActive}
                 >
                   Malla curricular
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/materia/lista"
-                  activeStyle={NavActive}
-                >
-                  Lista de Materias
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/materia/crear"
-                  activeStyle={NavActive}
-                >
-                  Crear
-                </NavDropdown.Item>
-              </NavDropdown>
+                </Nav.Link>
+              </Nav>
+            )}
+            <Nav onSelect={this.handleSelect}>
+              {usuario==="administrativo" && (
+                <NavDropdown title="Admin" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/admin/"
+                    activeStyle={NavActive}
+                  >
+                    Datos
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/admin/datos"
+                    activeStyle={NavActive}
+                  >
+                    Usuarios
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/admin/clases"
+                    activeStyle={NavActive}
+                  >
+                    Habilitar Clase
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </Nav>
-
-            <Nav variant="tabs" onSelect={this.handleSelect}>
-              <NavDropdown title="Admin" id="collasible-nav-dropdown">
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/admin/"
-                  activeStyle={NavActive}
-                >
-                  Datos del sistema
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/admin/datos"
-                  activeStyle={NavActive}
-                >
-                  Usuarios
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/admin/clases"
-                  activeStyle={NavActive}
-                >
-                  Habilitar Clases
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  as={NavLink}
-                  exact
-                  to="/admin/crear"
-                  activeStyle={NavActive}
-                >
-                  Crear
-                </NavDropdown.Item>
-              </NavDropdown>
+            <Nav className="justify-content-end">
               <Nav.Link
                 eventKey="login"
                 as={NavLink}
                 to="/login/"
                 activeStyle={NavActive}
               >
-                Login
+                {usuario}
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

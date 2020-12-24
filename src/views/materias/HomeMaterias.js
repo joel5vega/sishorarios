@@ -13,7 +13,7 @@ export default class HomeMaterias extends Component {
       alto: "10rem",
       mencion: "Control",
       semestre: "7",
-      titulo: "HOme",
+      titulo: "",
       semestres: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
   }

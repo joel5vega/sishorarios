@@ -13,7 +13,7 @@ import { AccordionCollapse } from "react-bootstrap";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 150,
+    maxWidth: 100,
   },
 });
 
@@ -25,7 +25,7 @@ export default function ImgMediaCard(props) {
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="p">
+          <Typography gutterBottom variant="overline" component="p">
             {subtitulo}
           </Typography>
           <Typography variant="h4" color="textPrimary" component="p">

@@ -15,10 +15,11 @@ import HomeAmbientes from "./views/ambientes/HomeAmbientes";
 import ListaAmbientes from "./views/ambientes/ListaAmbientes";
 import CrearAmbiente from "./views/ambientes/crearAmbiente";
 //Clases
+import ViewClases from "./views/clases/ViewClases";
 import HomeClases from "./views/clases/HomeClases";
-import Clases from "./views/clases/clases";
+import Clases from "./views/clases/BuscarClase";
 import CrearClase from "./views/clases/crearClase";
-import ListaClases from "./views/clases/clases";
+import ListaClases from "./views/clases/BuscarClase";
 
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
@@ -137,12 +138,14 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar
+              usuario="administrativo"
               handleAmbienteSelect={this.handleAmbienteSelect}
               handleSemestreSelect={this.handleSemestreSelect}
               handlePeriodoSelect={this.handlePeriodoSelect}
               periodos={this.state.periodos}
               aulas={this.state.ambientes}
               laboratorios={this.state.ambientes}
+              ambientes={this.state.ambientes}
             />
           </div>
 
@@ -151,7 +154,11 @@ class App extends Component {
               exact
               path="/"
               render={(props) => (
-                <Home {...props} semestres={this.state.semestres} />
+                <Home
+                  {...props}
+                  semestres={this.state.semestres}
+                  ambientes={this.state.ambientes}
+                />
               )}
             />
 
@@ -180,10 +187,7 @@ class App extends Component {
               exact
               path="/responsable/horario"
               render={(props) => (
-                <HorariosResponsables
-                  {...props}
-                  datos={this.state.responsables}
-                />
+                <clase {...props} datos={this.state.responsables} />
               )}
             />
 
@@ -216,7 +220,13 @@ class App extends Component {
                 <HomeClases
                   {...props}
                   datos={this.state.clases}
+                  index={this.state.index}
                   periodoActual={this.state.periodoActual}
+                  periodos={this.state.periodos}
+                  ambientes={this.state.ambientes}
+                  responsables={this.state.responsables}
+                  semestres={this.state.semestres}
+                  menciones={this.state.menciones}
                 />
               )}
             />
@@ -226,7 +236,7 @@ class App extends Component {
               exact
               path="/clase/lista"
               render={(props) => (
-                <ListaClases
+                <ViewClases
                   {...props}
                   index={this.state.index}
                   periodoActual={this.state.periodoActual}
@@ -274,14 +284,14 @@ class App extends Component {
               exact
               path="/admin"
               render={(props) => (
-                <HomeAdmin {...props} datos={this.state.materias} />
+                <HomeAdmin {...props} index={this.state.index} />
               )}
             />
             <Route
               exact
               path="/admin/datos"
               render={(props) => (
-                <DatosAdmin {...props} datos={this.state.materias} />
+                <DatosAdmin {...props} index={this.state.index} />
               )}
             />
             <Route
