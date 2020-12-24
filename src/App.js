@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
+import Login from "./views/auth/Login";
 
 //Componentes
 import Home from "./views/Home";
@@ -119,16 +120,7 @@ class App extends Component {
   }
 
   render() {
-    const navStyles = {
-      display: "flex",
-      justifyContent: "space-around",
-      border: "2px",
-      margin: "5px",
-      color: "green",
-    };
-    const NavActive = {
-      color: "red",
-    };
+    
     if (this.state.loading) {
       return <h1>Cargando</h1>;
     }
@@ -138,7 +130,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar
-              usuario="administrativo"
+              usuario="login"
               handleAmbienteSelect={this.handleAmbienteSelect}
               handleSemestreSelect={this.handleSemestreSelect}
               handlePeriodoSelect={this.handlePeriodoSelect}
@@ -148,8 +140,10 @@ class App extends Component {
               ambientes={this.state.ambientes}
             />
           </div>
-
+          
           <div name="rutas">
+            <Route exact path="/login" render={(props) => <Login />} />
+
             <Route
               exact
               path="/"

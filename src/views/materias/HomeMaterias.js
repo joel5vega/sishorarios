@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MateriasMencion from "./MateriasMencion";
 import FloatingButton from "../../components/FloatingButton";
-import Sidebar from "../../components/Sidebar";
+
 import TabPanel from "../../components/Tabs";
 
 export default class HomeMaterias extends Component {

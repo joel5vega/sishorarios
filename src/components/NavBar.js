@@ -252,7 +252,9 @@ class NavBar extends Component {
                 </NavDropdown>
                 <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
                   {ambientes.map((item) => (
-                    <NavDropdown.Item>{item.nombre}</NavDropdown.Item>
+                    <NavDropdown.Item key={item.id}>
+                      {item.nombre}
+                    </NavDropdown.Item>
                   ))}
                 </NavDropdown>
                 <Nav.Link
@@ -266,7 +268,7 @@ class NavBar extends Component {
               </Nav>
             )}
             <Nav onSelect={this.handleSelect}>
-              {usuario==="administrativo" && (
+              {usuario === "administrativo" && (
                 <NavDropdown title="Admin" id="collasible-nav-dropdown">
                   <NavDropdown.Item
                     as={NavLink}

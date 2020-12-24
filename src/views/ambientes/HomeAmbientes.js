@@ -3,6 +3,7 @@ import TarjetaAmbiente from "../../components/TarjetaAmbiente";
 import TabPanel from "../../components/Tabs";
 import AmbientesLibres from "./AmbientesLibres";
 import axios from "axios";
+import Login from "../auth/Login";
 
 export default class HomeAmbientes extends Component {
   constructor(args) {
@@ -84,7 +85,7 @@ export default class HomeAmbientes extends Component {
             </div>
           }
           item01={<AmbientesLibres datos={libres} />}
-          item03="Nada por aqui"
+          item03={<Login />}
         />
       </div>
     );
