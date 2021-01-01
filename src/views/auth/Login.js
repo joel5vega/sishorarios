@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-//import "../../css/auth.css";
+import { NavLink } from "react-router-dom";
 const Login = (props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -44,6 +44,9 @@ const Login = (props) => {
         <button type="submit" className="btn btn-primary btn-block">
           Login
         </button>
+        <NavLink to="/register">
+          <p>Registrar Nuevo usuario</p>
+        </NavLink>
       </form>
     </div>
   );

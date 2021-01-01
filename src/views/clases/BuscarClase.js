@@ -27,7 +27,7 @@ export default class BuscarClase extends Component {
       periodos: [],
       semestres: [],
       menciones: [],
-
+      showNow:true,
       selectedBuscar: "default",
       selectedPeriodo: "",
       selectedSemestre: "default",
@@ -72,8 +72,8 @@ export default class BuscarClase extends Component {
   };
   setView = () => {
     if (this.state.width < 500) {
-      this.setState({ view: "timeGrid" });
-    } else this.setState({ view: "timeGridWeek" });
+      this.setState({ view: "timeGrid",showNow:false });
+    } else this.setState({ view: "timeGridWeek",showNow:true });
     console.log(this.state.view);
     this.render();
   };

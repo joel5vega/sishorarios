@@ -5,7 +5,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import Login from "./views/auth/Login";
-
+import Register from "./views/auth/Register";
 //Componentes
 import Home from "./views/Home";
 import HomeResponsables from "./views/responsables/HomeResponsables";
@@ -120,7 +120,6 @@ class App extends Component {
   }
 
   render() {
-    
     if (this.state.loading) {
       return <h1>Cargando</h1>;
     }
@@ -130,7 +129,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar
-              usuario="login"
+              usuario="administrativo"
               handleAmbienteSelect={this.handleAmbienteSelect}
               handleSemestreSelect={this.handleSemestreSelect}
               handlePeriodoSelect={this.handlePeriodoSelect}
@@ -140,10 +139,16 @@ class App extends Component {
               ambientes={this.state.ambientes}
             />
           </div>
-          
+
           <div name="rutas">
             <Route exact path="/login" render={(props) => <Login />} />
-
+            <Route
+              exact
+              path="/register"
+              render={(props) => (
+                <Register responsables={this.state.responsables} />
+              )}
+            />
             <Route
               exact
               path="/"

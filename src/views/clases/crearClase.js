@@ -431,16 +431,16 @@ export default class CrearClase extends Component {
     } = this.props;
     var { periodos } = this.props.index;
     return (
-      <div className="container">
-        <div className="container">
+      <div className="tarjetas">
+        <div className="col-4">
           <form onSubmit={this.handleSubmit}>
-            <SelectControlado
+            {/* <SelectControlado
               label="Periodo"
               value={periodo}
               name="periodo_id"
               handleChange={this.handleChange}
               datos={periodos}
-            />
+            /> */}
 
             <div className="form-group">
               <div className="form-row align-items-center">
@@ -549,9 +549,9 @@ export default class CrearClase extends Component {
                   )}
                 </div>
               </div>
-            </div>
-            {/* <label >Ambientes</label> */}
-            <div className="form-group">
+
+              {/* <label >Ambientes</label> */}
+
               <div className="form-row align-items-center">
                 <div className="col-auto">
                   <label htmlFor="nivel">Nivel de docencia</label>
@@ -726,7 +726,7 @@ export default class CrearClase extends Component {
         </div>
 
         {this.state.selectedSemestre != "" && (
-          <div className="container">
+          <div className="col-8">
             <Calendario
               fuente={this.state.eventos}
               getDateClick={this.getDateClick}

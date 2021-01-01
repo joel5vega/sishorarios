@@ -100,7 +100,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="sm"
+          expand="xsm"
           bg="dark"
           variant="dark"
           fixed="top"
@@ -212,6 +212,76 @@ class NavBar extends Component {
                     Lista de Materias
                   </NavDropdown.Item>
                 </NavDropdown>
+              </Nav>
+            ) : usuario === "docente" ? (
+              <Nav>
+                <Nav.Link
+                  as={NavLink}
+                  exact
+                  to="/materia/"
+                  activeStyle={NavActive}
+                >
+                  Mis horarios
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  exact
+                  to="/clase/crear"
+                  activeStyle={NavActive}
+                >
+                  Crear Clase
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  exact
+                  to="/materia/"
+                  activeStyle={NavActive}
+                >
+                  Malla curricular
+                </Nav.Link>
+                <NavDropdown title="Semestres" id="collasible-nav-dropdown">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    exact
+                    to="/admin/"
+                    activeStyle={NavActive}
+                  >
+                    Primer Semestre
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Segundo Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Tercer Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Cuarto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Quinto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Sexto Semestre</NavDropdown.Item>
+                  <NavDropdown.Item>Septimo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Septimo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Septimo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Octavo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Octavo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Octavo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Noveno Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Noveno Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Noveno Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>Decimo Semestre Control</NavDropdown.Item>
+                  <NavDropdown.Item>Decimo Semestre Sistemas</NavDropdown.Item>
+                  <NavDropdown.Item>
+                    Decimo Semestre Telecomunicaciones
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
+                  {ambientes.map((item) => (
+                    <NavDropdown.Item key={item.id}>
+                      {item.nombre}
+                    </NavDropdown.Item>
+                  ))}
+                </NavDropdown>
+                
               </Nav>
             ) : (
               <Nav>
