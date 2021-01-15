@@ -16,7 +16,7 @@ body {
   width: 100%;
   background-color: #fff;
   /* border: 1px solid #73ad21; */
-   z-index: 1; 
+  z-index: 1;
 }
 
 .App-logo {
@@ -104,7 +104,7 @@ body {
   margin: 0.5rem;
 }
 .tarjeta {
-  border: 1px solid #ccc !important;
+  /* border: 1px solid #ccc !important; */
   border-radius: 8px;
   background-color: transparent;
   display: flex;
@@ -120,10 +120,24 @@ body {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 40px;
-  border: 2px solid #ccc;
+  /* border: 2px solid #ccc; */
   z-index: 1;
 }
-
+.flotante {
+  border: none;
+  z-index: 2147483647;
+  /* height: 650px;
+  width: 350px; */
+  display: block !important;
+  /* visibility: visible; */
+  background: none transparent;
+  /* opacity: 1; */
+  pointer-events: auto;
+  touch-action: auto;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
 @media screen and (min-width: 980px) {
   .row {
     display: flex;

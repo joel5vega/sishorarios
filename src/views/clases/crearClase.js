@@ -3,7 +3,7 @@ import Calendario from "../../components/Calendario";
 // import "../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
-
+import axios from "axios";
 export default class CrearClase extends Component {
   constructor(args) {
     super(args);
@@ -21,52 +21,39 @@ export default class CrearClase extends Component {
       view: "timeGridWeek",
       valido: false,
       selectedPeriodo: "",
-      selectedMateria: "",
-      selectedAmbiente: "",
+      selectedMateria: "default",
+      selectedAmbiente: "default",
       day: "",
       startTime: "",
       endTime: "",
 
-      selectedSemestre: "",
-      selectedMencion: "",
+      selectedSemestre: "default",
+      selectedMencion: "default",
 
-      selectedNivel: "",
-      selectedTipo: "",
+      selectedNivel: "default",
+      selectedTipo: "default",
 
-      selectedResponsable: "",
+      selectedResponsable: "default",
       isSubmitting: false,
-      semestres: [
-        { id: 1, nombre: "Primer Semestre", value: 1 },
-        { id: 2, nombre: "Segundo Semestre", value: 2 },
-        { id: 3, nombre: "Tercer Semestre", value: 3 },
-        { id: 4, nombre: "Cuarto Semestre", value: 4 },
-        { id: 5, nombre: "Quinto Semestre", value: 5 },
-        { id: 6, nombre: "Sexto Semestre", value: 6 },
-        { id: 7, nombre: "Septimo Semestre", value: 7 },
-        { id: 8, nombre: "Octavo Semestre", value: 8 },
-        { id: 9, nombre: "Noveno Semestre", value: 9 },
-        { id: 10, nombre: "Decimo Semestre", value: 10 },
-      ],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
-    const url = "http://127.0.0.1:8000";
+    const url = this.state.url;
+
     try {
       this.setState({ loading: true });
       if (mencion !== "") {
         var urlMaterias =
-          url + "/index/materias/" + semestre + "?mencion=" + mencion;
+          url + "/api/materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        var urlMaterias = url + "/index/materias/" + semestre;
+        var urlMaterias = url + "/api/materias/semestre/" + semestre;
       }
-      //  console.log(urlMaterias)
-      const data = await fetch(urlMaterias).then((value) => value.json());
-      //asignamos las materias del semestre correspondiente
-      this.setState({ materias: data.materias });
-      // console.log(data.materias)
+      axios.get(urlMaterias).then((response) => {
+        this.setState({ materias: response.data.materias, loading: false });
+      });
     } catch (e) {
       console.log(e);
       this.setState({ ...this.state, loading: false });
@@ -74,14 +61,15 @@ export default class CrearClase extends Component {
   }
   //fetch Ambientes
   async fetchAmbientes(tipo) {
-    const url = "http://127.0.0.1:8000";
+    const url = this.state.url;
     try {
       this.setState({ loading: true });
-      var urlAmbientes = url + "/index/ambientes?tipo=" + tipo;
-      const data = await fetch(urlAmbientes).then((value) => value.json());
-      //asignamos las aulas del tipo  correspondiente
-      this.setState({ ambientes: data.ambientes });
-      // console.log(data)
+      var urlAmbientes = url + "/api/ambientes?tipo=" + tipo;
+      axios.get(urlAmbientes).then((response) => {
+        var data = response.data;
+        //asignamos las aulas del tipo  correspondiente
+        this.setState({ ambientes: data });
+      });
     } catch (e) {
       console.log(e);
       this.setState({ ...this.state, loading: false });
@@ -89,15 +77,14 @@ export default class CrearClase extends Component {
   }
   //fetch responsables
   async fetchResponsables(nivel) {
-    const url = "http://127.0.0.1:8000";
+    const url = this.state.url;
     try {
       this.setState({ loading: true });
-      const urlResponsables = url + "/index/responsables?nivel=" + nivel;
-      // console.log(urlResponsables)
-      const data = await fetch(urlResponsables).then((value) => value.json());
-      //asignamos las materias del semestre correspondiente
-      this.setState({ responsables: data.responsables });
-      // console.log(data.responsable)
+      const urlResponsables = url + "/api/responsables?nivel=" + nivel;
+      axios.get(urlResponsables).then((response) => {
+        var data = response.data.responsables;
+        this.setState({ responsables: data });
+      });
     } catch (e) {
       console.log(e);
       this.setState({ ...this.state, loading: false });
@@ -105,13 +92,13 @@ export default class CrearClase extends Component {
   }
 
   async fetchChoqueSemestre(semestre, mencion) {
-    const url = "http://127.0.0.1:8000";
+    const url = this.state.url;
     try {
       this.setState({ loading: true });
       if (mencion !== "") {
         var urlSemestre =
           url +
-          "/semestres/" +
+          "/api/clases/semestre/" +
           semestre +
           "?mencion=" +
           mencion +
@@ -120,27 +107,24 @@ export default class CrearClase extends Component {
       } else {
         var urlSemestre =
           url +
-          "/semestres/" +
+          "/api/clases/semestre/" +
           semestre +
           "?periodo=" +
           this.state.selectedPeriodo;
       }
-      // console.log(urlSemestre)
-      const data = await fetch(urlSemestre).then((value) => value.json());
-      //asignamos las materias del semestre correspondiente
+      //verificamos eventos anteriormente buscados
       let anterior = this.state.evento.concat(this.state.choqueAmbiente);
-      this.setState({ choqueSemestre: data, eventos: anterior });
+      //recibimos clases del semestre
+      axios.get(urlSemestre).then((response) => {
+        var data = response.data;
+        this.setState({ choqueSemestre: data, eventos: data });
 
-      //anadimos al array de eventos
-      /*
-            data.map(item => {
-                console.log(item)
-                this.setState({ eventos: [...this.state.eventos, item] });
-            })
-            */
-      this.pushArray(data);
+        // this.setState({ eventos: anterior });
+        console.log(data);
+        // this.pushArray(data);
+      });
     } catch (e) {
-      console.log(e);
+      // console.log(e.data);
       this.setState({ ...this.state, loading: false });
       //adicionamos a eventos
     }
@@ -159,7 +143,7 @@ export default class CrearClase extends Component {
         }
       } else {
         if (item.title == "evento") {
-          // console.log("evento crado")
+          console.log("evento crado");
           let anterior = this.state.choqueAmbiente.concat(
             this.state.choqueSemestre
           );
@@ -175,65 +159,32 @@ export default class CrearClase extends Component {
     });
   }
   async fetchChoqueAmbiente(ambiente) {
-    const url = "http://127.0.0.1:8000";
+    const url = this.state.url;
     try {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "/ambientes/" +
+        "/api/clases/ambiente/" +
         ambiente +
         "?periodo=" +
         this.state.selectedPeriodo;
-      // console.log(urlChoque)
-      const data = await fetch(urlChoque).then((value) => value.json());
-      //asignamos las materias del semestre correspondiente
-      let anterior = this.state.evento.concat(this.state.choqueSemestre);
-      this.setState({ choqueAmbiente: data, eventos: anterior });
-      this.pushArray(data);
-      //console.log(data)
+
+      axios.get(urlChoque).then((response) => {
+        var data = response.data;
+        //asignamos las materias del semestre correspondiente
+        let anterior = this.state.evento.concat(this.state.choqueSemestre);
+        this.setState({ choqueAmbiente: data, eventos: anterior });
+        this.pushArray(data);
+      });
     } catch (e) {
       console.log(e);
       this.setState({ ...this.state, loading: false });
     }
   }
 
-  async fetchData() {
-    const url = "http://127.0.0.1:8000";
-    //const urlMaterias = url + "/index/materias/" + this.state.selectedSemestre;
-    if (this.state.selectedAmbiente == "undefined") {
-      var urlAmbientes = url + "/index/ambientes";
-      // var urlAmbientes = url + "/index?index=ambientes";
-    } else
-      urlAmbientes =
-        url + "/index/ambientes?tipo=" + this.state.selectedAmbiente;
-    const urlResponsables = url + "/index/responsables";
-    const urlPeriodos = url + "/index?index=periodos";
-    Promise.all([
-      //fetch(urlMaterias).then(value => value.json()),
-      fetch(urlAmbientes).then((value) => value.json()),
-      fetch(urlResponsables).then((value) => value.json()),
-      fetch(urlPeriodos).then((value) => value.json()),
-    ])
-      .then((allResponses) => {
-        //const materias = allResponses[4];
-        const ambientes = allResponses[0];
-        const responsables = allResponses[1];
-        const periodos = allResponses[2];
-        this.setState({
-          periodos: periodos.periodos,
-          ambientes: ambientes.ambientes,
-          responsables: responsables.responsables,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   //fetch data
   async componentDidMount() {
-    this.fetchData();
+    //this.fetchData();
   }
   handlePeriodoChange = (event) => {
     var periodo = event.target.value;
@@ -250,9 +201,9 @@ export default class CrearClase extends Component {
   handleSemestreChange = (event) => {
     var semestre = event.target.value;
     var mencion = "";
-    // console.log(semestre)
+    console.log("hola" + semestre);
     this.setState({
-      selectedSemestre: event.target.value,
+      selectedSemestre: semestre,
       selectedMencion: "",
     });
     this.fetchMaterias(semestre, mencion);
@@ -261,7 +212,7 @@ export default class CrearClase extends Component {
   handleMencionChange = (event) => {
     var mencion = event.target.value;
     var semestre = this.state.selectedSemestre;
-    // console.log(mencion)
+    console.log(mencion);
     this.setState({ selectedMencion: mencion });
     this.fetchMaterias(semestre, mencion);
     this.fetchChoqueSemestre(semestre, mencion);
@@ -373,25 +324,25 @@ export default class CrearClase extends Component {
       day: this.state.day,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
+      paralelo: "A",
     };
-    // var myRequest = new Request('flowers.jpg', myInit);
-    let urlPost = this.state.url + "/api/crear";
-    fetch(urlPost, {
-      method: "post",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(evento),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res))
+    console.log(evento);
+    let urlPost = this.state.url + "/api/clases";
+    axios
+      .post(urlPost, evento)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
       .then(this.limpiarForm());
 
     alert("El evento se creo exitosamente");
-    // console.log(evento)
   }
+
   limpiarForm() {
     this.setState({
       selectedPeriodo: "",
@@ -421,181 +372,126 @@ export default class CrearClase extends Component {
     console.log(name + " es: " + value);
   };
   render() {
-    var {
-      periodo,
-      ap_paterno,
-      ap_materno,
-      puesto,
-      titulo,
-      estado,
-    } = this.props;
+    var { menciones } = this.props;
     var { periodos } = this.props.index;
+    const niveles = [
+      { id: "docente", nombre: "Docente" },
+      { id: "auxiliar", nombre: "Auxiliar" },
+    ];
+    const tipos = [
+      { id: "aula", nombre: "Teoria" },
+      { id: "laboratorio", nombre: "Laboratorios" },
+    ];
+    const dias = [
+      { id: "1", nombre: "Lunes" },
+      { id: "2", nombre: "Martes" },
+      { id: "3", nombre: "Miercoles" },
+      { id: "4", nombre: "Jueves" },
+      { id: "5", nombre: "Viernes" },
+      { id: "6", nombre: "Sabado" },
+    ];
+    const listaSemestres = [
+      { id: "1", nombre: "1" },
+      { id: "2", nombre: "2" },
+      { id: "3", nombre: "3" },
+      { id: "4", nombre: "4" },
+      { id: "5", nombre: "5" },
+      { id: "6", nombre: "6" },
+      { id: "7", nombre: "7" },
+      { id: "8", nombre: "8" },
+      { id: "9", nombre: "9" },
+      { id: "10", nombre: "10" },
+    ];
+    var {
+      selectedPeriodo,
+      selectedSemestre,
+      selectedMencion,
+      selectedResponsable,
+      selectedTipo,
+      selectedAmbiente,
+      selectedMateria,
+      selectedNivel,
+      selesctedTipo,
+      materias,
+      responsables,
+      ambientes,
+      startTime,
+      endTime,
+      day,
+    } = this.state;
+
     return (
       <div className="tarjetas">
         <div className="col-4">
           <form onSubmit={this.handleSubmit}>
-            {/* <SelectControlado
-              label="Periodo"
-              value={periodo}
-              name="periodo_id"
-              handleChange={this.handleChange}
-              datos={periodos}
-            /> */}
-
             <div className="form-group">
               <div className="form-row align-items-center">
                 <div className="col-auto">
-                  <label className="src-only" htmlFor="periodo">
-                    Periodo{" "}
-                  </label>
-                  <select
-                    type="text"
-                    className="form-control"
-                    name="periodo"
-                    id="periodo"
-                    value={this.state.selectedPeriodo}
-                    onChange={this.handlePeriodoChange}
-                    required
-                  >
-                    <option disabled={true} value="">
-                      Periodo
-                    </option>
-                    {this.state.periodos.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item.nombre}
-                      </option>
-                    ))}
-                  </select>
+                  <SelectControlado
+                    label="Periodo"
+                    value={selectedPeriodo}
+                    name="periodo_id"
+                    handleChange={this.handlePeriodoChange}
+                    datos={periodos}
+                  />
                 </div>
                 <div className="col-auto">
-                  <label className="src-only" htmlFor="semestre">
-                    Semestre{" "}
-                  </label>
-                  <select
-                    type="text"
-                    className="form-control"
+                  <SelectControlado
+                    label="Semestre"
+                    value={selectedSemestre}
                     name="semestre"
-                    id="semestre"
-                    placeholder="semestre"
-                    value={this.state.selectedSemestre}
-                    onChange={this.handleSemestreChange}
-                    required
-                  >
-                    <option disabled={true} value="">
-                      Semestre
-                    </option>
-                    {this.state.semestres.map((item) => (
-                      <option
-                        className="align-items-center"
-                        key={item.id}
-                        value={item.value}
-                        data-mencion={item.mencion}
-                      >
-                        {item.value}
-                      </option>
-                    ))}
-                  </select>
+                    handleChange={this.handleSemestreChange}
+                    datos={listaSemestres}
+                  />
                 </div>
                 <div className="col-auto">
-                  {this.state.selectedSemestre > 6 && (
-                    <div>
-                      <label htmlFor="mencion">Mencion </label>
-                      <select
-                        type="text"
-                        name="mencion"
-                        id="mencion"
-                        className="form-control"
-                        placeholder="mencion"
-                        value={this.state.selectedMencion}
-                        onChange={this.handleMencionChange}
-                      >
-                        <option disabled={true} value="">
-                          Seleccione Mencion
-                        </option>
-                        <option value="control">Control</option>
-                        <option value="sistemas">Sistemas</option>
-                        <option value="telecomunicaciones">
-                          Telecomunicaciones
-                        </option>
-                      </select>
-                    </div>
+                  {selectedSemestre > 6 && (
+                    <SelectControlado
+                      label="Mencion"
+                      value={selectedMencion}
+                      name="mencion"
+                      handleChange={this.handleMencionChange}
+                      datos={menciones}
+                    />
                   )}
                 </div>
 
                 <div className="col-auto">
                   {this.state.selectedSemestre != "" && (
                     <div className="input-row">
-                      <label htmlFor="materia">Materia:</label>
-                      <select
-                        type="text"
+                      <SelectControlado
+                        label="Materia"
+                        value={selectedMateria}
                         name="materia"
-                        id="materia"
-                        className="form-control"
-                        placeholder="materia"
-                        value={this.state.selectedMateria}
-                        onChange={this.handleMateriaChange}
-                        required
-                      >
-                        <option value="" disabled={true}>
-                          Materia
-                        </option>
-                        {this.state.materias.map((item) => (
-                          <option key={item.id} value={item.id}>
-                            {item.sigla}
-                          </option>
-                        ))}
-                      </select>
+                        handleChange={this.handleMateriaChange}
+                        datos={materias}
+                      />
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* <label >Ambientes</label> */}
-
               <div className="form-row align-items-center">
                 <div className="col-auto">
-                  <label htmlFor="nivel">Nivel de docencia</label>
-                  <select
-                    type="text"
+                  <SelectControlado
+                    label="Nivel de docencia"
+                    value={selectedNivel}
                     name="nivel"
-                    id="nivel"
-                    className="form-control"
-                    placeholder="Docencia/Auxiliatura"
-                    value={this.state.selectedNivel}
-                    onChange={this.handleNivelChange}
-                    required
-                  >
-                    <option value="" disabled={true}>
-                      Docente/Auxiliar
-                    </option>
-                    <option value="docente">Docencia</option>
-                    <option value="auxiliar">Auxiliatura</option>
-                  </select>
+                    handleChange={this.handleNivelChange}
+                    datos={niveles}
+                  />
                 </div>
 
                 <div className="col-auto">
                   {this.state.selectedNivel != "" && (
                     <div>
-                      <label htmlFor="responsable">Responsable:</label>
-                      <select
-                        type="text"
+                      <SelectControlado
+                        label="Responsable"
+                        value={selectedResponsable}
                         name="responsable"
-                        id="responsable"
-                        className="form-control"
-                        placeholder="responsable"
-                        value={this.state.selectedResponsable}
-                        onChange={this.handleResponsableChange}
-                        required
-                      >
-                        <option value="" disabled={true}>
-                          Responsable
-                        </option>
-                        {this.state.responsables.map((item) => (
-                          <option key={item.id} value={item.id}>
-                            {item.titulo} {item.ap_paterno} {item.nombre}
-                          </option>
-                        ))}
-                      </select>
+                        handleChange={this.handleResponsableChange}
+                        datos={responsables}
+                      />
                     </div>
                   )}
                 </div>
@@ -605,47 +501,24 @@ export default class CrearClase extends Component {
             <div className="form-group">
               <div className="form-row align-items-center">
                 <div className="col-auto">
-                  <label htmlFor="tipo">Tipo de ambiente</label>
-                  <select
-                    type="text"
+                  <SelectControlado
+                    label="Tipo de ambiente"
+                    value={selectedTipo}
                     name="tipo"
-                    id="tipo"
-                    className="form-control"
-                    placeholder="teoria/laboratorio"
-                    value={this.state.selectedTipo}
-                    onChange={this.handleTipoChange}
-                    required
-                  >
-                    <option value="" disabled={true}>
-                      Teoria/Laboratorio
-                    </option>
-                    <option value="aula">Teoria</option>
-                    <option value="laboratorio">Laboratorio</option>
-                  </select>
+                    handleChange={this.handleTipoChange}
+                    datos={tipos}
+                  />
                 </div>
 
                 {this.state.selectedTipo != "" && (
                   <div className="col-auto">
-                    <label htmlFor="ambiente">Ambiente:</label>
-                    <select
-                      type="text"
+                    <SelectControlado
+                      label="Ambiente"
+                      value={selectedAmbiente}
                       name="ambiente"
-                      id="ambiente"
-                      className="form-control"
-                      placeholder="ambiente"
-                      value={this.state.selectedAmbiente}
-                      onChange={this.handleAmbienteChange}
-                      required
-                    >
-                      <option value="" disabled={true}>
-                        ambiente
-                      </option>
-                      {this.state.ambientes.map((item) => (
-                        <option key={item.id} value={item.id}>
-                          {item.nombre}
-                        </option>
-                      ))}
-                    </select>
+                      handleChange={this.handleAmbienteChange}
+                      datos={ambientes}
+                    />
                   </div>
                 )}
               </div>
@@ -654,58 +527,34 @@ export default class CrearClase extends Component {
               <div className="form-row align-items-center">
                 <div className="col-auto">
                   <div>
-                    <label htmlFor="day">Dia:</label>
-                    <select
-                      type="number"
-                      name="day"
-                      id="day"
-                      className="form-control"
-                      placeholder={this.state.day}
-                      value={this.state.day}
-                      onChange={this.handleDayChange}
-                      required
-                    >
-                      <option value="" disabled={true}>
-                        dia
-                      </option>
-                      <option value="1">Lunes</option>
-                      <option value="2">Martes</option>
-                      <option value="3">Miercoles</option>
-                      <option value="4">Jueves</option>
-                      <option value="5">Viernes</option>
-                      <option value="6">Sabado</option>
-                    </select>
+                    <SelectControlado
+                      label="Dia"
+                      value={day}
+                      name="tipo"
+                      handleChange={this.handleDayChange}
+                      datos={dias}
+                    />
                   </div>
                 </div>
 
                 {this.state.day > 0 && (
                   <div className="col-auto">
-                    <label htmlFor="startTime">Hora de inicio:</label>
-                    <input
-                      type="time"
-                      name="startTime"
-                      id="startTime"
-                      className="form-control"
-                      placeholder={this.state.startTime}
-                      value={this.state.startTime}
-                      onChange={this.handleStartChange}
-                      required
-                    ></input>
+                    <InputControlado
+                      label="Hora de inicio"
+                      nombre="startTime"
+                      valor={startTime}
+                      handleChange={this.handleStartChange}
+                    />
                   </div>
                 )}
                 {this.state.startTime != "" && (
                   <div className="col-auto">
-                    <label htmlFor="endTime">Hora de fin:</label>
-                    <input
-                      type="time"
-                      name="endTime"
-                      id="endTime"
-                      disabled={true}
-                      className="form-control"
-                      placeholder={this.state.endTime}
-                      value={this.state.endTime}
-                      onChange={this.handleEndChange}
-                    ></input>
+                    <InputControlado
+                      label="Hora de fin"
+                      nombre="endTime"
+                      valor={endTime}
+                      handleChange={this.handleEndChange}
+                    />
                   </div>
                 )}
               </div>

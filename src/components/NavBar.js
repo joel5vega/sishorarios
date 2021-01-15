@@ -100,7 +100,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="xsm"
+          expand="lg"
           bg="dark"
           variant="dark"
           fixed="top"
@@ -119,7 +119,6 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/clase/"
-                    // activeStyle={NavActive}
                   >
                     Ver todas las clases
                   </NavDropdown.Item>
@@ -128,7 +127,6 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/clase/lista"
-                    // activeStyle={NavActive}
                   >
                     Buscar Clase
                   </NavDropdown.Item>
@@ -138,36 +136,36 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/clase/crear"
-                    // activeStyle={NavActive}
                   >
                     Crear
                   </NavDropdown.Item>
                 </NavDropdown>
                 <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
                   <NavDropdown.Item
+                    eventKey="ambiente"
                     as={NavLink}
                     exact
                     to="/ambiente/"
-                    activeStyle={NavActive}
                   >
-                    Uso de Ambientes
+                    Uso de ambientes
                   </NavDropdown.Item>
                   <NavDropdown.Item
+                    eventKey="ambienteLista"
                     as={NavLink}
                     exact
                     to="/ambiente/lista"
-                    activeStyle={NavActive}
                   >
-                    Listado de Ambientes
+                    Listado de ambientes
                   </NavDropdown.Item>
                 </NavDropdown>
+                
 
                 <NavDropdown title="Responsables" id="collasible-nav-dropdown">
                   <NavDropdown.Item
                     as={NavLink}
                     exact
                     to="/responsable/"
-                    activeStyle={NavActive}
+                    eventKey="allResponsables"
                   >
                     Docentes y Auxiliares
                   </NavDropdown.Item>
@@ -175,7 +173,7 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/responsable/lista"
-                    activeStyle={NavActive}
+                    eventKey="listaResponsable"
                   >
                     Lista de Responsables
                   </NavDropdown.Item>
@@ -188,7 +186,7 @@ class NavBar extends Component {
                         selectedBuscar: "responsable",
                       },
                     }}
-                    activeStyle={NavActive}
+                    eventKey="horarioResponsable"
                   >
                     Horario de los Responsables
                   </NavDropdown.Item>
@@ -199,7 +197,7 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/materia/"
-                    activeStyle={NavActive}
+                    eventKey="curricula"
                   >
                     Malla curricular
                   </NavDropdown.Item>
@@ -207,7 +205,7 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/materia/lista"
-                    activeStyle={NavActive}
+                    eventKey="listaMateria"
                   >
                     Lista de Materias
                   </NavDropdown.Item>
@@ -219,7 +217,7 @@ class NavBar extends Component {
                   as={NavLink}
                   exact
                   to="/materia/"
-                  activeStyle={NavActive}
+                  eventKey="materia"
                 >
                   Mis horarios
                 </Nav.Link>
@@ -227,7 +225,7 @@ class NavBar extends Component {
                   as={NavLink}
                   exact
                   to="/clase/crear"
-                  activeStyle={NavActive}
+                  eventKey="crearClase"
                 >
                   Crear Clase
                 </Nav.Link>
@@ -235,7 +233,7 @@ class NavBar extends Component {
                   as={NavLink}
                   exact
                   to="/materia/"
-                  activeStyle={NavActive}
+                  eventKey="curricula"
                 >
                   Malla curricular
                 </Nav.Link>
@@ -244,7 +242,7 @@ class NavBar extends Component {
                     as={NavLink}
                     exact
                     to="/admin/"
-                    activeStyle={NavActive}
+                    eventKey="semestre"
                   >
                     Primer Semestre
                   </NavDropdown.Item>
@@ -281,7 +279,6 @@ class NavBar extends Component {
                     </NavDropdown.Item>
                   ))}
                 </NavDropdown>
-                
               </Nav>
             ) : (
               <Nav>
