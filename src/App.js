@@ -4,7 +4,9 @@ import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
-import Login from "./views/auth/Login";
+
+import Login from "./views/auth/index";
+// import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
 //Componentes
 import Home from "./views/Home";
@@ -152,6 +154,18 @@ class App extends Component {
             <Route
               exact
               path="/"
+              render={(props) => (
+                <Home
+                  {...props}
+                  semestres={this.state.semestres}
+                  ambientes={this.state.ambientes}
+                />
+              )}
+            />
+
+            <Route
+              exact
+              path="/home"
               render={(props) => (
                 <Home
                   {...props}
