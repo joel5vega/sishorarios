@@ -19,7 +19,7 @@ class AuthService {
   }
   handleLoginSucess(response: any, remember: boolean) {
     console.log(response, remember);
-    
+
     if (!remember) {
       const options = { path: "/" };
       CookieService.set("access_token", response.access_token, options);
@@ -30,9 +30,11 @@ class AuthService {
     const options = { path: "/", expires: date };
     CookieService.set("access_token", response.access_token, options);
     return true;
-    
   }
-  
+  handleLogout() {
+    console.log("authService_logout")
+    CookieService.remove("access_token");
+  }
 }
 
 export default new AuthService();

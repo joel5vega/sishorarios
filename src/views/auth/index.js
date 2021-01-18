@@ -1,18 +1,26 @@
 import React from "react";
-import { RouterComponentProps, withRouter } from "react-router-dom";
+import { NavLink, RouterComponentProps, withRouter } from "react-router-dom";
 import { Component } from "react";
 // import './_style.scss';
 
 import AuthService from "../../services/AuthService";
+import auth from "../../components/common/router/protected/auth";
 
-class Login extends Component<RouterComponentProps> {
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    // handleAuth = this.props.handleAuth;
+    this.handleAuth = this.props.handleAuth;
+  }
+
   state = {
     username: "",
     password: "",
     isChecked: false,
+    // isAuth: this.props.isAuth,
   };
 
-  async handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async handleFormSubmit(event) {
     event.preventDefault();
     const postData = {
       username: this.state.username,
@@ -22,8 +30,15 @@ class Login extends Component<RouterComponentProps> {
     console.log("response", response);
     if (response) {
       AuthService.handleLoginSucess(response, this.state.isChecked);
-      this.props.history.push("/home");
+
+      auth.update();
+      var autenticado = auth.isAuthenticated();
+
+      this.props.handleAuth();
+      this.props.history.push("/ambiente");
+      alert(autenticado + "ir a home");
     } else {
+      this.props.history.push("/login");
       alert("revise sus credenciales");
     }
   }
@@ -34,6 +49,7 @@ class Login extends Component<RouterComponentProps> {
 
   render() {
     const { username, password, isChecked } = this.state;
+
     return (
       <React.Fragment>
         <div className="login-page">
@@ -45,13 +61,13 @@ class Login extends Component<RouterComponentProps> {
                   event.preventDefault();
                 }}
               >
-                <b>React</b>ADMIN
+                <p>Ingrese sus credenciales</p>
               </a>
             </div>
 
             <div className="card">
               <div className="card-body login-card-body">
-                <p className="login-box-msg">Sign in to start your session</p>
+                <h1 className="login-box-msg">Login</h1>
 
                 <form onSubmit={(event) => this.handleFormSubmit(event)}>
                   <div className="input-group mb-3">
@@ -76,7 +92,7 @@ class Login extends Component<RouterComponentProps> {
                       type="password"
                       name="password"
                       className="form-control"
-                      placeholder="Password"
+                      placeholder="Contraseña"
                       value={password}
                       onChange={(event) =>
                         this.setState({ password: event.target.value })
@@ -110,19 +126,14 @@ class Login extends Component<RouterComponentProps> {
                         type="submit"
                         className="btn btn-primary btn-block"
                       >
-                        Sign In
+                        Login
                       </button>
                     </div>
                   </div>
                 </form>
 
-                <p className="mb-1">
-                  <a href="forgot-password.html">I forgot my password</a>
-                </p>
                 <p className="mb-0">
-                  <a href="register.html" className="text-center">
-                    Register a new membership
-                  </a>
+                  <NavLink to="/register">Registrar Nuevo usuario</NavLink>
                 </p>
               </div>
             </div>

@@ -4,7 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import { Nav, Button, FormControl, NavDropdown, Form } from "react-bootstrap";
 // import "../css/estiloNavbar.css";
 import mainlogo from "../images/logo-UMSA.png";
-import Responsables from "../views/responsables/HomeResponsables";
+import AuthService from "../services/AuthService";
+import auth from "../components/common/router/protected/auth";
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +73,12 @@ class NavBar extends Component {
 
     console.log(name);
   };
-
+  logout = () => {
+    console.log("NavBar logout");
+    auth.logout();
+    AuthService.handleLogout();
+    this.props.handleAuth();
+  };
   render() {
     const navStyles = {
       // display: "flex",
@@ -100,7 +107,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="lg"
+          expand="sm"
           bg="dark"
           variant="dark"
           fixed="top"
@@ -158,7 +165,6 @@ class NavBar extends Component {
                     Listado de ambientes
                   </NavDropdown.Item>
                 </NavDropdown>
-                
 
                 <NavDropdown title="Responsables" id="collasible-nav-dropdown">
                   <NavDropdown.Item
@@ -213,12 +219,7 @@ class NavBar extends Component {
               </Nav>
             ) : usuario === "docente" ? (
               <Nav>
-                <Nav.Link
-                  as={NavLink}
-                  exact
-                  to="/materia/"
-                  eventKey="materia"
-                >
+                <Nav.Link as={NavLink} exact to="/materia/" eventKey="materia">
                   Mis horarios
                 </Nav.Link>
                 <Nav.Link
@@ -373,6 +374,14 @@ class NavBar extends Component {
                 activeStyle={NavActive}
               >
                 {usuario}
+              </Nav.Link>
+              <Nav.Link
+                eventKey="login"
+                as={NavLink}
+                to="/home/"
+                activeStyle={NavActive}
+              >
+                <p onClick={this.logout}>Salir</p>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -1,11 +1,15 @@
 import React, { Component, useState } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/NavBar";
 
+//import auth
+import Auth from "./components/common/router/protected/auth";
+import NavBar from "./components/NavBar";
+import Rutas from "./components/common/router/protected/auth";
 import Login from "./views/auth/index";
+import { ProtectedRoute } from "./components/common/router/protected";
 // import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
 //Componentes
@@ -44,12 +48,16 @@ class App extends Component {
       selectedPeriodo: "",
       selectedTitle: "Home",
       periodo: "",
+      auth: false,
     };
+    // this.handleAuth = this.handleAuth.bind(this);
   }
 
   async componentDidMount() {
     this.fetchIndex();
+    this.setState({ auth: Auth.isAuthenticated() });
   }
+
   async fetchIndex() {
     axios.get(this.state.url + "/api/index").then((response) => {
       this.setState({
@@ -68,7 +76,7 @@ class App extends Component {
   }
 
   ////
-
+  /*
   handlePeriodoSelect = (periodo) => {
     // console.log(evento)
     const fuentePeriodo = this.state.url + "/index?periodo=" + periodo.id;
@@ -116,11 +124,20 @@ class App extends Component {
     // console.log("fuente es : " + this.state.fuente)
     // this.fuente()
   };
+*/
 
-  fuente() {
-    return this.state.fuente;
+  async fuente() {
+    var a = Auth.isAuthenticated();
+    console.log(a);
+    return a;
   }
 
+  handleAuth = (e) => {
+    var isAuth = Auth.isAuthenticated();
+    alert("estoy en Padre");
+    console.log(e);
+    this.setState({ auth: isAuth });
+  };
   render() {
     if (this.state.loading) {
       return <h1>Cargando</h1>;
@@ -139,199 +156,208 @@ class App extends Component {
               aulas={this.state.ambientes}
               laboratorios={this.state.ambientes}
               ambientes={this.state.ambientes}
+              handleAuth={this.handleAuth}
             />
           </div>
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login handleAuth={this.handleAuth} />}
+          />
 
-          <div name="rutas">
-            <Route exact path="/login" render={(props) => <Login />} />
-            <Route
-              exact
-              path="/register"
-              render={(props) => (
-                <Register responsables={this.state.responsables} />
-              )}
-            />
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home
-                  {...props}
-                  semestres={this.state.semestres}
-                  ambientes={this.state.ambientes}
-                />
-              )}
-            />
+          <Route
+            exact
+            path="/home"
+            render={(props) => (
+              <Home
+                {...props}
+                semestres={this.state.semestres}
+                ambientes={this.state.ambientes}
+              />
+            )}
+          />
 
-            <Route
-              exact
-              path="/home"
-              render={(props) => (
-                <Home
-                  {...props}
-                  semestres={this.state.semestres}
-                  ambientes={this.state.ambientes}
-                />
-              )}
-            />
+          <button onClick={this.handleAuth}>auth </button>
+          {this.state.auth && <h1>Joel </h1>}
+          {Auth.isAuthenticated() ? (
+            <div name="rutas">
+              <Route
+                exact
+                path="/register"
+                render={(props) => (
+                  <Register responsables={this.state.responsables} />
+                )}
+              />
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                    {...props}
+                    semestres={this.state.semestres}
+                    ambientes={this.state.ambientes}
+                  />
+                )}
+              />
 
-            <Route
-              exact
-              path="/responsable"
-              render={(props) => (
-                <HomeResponsables {...props} datos={this.state.responsables} />
-              )}
-            />
-            <Route
-              exact
-              path="/responsable/lista"
-              render={(props) => (
-                <ListaResponsables {...props} datos={this.state.responsables} />
-              )}
-            />
-            <Route
-              exact
-              path="/responsable/crear"
-              render={(props) => (
-                <CrearResponsable {...props} datos={this.state.responsables} />
-              )}
-            />
-            <Route
-              exact
-              path="/responsable/horario"
-              render={(props) => (
-                <clase {...props} datos={this.state.responsables} />
-              )}
-            />
+              <Route
+                exact
+                path="/responsable"
+                render={(props) => (
+                  <HomeResponsables
+                    {...props}
+                    datos={this.state.responsables}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/responsable/lista"
+                render={(props) => (
+                  <ListaResponsables
+                    {...props}
+                    datos={this.state.responsables}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/responsable/crear"
+                render={(props) => (
+                  <CrearResponsable
+                    {...props}
+                    datos={this.state.responsables}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/responsable/horario"
+                render={(props) => (
+                  <clase {...props} datos={this.state.responsables} />
+                )}
+              />
 
-            <Route
-              exact
-              path="/ambiente"
-              render={(props) => (
-                <HomeAmbientes {...props} datos={this.state.ambientes} />
-              )}
-            />
-            <Route
-              exact
-              path="/ambiente/lista"
-              render={(props) => (
-                <ListaAmbientes {...props} datos={this.state.ambientes} />
-              )}
-            />
-            <Route
-              exact
-              path="/ambiente/crear"
-              render={(props) => (
-                <CrearAmbiente {...props} datos={this.state.ambientes} />
-              )}
-            />
+              <Route
+                exact
+                path="/ambiente"
+                render={(props) => (
+                  <HomeAmbientes {...props} datos={this.state.ambientes} />
+                )}
+              />
+              <Route
+                exact
+                path="/ambiente/lista"
+                render={(props) => (
+                  <ListaAmbientes {...props} datos={this.state.ambientes} />
+                )}
+              />
+              <Route
+                exact
+                path="/ambiente/crear"
+                render={(props) => (
+                  <CrearAmbiente {...props} datos={this.state.ambientes} />
+                )}
+              />
 
-            <Route
-              exact
-              path="/clase"
-              render={(props) => (
-                <HomeClases
-                  {...props}
-                  datos={this.state.clases}
-                  index={this.state.index}
-                  periodoActual={this.state.periodoActual}
-                  periodos={this.state.periodos}
-                  ambientes={this.state.ambientes}
-                  responsables={this.state.responsables}
-                  semestres={this.state.semestres}
-                  menciones={this.state.menciones}
-                />
-              )}
-            />
+              <Route
+                exact
+                path="/clase"
+                render={(props) => (
+                  <HomeClases
+                    {...props}
+                    datos={this.state.clases}
+                    index={this.state.index}
+                    periodoActual={this.state.periodoActual}
+                    periodos={this.state.periodos}
+                    ambientes={this.state.ambientes}
+                    responsables={this.state.responsables}
+                    semestres={this.state.semestres}
+                    menciones={this.state.menciones}
+                  />
+                )}
+              />
 
-            {/* este es el buscador */}
-            <Route
-              exact
-              path="/clase/lista"
-              render={(props) => (
-                <ViewClases
-                  {...props}
-                  index={this.state.index}
-                  periodoActual={this.state.periodoActual}
-                  periodos={this.state.periodos}
-                  ambientes={this.state.ambientes}
-                  responsables={this.state.responsables}
-                  semestres={this.state.semestres}
-                  menciones={this.state.menciones}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/clase/crear"
-              render={(props) => (
-                <CrearClase
-                  {...props}
-                  datos={this.state.clases}
-                  index={this.state.index}
-                  periodoActual={this.state.periodoActual}
-                  periodos={this.state.periodos}
-                  ambientes={this.state.ambientes}
-                  responsables={this.state.responsables}
-                  semestres={this.state.semestres}
-                  menciones={this.state.menciones}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/materia"
-              render={(props) => (
-                <HomeMaterias {...props} datos={this.state.materias} />
-              )}
-            />
-            <Route
-              exact
-              path="/materia/lista"
-              render={(props) => (
-                <ListaMaterias {...props} datos={this.state.materias} />
-              )}
-            />
-            <Route
-              exact
-              path="/materia/crear"
-              render={(props) => (
-                <CrearMateria {...props} datos={this.state.materias} />
-              )}
-            />
-            <Route
-              exact
-              path="/admin"
-              render={(props) => (
-                <HomeAdmin {...props} index={this.state.index} />
-              )}
-            />
-            <Route
-              exact
-              path="/admin/datos"
-              render={(props) => (
-                <DatosAdmin {...props} index={this.state.index} />
-              )}
-            />
-            <Route
-              exact
-              path="/admin/clases"
-              render={(props) => (
-                <ClasesAdmin {...props} datos={this.state.materias} />
-              )}
-            />
-            {/* <Route
-              path="/clase"
-              render={(props) => (
-                <Clases
-                  {...props}
-                  fuente={this.fuente()}
-                  periodo={this.state.periodo}
-                  titulo={this.state.selectedTitle}
-                />
-              )}
-            /> */}
-          </div>
+              {/* este es el buscador */}
+              <Route
+                exact
+                path="/clase/lista"
+                render={(props) => (
+                  <ViewClases
+                    {...props}
+                    index={this.state.index}
+                    periodoActual={this.state.periodoActual}
+                    periodos={this.state.periodos}
+                    ambientes={this.state.ambientes}
+                    responsables={this.state.responsables}
+                    semestres={this.state.semestres}
+                    menciones={this.state.menciones}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/clase/crear"
+                render={(props) => (
+                  <CrearClase
+                    {...props}
+                    datos={this.state.clases}
+                    index={this.state.index}
+                    periodoActual={this.state.periodoActual}
+                    periodos={this.state.periodos}
+                    ambientes={this.state.ambientes}
+                    responsables={this.state.responsables}
+                    semestres={this.state.semestres}
+                    menciones={this.state.menciones}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/materia"
+                render={(props) => (
+                  <HomeMaterias {...props} datos={this.state.materias} />
+                )}
+              />
+              <Route
+                exact
+                path="/materia/lista"
+                render={(props) => (
+                  <ListaMaterias {...props} datos={this.state.materias} />
+                )}
+              />
+              <Route
+                exact
+                path="/materia/crear"
+                render={(props) => (
+                  <CrearMateria {...props} datos={this.state.materias} />
+                )}
+              />
+              <Route
+                exact
+                path="/admin"
+                render={(props) => (
+                  <HomeAdmin {...props} index={this.state.index} />
+                )}
+              />
+              <Route
+                exact
+                path="/admin/datos"
+                render={(props) => (
+                  <DatosAdmin {...props} index={this.state.index} />
+                )}
+              />
+              <Route
+                exact
+                path="/admin/clases"
+                render={(props) => (
+                  <ClasesAdmin {...props} datos={this.state.materias} />
+                )}
+              />
+            </div>
+          ) : (
+            <Login handleAuth={this.handleAuth} />
+          )}
         </BrowserRouter>
 
         <div className="footer">
