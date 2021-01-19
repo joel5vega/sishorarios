@@ -127,15 +127,15 @@ class NavBar extends Component {
                     exact
                     to="/clase/"
                   >
-                    Ver todas las clases
+                    Buscar
                   </NavDropdown.Item>
                   <NavDropdown.Item
-                    eventKey="claseLista"
+                    eventKey="claseView"
                     as={NavLink}
                     exact
-                    to="/clase/lista"
+                    to="/clase/view"
                   >
-                    Buscar Clase
+                    Ver Clase
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item

@@ -20,17 +20,19 @@ export default class ListaSemestres extends Component {
               <div key={item.id}>
                 <NavLink
                   to={{
-                    pathname: "/clase/lista",
+                    pathname: "/clase/view",
                     state: {
                       fuente:
                         "http://localhost:8000/api/clases/semestre/" +
                         item.semestre +
                         "?mencion=" +
                         item.mencion_id,
-                      titulo:item.mencion ===
-                        "general"
-                          ? item.semestre + " Semestre " 
-                          : item.semestre + " Semestre - Mencion:" + item.mencion,
+                      titulo:
+                        item.mencion === "general"
+                          ? item.semestre + " Semestre "
+                          : item.semestre +
+                            " Semestre - Mencion:" +
+                            item.mencion,
                     },
                   }}
                 >

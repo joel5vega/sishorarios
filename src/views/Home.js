@@ -23,13 +23,6 @@ class Home extends Component {
       url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
-
-    // agregar esto
-    /*
-    onClick={() => {
-      this.onClick(item);
-    }}
-    */
   };
   render() {
     const datos = this.props.semestres;
@@ -50,13 +43,12 @@ class Home extends Component {
                       <div key={item.id}>
                         <NavLink
                           to={{
-                            pathname: "/clase/lista",
+                            pathname: "/clase/view",
                             state: {
                               fuente:
                                 "http://localhost:8000/api/clases/ambiente/" +
                                 item.id,
-
-                              titulo:"Horarios en "+item.nombre,
+                              titulo: "Horarios en " + item.nombre,
                             },
                           }}
                         >

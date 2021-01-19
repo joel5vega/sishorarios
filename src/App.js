@@ -1,5 +1,11 @@
 import React, { Component, useState } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect,
+  NavLink,
+} from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,8 +16,8 @@ import NavBar from "./components/NavBar";
 import Rutas from "./components/common/router/protected/auth";
 import Login from "./views/auth/index";
 import { ProtectedRoute } from "./components/common/router/protected";
-// import Login from "./views/auth/Login";
-import Register from "./views/auth/Register";
+
+import Register from "./views/auth/Register.js";
 //Componentes
 import Home from "./views/Home";
 import HomeResponsables from "./views/responsables/HomeResponsables";
@@ -75,57 +81,6 @@ class App extends Component {
     });
   }
 
-  ////
-  /*
-  handlePeriodoSelect = (periodo) => {
-    // console.log(evento)
-    const fuentePeriodo = this.state.url + "/index?periodo=" + periodo.id;
-    this.setState({
-      selectedPeriodo: periodo.id,
-      fuente: fuentePeriodo,
-      periodo: periodo.nombre,
-    });
-    // this.fuente()
-  };
-
-  handleAmbienteSelect = (evento) => {
-    console.log(evento);
-    var nuevaFuente =
-      "http://127.0.0.1:8000/ambientes/" +
-      evento.id +
-      "?periodo=" +
-      this.state.selectedPeriodo;
-    let title = "Ambiente:  " + evento.nombre;
-    this.setState({ fuente: nuevaFuente, selectedTitle: title });
-  };
-
-  handleSemestreSelect = (evento) => {
-    console.log(evento);
-    if (evento != "undefined") {
-      if (evento.value < 7) {
-        var nuevaFuente =
-          "http://127.0.0.1:8000/semestres/" +
-          evento.value +
-          "?periodo=" +
-          this.state.selectedPeriodo;
-        this.setState({ fuente: nuevaFuente });
-      } else {
-        var fuenteDatos =
-          "http://127.0.0.1:8000/semestres/" +
-          evento.value +
-          "?periodo=" +
-          this.state.selectedPeriodo +
-          "&mencion=" +
-          evento.mencion;
-        this.setState({ fuente: fuenteDatos });
-      }
-      this.setState({ selectedTitle: evento.nombre });
-    }
-    // console.log("fuente es : " + this.state.fuente)
-    // this.fuente()
-  };
-*/
-
   async fuente() {
     var a = Auth.isAuthenticated();
     console.log(a);
@@ -159,47 +114,53 @@ class App extends Component {
               handleAuth={this.handleAuth}
             />
           </div>
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Login handleAuth={this.handleAuth} />}
-          />
 
-          <Route
-            exact
-            path="/home"
-            render={(props) => (
-              <Home
-                {...props}
-                semestres={this.state.semestres}
-                ambientes={this.state.ambientes}
-              />
-            )}
-          />
-
-          <button onClick={this.handleAuth}>auth </button>
           {this.state.auth && <h1>Joel </h1>}
+          <div id="public-routes">
+            <Route
+              exact
+              path="/login"
+              render={(props) => <Login handleAuth={this.handleAuth} />}
+            />
+            <Route
+              exact
+              path="/register"
+              render={(props) => (
+                <Register {...props} responsables={this.state.responsables} />
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Home
+                  {...props}
+                  semestres={this.state.semestres}
+                  ambientes={this.state.ambientes}
+                />
+              )}
+            />
+            {/* este es el general */}
+            <Route
+              exact
+              path="/clase/view"
+              render={(props) => (
+                <ViewClases
+                  {...props}
+                  index={this.state.index}
+                  periodoActual={this.state.periodoActual}
+                  periodos={this.state.periodos}
+                  ambientes={this.state.ambientes}
+                  responsables={this.state.responsables}
+                  semestres={this.state.semestres}
+                  menciones={this.state.menciones}
+                />
+              )}
+            />
+          </div>
+
           {Auth.isAuthenticated() ? (
             <div name="rutas">
-              <Route
-                exact
-                path="/register"
-                render={(props) => (
-                  <Register responsables={this.state.responsables} />
-                )}
-              />
-              <Route
-                exact
-                path="/"
-                render={(props) => (
-                  <Home
-                    {...props}
-                    semestres={this.state.semestres}
-                    ambientes={this.state.ambientes}
-                  />
-                )}
-              />
-
               <Route
                 exact
                 path="/responsable"
@@ -281,7 +242,7 @@ class App extends Component {
               {/* este es el buscador */}
               <Route
                 exact
-                path="/clase/lista"
+                path="/clase/view"
                 render={(props) => (
                   <ViewClases
                     {...props}
@@ -356,7 +317,21 @@ class App extends Component {
               />
             </div>
           ) : (
-            <Login handleAuth={this.handleAuth} />
+            <div className="container">
+              <h3>Necesita estar autenticado</h3>
+              {/*  <Login handleAuth={this.handleAuth} /> */}
+              <NavLink
+                to={{
+                  pathname: "/login",
+                  state: {
+                    from: this.props.location,
+                  },
+                }}
+              >
+                Login
+              </NavLink>
+              <button onClick={this.handleAuth}>auth </button>
+            </div>
           )}
         </BrowserRouter>
 

@@ -9,7 +9,6 @@ import auth from "../../components/common/router/protected/auth";
 class Login extends Component {
   constructor(props) {
     super(props);
-    // handleAuth = this.props.handleAuth;
     this.handleAuth = this.props.handleAuth;
   }
 
@@ -17,7 +16,6 @@ class Login extends Component {
     username: "",
     password: "",
     isChecked: false,
-    // isAuth: this.props.isAuth,
   };
 
   async handleFormSubmit(event) {
@@ -35,7 +33,7 @@ class Login extends Component {
       var autenticado = auth.isAuthenticated();
 
       this.props.handleAuth();
-      this.props.history.push("/ambiente");
+      this.props.history.push("/clase");
       alert(autenticado + "ir a home");
     } else {
       this.props.history.push("/login");
@@ -117,7 +115,7 @@ class Login extends Component {
                           onClick={() => this.handleChecked()}
                           id="remember-label"
                         >
-                          Remember Me
+                          Recordarme
                         </label>
                       </div>
                     </div>
