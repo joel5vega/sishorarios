@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //import auth
 import Auth from "./components/common/router/protected/auth";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import Rutas from "./components/common/router/protected/auth";
 import Login from "./views/auth/index";
 import { ProtectedRoute } from "./components/common/router/protected";
@@ -53,6 +53,7 @@ class App extends Component {
       fuente: "http://127.0.0.1:8000/clases/show",
       selectedPeriodo: "",
       selectedTitle: "Home",
+      usuario: "estudiante",
       periodo: "",
       auth: false,
     };
@@ -87,11 +88,12 @@ class App extends Component {
     return a;
   }
 
-  handleAuth = (e) => {
+  handleAuth = (tipo, usuario) => {
     var isAuth = Auth.isAuthenticated();
-    alert("estoy en Padre");
-    console.log(e);
-    this.setState({ auth: isAuth });
+    console.log("estoy en Padre con ");
+    console.log(usuario);
+
+    this.setState({ auth: isAuth, tipo: tipo, usuario: usuario });
   };
   render() {
     if (this.state.loading) {
@@ -103,7 +105,8 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavBar
-              usuario="administrativo"
+              usuario={this.state.usuario}
+              tipo={this.state.tipo}
               handleAmbienteSelect={this.handleAmbienteSelect}
               handleSemestreSelect={this.handleSemestreSelect}
               handlePeriodoSelect={this.handlePeriodoSelect}
@@ -112,10 +115,11 @@ class App extends Component {
               laboratorios={this.state.ambientes}
               ambientes={this.state.ambientes}
               handleAuth={this.handleAuth}
+              semestres={this.state.semestres}
             />
           </div>
 
-          {this.state.auth && <h1>Joel </h1>}
+          <h1>{this.state.tipo}</h1>
           <div id="public-routes">
             <Route
               exact
@@ -155,6 +159,14 @@ class App extends Component {
                   semestres={this.state.semestres}
                   menciones={this.state.menciones}
                 />
+              )}
+            />
+
+            <Route
+              exact
+              path="/materia"
+              render={(props) => (
+                <HomeMaterias {...props} datos={this.state.materias} />
               )}
             />
           </div>
@@ -273,13 +285,7 @@ class App extends Component {
                   />
                 )}
               />
-              <Route
-                exact
-                path="/materia"
-                render={(props) => (
-                  <HomeMaterias {...props} datos={this.state.materias} />
-                )}
-              />
+
               <Route
                 exact
                 path="/materia/lista"
@@ -328,9 +334,9 @@ class App extends Component {
                   },
                 }}
               >
-                Login
+                <h1>Login</h1>
               </NavLink>
-              <button onClick={this.handleAuth}>auth </button>
+              {/* <button onClick={this.handleAuth}>auth </button> */}
             </div>
           )}
         </BrowserRouter>

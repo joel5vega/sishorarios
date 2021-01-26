@@ -3,9 +3,9 @@ import { BrowserRouter, Route, NavLink, HashRouter } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav, Button, FormControl, NavDropdown, Form } from "react-bootstrap";
 // import "../css/estiloNavbar.css";
-import mainlogo from "../images/logo-UMSA.png";
-import AuthService from "../services/AuthService";
-import auth from "../components/common/router/protected/auth";
+import mainlogo from "../../images/logo-UMSA.png";
+import AuthService from "../../services/AuthService";
+import auth from "../common/router/protected/auth";
 
 class NavBar extends Component {
   constructor(props) {
@@ -100,8 +100,9 @@ class NavBar extends Component {
       handlePeriodoSelect,
       handleAmbienteSelect,
       handleSemestreSelect,
-      usuario,
+      tipo,
       ambientes,
+      usuario,
     } = this.props;
     return (
       <div>
@@ -118,7 +119,7 @@ class NavBar extends Component {
           <Navbar.Text>{this.props.titulo}</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            {usuario === "administrativo" ? (
+            {tipo === "administrativo" ? (
               <Nav className="mr-auto">
                 <NavDropdown title="Clases" id="collasible-nav-dropdown">
                   <NavDropdown.Item
@@ -217,9 +218,26 @@ class NavBar extends Component {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            ) : usuario === "docente" ? (
+            ) : tipo === "docente" ? (
               <Nav>
-                <Nav.Link as={NavLink} exact to="/materia/" eventKey="materia">
+                <Nav.Link
+                  as={NavLink}
+                  eventKey="mishorarios"
+                  to={{
+                    pathname: "/clase/view",
+                    state: {
+                      fuente:
+                        "http://localhost:8000/api/clases/responsable/" +
+                        usuario.responsable.id +
+                        "?periodo=4",
+                      titulo:
+                        "Horarios de " +
+                        usuario.responsable.titulo +
+                        " " +
+                        usuario.responsable.ap_paterno,
+                    },
+                  }}
+                >
                   Mis horarios
                 </Nav.Link>
                 <Nav.Link
@@ -238,93 +256,60 @@ class NavBar extends Component {
                 >
                   Malla curricular
                 </Nav.Link>
-                <NavDropdown title="Semestres" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/admin/"
-                    eventKey="semestre"
-                  >
-                    Primer Semestre
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Segundo Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Tercer Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Cuarto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Quinto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Sexto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Septimo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Septimo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Septimo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Octavo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Octavo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Octavo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Noveno Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Noveno Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Noveno Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Decimo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Decimo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Decimo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
-                  {ambientes.map((item) => (
-                    <NavDropdown.Item key={item.id}>
-                      {item.nombre}
-                    </NavDropdown.Item>
-                  ))}
-                </NavDropdown>
               </Nav>
             ) : (
               <Nav>
                 <NavDropdown title="Semestres" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/admin/"
-                    activeStyle={NavActive}
-                  >
-                    Primer Semestre
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Segundo Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Tercer Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Cuarto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Quinto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Sexto Semestre</NavDropdown.Item>
-                  <NavDropdown.Item>Septimo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Septimo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Septimo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Octavo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Octavo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Octavo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Noveno Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Noveno Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Noveno Semestre Telecomunicaciones
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>Decimo Semestre Control</NavDropdown.Item>
-                  <NavDropdown.Item>Decimo Semestre Sistemas</NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Decimo Semestre Telecomunicaciones
-                  </NavDropdown.Item>
+                  {this.props.semestres.map((item) => {
+                    return (
+                      <div key={item.id}>
+                        <NavDropdown.Item
+                          as={NavLink}
+                          eventKey="semestres"
+                          to={{
+                            pathname: "/clase/view",
+                            state: {
+                              fuente:
+                                "http://localhost:8000/api/clases/semestre/" +
+                                item.semestre +
+                                "?mencion=" +
+                                item.mencion_id,
+                              titulo:
+                                item.mencion === "general"
+                                  ? item.semestre + " Semestre "
+                                  : item.semestre +
+                                    " Semestre - Mencion:" +
+                                    item.mencion,
+                            },
+                          }}
+                        >
+                          {item.semestre} {item.mencion}
+                        </NavDropdown.Item>
+                      </div>
+                    );
+                  })}
                 </NavDropdown>
                 <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
                   {ambientes.map((item) => (
-                    <NavDropdown.Item key={item.id}>
+                    <NavDropdown.Item
+                      key={item.id}
+                      eventKey="ambientes"
+                      as={NavLink}
+                      to={{
+                        pathname: "/clase/view",
+                        state: {
+                          fuente:
+                            "http://localhost:8000/api/clases/ambiente/" +
+                            item.id,
+                          titulo: "Horarios en " + item.nombre,
+                        },
+                      }}
+                    >
                       {item.nombre}
                     </NavDropdown.Item>
                   ))}
                 </NavDropdown>
+
                 <Nav.Link
                   as={NavLink}
                   exact
@@ -336,53 +321,33 @@ class NavBar extends Component {
               </Nav>
             )}
             <Nav onSelect={this.handleSelect}>
-              {usuario === "administrativo" && (
-                <NavDropdown title="Admin" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/admin/"
-                    activeStyle={NavActive}
-                  >
-                    Datos
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/admin/datos"
-                    activeStyle={NavActive}
-                  >
-                    Usuarios
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/admin/clases"
-                    activeStyle={NavActive}
-                  >
-                    Habilitar Clase
-                  </NavDropdown.Item>
-                </NavDropdown>
+              {tipo === "administrativo" && (
+                <div>
+                  <NavLink to="/admin/">Admin</NavLink>
+                </div>
               )}
             </Nav>
             <Nav className="justify-content-end">
-              <Nav.Link
-                eventKey="login"
-                as={NavLink}
-                to="/login/"
-                activeStyle={NavActive}
-              >
-                {usuario}
-              </Nav.Link>
-              <Nav.Link
-                eventKey="login"
-                as={NavLink}
-                to="/home/"
-                activeStyle={NavActive}
-              >
-                <p onClick={this.logout}>Salir</p>
-              </Nav.Link>
+              {this.props.tipo === "estudiante" ? (
+                <Nav.Link
+                  eventKey="login"
+                  as={NavLink}
+                  to="/login/"
+                  activeStyle={NavActive}
+                >
+                  Login
+                </Nav.Link>
+              ) : (
+                <Nav.Link
+                  eventKey="login"
+                  as={NavLink}
+                  to="/home/"
+                  activeStyle={NavActive}
+                  onClick={this.logout}
+                >
+                  Salir
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

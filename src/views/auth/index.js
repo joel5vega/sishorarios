@@ -25,16 +25,18 @@ class Login extends Component {
       password: this.state.password,
     };
     const response = await AuthService.doUserLogin(postData);
-    console.log("response", response);
+    var tipo= response.tipo;
+    var usuario = response.user;
+    console.log("response", response.tipo);
     if (response) {
       AuthService.handleLoginSucess(response, this.state.isChecked);
 
       auth.update();
       var autenticado = auth.isAuthenticated();
 
-      this.props.handleAuth();
+      this.props.handleAuth(tipo,usuario);
       this.props.history.push("/clase");
-      alert(autenticado + "ir a home");
+      console.log(autenticado + "ir a home");
     } else {
       this.props.history.push("/login");
       alert("revise sus credenciales");
