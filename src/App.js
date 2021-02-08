@@ -33,7 +33,7 @@ import HomeClases from "./views/clases/HomeClases";
 import Clases from "./views/clases/BuscarClase";
 import CrearClase from "./views/clases/crearClase";
 import ListaClases from "./views/clases/BuscarClase";
-
+import DetalleClase from "./views/clases/DetalleClase";
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
 import CrearMateria from "./views/materias/CrearMateria";
@@ -285,7 +285,11 @@ class App extends Component {
                   />
                 )}
               />
-
+              <Route
+                exact
+                path="/clase/detalle"
+                render={(props) => <DetalleClase />}
+              />
               <Route
                 exact
                 path="/materia/lista"

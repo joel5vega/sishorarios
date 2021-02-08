@@ -46,9 +46,8 @@ export default class ListaCore extends Component {
     const value = target.value;
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
-    // console.log(name + " es: " + value);
+    console.log(name + " es: " + value);
   };
-
   editar(e) {
     this.setState({
       show: true,
@@ -153,7 +152,16 @@ export default class ListaCore extends Component {
                     {keys.map((campo) => {
                       if (campo === "id") {
                       } else {
-                        return <td key={item.id + campo}>{item[campo]}</td>;
+                        if (campo === "estado") {
+                          return (
+                            <td key={item.id + campo}>
+                              <input name="estado" onChange={this.onChange} type="checkbox" checked={item[campo]=== "true"}/>
+                              {item[campo]}
+                            </td>
+                          );
+                        } else {
+                          return <td key={item.id + campo}>{item[campo]}</td>;
+                        }
                       }
                     })}
                     <td>

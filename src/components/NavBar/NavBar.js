@@ -312,6 +312,7 @@ class NavBar extends Component {
 
                 <Nav.Link
                   as={NavLink}
+                  eventKey="materias"
                   exact
                   to="/materia/"
                   activeStyle={NavActive}
@@ -328,7 +329,7 @@ class NavBar extends Component {
               )}
             </Nav>
             <Nav className="justify-content-end">
-              {this.props.tipo === "estudiante" ? (
+              {!this.props.tipo ? (
                 <Nav.Link
                   eventKey="login"
                   as={NavLink}

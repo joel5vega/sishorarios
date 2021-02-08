@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ListaCore from "../../components/ListaCore";
+import DetalleClase from "../clases/DetalleClase";
 
 export default class ClasesAdmin extends Component {
   constructor(props) {
@@ -10,12 +11,30 @@ export default class ClasesAdmin extends Component {
   }
 
   render() {
-    const keys = ["title","semestre","nivel","paralelo","responsable","ambiente","daysOfWeek","startTime","endTime","periodo"]
+    const keys = [
+      "estado",
+      "title",
+      "semestre",
+      "nivel",
+      "paralelo",
+      "responsable",
+      "ambiente",
+      "daysOfWeek",
+      "startTime",
+      "endTime",
+      "periodo",
+    ];
     return (
       <div>
-        
-        <div className="tarjeta">
-          <ListaCore titulo="Clases" datos={this.props.clases} tipo="clases" keys={keys} />
+        <div >
+        <DetalleClase />
+          <ListaCore
+            titulo="Clases"
+            datos={this.props.clases}
+            tipo="clases"
+            keys={keys}
+          />
+          
         </div>
       </div>
     );

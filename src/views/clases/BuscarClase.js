@@ -7,7 +7,9 @@ import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
-import { Modal } from "react-bootstrap";
+import Fab from "@material-ui/core/Fab";
+import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
+import { Typography } from "@material-ui/core";
 
 export default class BuscarClase extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ export default class BuscarClase extends Component {
       periodos: [],
       semestres: [],
       menciones: [],
-      showNow:true,
+      showNow: true,
       selectedBuscar: "default",
       selectedPeriodo: "",
       selectedSemestre: "default",
@@ -71,9 +73,9 @@ export default class BuscarClase extends Component {
     console.log(this.state.width);
   };
   setView = () => {
-    if (this.state.width < 500) {
-      this.setState({ view: "timeGrid",showNow:false });
-    } else this.setState({ view: "timeGridWeek",showNow:true });
+    if (this.state.width < 650) {
+      this.setState({ view: "timeGrid", showNow: false });
+    } else this.setState({ view: "timeGridWeek", showNow: true });
     console.log(this.state.view);
     this.render();
   };
@@ -97,7 +99,7 @@ export default class BuscarClase extends Component {
     });
     alert("Se empezo la descarga de su documento PDF");
   };
-/////////////////////////////
+  /////////////////////////////
   getDateClick = (event) => {
     let startTime = event.startTime;
     let day = event.day.toString();
@@ -113,9 +115,9 @@ export default class BuscarClase extends Component {
     ];
     console.log(evento);
   };
-////////////////////
-//obtenemos cambio de fuente
-/*onClick = (e) => {
+  ////////////////////
+  //obtenemos cambio de fuente
+  /*onClick = (e) => {
   //elaboramos la fuente de consulta
   const url = "http://localhost:8000/";
   var fuente =
@@ -284,7 +286,6 @@ export default class BuscarClase extends Component {
     return (
       <div>
         <div className="sticky" id="print">
-          
           <div className="tarjetas">
             {this.state.loading === false && (
               <div className="tarjeta">
@@ -389,22 +390,34 @@ export default class BuscarClase extends Component {
           )}
         </div>
 
-        <div id="acciones" className="tarjetas">
-          <div className="tarjeta">
-            <div>
-              <small>Exportar a PDF</small>
-            </div>
-            <button onClick={this.printPDF}>
-              <FontAwesomeIcon icon={"file-pdf"} size="1x" />
-            </button>
+        <div className="flotante">
+          <div id="print" className="sticky">
+            <Fab key="pdf" variant="extended" aria-label="option">
+              <Link
+                to={{
+                  pathname: "/clase/view",
+                  state: {
+                    fuente: this.state.fuente,
+                  },
+                }}
+              >
+                <Typography variant="overline" gutterBottom>
+                  Ver y exportar
+                </Typography>
+              </Link>
+            </Fab>
           </div>
           <div className="tarjeta">
-            <div>
-              <small>Crear Nuevo</small>
-            </div>
-            <Link to={"/crear/clase"}>
-              <FontAwesomeIcon icon={"plus"} size="2x" />
-            </Link>
+            <Fab key="new" variant="extended" aria-label="option">
+              <Link
+                to={{
+                  pathname: "/clase/crear",
+                }}
+              >
+                <FontAwesomeIcon icon={"plus"} size="1x" />
+                <Typography variant="overline">Nuevo</Typography>
+              </Link>
+            </Fab>
           </div>
         </div>
       </div>

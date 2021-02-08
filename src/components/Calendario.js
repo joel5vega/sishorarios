@@ -41,7 +41,7 @@ export default class Calendario extends Component {
         columnHeaderFormat={{ weekday: "long" }}
         // columnHeaderFormat={{ weekday: "short" }}//corto
         //Para que la altura se ajuste a la de la pantalla
-        contentHeight='auto'
+        // contentHeight='auto'
         slotLabelFormat={{
           hour: "numeric",
           minute: "2-digit",
@@ -62,7 +62,7 @@ export default class Calendario extends Component {
         maxTime="21:00"
         slotDuration="00:45:00"
         height="auto"
-        nowIndicator={false}
+        nowIndicator={true}
         // aspectRatio={5}
         dateClick={this.dateClick}
         eventClick={this.eventClick}
@@ -70,25 +70,41 @@ export default class Calendario extends Component {
     );
   }
   EventDetail = ({ event, el }) => {
+    console.log(this.props.view);
+    const {
+      semestre,
+      paralelo,
+      ambiente,
+      tituloResponsable,
+      responsable,
+    } = event.extendedProps;
     // extendedProps is used to access additional event properties.
     const content = (
       <div>
-        <div className="texto-peque">{event.extendedProps.ambiente}</div>
-        {this.props.size != "small" && (
-          <div>
-            <div className="texto-grande">
-              {event.extendedProps.semestre} {event.title}{" "}
-              {event.extendedProps.paralelo}
-            </div>
-            <div className="texto-peque">
-              {event.extendedProps.tituloResponsable}{" "}
-              {event.extendedProps.responsable}
-            </div>
-          </div>
-        )}
+        <div className="texto-peque">
+          {ambiente}
+          <br />
+          {event.title} {paralelo}
+          <br />
+          {tituloResponsable} {responsable}
+        </div>
       </div>
     );
-    ReactDOM.render(content, el);
+    const contentMinimal = (
+      <div>
+        <div className="texto-peque">
+          {event.extendedProps.ambiente}
+          <br />
+          {event.title}
+        </div>
+      </div>
+    );
+    if (this.props.view === "timeGridWeek") {
+      ReactDOM.render(content, el);
+    } else {
+      ReactDOM.render(contentMinimal, el);
+    }
+
     return el;
   };
   dateClick = (event) => {
@@ -109,13 +125,16 @@ export default class Calendario extends Component {
     // return evento
   };
   eventClick = (event) => {
-    console.log(event);
+    // console.log("hacer click en el evento")
+    const { eventClick } = this.props;
+    // console.log(event);
+    eventClick(event);
     //mostrar datos extras
-    console.log(event.event.extendedProps.semestre);
+    // console.log(event.event.extendedProps.semestre);
     //obtener datos
-    console.log(event.event.start.getDay());
-    console.log(event.event.start.toLocaleTimeString());
-    console.log(event.event.end.toLocaleTimeString());
+    // console.log(event.event.start.getDay());
+    // console.log(event.event.start.toLocaleTimeString());
+    // console.log(event.event.end.toLocaleTimeString());
   };
 
   DefinirColor = ({ event }) => {

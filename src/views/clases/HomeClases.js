@@ -35,7 +35,6 @@ export default class HomeClases extends Component {
       url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
-
   };
   onChange = (e) => {
     //elaboramos la fuente de consulta
@@ -44,7 +43,7 @@ export default class HomeClases extends Component {
       url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
-    alert(e)
+    alert(e);
   };
 
   render() {
@@ -54,19 +53,22 @@ export default class HomeClases extends Component {
       <div>
         <div className="tarjetas">
           <div className="col-8 border-right">
-          <div className="tarjeta-titulo">Buscar horarios</div>
-             <BuscarClase 
-                  {...this.props}
-                  index={this.props.index}
-                  periodoActual={this.props.periodoActual}
-                  periodos={this.props.periodos}
-                  ambientes={this.props.ambientes}
-                  responsables={this.props.responsables}
-                  semestres={this.props.semestres}
-                  menciones={this.props.menciones}
-                  onChange={this.onChange}/>
+            <div className="tarjeta-titulo" id="print">
+              Buscar horarios
+            </div>
+            <BuscarClase
+              {...this.props}
+              index={this.props.index}
+              periodoActual={this.props.periodoActual}
+              periodos={this.props.periodos}
+              ambientes={this.props.ambientes}
+              responsables={this.props.responsables}
+              semestres={this.props.semestres}
+              menciones={this.props.menciones}
+              onChange={this.onChange}
+            />
           </div>
-          <div className="col-4">
+          <div className="col-4" id="print">
             <div className="tarjeta-titulo">Actividades en curso</div>
             <Calendario
               fuente={this.state.fuenteNow}
