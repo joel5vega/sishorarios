@@ -72,12 +72,10 @@ export default class ListaCore extends Component {
   //end of CRUD
   selectCrear(e) {
     console.log("tipo: " + e);
-    const { selected } = this.state.selected;
-    const { handleChange } = this.handleChange;
     switch (e) {
       case "ambiente":
         return <CrearAmbiente {...this.state.selected} />;
-        break;
+
       case "responsable":
         return (
           <CrearResponsable
@@ -86,7 +84,7 @@ export default class ListaCore extends Component {
           />
           // <CrearResponsable {...this.state.selected} onChange={this.onChange} />
         );
-        break;
+
       case "materia":
         return (
           <CrearMateria
@@ -96,12 +94,11 @@ export default class ListaCore extends Component {
             onChange={this.onChange}
           />
         );
-        break;
+
       case "clase":
         return <CrearClase />;
       default:
         return <p>Envie el modo</p>;
-        break;
     }
   }
   ///manejador de cambios
@@ -115,7 +112,7 @@ export default class ListaCore extends Component {
   }
 
   render() {
-    const { datos, tipo, titulo } = this.props;
+    const { titulo } = this.props;
     // console.log(datos)
     // const keys = Object.keys(datos[0]);
     const { keys } = this.props;
@@ -155,7 +152,12 @@ export default class ListaCore extends Component {
                         if (campo === "estado") {
                           return (
                             <td key={item.id + campo}>
-                              <input name="estado" onChange={this.onChange} type="checkbox" checked={item[campo]=== "true"}/>
+                              <input
+                                name="estado"
+                                onChange={this.onChange}
+                                type="checkbox"
+                                checked={item[campo] === "true"}
+                              />
                               {item[campo]}
                             </td>
                           );

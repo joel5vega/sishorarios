@@ -49,7 +49,7 @@ export default class CrearClase extends Component {
         var urlMaterias =
           url + "/api/materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        var urlMaterias = url + "/api/materias/semestre/" + semestre;
+        urlMaterias = url + "/api/materias/semestre/" + semestre;
       }
       axios.get(urlMaterias).then((response) => {
         this.setState({ materias: response.data.materias, loading: false });
@@ -113,7 +113,7 @@ export default class CrearClase extends Component {
           this.state.selectedPeriodo;
       }
       //verificamos eventos anteriormente buscados
-      let anterior = this.state.evento.concat(this.state.choqueAmbiente);
+      // let anterior = this.state.evento.concat(this.state.choqueAmbiente);
       //recibimos clases del semestre
       axios.get(urlSemestre).then((response) => {
         var data = response.data;
@@ -142,7 +142,7 @@ export default class CrearClase extends Component {
           this.setState({ eventos: [...this.state.eventos, item] });
         }
       } else {
-        if (item.title == "evento") {
+        if (item.title === "evento") {
           console.log("evento crado");
           let anterior = this.state.choqueAmbiente.concat(
             this.state.choqueSemestre
@@ -411,7 +411,7 @@ export default class CrearClase extends Component {
       selectedAmbiente,
       selectedMateria,
       selectedNivel,
-      selesctedTipo,
+      selectedTipo,
       materias,
       responsables,
       ambientes,
@@ -457,7 +457,7 @@ export default class CrearClase extends Component {
                 </div>
 
                 <div className="col-auto">
-                  {this.state.selectedSemestre != "" && (
+                  {this.state.selectedSemestre !== "" && (
                     <div className="input-row">
                       <SelectControlado
                         label="Materia"
@@ -483,7 +483,7 @@ export default class CrearClase extends Component {
                 </div>
 
                 <div className="col-auto">
-                  {this.state.selectedNivel != "" && (
+                  {this.state.selectedNivel !== "" && (
                     <div>
                       <SelectControlado
                         label="Responsable"
@@ -510,7 +510,7 @@ export default class CrearClase extends Component {
                   />
                 </div>
 
-                {this.state.selectedTipo != "" && (
+                {this.state.selectedTipo !== "" && (
                   <div className="col-auto">
                     <SelectControlado
                       label="Ambiente"
@@ -547,7 +547,7 @@ export default class CrearClase extends Component {
                     />
                   </div>
                 )}
-                {this.state.startTime != "" && (
+                {this.state.startTime !== "" && (
                   <div className="col-auto">
                     <InputControlado
                       label="Hora de fin"
@@ -574,7 +574,7 @@ export default class CrearClase extends Component {
           </form>
         </div>
 
-        {this.state.selectedSemestre != "" && (
+        {this.state.selectedSemestre !== "" && (
           <div className="col-8">
             <Calendario
               fuente={this.state.eventos}

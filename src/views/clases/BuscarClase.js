@@ -5,10 +5,8 @@ import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
-import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
 import Fab from "@material-ui/core/Fab";
-import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import { Typography } from "@material-ui/core";
 
 export default class BuscarClase extends Component {
@@ -192,20 +190,16 @@ export default class BuscarClase extends Component {
   handleAmbienteChange = (event) => {
     console.log(event.target.value);
     var ambiente = event.target.value;
-    var ambientes = this.state.ambientes;
+    // var ambientes = this.state.ambientes;
     var nuevaFuente =
       this.state.url +
       "/api/clases/ambiente/" +
       ambiente +
       "?periodo=" +
       this.state.selectedPeriodo;
-    // var nombre = ambientes.filter(item => item.id === ambiente)
-    var nombre = this.filtro(ambientes, ambiente);
-    // let title = "Ambiente: " + nombre.nombre;
     this.setState({
       selectedAmbiente: ambiente,
       selectedSemestre: "",
-      // titulo: title,
       fuente: nuevaFuente,
     });
     console.log(ambiente);
@@ -266,10 +260,7 @@ export default class BuscarClase extends Component {
       { id: "ambiente", nombre: "Ambiente" },
       { id: "responsable", nombre: "Responsable" },
     ];
-    const nivel = [
-      { id: "docente", nombre: "Docente" },
-      { id: "auxiliar", nombre: "Auxiliar" },
-    ];
+
     const listaSemestres = [
       { id: "1", nombre: "1" },
       { id: "2", nombre: "2" },

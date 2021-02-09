@@ -5,7 +5,6 @@ import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
-import WindowConsumer from "../../containers/WindowProvider";
 export default class HorariosResponsables extends Component {
   constructor(props) {
     super(props);
@@ -65,9 +64,7 @@ export default class HorariosResponsables extends Component {
     let url = this.state.url;
     var urlPeriodos = url + "/index?index=periodos";
     var urlAmbientes = url + "/index?index=ambientes";
-    // var urlAmbientes = url + "/index/ambientes?tipo=aula";
     var urlSemestres = url + "/index?index=semestres";
-    var urlMenciones = url + "/index?index=menciones";
     var urlResponsables = url + "/index?index=responsables";
     Promise.all([
       fetch(urlAmbientes).then((value) => value.json()),
@@ -184,7 +181,7 @@ export default class HorariosResponsables extends Component {
   filtro = (array, id) => {
     let filtrar = array;
     var nombre = filtrar.filter((item) => {
-      if (item.id == id) {
+      if (item.id === id) {
         return item.nombre;
       }
     });
@@ -201,16 +198,16 @@ export default class HorariosResponsables extends Component {
   render() {
     // let { responsables } = this.props;
     const auxiliares = this.state.responsables.filter(
-      (resp) => resp.puesto == "auxiliar"
+      (resp) => resp.puesto === "auxiliar"
     );
     const docentes = this.state.responsables.filter(
-      (resp) => resp.puesto == "docente"
+      (resp) => resp.puesto === "docente"
     );
     return (
       <div>
         <div className="container" id="print">
           <div className="row align-items-center">
-            {this.state.loading == false && (
+            {this.state.loading === false && (
               <div className="col-auto">
                 <label className="src-only" htmlFor="periodo">
                   Periodo{" "}
@@ -257,7 +254,7 @@ export default class HorariosResponsables extends Component {
                 </select>
               </div>
             )}
-            {this.state.selectedBuscar == "auxiliar" && (
+            {this.state.selectedBuscar === "auxiliar" && (
               <div className="col-auto">
                 <label className="src-only" htmlFor="auxiliar">
                   Auxiliar
@@ -284,7 +281,7 @@ export default class HorariosResponsables extends Component {
               </div>
             )}
 
-            {this.state.selectedBuscar == "docente" && (
+            {this.state.selectedBuscar === "docente" && (
               <div className="col-auto">
                 <label htmlFor="docente">Docente:</label>
                 <select
@@ -344,14 +341,14 @@ export default class HorariosResponsables extends Component {
               </div>
 
               <div id="calendario">
-                {this.state.view == "timeGrid" && (
+                {this.state.view === "timeGrid" && (
                   <Calendario
                     fuente={this.state.fuente}
                     getDateClick={this.getDateClick}
                     view="timeGrid"
                   />
                 )}
-                {this.state.view == "timeGridWeek" && (
+                {this.state.view === "timeGridWeek" && (
                   <Calendario
                     fuente={this.state.fuente}
                     getDateClick={this.getDateClick}

@@ -1,15 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import { sizing } from "@material-ui/system";
+// import { sizing } from "@material-ui/system";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+// import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import { ThemeProvider } from "react-bootstrap";
-let theme = createMuiTheme();
-theme = responsiveFontSizes(theme);
+// let theme = createMuiTheme();
+// theme = responsiveFontSizes(theme);
 
 const useStyles = makeStyles({
   root: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 });
 
 export default function ImgMediaCard(props) {
-  const { nombre, tipo, capacidad } = props;
+  const { nombre, capacidad } = props;
   const size = parseInt(capacidad) / 10 / 4;
   const classes = useStyles(props, size);
   return (

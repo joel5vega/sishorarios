@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class SelectControlado extends Component {
   render() {
     const { label, value, name, datos, handleChange, index } = this.props;
-    const valor = "item.valor";
+    // const valor = "item.valor";
     return (
       <div>
         <div className="form-group col-auto">

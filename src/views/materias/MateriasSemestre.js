@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TarjetaAmbiente from "../../components/TarjetaAmbiente";
 import TarjetaMateria from "../../components/TarjetaMateria";
 
 export default class MateriasSemestre extends Component {
@@ -22,7 +21,7 @@ export default class MateriasSemestre extends Component {
           {datos.map((item) => {
             return (
               <div key={item.id}>
-                {item.semestre == semestre && (
+                {item.semestre === semestre && (
                   <div>
                     {item.semestre < 7 ? (
                       <TarjetaMateria

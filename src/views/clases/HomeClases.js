@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import Calendario from "../../components/Calendario";
 import BuscarClase from "./BuscarClase";
 export default class HomeClases extends Component {
@@ -47,8 +46,6 @@ export default class HomeClases extends Component {
   };
 
   render() {
-    const datos = this.props.semestres;
-
     return (
       <div>
         <div className="tarjetas">

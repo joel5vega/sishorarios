@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import Calendario from "../../components/Calendario";
 import { withRouter } from "react-router-dom";
-import html2canvas from "html2canvas";
-import jsPdf from "jspdf";
 import "../../fontawesome";
-import Fab from "@material-ui/core/Fab";
-import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
-import { Typography } from "@material-ui/core";
 import axios from "axios";
 
 class DetalleClase extends Component {
@@ -93,9 +87,9 @@ class DetalleClase extends Component {
       tituloResponsable,
       responsable,
       ambiente,
-      tipoAmbiente,
+      // tipoAmbiente,
       daysOfWeek,
-      periodo,
+      // periodo,
     } = this.props.clase;
     return (
       <div>

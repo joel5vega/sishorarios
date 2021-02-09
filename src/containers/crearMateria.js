@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SelectControlado from "../components/SelectControlado";
+// import SelectControlado from "../components/SelectControlado";
 
 export default class CrearMateria extends Component {
   constructor(props) {
@@ -38,16 +38,16 @@ export default class CrearMateria extends Component {
     const styles = {
       //   border: "1px solid blue",
     };
-    const {
-      pensums,
-      pensum,
-      semestre,
-      sigla,
-      nombre,
-      menciones,
-      tipo,
-      paralelo,
-    } = this.state;
+    // const {
+    //   pensums,
+    //   pensum,
+    //   semestre,
+    //   sigla,
+    //   nombre,
+    //   menciones,
+    //   tipo,
+    //   paralelo,
+    // } = this.state;
     return (
       <div style={styles}>
         <div className="form-row">

@@ -22,11 +22,11 @@ export default class Calendario extends Component {
   }
 
   render() {
-    const { getDateClick, view } = this.props;
+    const {  view } = this.props;
     if (this.state.loading) {
       return <div>cargando todavia</div>;
     }
-    if (this.state.fuente == "undefined") {
+    if (this.state.fuente === "undefined") {
       return <div>No se encuentra fuente</div>;
     }
 
@@ -72,7 +72,7 @@ export default class Calendario extends Component {
   EventDetail = ({ event, el }) => {
     console.log(this.props.view);
     const {
-      semestre,
+      // semestre,
       paralelo,
       ambiente,
       tituloResponsable,

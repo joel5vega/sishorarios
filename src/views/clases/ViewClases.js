@@ -46,7 +46,7 @@ class ViewClases extends Component {
     var id = e.event;
     var clase = e.event.extendedProps;
     // var startTime= e.event.
-    var endTime=
+    
     this.setState({
       show: true,
       guardar: true,

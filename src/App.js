@@ -1,11 +1,5 @@
-import React, { Component, useState } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Redirect,
-  NavLink,
-} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,16 +7,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import auth
 import Auth from "./components/common/router/protected/auth";
 import NavBar from "./components/NavBar/NavBar";
-import Rutas from "./components/common/router/protected/auth";
 import Login from "./views/auth/index";
-import { ProtectedRoute } from "./components/common/router/protected";
 
 import Register from "./views/auth/Register.js";
 //Componentes
 import Home from "./views/Home";
 import HomeResponsables from "./views/responsables/HomeResponsables";
 import ListaResponsables from "./views/responsables/ListaResponsables";
-import HorariosResponsables from "./views/responsables/HorariosResponsables";
 
 import HomeAmbientes from "./views/ambientes/HomeAmbientes";
 import ListaAmbientes from "./views/ambientes/ListaAmbientes";
@@ -30,9 +21,7 @@ import CrearAmbiente from "./views/ambientes/crearAmbiente";
 //Clases
 import ViewClases from "./views/clases/ViewClases";
 import HomeClases from "./views/clases/HomeClases";
-import Clases from "./views/clases/BuscarClase";
 import CrearClase from "./views/clases/crearClase";
-import ListaClases from "./views/clases/BuscarClase";
 import DetalleClase from "./views/clases/DetalleClase";
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";

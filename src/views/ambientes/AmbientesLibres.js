@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
-import TabPanel from "../../components/Tabs";
-import axios from "axios";
 
 export default class AmbientesLibres extends Component {
   constructor(args) {
@@ -15,7 +13,6 @@ export default class AmbientesLibres extends Component {
   }
 
   render() {
-    var { datos } = this.props;
     return (
       <div>
         <div className="tarjetas">

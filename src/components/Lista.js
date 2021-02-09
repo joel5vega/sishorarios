@@ -71,29 +71,25 @@ export default class Lista extends Component {
   //end of CRUD
   selectCrear(e) {
     console.log("tipo: " + e);
-    const { selected } = this.state.selected;
-    const { handleChange } = this.handleChange;
+    // const { selected } = this.state.selected;
+    // const { handleChange } = this.handleChange;
     switch (e) {
       case "ambiente":
         return <CrearAmbiente {...this.state.selected} />;
-        break;
       case "responsable":
         return (
           <CrearResponsable
             selected={this.state.selected}
             onChange={this.onChange}
           />
-          // <CrearResponsable {...this.state.selected} onChange={this.onChange} />
+          
         );
-        break;
       case "materia":
         return <CrearMateria />;
-        break;
       case "clase":
         return <CrearClase />;
       default:
         return <p>Envie el modo</p>;
-        break;
     }
   }
   ///manejador de cambios
@@ -107,7 +103,7 @@ export default class Lista extends Component {
   }
 
   render() {
-    const { datos, tipo, titulo } = this.props;
+    const { datos, titulo } = this.props;
     // console.log(datos)
     const keys = Object.keys(datos[0]);
     // console.log(keys);

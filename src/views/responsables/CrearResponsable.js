@@ -35,11 +35,11 @@ export default class CrearResponsable extends Component {
       { id: "auxiliar", nombre: "Auxiliar" },
       { id: "docente", nombre: "Docente" },
     ];
-    const titulos = [
-      { id: "univ", nombre: "Univ." },
-      { id: "ing", nombre: "Ing" },
-      { id: "msc", nombre: "Msc" },
-    ];
+    // const titulos = [
+    //   { id: "univ", nombre: "Univ." },
+    //   { id: "ing", nombre: "Ing" },
+    //   { id: "msc", nombre: "Msc" },
+    // ];
 
     var {
       nombre,

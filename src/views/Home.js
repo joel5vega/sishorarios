@@ -25,8 +25,6 @@ class Home extends Component {
     this.setState({ fuente: fuente });
   };
   render() {
-    const datos = this.props.semestres;
-
     return (
       <div>
         <h2>

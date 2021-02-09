@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink, HashRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
-import { Nav, Button, FormControl, NavDropdown, Form } from "react-bootstrap";
-// import "../css/estiloNavbar.css";
+import { Nav, NavDropdown } from "react-bootstrap";
 import mainlogo from "../../images/logo-UMSA.png";
 import AuthService from "../../services/AuthService";
 import auth from "../common/router/protected/auth";
@@ -30,7 +29,6 @@ class NavBar extends Component {
       selectedPeriodo: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
-    const { handleSelect } = this.props;
   }
   componentDidMount() {}
   //Para ver elemento seleccionado
@@ -80,30 +78,15 @@ class NavBar extends Component {
     this.props.handleAuth();
   };
   render() {
-    const navStyles = {
-      // display: "flex",
-      // justifyContent: "space-around",
-      // border: "2px",
-      // margin: "2px",
-      // color: "aqua",
-    };
     const NavActive = {
       color: "lime",
     };
-    const styles = {
-      containerStyle: {
-        backgroundColor: this.state.backgroundColor,
-      },
-    };
-    const { containerStyle } = styles;
-    const {
-      handlePeriodoSelect,
-      handleAmbienteSelect,
-      handleSemestreSelect,
-      tipo,
-      ambientes,
-      usuario,
-    } = this.props;
+    // const styles = {
+    //   containerStyle: {
+    //     backgroundColor: this.state.backgroundColor,
+    //   },
+    // };
+    const { tipo, ambientes, usuario } = this.props;
     return (
       <div>
         <Navbar

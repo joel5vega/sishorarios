@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, RouterComponentProps, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { Component } from "react";
 // import './_style.scss';
 
@@ -25,7 +25,7 @@ class Login extends Component {
       password: this.state.password,
     };
     const response = await AuthService.doUserLogin(postData);
-    var tipo= response.tipo;
+    var tipo = response.tipo;
     var usuario = response.user;
     console.log("response", response.tipo);
     if (response) {
@@ -34,7 +34,7 @@ class Login extends Component {
       auth.update();
       var autenticado = auth.isAuthenticated();
 
-      this.props.handleAuth(tipo,usuario);
+      this.props.handleAuth(tipo, usuario);
       this.props.history.push("/clase");
       console.log(autenticado + "ir a home");
     } else {

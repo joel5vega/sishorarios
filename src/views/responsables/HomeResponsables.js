@@ -1,6 +1,5 @@
-import React, { Component, Contetxt } from "react";
-import ContextProvider from "../../containers/ContextProvider";
-import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import React, { Component } from "react";
+// import ContextProvider from "../../containers/ContextProvider";
 import TarjetaMateria from "../../components/TarjetaMateria";
 export default class HomeResponsables extends Component {
   componentDidMount() {}
@@ -8,20 +7,10 @@ export default class HomeResponsables extends Component {
     // let data = this.context;
     let { datos } = this.props;
 
-    console.log("----componente home responsables---");
+    // console.log("----componente home responsables---");
     // console.log(data);
     console.log(datos);
-    const styles = {
-      container: {
-        flex: 1,
-        flexItems: 3,
-        backgroundColor: "blue",
-        alignItems: "center",
-        backgroundColor: "orange",
-        position: "relative",
-        margin: 10,
-      },
-    };
+
     return (
       <div>
         <div className="box">
@@ -70,4 +59,4 @@ export default class HomeResponsables extends Component {
   }
 }
 
-HomeResponsables.contextType = ContextProvider;
+// HomeResponsables.contextType = ContextProvider;

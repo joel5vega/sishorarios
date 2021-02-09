@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InputControlado from "../../components/InputControlado";
+// import InputControlado from "../../components/InputControlado";
 export default class CrearAmbiente extends Component {
   constructor(props) {
     super(props);

@@ -52,8 +52,8 @@ export default class HomeAmbientes extends Component {
   }
 
   render() {
-    var { libres, ocupados, showLib, showOcu, show } = this.state;
-    const label = ["Ambientes Ocupados", "Ambientes disponibles"];
+    var { libres, ocupados,  } = this.state;
+    // const label = ["Ambientes Ocupados", "Ambientes disponibles"];
     return (
       <div>
         <TabPanel

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Lista from "../../components/Lista";
+// import Lista from "../../components/Lista";
 import ListaCore from "../../components/ListaCore";
 import DetalleClase from "../clases/DetalleClase";
 export default class DatosAdmin extends Component {

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import MateriasMencion from "./MateriasMencion";
-import FloatingButton from "../../components/FloatingButton";
-
 import TabPanel from "../../components/Tabs";
 
 export default class HomeMaterias extends Component {
@@ -20,7 +18,7 @@ export default class HomeMaterias extends Component {
 
   render() {
     var { datos } = this.props;
-    var { mencion, titulo, semestre } = this.state;
+    // var { mencion, titulo, semestre } = this.state;
     return (
       <div>
         <TabPanel
