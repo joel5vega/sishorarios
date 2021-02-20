@@ -12,13 +12,14 @@ export default class Register extends Component {
   }
   componentDidMount() {
     //recibimos el dato desde props
+    this.setState({ selected: this.props.datos });
   }
   handleChange = (evento) => {
     const target = evento.target;
     const value = target.value;
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
-
+    this.props.onChange(evento);
     console.log(name + " es: " + value);
   };
 
@@ -70,57 +71,57 @@ export default class Register extends Component {
     return (
       <div className="container">
         <form onSubmit={(event) => this.handleFormSubmit(event)}>
-          <InputControlado
-            label="Nombre"
-            nombre="name"
-            valor={name}
-            handleChange={this.handleChange}
-          />
-          <InputControlado
-            label="Correo electronico"
-            nombre="email"
-            valor={email}
-            handleChange={this.handleChange}
-          />
-          <div className="form-group">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
+          <div className="tarjetas">
+            <div className="tarjeta">
+              <InputControlado
+                label="Nombre"
+                nombre="name"
+                valor={name}
+                handleChange={this.handleChange}
+              />
+            </div>
+            <div className="tarjeta">
+              <InputControlado
+                label="Correo electronico"
+                nombre="email"
+                valor={email}
+                handleChange={this.handleChange}
+              />
+            </div>
+            <div className="tarjeta">
+              <InputControlado
+                type="password"
+                label="Contraseña"
+                value={password}
+                onChange={this.handleChange}
+              />
+              <InputControlado
+                type="password"
+                label="Confirme la Contraseña"
+                value={c_password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="tarjeta">
+              <SelectControlado
+                label="Tipo"
+                value={tipo}
+                name="tipo"
+                handleChange={this.handleChange}
+                datos={tipos}
+              />
 
-          <div className="form-group">
-            <label>Confirme la Contraseña</label>
-            <input
-              type="password"
-              name="c_password"
-              placeholder="Confirme Contraseña"
-              value={c_password}
-              onChange={this.handleChange}
-              required
-            />
+              {this.state.selected.tipo === "docente" && (
+                <SelectControlado
+                  label="Responsable"
+                  value={responsable}
+                  name="responsable"
+                  handleChange={this.handleChange}
+                  datos={this.props.responsables}
+                />
+              )}
+            </div>
           </div>
-          <SelectControlado
-            label="Tipo"
-            value={tipo}
-            name="tipo"
-            handleChange={this.handleChange}
-            datos={tipos}
-          />
-          {this.state.selected.tipo === "docente" && (
-            <SelectControlado
-              label="Responsable"
-              value={responsable}
-              name="responsable"
-              handleChange={this.handleChange}
-              datos={this.props.responsables}
-            />
-          )}
 
           <div className="col-4">
             <button type="submit" className="btn btn-primary btn-block">

@@ -3,23 +3,33 @@ import "../css/Lista.css";
 import "../fontawesome";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 //Plantillas para crear
 import CrearResponsable from "../views/responsables/CrearResponsable";
 import CrearAmbiente from "../views/ambientes/crearAmbiente";
-import CrearMateria from "../containers/crearMateria";
-import CrearClase from "../containers/crearClase";
+import CrearMateria from "../views/materias/CrearMateria";
+import CrearClase from "../views/clases/crearClase";
+import CrearPeriodo from "../containers/crear/crearPensum";
+import CrearPensum from "../containers/crear/crearPeriodo";
+import CrearMencion from "../containers/crear/crearMencion";
+import Register from "../views/auth/Register.js";
+import DetalleClase from "../views/clases/DetalleClase";
 
-export default class ListaCore extends Component {
+class ListaCore extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
+      url: "http://localhost:8000/",
       dato: {},
       tipo: "",
       show: false,
+      showInfo: false,
       guardar: false,
       editar: false,
       selected: {},
+      info: {},
       menciones: this.props.datos.menciones,
       pensums: this.props.datos.pensums,
     };
@@ -35,19 +45,76 @@ export default class ListaCore extends Component {
       tipo: tipo,
       selected: {},
     });
-    console.log("modal");
+    console.log(tipo);
   };
   onHide = () => {
-    this.setState({ show: false });
+    this.setState({ show: false, showInfo: false });
   };
 
   onChange = (evento) => {
+    console.log("padre");
     const target = evento.target;
     const value = target.value;
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     console.log(name + " es: " + value);
   };
+  ////////////////////////
+  showHabil = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    const id = target.id;
+    var tipo = this.props.tipo;
+
+    const response = this.buscar(id);
+    console.log(target.name);
+    // console.log(response[0]);
+    this.setState({
+      info: response[0],
+      selected:response[0],
+      showInfo: true,
+      showHabilitado: true,
+      // selected: { ...this.state.selected, [name]: value },
+      idClase: id,
+    });
+  };
+  buscar(id) {
+    var dato = this.props.datos.filter((e) => e.id == id);
+    return dato;
+  }
+  habilitar = (event) => {
+    event.preventDefault();
+    var id = this.state.idClase;
+    console.log(id);
+    let urlPost = this.state.url + "api/clases/habilitar/" + id;
+    axios
+      .post(urlPost)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .then(console.log("evento habilitado"));
+    this.setState({ showInfo: false });
+    this.props.history.push("/admin/clases");
+  };
+  selectHabilitar(e) {
+    // console.log("tipo: " + e);
+    switch (e) {
+      case "clases":
+        return <DetalleClase clase={this.state.info} />;
+      case "users":
+        return <DetalleClase clase={this.state.selected} />;
+
+      default:
+        return <p>Envie el modo</p>;
+    }
+  }
+  /////////
   editar(e) {
     this.setState({
       show: true,
@@ -67,14 +134,18 @@ export default class ListaCore extends Component {
   };
   eliminar(e) {
     console.log("eliminar: " + e);
-    fetch();
+    console.log(this.state.tipo);
   }
+  ///////////////////////////
   //end of CRUD
+  ///////////////////////////
   selectCrear(e) {
-    console.log("tipo: " + e);
+    // console.log("tipo: " + e);
     switch (e) {
       case "ambiente":
-        return <CrearAmbiente {...this.state.selected} />;
+        return (
+          <CrearAmbiente datos={this.state.selected} onChange={this.onChange} />
+        );
 
       case "responsable":
         return (
@@ -97,6 +168,28 @@ export default class ListaCore extends Component {
 
       case "clase":
         return <CrearClase />;
+      case "periodo":
+        return (
+          <CrearPeriodo datos={this.state.selected} onChange={this.onChange} />
+        );
+      case "pensum":
+        return (
+          <CrearPensum datos={this.state.selected} onChange={this.onChange} />
+        );
+      case "mencion":
+        return (
+          <CrearMencion datos={this.state.selected} onChange={this.onChange} />
+        );
+
+      case "users":
+        return (
+          <Register
+            datos={this.state.selected}
+            responsables={this.props.responsables}
+            onChange={this.onChange}
+          />
+        );
+
       default:
         return <p>Envie el modo</p>;
     }
@@ -113,6 +206,7 @@ export default class ListaCore extends Component {
 
   render() {
     const { titulo } = this.props;
+    var info = this.state.info;
     // console.log(datos)
     // const keys = Object.keys(datos[0]);
     const { keys } = this.props;
@@ -153,8 +247,9 @@ export default class ListaCore extends Component {
                           return (
                             <td key={item.id + campo}>
                               <input
-                                name="estado"
-                                onChange={this.onChange}
+                                name={item.tipo}
+                                id={item.id}
+                                onChange={this.showHabil}
                                 type="checkbox"
                                 checked={item[campo] === "true"}
                               />
@@ -191,7 +286,7 @@ export default class ListaCore extends Component {
           </div>
         </div>
 
-        <div>
+        <div id="crear">
           <Modal
             show={this.state.show}
             onHide={this.onHide}
@@ -223,7 +318,35 @@ export default class ListaCore extends Component {
             </form>
           </Modal>
         </div>
+
+        <div id="info">
+          <Modal
+            show={this.state.showInfo}
+            onHide={this.onHide}
+            aria-labelledby="contained-modal-title-vcenter"
+          >
+            <Modal.Header style={{ backgroundColor: info.color }}>
+              <Modal.Title
+                id="contained-modal-title-vcenter"
+                style={{ color: "white" }}
+              >
+                {info.tipo}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="show-grid">
+              {this.selectHabilitar(this.props.tipo)}
+            </Modal.Body>
+            <Modal.Footer>
+              {this.state.showHabilitado && (
+                <Button onClick={this.habilitar}>Habilitar Clase</Button>
+              )}
+
+              <Button onClick={this.onHide}>Cancelar</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     );
   }
 }
+export default withRouter(ListaCore);

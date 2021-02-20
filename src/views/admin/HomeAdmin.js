@@ -32,7 +32,7 @@ export default class HomeAdmin extends Component {
           label02="Usuarios"
           label03="Habilitar Clases"
           item01={<DatosAdmin index={this.props.index} />}
-          item02={<UsuariosAdmin usuarios={this.state.usuarios} />}
+          item02={<UsuariosAdmin usuarios={this.state.usuarios} responsables={this.props.index.responsables}/>}
           item03={<ClasesAdmin clases={this.props.index.clases}/>}
         />
       </div>

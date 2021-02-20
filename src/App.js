@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import {
+  Switch,
+  BrowserRouter,
+  Route,
+  NavLink,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,9 +57,20 @@ class App extends Component {
 
   async componentDidMount() {
     this.fetchIndex();
-    this.setState({ auth: Auth.isAuthenticated() });
+    this.setState({
+      auth: Auth.isAuthenticated(),
+      tipo: Auth.getTipo(),
+      user: Auth.getUser(),
+    });
+    this.getUser();
   }
-
+  async getUser() {
+    axios
+      .get(this.state.url + "/api/users/" + this.state.user)
+      .then((response) => {
+        this.setState({ usuario: response });
+      });
+  }
   async fetchIndex() {
     axios.get(this.state.url + "/api/index").then((response) => {
       this.setState({
@@ -92,21 +109,19 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <div>
-            <NavBar
-              usuario={this.state.usuario}
-              tipo={this.state.tipo}
-              handleAmbienteSelect={this.handleAmbienteSelect}
-              handleSemestreSelect={this.handleSemestreSelect}
-              handlePeriodoSelect={this.handlePeriodoSelect}
-              periodos={this.state.periodos}
-              aulas={this.state.ambientes}
-              laboratorios={this.state.ambientes}
-              ambientes={this.state.ambientes}
-              handleAuth={this.handleAuth}
-              semestres={this.state.semestres}
-            />
-          </div>
+          <NavBar
+            usuario={this.state.usuario}
+            tipo={this.state.tipo}
+            handleAmbienteSelect={this.handleAmbienteSelect}
+            handleSemestreSelect={this.handleSemestreSelect}
+            handlePeriodoSelect={this.handlePeriodoSelect}
+            periodos={this.state.periodos}
+            aulas={this.state.ambientes}
+            laboratorios={this.state.ambientes}
+            ambientes={this.state.ambientes}
+            handleAuth={this.handleAuth}
+            semestres={this.state.semestres}
+          />
 
           <h1>{this.state.tipo}</h1>
           <div id="public-routes">
@@ -122,17 +137,7 @@ class App extends Component {
                 <Register {...props} responsables={this.state.responsables} />
               )}
             />
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home
-                  {...props}
-                  semestres={this.state.semestres}
-                  ambientes={this.state.ambientes}
-                />
-              )}
-            />
+
             {/* este es el general */}
             <Route
               exact
@@ -162,6 +167,17 @@ class App extends Component {
 
           {Auth.isAuthenticated() ? (
             <div name="rutas">
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                    {...props}
+                    semestres={this.state.semestres}
+                    ambientes={this.state.ambientes}
+                  />
+                )}
+              />
               <Route
                 exact
                 path="/responsable"
@@ -311,14 +327,33 @@ class App extends Component {
                 exact
                 path="/admin/clases"
                 render={(props) => (
-                  <ClasesAdmin {...props} datos={this.state.materias} />
+                  <ClasesAdmin {...props} clases={this.state.index.clases} />
                 )}
               />
             </div>
           ) : (
-            <div className="container">
+            <div className="container" id="print">
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                    {...props}
+                    semestres={this.state.semestres}
+                    ambientes={this.state.ambientes}
+                  />
+                )}
+              />
+              <Redirect
+                to={{
+                  pathname: "/",
+                  // search: "?utm=your+face",
+                  state: { referrer: "currentLocation" },
+                }}
+              />
+              {/*               
               <h3>Necesita estar autenticado</h3>
-              {/*  <Login handleAuth={this.handleAuth} /> */}
+              <Login handleAuth={this.handleAuth} />
               <NavLink
                 to={{
                   pathname: "/login",
@@ -328,7 +363,7 @@ class App extends Component {
                 }}
               >
                 <h1>Login</h1>
-              </NavLink>
+              </NavLink> */}
               {/* <button onClick={this.handleAuth}>auth </button> */}
             </div>
           )}

@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import ListaCore from "../../components/ListaCore";
-import DetalleClase from "../clases/DetalleClase";
-
+import axios from "axios";
 export default class ClasesAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
+      url: "http://localhost:8000/",
+      clases: this.props.clases,
     };
   }
-
+  componentDidMount() {
+    this.getDatos();
+  }
+  componentDidUpdate() {
+    this.getDatos();
+  }
+  async getDatos() {
+    var url = this.state.url + "api/clases?estado=false";
+    axios.get(url).then((response) => {
+      this.setState({ clases: response.data });
+    });
+  }
   render() {
     const keys = [
       "estado",
@@ -26,15 +38,13 @@ export default class ClasesAdmin extends Component {
     ];
     return (
       <div>
-        <div >
-        <DetalleClase />
+        <div>
           <ListaCore
             titulo="Clases"
-            datos={this.props.clases}
+            datos={this.state.clases}
             tipo="clases"
             keys={keys}
           />
-          
         </div>
       </div>
     );

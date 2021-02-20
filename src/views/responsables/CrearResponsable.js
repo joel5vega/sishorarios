@@ -28,6 +28,7 @@ export default class CrearResponsable extends Component {
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     console.log(name + " es: " + value);
+    this.props.onChange(evento);
   };
 
   render() {
@@ -50,46 +51,57 @@ export default class CrearResponsable extends Component {
       descripcion,
     } = this.state.selected;
     return (
-      <div className="container">
-        <InputControlado
-          label="Nombre"
-          nombre="nombre"
-          valor={nombre}
-          handleChange={this.handleChange}
-        />
-        <InputControlado
-          label="Apellido Paterno"
-          nombre="ap_paterno"
-          valor={ap_paterno}
-          handleChange={this.handleChange}
-        />
-        <InputControlado
-          label="Apellido Materno"
-          nombre="ap_materno"
-          valor={ap_materno}
-          handleChange={this.handleChange}
-        />
-        <SelectControlado
-          label="Puesto"
-          value={puesto}
-          name="puesto"
-          handleChange={this.handleChange}
-          datos={puestos}
-        />
-
-        <InputControlado
-          label="Titulo"
-          nombre="titulo"
-          valor={titulo}
-          handleChange={this.handleChange}
-        />
-        <div className="form-group col-auto">
-          <label className="col-6">Biografia</label>
-          <textarea
-            name="descripcion"
-            value={descripcion}
-            onChange={this.handleChange}
-          ></textarea>
+      <div className="tarjetas">
+        <div className="tarjeta">
+          <InputControlado
+            label="Nombre"
+            nombre="nombre"
+            valor={nombre}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <InputControlado
+            label="Apellido Paterno"
+            nombre="ap_paterno"
+            valor={ap_paterno}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <InputControlado
+            label="Apellido Materno"
+            nombre="ap_materno"
+            valor={ap_materno}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <SelectControlado
+            label="Puesto"
+            value={puesto}
+            name="puesto"
+            handleChange={this.handleChange}
+            datos={puestos}
+          />
+        </div>
+        <div className="tarjeta">
+          <InputControlado
+            label="Titulo"
+            nombre="titulo"
+            valor={titulo}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <div className="form-group col-auto">
+            <label className="col-6">Biografia</label>
+            <textarea
+              name="descripcion"
+              value={descripcion}
+              onChange={this.handleChange}
+            ></textarea>
+          </div>
         </div>
       </div>
     );

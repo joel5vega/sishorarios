@@ -16,7 +16,7 @@ class DetalleClase extends Component {
   }
 
   componentDidMount() {
-    this.verificarEntrada();
+    // this.verificarEntrada();
     // this.getDatos(this.state.clase);
   }
   getDatos(id) {
@@ -31,13 +31,14 @@ class DetalleClase extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       this.onRouteChanged();
-      this.verificarEntrada();
+      // this.verificarEntrada();
     }
   }
 
   onRouteChanged() {
     console.log("ROUTE CHANGED");
   }
+  /*
   verificarEntrada() {
     var estado = this.props.location.state;
     this.setState({
@@ -45,12 +46,6 @@ class DetalleClase extends Component {
       clases: this.props.clase,
     });
     console.log(this.props.id);
-    console.log(
-      this.props.id.start.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    );
 
     if (estado) {
       // console.log(estado);
@@ -64,21 +59,21 @@ class DetalleClase extends Component {
       console.log("no llego");
     }
   }
-
+*/
   ///////////////////
   render() {
-    var { backgroundColor, title } = this.props.id;
-    var startTime = this.props.id.start.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    var endTime = this.props.id.end.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
+    var dias = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    var daysOfWeek = dias[this.props.clase.daysOfWeek];
     var {
+      color,
       materia,
       paralelo,
       semestre,
@@ -87,15 +82,18 @@ class DetalleClase extends Component {
       tituloResponsable,
       responsable,
       ambiente,
+      startTime,
+      endTime,
+      title,
       // tipoAmbiente,
-      daysOfWeek,
+      // daysOfWeek,
       // periodo,
     } = this.props.clase;
     return (
       <div>
-        <div style={{ backgroundColor: { backgroundColor } }}>
-          <div className="tarjetas">
-            <div className="tarjetas-titulo">Detalle de clase</div>
+        <div>
+          <div className="tarjetas" style={{ borderColor: color }}>
+            {/* <div className="tarjetas-titulo">Detalle de clase</div> */}
             <div className="tarjeta-big">
               <div className="form-group">
                 <div className="tarjetas-titulo-col">Materia</div>

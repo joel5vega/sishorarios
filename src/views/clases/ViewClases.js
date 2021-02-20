@@ -37,24 +37,38 @@ class ViewClases extends Component {
   modal = () => {
     this.setState({ show: true, guardar: true, editar: false });
   };
-
+  getDateClick = (e) => {
+    console.log(e);
+  };
   eventClick = (e) => {
-    // console.log("estamos en el padre");
-
-    // console.log(e.event);
-    // this.modal();
     var id = e.event;
     var clase = e.event.extendedProps;
-    // var startTime= e.event.
-    
+    var startTime = e.event.start.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    var endTime = e.event.end.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    var daysOfWeek = e.event.start.getDay();
+    clase = {
+      ...clase,
+      startTime: startTime,
+      endTime: endTime,
+      daysOfWeek: daysOfWeek,
+      color: e.event.backgroundColor,
+      title: e.event.title,
+    };
     this.setState({
       show: true,
       guardar: true,
       editar: false,
       claseID: id,
       clase: clase,
+      backgroundColor: e.event.backgroundColor,
     });
-    
+
     console.log(clase);
   };
   onHide = () => {
@@ -109,31 +123,21 @@ class ViewClases extends Component {
               aria-labelledby="contained-modal-title-vcenter"
             >
               <form onSubmit={this.guardar}>
-                <Modal.Header closeButton>
-                  <Modal.Title id="contained-modal-title-vcenter">
-                    {this.props.titulo}
+                <Modal.Header
+                  closeButton
+                  style={{ backgroundColor: this.state.backgroundColor }}
+                >
+                  <div style={{ alignContent: "center" }}></div>
+                  <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    style={{ color: "white" }}
+                  >
+                    {this.state.clase.tipo}
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
-                  <DetalleClase
-                    id={this.state.claseID}
-                    clase={this.state.clase}
-                  />
+                  <DetalleClase clase={this.state.clase} />
                 </Modal.Body>
-                <Modal.Footer>
-                  {this.state.guardar && (
-                    <Button onClick={this.guardar}>Guardar</Button>
-                  )}
-                  {this.state.editar && (
-                    <Button
-                      // type="submit"
-                      onClick={this.guardar}
-                    >
-                      Actualizar
-                    </Button>
-                  )}
-                  <Button onClick={this.onHide}>Cancelar</Button>
-                </Modal.Footer>
               </form>
             </Modal>
           </div>
@@ -158,7 +162,7 @@ class ViewClases extends Component {
         {this.state.externo && <h1>{this.state.titulo}</h1>}
         <Calendario
           fuente={this.state.fuente}
-          getDateClick={console.log("click en hora")}
+          getDateClick={this.getDateClick}
           eventClick={this.eventClick}
         />
       </div>

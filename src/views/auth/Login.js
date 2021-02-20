@@ -8,7 +8,6 @@ const Login = (props) => {
     e.preventDefault();
     axios
       .post("https://localhost:8000/login", {
-        // .post("https://api.sanctum.test/login", {
         email: email,
         password: password,
       })

@@ -305,7 +305,7 @@ class NavBar extends Component {
               </Nav>
             )}
             <Nav onSelect={this.handleSelect}>
-              {tipo === "administrativo" && (
+              {tipo == "administrativo" && (
                 <div>
                   <NavLink to="/admin/">Admin</NavLink>
                 </div>

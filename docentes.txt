@@ -1,0 +1,3325 @@
+162
+	        ;SANCHEZ;GLADYS MERCEDES
+	     
+	      
+  	     2421
+	        ;SANTANDER;SANDRA SILVIA
+	     
+	      
+  	     2396
+	        ABELA;GISBERT;MARIA DEL CARMEN
+	     
+	      
+  	     2043
+	        ABRUZZESE;CASTELLON;GIOVANI
+	     
+	      
+  	     2751
+	        ACARAPI;PAREDES;ALBERT HUGO
+	     
+	      
+  	     2782
+	        ACARAPI;VASQUEZ;JUAN WILFREDO
+	     
+	      
+  	     2041
+	        ADRIAN;MARTINEZ;MARIO
+	     
+	      
+  	     139
+	        ADUVIRI;RODRIGUEZ;RUPERTO
+	     
+	      
+  	     2739
+	        AGUILA;GOMEZ;CRISTHOFFER TITO
+	     
+	      
+  	     2530
+	        AGUILAR;AGUILAR;JUAN RICARDO
+	     
+	      
+  	     2444
+	        AGUILAR;ARUQUIPA;JOSE LUIS
+	     
+	      
+  	     197
+	        AGUILAR;GUTIERREZ;SERGIO
+	     
+	      
+  	     2317
+	        AGUILAR;MAMANI;ABAD LUIS
+	     
+	      
+  	     2759
+	        AGUILAR;REY;RUBY ISABEL
+	     
+	      
+  	     2636
+	        AGUILAR;ROCABADO;JUAN CARLOS
+	     
+	      
+  	     2623
+	        AGUILAR;SALAZAR;CHRISTIAN RODRIGO
+	     
+	      
+  	     2610
+	        AGUILAR;VILLCA;HERNAN
+	     
+	      
+  	     2063
+	        AGUILERA;RIOS;JUAN ALBERTO
+	     
+	      
+  	     140
+	        ALARCON;ALIAGA;CARLOS
+	     
+	      
+  	     2253
+	        ALAVI;ESPEJO;NELLY
+	     
+	      
+  	     2190
+	        ALCALA;CRUZ;GERMAN
+	     
+	      
+  	     109
+	        ALCAZAR;PEÑARANDA;EDUARDO
+	     
+	      
+  	     2651
+	        ALCON;MAMANI;ALEX
+	     
+	      
+  	     2167
+	        ALEJO;TERRAZAS;ALBERTO
+	     
+	      
+  	     2166
+	        ALEJO;TICONA;BONIFACIO
+	     
+	      
+  	     2417
+	        ALIAGA;ARANDA;WALDO ANTONIO
+	     
+	      
+  	     2191
+	        ALIAGA;BRUCH;YECID
+	     
+	      
+  	     2123
+	        ALIAGA;LIMACHI;MARCELINO
+	     
+	      
+  	     148
+	        ALIAGA;RIVERA;ANGEL
+	     
+	      
+  	     2562
+	        ALIAGA;TERAN;MARCO ANTONIO
+	     
+	      
+  	     2439
+	        ALIENDRE;MARTINEZ;PAOLA GIOCONDA
+	     
+	      
+  	     2079
+	        ALMARAZ;CORDOVA;WALTER
+	     
+	      
+  	     2685
+	        ALMENDRAS;ALARCON;OSCAR DAVID
+	     
+	      
+  	     2338
+	        ALVARADO;KIRIGIN;JUAN ANTONIO
+	     
+	      
+  	     2406
+	        ALVARADO;MONROY;JUAN CARLOS
+	     
+	      
+  	     2274
+	        ALVAREZ;APAZA;RENE
+	     
+	      
+  	     2092
+	        ALVAREZ;COSSIO;ALFREDO
+	     
+	      
+  	     2091
+	        ALVAREZ;GANTIER;DANIEL
+	     
+	      
+  	     2539
+	        ALVAREZ;GUTIERREZ;ROLANDO
+	     
+	      
+  	     2168
+	        ALVAREZ;QUISPE;ARMANDO
+	     
+	      
+  	     2058
+	        AMESTEGUI;MORENO;MAURICIO
+	     
+	      
+  	     138
+	        AMONZABEL;HERBAS;JUAN VICTOR
+	     
+	      
+  	     2405
+	        AMURRIO;ORDOÑEZ;FREDDY EUFRONIO
+	     
+	      
+  	     2339
+	        AMURRIO;ORDONEZ;PATRICIA JANNETH
+	     
+	      
+  	     2615
+	        AMUSQUIVAR;CABALLERO;AHMED ERNESTO
+	     
+	      
+  	     102
+	        AMUSQUIVAR;CABALLERO;WILMA
+	     
+	      
+  	     2755
+	        ANDO;ALVAREZ;JOSE MIGUEL
+	     
+	      
+  	     2256
+	        ANDRADE;BALLESTEROS;HERNAN MARCIAL
+	     
+	      
+  	     2598
+	        ANDRADE;FLORES;MARCOS FROILAN
+	     
+	      
+  	     2129
+	        ANDRADE;LANZA;WILDER ELOY
+	     
+	      
+  	     2506
+	        ANDRADE;MALLEA;CARLOS EDUARDO
+	     
+	      
+  	     2215
+	        ANDRADE;RUIZ;LUIS ARMANDO
+	     
+	      
+  	     2689
+	        ANGOLA;AGUILAR;EDWIN ROLANDO
+	     
+	      
+  	     2312
+	        ANGUS;ENRIQUEZ;ELA
+	     
+	      
+  	     2400
+	        ANTONIO;SANJINEZ;KATHERINE
+	     
+	      
+  	     2491
+	        APAZA;CHAVEZ;ROBERTO
+	     
+	      
+  	     2430
+	        APAZA;GUTIERREZ;JOSE LUIS
+	     
+	      
+  	     2588
+	        APAZA;PAZ;JUANA LUISA
+	     
+	      
+  	     2744
+	        APAZA;QUISPE;BRIGIDA
+	     
+	      
+  	     2314
+	        ARAMAYO;RAMIREZ;CARLOS ANDRES
+	     
+	      
+  	     2159
+	        ARCE;SALCEDO;LUIS RAMIRO
+	     
+	      
+  	     142
+	        ARCE;TEJADA;ALBERTO
+	     
+	      
+  	     2550
+	        ARCE;VILLANUEVA;SANTOS EDWIN
+	     
+	      
+  	     2741
+	        ARCIENEGA;BARRIGA;HUASCAR PABLO
+	     
+	      
+  	     2591
+	        ARCOS;SALCEDO;ANDREA GLORIA
+	     
+	      
+  	     2672
+	        ARENAS;ARANIBAR;MIGUEL ANGEL
+	     
+	      
+  	     2268
+	        ARTEAGA;MIRANDA;MOISES EFRAIN
+	     
+	      
+  	     163
+	        ARTEAGA;TRILLO;GONZALO
+	     
+	      
+  	     2418
+	        ARTEAGA;VARGAS;CARLOS ALEX
+	     
+	      
+  	     2540
+	        ARTOVAR;CASTILLO;CARMEN ROSA
+	     
+	      
+  	     2475
+	        ARUQUIPA;CHUQUIMIA;EMERSON EVARISTO
+	     
+	      
+  	     2170
+	        ARZABE;MAURE;JOSE OMAR
+	     
+	      
+  	     131
+	        ARZABE;URCULLO;RICARDO M.
+	     
+	      
+  	     2075
+	        ARZE;CHAVEZ;LUIS FERNANDO
+	     
+	      
+  	     2283
+	        ARZE;OCAMPO;ROSSE MARY
+	     
+	      
+  	     2241
+	        ASTORGA;SANJINES;EDWIN RAMIRO
+	     
+	      
+  	     2103
+	        ASTURIZAGA;CALERO;EDWIN OSCAR
+	     
+	      
+  	     2169
+	        ASTURIZAGA;CALERO;ORLANDO
+	     
+	      
+  	     2259
+	        AUZA;DE BEJAR;MARCO ANTONIO
+	     
+	      
+  	     177
+	        AVENDAÑO;CHALCO;JORGE
+	     
+	      
+  	     2074
+	        AVILES;CORTEZ;JUAN CARLOS
+	     
+	      
+  	     2558
+	        AVILES;LOAYZA;OMAR ERNESTO
+	     
+	      
+  	     2464
+	        AYALA;POLO;ELMER MARTIN
+	     
+	      
+  	     2438
+	        AYALA;SANCHEZ;RODOLFO
+	     
+	      
+  	     2350
+	        AYALA;SANTANDER;MARYSOL SONIA
+	     
+	      
+  	     2469
+	        AYAVIRI;AYAVIRI;YAMILET CARMEN
+	     
+	      
+  	     2171
+	        BALANZA;ERQUICIA;RODNY
+	     
+	      
+  	     2520
+	        BALBOA;VELASCO;HUGO FERNANDO
+	     
+	      
+  	     2082
+	        BALDERRAMA;BARRIOS;HUGO
+	     
+	      
+  	     2349
+	        BALTA;MONTENEGRO;GABRIEL FRANKLIN
+	     
+	      
+  	     2343
+	        BARBOZA;TORREZ;BRAYAN ENRIQUE
+	     
+	      
+  	     2192
+	        BARRAGAN;GUZMAN;CRISTINA
+	     
+	      
+  	     2485
+	        BARREDA;SEQUEIROS;LIZBETA MARIA
+	     
+	      
+  	     2390
+	        BARRETA;PINTO;SAUL FRANKLIN
+	     
+	      
+  	     167
+	        BARRIGA;DELGADILLO;GUSTAVO
+	     
+	      
+  	     2193
+	        BARRON;LEITON;PASTOR
+	     
+	      
+  	     2608
+	        BAUTISTA;MAMANI;VALENTIN
+	     
+	      
+  	     200
+	        BAYRON;CASTRILLO;TOMAS
+	     
+	      
+  	     2242
+	        BELLOT;ALARCON;WINDSOR FRANCISCO
+	     
+	      
+  	     2327
+	        BELLOT;KALTEIS;NELSON FEDERICO
+	     
+	      
+  	     2233
+	        BERMEJO;FRANCO;VICTOR
+	     
+	      
+  	     2364
+	        BILBAO;PAZ;ANGEL DELMAR
+	     
+	      
+  	     2499
+	        BILBAO LA VIEJA;POZO;CARLOS CIRO
+	     
+	      
+  	     2621
+	        BLACUT;BENAVIDEZ;LUIS ALBERTO
+	     
+	      
+  	     2761
+	        BLACUTT;YUCRA;ORIETT
+	     
+	      
+  	     2603
+	        BLANCO;;RAMON
+	     
+	      
+  	     2138
+	        BORJA;OMONTE;HERNAN GROVER
+	     
+	      
+  	     2280
+	        BOUTIER;;ASTRID
+	     
+	      
+  	     2243
+	        BRIANCON;GUTIERREZ;MARIA EUFEMIA
+	     
+	      
+  	     2712
+	        BURGOA;CORTEZ;ARIEL
+	     
+	      
+  	     2445
+	        BURGOA;FERNANDEZ;DELIA GEORGINA
+	     
+	      
+  	     2165
+	        BURGOA;MONROY;OSMAN HERNAN
+	     
+	      
+  	     199
+	        BUSCH;DECOVICE;TEODORO
+	     
+	      
+  	     2069
+	        BUSTILLO;PORTOCARRERO;RENE A.
+	     
+	      
+  	     2367
+	        BUSTILLOS;CASTILLO;JOSÉ ANTONIO
+	     
+	      
+  	     2593
+	        BUSTILLOS;DURAN;VIDHER WILFREDO
+	     
+	      
+  	     2099
+	        BUSTILLOS;MALLEA;J.ROLANDO
+	     
+	      
+  	     2569
+	        BUSTILLOS;ORTIZ;GERALT RAFAEL
+	     
+	      
+  	     2446
+	        BUSTILLOS;TARQUI;DENNIS ORLANDO
+	     
+	      
+  	     2087
+	        BUSTOS;GUTIERREZ;JORGE F.
+	     
+	      
+  	     2194
+	        BUSTOS;QUIROGA;JOSE DANIEL
+	     
+	      
+  	     2458
+	        CAÑAVIRI;MENDOZA;WILMER BENJAMIN
+	     
+	      
+  	     112
+	        CABA;MORALES;GONZALO
+	     
+	      
+  	     2376
+	        CABALLERO;HOYOS;JOSE FERNANDO
+	     
+	      
+  	     2533
+	        CABERO;TAPIA;KAREN
+	     
+	      
+  	     2528
+	        CABRERA;LIMON;VICTOR GLORENI
+	     
+	      
+  	     2707
+	        CACERES;ANGULO;IVAN ROGER
+	     
+	      
+  	     2195
+	        CAERO;CABRERA;GERMAN
+	     
+	      
+  	     2385
+	        CAETANO;CHUQUIMIA;OLIVIA
+	     
+	      
+  	     2370
+	        CAILLANTE;CORONADO;HUGO FERNANDO
+	     
+	      
+  	     2614
+	        CALA;VARGAS;JHONNY
+	     
+	      
+  	     2480
+	        CALANI;CHOQUE;REGINA PORFIRIA
+	     
+	      
+  	     2372
+	        CALDERON;;CATALINA ADELAYDA
+	     
+	      
+  	     2436
+	        CALDERON;BALLESTEROS;ANGEL WILBERTO
+	     
+	      
+  	     2584
+	        CALDERON;MONTOYA;GEOVANA LENA
+	     
+	      
+  	     2120
+	        CALIZAYA;JIMENEZ;ALFREDO
+	     
+	      
+  	     2220
+	        CALIZAYA;TERCEROS;ANDRES
+	     
+	      
+  	     2196
+	        CALLA;CARRASCO;MIGUEL ANGEL
+	     
+	      
+  	     2525
+	        CALLE;ANDRADE;ALEX RAMIRO
+	     
+	      
+  	     2760
+	        CALLE;QUISPE;ALBERTO
+	     
+	      
+  	     2073
+	        CALLEJAS;PINTO;EDWIN JESUS
+	     
+	      
+  	     2599
+	        CALLISAYA;MAMANI;FELIPE
+	     
+	      
+  	     2624
+	        CALLISAYA ;CUTIPA;RUBEN CARLOS
+	     
+	      
+  	     2070
+	        CAMPERO;BUSTILLOS;JOSE FELIX
+	     
+	      
+  	     2336
+	        CAMPOS;;MARIA ANGELICA
+	     
+	      
+  	     2059
+	        CANAVIRE;PARDO;FREDDY
+	     
+	      
+  	     2408
+	        CANEZO;GOMEZ;WINDER ANDRES
+	     
+	      
+  	     2315
+	        CAPRA;JEMIO;GUIDO RAFAEL
+	     
+	      
+  	     2172
+	        CARBALLO;FERNANDEZ;RONANDT
+	     
+	      
+  	     2386
+	        CARDENAS;CESPEDES;CARLOS NORBERTO
+	     
+	      
+  	     2173
+	        CARDENAS;REVILLA;AGUSTIN
+	     
+	      
+  	     2293
+	        CARDONA;;AURORA
+	     
+	      
+  	     2197
+	        CARRASCO;IMAÑA;MIGUEL ANGEL
+	     
+	      
+  	     2307
+	        CARRASCO;VILLANUEVA;CHRISTIAN
+	     
+	      
+  	     2677
+	        CARRAZANA;CALZADILLA;EDWIN JOSE
+	     
+	      
+  	     2770
+	        CARRILLO;SEGALES;RONALD IVAN
+	     
+	      
+  	     2524
+	        CARRIZALES;;MARIA CECILIA
+	     
+	      
+  	     2244
+	        CARVAJAL;SUMI;GREGORIO
+	     
+	      
+  	     111
+	        CASTAÑON;GOMEZ;REYNALDO
+	     
+	      
+  	     2512
+	        CASTRO;MITA;VICTOR HUGO
+	     
+	      
+  	     2131
+	        CASTRO;ORDOÑEZ;JOSE MANUEL
+	     
+	      
+  	     2322
+	        CASTRO;SANCHEZ;DANNY OLGA
+	     
+	      
+  	     2234
+	        CASTRO;VEGA;ADOLFO
+	     
+	      
+  	     2652
+	        CELIS;LAGUNA;DANIEL SAUL
+	     
+	      
+  	     2174
+	        CENTELLAS;COLMENAR;RENE
+	     
+	      
+  	     2758
+	        CENTELLAS;LIMA;SANDRO EFRAIN
+	     
+	      
+  	     2235
+	        CENZANO;SERRANO;MARIA DEL CARMEN
+	     
+	      
+  	     2236
+	        CERRUTO;ANIBARRO;FERNANDO
+	     
+	      
+  	     2731
+	        CHALLAPA;MOLINA;NATALY INES
+	     
+	      
+  	     2711
+	        CHAMA;RODRIGUEZ;RAQUEL
+	     
+	      
+  	     2545
+	        CHAMBI;CHUQUICHAMBI;JOSE LUIS
+	     
+	      
+  	     2134
+	        CHAMBI;MAMANI;OSCAR PABLO
+	     
+	      
+  	     2175
+	        CHAMBI;VIRACA;LUIS
+	     
+	      
+  	     182
+	        CHAMBI;YANA;MARCOS
+	     
+	      
+  	     2500
+	        CHAVEZ;CHOQUE;JUAN CARLOS
+	     
+	      
+  	     2384
+	        CHAVEZ;CURY;GALIA
+	     
+	      
+  	     2477
+	        CHAVEZ;GORDILLO;MARIO ERROL
+	     
+	      
+  	     169
+	        CHAVEZ;RIOS;HECTOR
+	     
+	      
+  	     2096
+	        CHAVEZ;RIOS;LUIS
+	     
+	      
+  	     2156
+	        CHAVEZ;RIOS;SILVERIO
+	     
+	      
+  	     195
+	        CHOQUE;ASPIAZU;RIGOBERTO
+	     
+	      
+  	     2578
+	        CHOQUE;CURZ;VICTOR HUGO
+	     
+	      
+  	     2663
+	        CHOQUE;DE AGUILAR;CECILIA
+	     
+	      
+  	     2748
+	        CHOQUE;DEHEZA;WILVER GONZALO
+	     
+	      
+  	     2728
+	        CHOQUE;FLORES;VALERIO RENE
+	     
+	      
+  	     2771
+	        CHOQUE;MAMANI;NELSON
+	     
+	      
+  	     2695
+	        CHOQUE;MAMANI;NEOMECIO
+	     
+	      
+  	     2391
+	        CHOQUE;POMA;SANDALIO
+	     
+	      
+  	     2394
+	        CHOQUE;ZEGARRA;WILLIAM
+	     
+	      
+  	     2494
+	        CHUGAR;LAGUNA;FLORENCIA
+	     
+	      
+  	     2635
+	        CHUQUIMIA;APAZA;ROGER LUCIO
+	     
+	      
+  	     2698
+	        CHUQUIMIA;CORDOVA;MIGUEL ANGEL
+	     
+	      
+  	     2045
+	        CHURA;TROCHE;FRANKLIN
+	     
+	      
+  	     2604
+	        CHURA;TROCHE;FRANKLIN
+	     
+	      
+  	     2162
+	        CISNEROS;ESPINOZA;VICTOR HUGO
+	     
+	      
+  	     149
+	        CLAURE;PARRA;CARLOS
+	     
+	      
+  	     2185
+	        COAQUIRA;ESCOBAR;MARCELO ALEJANDRO
+	     
+	      
+  	     2749
+	        COMBA;CESPEDES;ANDRES FERNANDO
+	     
+	      
+  	     2216
+	        CONDARCO;AGUILAR;PRIMITIVO
+	     
+	      
+  	     192
+	        CONDE;MAYTA;RENE
+	     
+	      
+  	     2641
+	        CONDE;QUISPE;MARIA JULIA
+	     
+	      
+  	     2576
+	        CONDORI;BELTRAN;EDGAR IVAN
+	     
+	      
+  	     2654
+	        CONDORI;COCHI;TONY EDEN
+	     
+	      
+  	     2680
+	        CONDORI;MARTINEZ;ROGER NEIL
+	     
+	      
+  	     2750
+	        CONTRERAS;AGUIRRE;LIZETH ELIZA
+	     
+	      
+  	     2089
+	        CONTRERAS;CANDIA;JUAN GONZALO
+	     
+	      
+  	     2217
+	        CORDERO;CARDENAS;PILAR DEL ROCIO
+	     
+	      
+  	     198
+	        CORDERO;CARDENAS;SONIA
+	     
+	      
+  	     2128
+	        CORDERO;TORREZ;JAVIER
+	     
+	      
+  	     2252
+	        CORIZA;RIVAS;HERNAN AGUSTIN
+	     
+	      
+  	     2330
+	        CORONEL;CANAVIRI;EDGAR
+	     
+	      
+  	     180
+	        CORONEL;RODRIGUEZ;LEONARDO
+	     
+	      
+  	     2565
+	        CORTEZ;CONDORI;HORACIO RAFAEL
+	     
+	      
+  	     2733
+	        CORTEZ;MALDONADO;PATRICIA
+	     
+	      
+  	     2429
+	        COSME;HUANCA;REYNALDO
+	     
+	      
+  	     2124
+	        COSS;ZELAYA;EDGAR
+	     
+	      
+  	     2622
+	        CRUZ;LIMACHI;ARIEL NATALIO
+	     
+	      
+  	     171
+	        CRUZ;LLANOS;HERNAN
+	     
+	      
+  	     2714
+	        CRUZ;VELA;ERIKA MARILYN
+	     
+	      
+  	     2368
+	        CUARITE;;FELIPE
+	     
+	      
+  	     2582
+	        CUENCA;SARZURI;YOHONI
+	     
+	      
+  	     2040
+	        CUEVAS;BANDA;JUAN FERNANDO
+	     
+	      
+  	     2294
+	        CUEVAS;L.;HERIBERTO
+	     
+	      
+  	     181
+	        CUEVAS;MALDONADO;LUIS
+	     
+	      
+  	     2541
+	        CUEVAS;MOYA;FRANKLIN
+	     
+	      
+  	     2271
+	        CUSI;ARUQUIPA;WILLIAM
+	     
+	      
+  	     2587
+	        DAVALOS;ZILVETY;INONNE CECILIA
+	     
+	      
+  	     2047
+	        DAZA;BLANCO;MARIO
+	     
+	      
+  	     2729
+	        DAZA;VON BOECK;MARIANA
+	     
+	      
+  	     2355
+	        DEHEZA;GUTIERREZ;ALFREDO
+	     
+	      
+  	     2450
+	        DE LA TORRE;TUDELA;CARLA FABIOLA
+	     
+	      
+  	     2451
+	        DEL CARPIO;JALDIN;RENZO
+	     
+	      
+  	     2383
+	        DELGADILLO;ZURITA;MARCELO GONZALO
+	     
+	      
+  	     103
+	        DELGADILLO;ZURITA;MARIO JOSE
+	     
+	      
+  	     2388
+	        DELGADO;FLORES;SERGIO NICANOR
+	     
+	      
+  	     118
+	        DELGADO;SALGUERO;RENE
+	     
+	      
+  	     2094
+	        DEUER;DEUER;PASTOR RAFAEL
+	     
+	      
+  	     2447
+	        DIAZ;AVILA;GIOVANA ROSMERY
+	     
+	      
+  	     2245
+	        DIAZ;BENAVENTE;JOSE AUGUSTO
+	     
+	      
+  	     156
+	        DIAZ;GARCIA;ESPERANZA
+	     
+	      
+  	     2153
+	        DIAZ;GARCIA;MERCEDES
+	     
+	      
+  	     2341
+	        DIAZ;HERRERA;JORGE RODRIGO
+	     
+	      
+  	     2713
+	        DIAZ;TARIFA;MONICA DAYSI
+	     
+	      
+  	     120
+	        DIAZ ROMERO;BENAVIDEZ;JOSE LUIS
+	     
+	      
+  	     2709
+	        DIPP;IDIAQUEZ;RAMIRO MARTIN
+	     
+	      
+  	     2581
+	        DISEÑO MECANICO;CAMPOS;LOZANO
+	     
+	      
+  	     2050
+	        DORIA;MEDINA;J.
+	     
+	      
+  	     2272
+	        DUCHEN;CUELLAR;JUAN CARLOS
+	     
+	      
+  	     2735
+	        DURAN;MOLLINEDO;RODOLFO
+	     
+	      
+  	     2342
+	        ECHALAR;OVANDO;KARINA
+	     
+	      
+  	     2237
+	        ECHAZU;CORTEZ;JORGE
+	     
+	      
+  	     2371
+	        EGUIBAR;CALDERON;EMILIO ABRAHAM
+	     
+	      
+  	     2640
+	        ELIAS;MONCADA;CARLA
+	     
+	      
+  	     2357
+	        ENCINAS;LAGUNA;ROMULO
+	     
+	      
+  	     2030
+	        ESCOBAR;DIAZ;ANGEL
+	     
+	      
+  	     2703
+	        ESCOBAR;PINTO;MIGUEL ANGEL
+	     
+	      
+  	     2149
+	        ESCOBAR;VELASQUEZ;VLADIMIR
+	     
+	      
+  	     2722
+	        ESCOBARI;VARGAS;PAOLA ANDREA
+	     
+	      
+  	     2246
+	        ESPAÑA;VASQUEZ;CARLOS DAVID
+	     
+	      
+  	     2678
+	        ESPADA;ROMERO;HENRY MILTON
+	     
+	      
+  	     2618
+	        ESPADA;SILVA;ANACELI
+	     
+	      
+  	     2218
+	        ESPINOSA;GARCIA;OSCAR
+	     
+	      
+  	     2730
+	        ESPINOZA;ALMAZAN;MARCELA
+	     
+	      
+  	     2247
+	        ESPINOZA;HUANCA;GRACIELA
+	     
+	      
+  	     186
+	        ESPINOZA;HUANCA;NORBERTO
+	     
+	      
+  	     166
+	        ESPINOZA;RIOS;GUILLERMO
+	     
+	      
+  	     2659
+	        ESPINOZA;ROMERO;DANIEL RODRIGO
+	     
+	      
+  	     2519
+	        ESPINOZA;RUBIN DE CELIS;PEDRO FERNANDO
+	     
+	      
+  	     2664
+	        ESTRADA;HEREDIA;RODRIGO
+	     
+	      
+  	     2546
+	        ESTRADA;ROCHA;VICTOR RONALD
+	     
+	      
+  	     2356
+	        EULATE;CHOQUE;GONZALO OSCAR
+	     
+	      
+  	     2426
+	        FERNANDEZ;ARANDA;FREDDY WALTER
+	     
+	      
+  	     2746
+	        FERNANDEZ;ARANDA;NESTOR GENARO
+	     
+	      
+  	     2511
+	        FERNANDEZ;DITMEYER;JORGE GERARDO
+	     
+	      
+  	     2359
+	        FERNANDEZ;HERVAS;FERNANDO
+	     
+	      
+  	     150
+	        FERNANDEZ;MARIÑO;CARLOS
+	     
+	      
+  	     2549
+	        FERNANDEZ;ROCHA;JUAN PABLO
+	     
+	      
+  	     2745
+	        FERRUFINO;GUTIERREZ;FREDDY FERNANDO
+	     
+	      
+  	     2061
+	        FLORES;BUSTILLOS;WILBER
+	     
+	      
+  	     2412
+	        FLORES;FLORES;JOHNNY EPIFANIO
+	     
+	      
+  	     2238
+	        FLORES;MARQUINA;GONZALO OSCAR
+	     
+	      
+  	     2645
+	        FLORES;MENACHO;EDWIN LUIS
+	     
+	      
+  	     157
+	        FLORES;MENESES;FEBO
+	     
+	      
+  	     2607
+	        FLORES;PATZZI;SHIRLEY
+	     
+	      
+  	     2135
+	        FLORES;PORTAL;WALTER ANTONIO
+	     
+	      
+  	     2382
+	        FLORES;RODRIGUEZ;JHONNY RAMIRO
+	     
+	      
+  	     2556
+	        FLORES;ROGRIGUEZ;WINSTON JAIME
+	     
+	      
+  	     151
+	        FLORES;ROSSO;CARLOS
+	     
+	      
+  	     2273
+	        FLORES;SEGURA;YONNY RENE
+	     
+	      
+  	     2340
+	        FLORES ;VILLCA;HERNAN LUCIO
+	     
+	      
+  	     2492
+	        FOCACCIO;TEJADA;JUAN JOSE
+	     
+	      
+  	     2600
+	        FUCHS;ARCE;JUAN PABLO
+	     
+	      
+  	     145
+	        FUENTES;SOTOMAYOR;JUAN
+	     
+	      
+  	     2299
+	        FUENTES;ZENTENO;JUAN ALEJANDRO
+	     
+	      
+  	     2221
+	        FUNES;ALVAREZ;NESTOR
+	     
+	      
+  	     2684
+	        GABRIEL;PAIRUMANI;HUGO
+	     
+	      
+  	     2239
+	        GALLARDO;DE FERNANDEZ;VERONICA
+	     
+	      
+  	     2501
+	        GALVEZ ;GUTIERREZ;MARIA MARLEN
+	     
+	      
+  	     2493
+	        GAMEZ;LINARES;JAVIER
+	     
+	      
+  	     2473
+	        GANDARILLAS;ACEBEY;JAIME RUBEN
+	     
+	      
+  	     2472
+	        GANDARILLAS;DFD;RUBEN
+	     
+	      
+  	     2455
+	        GARAY;CUENTAS;EDUARDO JESUS
+	     
+	      
+  	     122
+	        GARCIA;APAZA;GERVACIO
+	     
+	      
+  	     2691
+	        GARCIA;CARDENAS;MAGALI
+	     
+	      
+  	     2152
+	        GARCIA;FUENTES;JUAN
+	     
+	      
+  	     2326
+	        GARCIA;FUENTES;JUAN OSCAR
+	     
+	      
+  	     2066
+	        GARCIA;GUTIERREZ;WILLY
+	     
+	      
+  	     2768
+	        GARCIA;MENDOZA;JAVIER GUSTAVO
+	     
+	      
+  	     2306
+	        GARCIA;MORENO;MARIA EUGENIA
+	     
+	      
+  	     2286
+	        GARCIA;PADILLA;ALVARO
+	     
+	      
+  	     2323
+	        GARCIA PADILLA;AGUILAR;RAFAEL ALVARO
+	     
+	      
+  	     2560
+	        GARVIZU;AUZA;VIDFA CAROLINA
+	     
+	      
+  	     2407
+	        GARZOFINO;FERNANDEZ;SANTOS RAM{ON
+	     
+	      
+  	     2111
+	        GARZON;ARTEAGA;JORGE
+	     
+	      
+  	     2503
+	        GASTELU;HERRERA;LITZY GLENDA
+	     
+	      
+  	     2276
+	        GEMIO;;ROMULO
+	     
+	      
+  	     2113
+	        GOMEZ;REINTSCH;JOSE LUIS
+	     
+	      
+  	     114
+	        GONGORA;BELTRAN;JESUS
+	     
+	      
+  	     2136
+	        GONZALES;GOMEZ;GUSTAVO ADOLFO
+	     
+	      
+  	     2574
+	        GONZALES;LAURA;EDGAR
+	     
+	      
+  	     2348
+	        GONZALES;MONTECINOS;CAROLA DANIELA
+	     
+	      
+  	     2296
+	        GONZALES;MOYA;JOSE LEANDRO
+	     
+	      
+  	     2508
+	        GONZALES;TOMANYI;ARPAD LUIS
+	     
+	      
+  	     2288
+	        GORRITTY;PORTILLO;MARCELO ANTONIO
+	     
+	      
+  	     2198
+	        GOTTRET;ARCE;JUAN CARLOS
+	     
+	      
+  	     2375
+	        GOTTRET;RIOS;RICARDO IVAN
+	     
+	      
+  	     2778
+	        GRIFFITHS;JAUREGUI;JAVIER MARIO
+	     
+	      
+  	     2102
+	        GROSSMAN;PARRONDO;BENJAMIN
+	     
+	      
+  	     2114
+	        GROVER;PANDO;VIAMONTT
+	     
+	      
+  	     2105
+	        GUARACHI;AYAVIRI;ALFONSO E.
+	     
+	      
+  	     201
+	        GUERREROS;TORREZ;VICENTE
+	     
+	      
+  	     2039
+	        GUILLEN;ESPINOZA;JIMMY
+	     
+	      
+  	     2313
+	        GUISBERT;LIZARAZU;EDITH GABRIELA
+	     
+	      
+  	     2290
+	        GUISBERT;LIZARAZU;GABRIELA
+	     
+	      
+  	     2121
+	        GUISBERT;LIZARRAGA;VICTOR
+	     
+	      
+  	     2052
+	        GUTIERRESZ;ARANDIA;RUBEN
+	     
+	      
+  	     2109
+	        GUTIERREZ;BAREA;FREDDY
+	     
+	      
+  	     2626
+	        GUTIERREZ;CALOIR;BEATRIZ EMMA
+	     
+	      
+  	     2363
+	        GUTIERREZ;ESPADA;EDGAR ELICEO
+	     
+	      
+  	     121
+	        GUTIERREZ;GUACHALLA;MARCELO
+	     
+	      
+  	     2199
+	        GUTIERREZ;GUTIERREZ;WILFRED
+	     
+	      
+  	     2631
+	        GUTIERREZ;POMA;JUAN SANTOS
+	     
+	      
+  	     116
+	        GUTIERREZ;TEJERINA;JORGE
+	     
+	      
+  	     123
+	        GUTIERREZ;ZAMORA;JORGE
+	     
+	      
+  	     2325
+	        GUZMAN;;AMELIA
+	     
+	      
+  	     126
+	        GUZMAN;ORTIZ;MARIO
+	     
+	      
+  	     2260
+	        GUZMAN;QUISBERT;RUBEN
+	     
+	      
+  	     2653
+	        HARRIAGUE;ALVAREZ;MARCELO JESÚS
+	     
+	      
+  	     143
+	        HARRIAGUE;MARTINEZ;HUMBERTO
+	     
+	      
+  	     2222
+	        HERBAS;CAMACHO;CARLOS
+	     
+	      
+  	     2763
+	        HEREDIA;SANCHEZ;GUIDO JOSE
+	     
+	      
+  	     2474
+	        HEREDIA;VARGAS;OSCAR ARNALDO
+	     
+	      
+  	     2115
+	        HERNANDEZ;QUISBERT;JOSE LUIS
+	     
+	      
+  	     113
+	        HERNANI;DIAZ;JAVIER GONZALO
+	     
+	      
+  	     2032
+	        HERRERA;CALLEJAS;HERMAS
+	     
+	      
+  	     2329
+	        HERRERA;CESPEDES;BORIS VLADIMIR
+	     
+	      
+  	     2360
+	        HERVAS;MORALES;CAROLA
+	     
+	      
+  	     2633
+	        HILAQUITA;TICONA;GERMAN IVER
+	     
+	      
+  	     2725
+	        HONGYUAN;;CAI
+	     
+	      
+  	     2374
+	        HONIGSBLUM;HEREDIA;JOSE
+	     
+	      
+  	     2431
+	        HOSSE;SAHONERO;MARIO FERNANDO
+	     
+	      
+  	     2716
+	        HUAMAN;VALDEZ;ALIDA ROCSANI
+	     
+	      
+  	     2679
+	        HUANCA;CHOQUE;EDWIN RUBEN
+	     
+	      
+  	     2774
+	        HUARANCA;VELIZ;YANETH
+	     
+	      
+  	     2154
+	        HUARITA;OROZCO;RENE
+	     
+	      
+  	     155
+	        HUAYTA;CONDORI;EDUARDO
+	     
+	      
+  	     2080
+	        HUBNER;MENDEZ;MAURICIO
+	     
+	      
+  	     2724
+	        HUMEREZ;ESPINOZA;EVELIN SUSANA
+	     
+	      
+  	     125
+	        IBAÑEZ;ANDRADE;EDWIN
+	     
+	      
+  	     2250
+	        IBAÑEZ;CALERO;SANDRA LILIANA
+	     
+	      
+  	     2389
+	        IBANEZ;CALERO;SANDRA LILIANA
+	     
+	      
+  	     2119
+	        IGNACIO;GARZON;JUAN CARLOS
+	     
+	      
+  	     2401
+	        ILAYA;AYZA;AMILKAR ERNESTO
+	     
+	      
+  	     2595
+	        ILLANES;CASTAÑETA;ROLANDO
+	     
+	      
+  	     2309
+	        INDABURU;LIJERON;MARIO ENRIQUE
+	     
+	      
+  	     2200
+	        ING. GUTIERREZ;RAMIREZ;GUILLERMO
+	     
+	      
+  	     2038
+	        INVERNIZZI;BELMAR;EDUARDO
+	     
+	      
+  	     2277
+	        IRAHOLA;;PABLO
+	     
+	      
+  	     2354
+	        IRAHOLA;MORALES;HERMOGENES
+	     
+	      
+  	     173
+	        IRAZOQUE;TOBIAS;IVAN
+	     
+	      
+  	     2033
+	        IRIARTE;CLAROS;HERNAN
+	     
+	      
+  	     2496
+	        IRIARTE;QUEZADA;MARTHA GUADALUPE
+	     
+	      
+  	     2110
+	        JEMIO;MENDOZA;MIGUEL ANGEL
+	     
+	      
+  	     128
+	        JIMENEZ;ALVAREZ;JAIME
+	     
+	      
+  	     2700
+	        JIMENEZ;CHAVEZ;JUSTO EDGAR
+	     
+	      
+  	     2463
+	        JIMENEZ;SOTO;GRISEL PAOLA
+	     
+	      
+  	     2742
+	        JULIAN;SIRPA;CELIA NOEMY
+	     
+	      
+  	     127
+	        JURADO;VISCARRA;LUIS ALFONSO
+	     
+	      
+  	     2130
+	        JUSTINIANO;PARDO;MARCO ANTONIO
+	     
+	      
+  	     2605
+	        KAUNE;SARABIA;CARLA LIZETT
+	     
+	      
+  	     2289
+	        KOYA;CUENCA;FRANKLIN
+	     
+	      
+  	     2479
+	        KUCHARSKY;RUIZ;MARCELO IVAN
+	     
+	      
+  	     2606
+	        LA FUENTE;LARCO;MARILYN PAMELA
+	     
+	      
+  	     2743
+	        LA FUENTE;LARCO;MARILYN PAMELA
+	     
+	      
+  	     2704
+	        LA FUENTE;TICONA;EMERSON MARCELO
+	     
+	      
+  	     2189
+	        LAGUNA;VARGAS;RENAN
+	     
+	      
+  	     2366
+	        LAREDO;ANTEZANA;VICTOR ANTONIO
+	     
+	      
+  	     2381
+	        LAURA;AYALA;FATIMA CAROLA
+	     
+	      
+  	     2776
+	        LAURA;PIZARRO;EDUARDO
+	     
+	      
+  	     2551
+	        LAURA;QUISPE;ROUSSTAM
+	     
+	      
+  	     2298
+	        LAURA;ROCHA;GUBLER
+	     
+	      
+  	     144
+	        LAZO;PAZ;ALFONSO
+	     
+	      
+  	     115
+	        LEAÑO;ROMAN;RAUL SEGUNDINO
+	     
+	      
+  	     2085
+	        LEDEZMA;LORD;EDDY MARIO LUIS
+	     
+	      
+  	     2201
+	        LEJSEK;RIVERO;VLADIMIR PEDRO
+	     
+	      
+  	     2543
+	        LEMA;PATIÑO;JORGE ALFREFO
+	     
+	      
+  	     2270
+	        LEMUS;VASQUEZ;EDDY
+	     
+	      
+  	     2644
+	        LEON;CANO;ANGELA
+	     
+	      
+  	     2088
+	        LEON;GOMEZ;JORGE MARIO
+	     
+	      
+  	     152
+	        LEVY;DIAZ;CIRO
+	     
+	      
+  	     2466
+	        LIMA;BELTRAN;BASILIO ELISEO
+	     
+	      
+  	     164
+	        LIMA;VACAFLOR;GONZALO
+	     
+	      
+  	     2715
+	        LIMACHI;CALLE;RAFAEL OSVALDO
+	     
+	      
+  	     2537
+	        LIMACHI;CHOQUE;WILSON
+	     
+	      
+  	     2681
+	        LINARES;CABALLERO;ENZO MIGUEL
+	     
+	      
+  	     2362
+	        LINO;HUMEREZ;MONICA PAULA
+	     
+	      
+  	     2331
+	        LLANOS;ROJAS;GERMAN
+	     
+	      
+  	     2183
+	        LOAYZA;SALGUEIRO;RAMIRO
+	     
+	      
+  	     2617
+	        LOPEZ;CALDERON;RAMIRO PABLO
+	     
+	      
+  	     2026
+	        LORIA;MOLINA;MARIO ANTONIO
+	     
+	      
+  	     2625
+	        LOZA;SAINZ;ERICK FLAVIO
+	     
+	      
+  	     2437
+	        LOZA;VARGAS;JOSE MANUEL AMILKAR
+	     
+	      
+  	     2440
+	        LOZANO;MANTILLA;CESAR FERNANDO
+	     
+	      
+  	     2297
+	        LUCERO;SAAVEDRA;GONZALO RAMIRO
+	     
+	      
+  	     2223
+	        LUNA;VERA;JOSE ANTONIO
+	     
+	      
+  	     2721
+	        MACHACA;ACERO;OSCAR OVIDIO
+	     
+	      
+  	     2632
+	        MACHACA;MAMANI;JAIME JORGE
+	     
+	      
+  	     2509
+	        MACHICADO;GOMEZ;RICHARD MAX
+	     
+	      
+  	     117
+	        MACHICADO;LUNA;REYNALDO
+	     
+	      
+  	     2634
+	        MACHICADO;OSCO;RUDDY SIMON
+	     
+	      
+  	     2078
+	        MACHICAO;APARICIO;JUAN CARLOS
+	     
+	      
+  	     2402
+	        MAGNE;CARRASCO;LUIS ELOY
+	     
+	      
+  	     2279
+	        MALDONADO;DE KALAM;FRIDA
+	     
+	      
+  	     2034
+	        MALDONADO;GARCIA;RAUL
+	     
+	      
+  	     2261
+	        MALDONADO;MONRROY;ENRIQUE
+	     
+	      
+  	     2219
+	        MALDONADO;TARIFA;JUAN LUIS
+	     
+	      
+  	     190
+	        MAMANI;APAZA;RAUL
+	     
+	      
+  	     2694
+	        MAMANI;APAZA;RAUL ALBERTO
+	     
+	      
+  	     159
+	        MAMANI;CHAVEZ;FELIX
+	     
+	      
+  	     2409
+	        MAMANI;CHOQUE;LUCIO
+	     
+	      
+  	     2517
+	        MAMANI;CHOQUE;MARCO ANTONIO
+	     
+	      
+  	     2441
+	        MAMANI;GUTIERREZ;EDUARDO
+	     
+	      
+  	     2658
+	        MAMANI;HUAYTA;EVELIN GRACIELA
+	     
+	      
+  	     2613
+	        MAMANI;MITA;TULIO GERMAN
+	     
+	      
+  	     2747
+	        MAMANI;MONJE;MARCOS HECTOR
+	     
+	      
+  	     2775
+	        MAMANI;RIVEROS;ERIKA
+	     
+	      
+  	     2471
+	        MAMANI;SURCO;LINDAURA
+	     
+	      
+  	     185
+	        MAMANI;VILLCA;NESTOR
+	     
+	      
+  	     2662
+	        MANSILLA;FERRET;HUGO CELSO FELIPE A.
+	     
+	      
+  	     2461
+	        MARCA;MARCA;GUILLERMO
+	     
+	      
+  	     2547
+	        MARIN;;RUBEN
+	     
+	      
+  	     2757
+	        MARIN;CARRASCO;MAGDALENA BENITA
+	     
+	      
+  	     2267
+	        MARIN;DOMINGUEZ;PEDRO REYNALDO
+	     
+	      
+  	     2387
+	        MARIN;PANTOJA;RUBEN REYNALDO
+	     
+	      
+  	     2649
+	        MARINO;SUXO;ANTONIO RUBEN
+	     
+	      
+  	     2699
+	        MARIÑO;ZULETA;DUNIA GRETZEL
+	     
+	      
+  	     174
+	        MARISCAL;PONCE;JAIME
+	     
+	      
+  	     2344
+	        MARTINEZ;CHOQUE;OSCAR WILLY
+	     
+	      
+  	     2753
+	        MARTINEZ;ESTEVEZ;LOUDES
+	     
+	      
+  	     2334
+	        MARTINEZ;ORTIZ;JORGE ANTONIO
+	     
+	      
+  	     179
+	        MARTINEZ;QUINTANA;JUAN CARLOS
+	     
+	      
+  	     2536
+	        MARTINEZ;TAPIA;HONORIA SILVIA
+	     
+	      
+  	     2292
+	        MARTINIC;RODRIGUEZ;NICOLAS JORGE
+	     
+	      
+  	     2706
+	        MARTINIC;VASQUEZ;GUSTAVO EDUARDO
+	     
+	      
+  	     2766
+	        MAYDANA;HUANCA;LILIAM HORTENCIA
+	     
+	      
+  	     2067
+	        MAYORI;MACHICAO;ALEJANDRO M.
+	     
+	      
+  	     2557
+	        MEAVE;ACUÑA;MARIANA
+	     
+	      
+  	     2064
+	        MEDINA;RIVERO;LUIS
+	     
+	      
+  	     2616
+	        MEDINA;RIVERO;MARSIAL JUAN
+	     
+	      
+  	     2035
+	        MEDINACELLI;MENDOZA;WILSON
+	     
+	      
+  	     2224
+	        MEJIA;GAMARRA;JUANA DOLORES
+	     
+	      
+  	     160
+	        MEJIA;MARTINEZ;GABRIEL
+	     
+	      
+  	     2667
+	        MEJILLONES;PERCA;MARCO ANTONIO
+	     
+	      
+  	     2719
+	        MENDEZ;AVILES;MIGUEL ANGEL
+	     
+	      
+  	     2101
+	        MENDEZ;FERRY;JUAN CARLOS
+	     
+	      
+  	     2762
+	        MENDIOLA;BARRIOS;HELEN CAROLINA
+	     
+	      
+  	     2611
+	        MENDOZA;GUTIERREZ;REMBERTO
+	     
+	      
+  	     2346
+	        MENDOZA;LARA;VICTOR HUGO
+	     
+	      
+  	     2225
+	        MENDOZA;RODRIGUEZ;JAVIER
+	     
+	      
+  	     2202
+	        MENDOZA;SORIA;DIEGO RICARDO
+	     
+	      
+  	     2489
+	        MERIDA;RODRIGUEZ;RICARDO ARTURO
+	     
+	      
+  	     168
+	        MICHEL;GARCIA;GUSTAVO
+	     
+	      
+  	     2535
+	        MIER;CORNEJO;EDDY ORLANDO
+	     
+	      
+  	     2282
+	        MIRANDA;;GUILLERMINA
+	     
+	      
+  	     2570
+	        MIRANDA;CASAS;ROBERTO
+	     
+	      
+  	     2642
+	        MIRANDA;CHUCA;CONSTANTINO
+	     
+	      
+  	     2434
+	        MIRANDA;LUNA;FRANZ
+	     
+	      
+  	     2589
+	        MIRANDA;MARTINEZ;VISNA MAYA
+	     
+	      
+  	     2462
+	        MIRANDA;MENDOZA;WILSON AMADO
+	     
+	      
+  	     2442
+	        MIRANDA;MOLINA;ROBERTO
+	     
+	      
+  	     2379
+	        MIRANDA;ORDONEZ;RODMY ADALID
+	     
+	      
+  	     2393
+	        MIRANDA;RIOS;JORGE ARTURO
+	     
+	      
+  	     2637
+	        MIRANDA;TORREZ;GUILLERMINA
+	     
+	      
+  	     2529
+	        MITA;QUISBERT;VICTOR FREDDY
+	     
+	      
+  	     2133
+	        MOBAREC;CLAVIJO;HUGO ALBERTO
+	     
+	      
+  	     2226
+	        MOLINA;CARPIO;JORGE ALCIDES
+	     
+	      
+  	     2065
+	        MOLINA;MUÑOZ;DAVID EDUARDO
+	     
+	      
+  	     2158
+	        MOLINA;PEREZ;JAIME
+	     
+	      
+  	     2552
+	        MOLINA;QUISBERT;AMERICO
+	     
+	      
+  	     2553
+	        MOLINA;QUISBERT;AMERICO FIMO
+	     
+	      
+  	     2708
+	        MOLINA;SERRUDO;ANA MARIA
+	     
+	      
+  	     2150
+	        MOLLERICONA;VILLCA;LUCIO
+	     
+	      
+  	     2227
+	        MONROY;CUELLAR;JOSE LUIS
+	     
+	      
+  	     2669
+	        MONTANO;RIVEROS;ERIKA XIMENA
+	     
+	      
+  	     2186
+	        MONTAÑO;GONZALES;EMILIANO
+	     
+	      
+  	     2300
+	        MONTAÑO;RIVEROS;LUIS
+	     
+	      
+  	     2483
+	        MONTAÑO;SAAVEDRA;ALVARO
+	     
+	      
+  	     2228
+	        MONTAÑO;VARGAS;JOSE LUIS
+	     
+	      
+  	     101
+	        MONTECINOS;;EDGAR
+	     
+	      
+  	     178
+	        MONTECINOS;LOPEZ;JOSE
+	     
+	      
+  	     2568
+	        MONTECINOS;POMIER;MOISES RENATO
+	     
+	      
+  	     2655
+	        MONTECINOS;POMIER;MOISES RENATO
+	     
+	      
+  	     2176
+	        MONTENEGRO;BRAVO;JUAN CARLOS
+	     
+	      
+  	     2410
+	        MONTESINOS;BELTRAN;WILMA CLEOFE
+	     
+	      
+  	     2042
+	        MONTESINOS;MONTESINOS;MARCO
+	     
+	      
+  	     2630
+	        MONTOYA;ORTIZ;REMMY GUALBERTO
+	     
+	      
+  	     2670
+	        MORA;MIRANDA;RAMIRO VLADIMIR
+	     
+	      
+  	     2505
+	        MORALES;ESCOBAR;LUIS VALENTIN
+	     
+	      
+  	     2656
+	        MORALES;GUACULLA;SAMUEL
+	     
+	      
+  	     2098
+	        MORALES;MALDONADO;SANTIAGO
+	     
+	      
+  	     2573
+	        MOREJON;IGNACIO;ALFREDO
+	     
+	      
+  	     2514
+	        MORENO;BARRENECHEA;JHON ANTONY
+	     
+	      
+  	     2203
+	        MUÑOZ;BLACK;MIGUEL
+	     
+	      
+  	     172
+	        MURGUIA;ENCINAS;HUMBERTO
+	     
+	      
+  	     2116
+	        MUSTAFFA;SALAZAR;JORGE
+	     
+	      
+  	     2399
+	        NAOKI;;KASUYA
+	     
+	      
+  	     2352
+	        NAULS;ARCE;ALEX SERAFIN ROLANDO
+	     
+	      
+  	     2071
+	        NAVA;AMADOR;JORGE ANTONIO
+	     
+	      
+  	     135
+	        NIN;ZABALA;SAMUEL EMERANO
+	     
+	      
+  	     2055
+	        NINA;MACHACA;VIRGINIA
+	     
+	      
+  	     2688
+	        NINA;ROSSO;BERNARDO
+	     
+	      
+  	     2420
+	        NINA;YUJRA;OMAR RODOLFO
+	     
+	      
+  	     119
+	        NOGALES;RAMIREZ;RICARDO
+	     
+	      
+  	     2583
+	        NUÑEZ;ARAMAYO;GERMAN
+	     
+	      
+  	     2769
+	        NUÑEZ;GASPAR;MIGUEL ANGEL
+	     
+	      
+  	     2518
+	        NUÑEZ;TORREZ;LISBERTH MARIA
+	     
+	      
+  	     2467
+	        NUNEZ;DURAN;JOSE SALOMON
+	     
+	      
+  	     2497
+	        NUNEZ DE ARCO;MENDOZA;JOSE
+	     
+	      
+  	     2036
+	        OCAMPO;SANDY;ROLANDO
+	     
+	      
+  	     2754
+	        OLIVER;AVINE;HENRY EDISON
+	     
+	      
+  	     2646
+	        OPORTO;ALMARAZ;SORGE ALONZO
+	     
+	      
+  	     2481
+	        ORELLANA;SANCHEZ;FELIX GABRIEL
+	     
+	      
+  	     2086
+	        OROPEZA;CRESPO;ROBERTO
+	     
+	      
+  	     2177
+	        ORTEGA;TAVERA;JAIME
+	     
+	      
+  	     2204
+	        ORTEGA;VACA;GREGORIO
+	     
+	      
+  	     2369
+	        ORTIZ;PLATA;PRIMO RENE
+	     
+	      
+  	     2432
+	        ORTUNO;RIVEROS;MAURICIO JESUS
+	     
+	      
+  	     2510
+	        OSORIO;ZAMORA;FARNCISCO
+	     
+	      
+  	     2697
+	        OTERO;VALLE;MARIA NADIEZDA
+	     
+	      
+  	     2452
+	        PABON;LIMACHI;OSCAR ANTONIO
+	     
+	      
+  	     2586
+	        PABON;PABON;LEONIDAS
+	     
+	      
+  	     2567
+	        PACHECO;ACOSTA;LUIS FERNANDO
+	     
+	      
+  	     2665
+	        PACHECO;AMURRIO;VALERIANO JUAN
+	     
+	      
+  	     2084
+	        PACHECO;CHAVEZ;MIGUEL ANGEL
+	     
+	      
+  	     2675
+	        PACHECO;MACHICADO;TERESA MAYA
+	     
+	      
+  	     2392
+	        PACOSILLO;TICONA;LUIS
+	     
+	      
+  	     2740
+	        PALACIOS;ZULETA;NATALIA IVANA
+	     
+	      
+  	     2395
+	        PANIAGUA;LUNA;ADRIAN ALVARO
+	     
+	      
+  	     2057
+	        PARAVICINI;HURTADO;CLIFFORD
+	     
+	      
+  	     2353
+	        PAREJA;ARANCIBIA;ALEX JAMIL
+	     
+	      
+  	     2305
+	        PARI;QUISPE;MARTIN OSCAR
+	     
+	      
+  	     2648
+	        PARI;TICONA;ANA LUISA
+	     
+	      
+  	     196
+	        PARRA;ZEBALLOS;ROBERTO
+	     
+	      
+  	     2287
+	        PARRAGA;;BORIS
+	     
+	      
+  	     146
+	        PASTEN;GIRONDA;ADHEMAR
+	     
+	      
+  	     2321
+	        PASTOR;MURILLO;EVELÍN DUNIA
+	     
+	      
+  	     2657
+	        PATINO;COCHI;JUAN
+	     
+	      
+  	     2456
+	        PATINO;FLORES;EFRAIN
+	     
+	      
+  	     2629
+	        PAUCARA;GUAYTA;JUAN CARLOS
+	     
+	      
+  	     2555
+	        PAZ;PEREZ;TERESA JAEL
+	     
+	      
+  	     2248
+	        PAZ;RADA;OSCAR ANTONIO
+	     
+	      
+  	     2424
+	        PAZ;ZEBALLOS;RICARDO TEOFILO
+	     
+	      
+  	     2513
+	        PEÑA;MONTAÑO;JAIME RICARDO
+	     
+	      
+  	     2107
+	        PEÑALOZA;BOCANGEL;WILLY
+	     
+	      
+  	     2522
+	        PEÑARANDA;SILVA;JUAN EDGAR
+	     
+	      
+  	     2295
+	        PEÑARANDA;VELAZCO;JOHNNY JORGE
+	     
+	      
+  	     2106
+	        PEÑARRIETA;CHAVARRIA;JULIO
+	     
+	      
+  	     2487
+	        PENARRIETA;LORIA;JOSE MAURICIO
+	     
+	      
+  	     2527
+	        PERALTA;URIA;DAYSI CATALINA
+	     
+	      
+  	     2262
+	        PERALTA;URIA;RAMIRO WILLY
+	     
+	      
+  	     2780
+	        PEREDO;DIAZ;DIEGO CARLOS
+	     
+	      
+  	     2377
+	        PEREIRA;MUÑOZ;GERMAN JESUS
+	     
+	      
+  	     2125
+	        PEREZ;ALCALA;FEDOR
+	     
+	      
+  	     2428
+	        PEREZ;APAZA;LUIS FERNANDO
+	     
+	      
+  	     2563
+	        PEREZ;BUSTILLOS;MIGUEL ANGEL
+	     
+	      
+  	     2490
+	        PEREZ;LIMACHE;EDDY
+	     
+	      
+  	     2240
+	        PEREZ;LOAYZA;OSCAR LUIS
+	     
+	      
+  	     2427
+	        PEREZ;MARTINEZ;CARLA
+	     
+	      
+  	     2781
+	        PEREZ;PEÑARANDA;JAVIER
+	     
+	      
+  	     2767
+	        PEREZ;ROMERO;FELIX REYNALDO
+	     
+	      
+  	     2229
+	        PILLCO;ZOLA;RAMIRO SIMON
+	     
+	      
+  	     2609
+	        PINTO;HUALLPAN;JHONNY ROBERTO
+	     
+	      
+  	     2178
+	        PINTO;ROCA;HEBERT
+	     
+	      
+  	     2548
+	        PINTO ;TRIBENO;RAUL RINALDO
+	     
+	      
+  	     2727
+	        PIZA;PAZ;ARACELY PATRICIA
+	     
+	      
+  	     2373
+	        PLAZA;MARTINEZ;JORGE OTONIEL
+	     
+	      
+  	     2602
+	        POLO;CRUZ;NICANOR
+	     
+	      
+  	     100
+	        POMA;GONZALES;JAVIER
+	     
+	      
+  	     2673
+	        POMA;JOANIQUINA;ROBERTO VIDAL
+	     
+	      
+  	     2732
+	        POMA;MAMANI;ISAAC
+	     
+	      
+  	     2453
+	        POMA;MOYA;CELIA CARMEN
+	     
+	      
+  	     2414
+	        POMA;RAMOS;CARLOS ALBERTO
+	     
+	      
+  	     2351
+	        PONCE;CATACORA;JULIO MANUEL
+	     
+	      
+  	     2459
+	        PONCE;FLORES;DIOGENES WILFREDO
+	     
+	      
+  	     2422
+	        PORTILLO;PRIETO;RAUL
+	     
+	      
+  	     2650
+	        POZO;BARRERA;LUIS ADOLFO
+	     
+	      
+  	     108
+	        PRADO;VILLARROEL;IRMA
+	     
+	      
+  	     2702
+	        PRIN;SALMON;MARCELO AUGUSTO
+	     
+	      
+  	     2072
+	        PUCH;TERAN;RAMIRO LEOPOLDO
+	     
+	      
+  	     2661
+	        PUCHO;BAUTISTA;POLICARPIO
+	     
+	      
+  	     2597
+	        QUENALLATA;BERNABE;REYNALDO
+	     
+	      
+  	     2643
+	        QUINTANILLA;AGUIRRE;JORGE
+	     
+	      
+  	     2077
+	        QUIROGA;VARGAS;EDGAR ALBERTO
+	     
+	      
+  	     2301
+	        QUIROGA;VARGAS;FRANCISCO
+	     
+	      
+  	     2668
+	        QUISBERT;ASTILLA;GUSTAVO
+	     
+	      
+  	     2710
+	        QUISBERT;BLANCO;JUAN ASCENCIO
+	     
+	      
+  	     2764
+	        QUISBERT;TORREZ;ANTONIO
+	     
+	      
+  	     2566
+	        QUISBERT;VILELA;ADRIAN EUSEBIO
+	     
+	      
+  	     2671
+	        QUISPE;AGUILAR;OMAR EID
+	     
+	      
+  	     2526
+	        QUISPE;APAZA;JUAN CARLOS
+	     
+	      
+  	     2478
+	        QUISPE;HUANCA;WILFREDO
+	     
+	      
+  	     2756
+	        QUISPE;MAMANI;JUAN CARLOS
+	     
+	      
+  	     2502
+	        QUISPE;POCOTA;RENE BLAS
+	     
+	      
+  	     2516
+	        QUISPE;VINAYA;CIPRIANO JUSTINO
+	     
+	      
+  	     2404
+	        RADA;PAEZ;RUBEN WALTER
+	     
+	      
+  	     2419
+	        RAKELA;AVILES;TRIBOR
+	     
+	      
+  	     133
+	        RAMIREZ;CRIALES;WALTER
+	     
+	      
+  	     2068
+	        RAMIREZ;MOLINA;MARCELO
+	     
+	      
+  	     132
+	        RAMIREZ;MURILLO;JOSE ANTONIO
+	     
+	      
+  	     2783
+	        RAMIREZ;PATIÑO;ALVARO HERNAN
+	     
+	      
+  	     2397
+	        RAMIREZ;PEREZ;JAVIER CHRISTIAN
+	     
+	      
+  	     2230
+	        RAMIREZ;RODRIGUEZ;EDSON
+	     
+	      
+  	     2380
+	        RAMIREZ;ZUAZO;ROGER WILLAMS
+	     
+	      
+  	     2601
+	        RAMOS;GARZOFINO;CARLOS MAURICIO
+	     
+	      
+  	     2100
+	        RAMOS;MAITA;ANGEL
+	     
+	      
+  	     2278
+	        RAMOS;MORALES;JUAN PABLO
+	     
+	      
+  	     2465
+	        RAMOS;MORALES;JUAN PABLO
+	     
+	      
+  	     2592
+	        REINHARD HELMUT;MAYER;FALK
+	     
+	      
+  	     202
+	        RENDON;PORCEL;WILLY
+	     
+	      
+  	     2031
+	        REQUENA;SUAREZ;ALBERTO
+	     
+	      
+  	     2205
+	        REVOLLO;OLMOS;JUAN JAIME
+	     
+	      
+  	     2157
+	        REVUELTA;SANTA CRUZ;HECTOR
+	     
+	      
+  	     153
+	        RICALDI;YARDI;EDGAR
+	     
+	      
+  	     2083
+	        RIOS;ALTAMIRANO;JOSE ARTURO
+	     
+	      
+  	     2160
+	        RIOS;CAMPOS;VICTOR
+	     
+	      
+  	     2025
+	        RIOS;HINOJOSA;GASTON MARIO
+	     
+	      
+  	     2433
+	        RIOS ;CAMPOS;VICTOR HUGO
+	     
+	      
+  	     2206
+	        RIVAS;ALIAGA;EDMUNDO
+	     
+	      
+  	     2249
+	        RIVERA;BALLESTEROS;GROVER CELSO
+	     
+	      
+  	     2231
+	        RIVERA;FLORES;JOSE
+	     
+	      
+  	     2720
+	        RIVERO;HERRERA;ESTRELLA VIRNA
+	     
+	      
+  	     2504
+	        RIVEROS;SALAZAR;JOSE ALBERTO 
+	     
+	      
+  	     137
+	        ROCABADO;REYES;WALDO
+	     
+	      
+  	     2425
+	        ROCHA;AGUILAR;RUBEN JUAN
+	     
+	      
+  	     2179
+	        ROCHA;VALENZUELA;JAIME
+	     
+	      
+  	     2521
+	        RODAS;VARGAS;HELEN BALVI
+	     
+	      
+  	     2281
+	        RODRIGUEZ;BRACAMONTE;RAMIRO
+	     
+	      
+  	     2266
+	        RODRIGUEZ;CRUZ;GARY ADEMAR
+	     
+	      
+  	     105
+	        RODRIGUEZ;ZENTENO;DOMINGO
+	     
+	      
+  	     2590
+	        ROJAS;ACEBEY;BORIS MARCELO
+	     
+	      
+  	     2579
+	        ROJAS;FERNANDEZ;HERNAN
+	     
+	      
+  	     2443
+	        ROJAS;ILLANES;MIGUEL MARTIN
+	     
+	      
+  	     2097
+	        ROJAS;MERCADO;VIRGINIA JUDITH
+	     
+	      
+  	     2660
+	        ROJAS;TINTAYA;GONZALO
+	     
+	      
+  	     2470
+	        ROMAY;AZURDUY;OSCAR EUSEBIO
+	     
+	      
+  	     2333
+	        ROMERO;BOLAÑOS;LUIS ENRIQUE
+	     
+	      
+  	     2454
+	        ROMERO;MEJIA;ALEJANDRO MANUEL
+	     
+	      
+  	     2332
+	        ROMERO;ROJAS;JIMMY
+	     
+	      
+  	     2056
+	        ROSA;;ERWIN
+	     
+	      
+  	     2263
+	        ROSAS;RIVERA;LUIS ARMANDO
+	     
+	      
+  	     2328
+	        RUIZ;;MARIA CRISTINA
+	     
+	      
+  	     154
+	        RUIZ;BONILLA;EDGAR
+	     
+	      
+  	     2460
+	        RUIZ;BOTELLO;FAUSTO EDGAR
+	     
+	      
+  	     2423
+	        RUIZ;GUTIERREZ;MARCO ANTONIO
+	     
+	      
+  	     2207
+	        RUIZ;INCHAUSTE;MARIO
+	     
+	      
+  	     2773
+	        RUIZ;VELASCO;RONALD LUCIO S.
+	     
+	      
+  	     2666
+	        SAGARNAGA;CASTAÑOS;FERNANDO MANUEL
+	     
+	      
+  	     2232
+	        SALAS;RADA;EDGAR
+	     
+	      
+  	     2718
+	        SALAS;SANCHEZ;MARCOS VIANNER
+	     
+	      
+  	     2304
+	        SALAS;SANCHEZ;PATRICIA MARIBEL
+	     
+	      
+  	     2676
+	        SALAZAR;CHAVEZ;GARY
+	     
+	      
+  	     2044
+	        SALAZAR;CHOQUE;PATRICIO
+	     
+	      
+  	     129
+	        SALAZAR;TRIGO;JOSE
+	     
+	      
+  	     2046
+	        SALCEDO;CAMACHO;OMAR
+	     
+	      
+  	     2612
+	        SALCEDO;ORTIZ;LILY
+	     
+	      
+  	     2208
+	        SALGUEIRO;BUSTILLOS;RENE
+	     
+	      
+  	     184
+	        SALINAS;PEREZ;MARIO
+	     
+	      
+  	     2104
+	        SALINAS;PRUDENCIO;OMAR
+	     
+	      
+  	     2476
+	        SAMAN;SIGLER;SIMON JOSE
+	     
+	      
+  	     2112
+	        SANABRIA;CAMACHO;FERNANDO F.
+	     
+	      
+  	     2062
+	        SANABRIA;GARCIA;JAVIER
+	     
+	      
+  	     2254
+	        SANABRIA;GARCIA;JOSE
+	     
+	      
+  	     2638
+	        SANCHEZ;BOLANOS;JUAN CARLOS
+	     
+	      
+  	     2416
+	        SANCHEZ;EID;LUCIO GROVER
+	     
+	      
+  	     2187
+	        SANCHEZ;GUZMAN;JAIME EDUARDO
+	     
+	      
+  	     2095
+	        SANDOVAL;TRUJILLO;RAUL
+	     
+	      
+  	     2161
+	        SANJINES;VARGAS;ORLANDO
+	     
+	      
+  	     2081
+	        SANJINEZ;ARNEZ;JHONNY
+	     
+	      
+  	     2628
+	        SANTALLA;ALEJO;EFRAIN
+	     
+	      
+  	     2398
+	        SARAVIA;ARAMAYO;SERGIO EDUARDO
+	     
+	      
+  	     2264
+	        SARAVIA;LUNA;ROGER
+	     
+	      
+  	     2734
+	        SARMIENTO;JUAREZ;FILOMENA
+	     
+	      
+  	     2620
+	        SARUBBI;;ALEJO
+	     
+	      
+  	     2627
+	        SARZURI;QUISPE;VICTOR
+	     
+	      
+  	     2737
+	        SEGURONDO;HIDALGO;SHIRLEY CLAUDIA
+	     
+	      
+  	     204
+	        SELAYA;ROMAY;RUBEN
+	     
+	      
+  	     2413
+	        SEPULVEDA;TAPIA;FREDDY BENJAMIN
+	     
+	      
+  	     2723
+	        SILVA;CHOQUE;MOISES MARTIN
+	     
+	      
+  	     2320
+	        SILVA;MANZANEDA;ARMENIO
+	     
+	      
+  	     2337
+	        SILVA;RAMOS;HERNAN VICTOR
+	     
+	      
+  	     2027
+	        SOLIZ;IRIARTE;GUIDO
+	     
+	      
+  	     2180
+	        SOLIZ;RUIZ;EDUARDO
+	     
+	      
+  	     2147
+	        SORIA;LIMACHI;TITO ANGELINO
+	     
+	      
+  	     189
+	        SORIA;RODRIGUEZ;RAMIRO
+	     
+	      
+  	     2029
+	        SORUCO;ESCALERA;FELIX
+	     
+	      
+  	     2619
+	        SORUCO;SOLOGUREN;SILVIA SHIRLEY XIMENA
+	     
+	      
+  	     2577
+	        SOSA;POMACUSI;JOEL FAVIO
+	     
+	      
+  	     2415
+	        SOTO;IBANEZ;RENE
+	     
+	      
+  	     2772
+	        SOZA;DIAZ;ROBERTO EFRAIN
+	     
+	      
+  	     170
+	        SUAREZ;GUERRA;HECTOR
+	     
+	      
+  	     2765
+	        SUBIETA;VASQUEZ;MARTIN ALFONSO
+	     
+	      
+  	     2542
+	        SUYO;LARUTA;HERNAN RAMIRO
+	     
+	      
+  	     2596
+	        TAPIA;PEREIRA;HILDA GABRIELA
+	     
+	      
+  	     2752
+	        TAPIA;PEREIRA;HILDA GABRIELA
+	     
+	      
+  	     104
+	        TAPIA;TAPIA;WALDO
+	     
+	      
+  	     2163
+	        TAPIA;TERRAZAS;EDGAR
+	     
+	      
+  	     2538
+	        TARQUI;AYALA;FREDDY
+	     
+	      
+  	     2561
+	        TARQUI;TARQUI;SANTIAGO
+	     
+	      
+  	     2184
+	        TARQUI;VALERIANO;JAVIER JIMMY
+	     
+	      
+  	     2693
+	        TARQUINO;GARAY;RUBEN
+	     
+	      
+  	     2585
+	        TEJEDA;PEREZ;LESLIE KARINA
+	     
+	      
+  	     2523
+	        TELLERIA;ARAOZ;CARLOS RODRIGO
+	     
+	      
+  	     2048
+	        TELLERIA;GEIGER;JOSE LUIS
+	     
+	      
+  	     2335
+	        TELLEZ;SASAMOTO;JOSE JORGE ANTONIO
+	     
+	      
+  	     2209
+	        TERAN;CORTEZ;MARIO
+	     
+	      
+  	     2486
+	        TERAN;MITA;TANIA ANGELA
+	     
+	      
+  	     2316
+	        TERAN;MODREGON;OSWALDO F.
+	     
+	      
+  	     2696
+	        THOMPSON;CAMACHO;CARLOS
+	     
+	      
+  	     2049
+	        TICONA;;REYNALDO
+	     
+	      
+  	     2564
+	        TICONA;AGUILERA;WILLIAMS MIGUEL
+	     
+	      
+  	     2411
+	        TICONA;CONDORI;DANIEL RENATO
+	     
+	      
+  	     2251
+	        TICONA;PAREDES;WINNER JESUS
+	     
+	      
+  	     2448
+	        TICONA;VARGAS;REMEDIOS
+	     
+	      
+  	     2060
+	        TITO;LUQUE;FABIAN AMADO
+	     
+	      
+  	     2686
+	        TITO;RODRIGUEZ;SANTIAGO FERNANDO
+	     
+	      
+  	     2132
+	        TORRES;OBLEAS;JORGE ERNESTO
+	     
+	      
+  	     141
+	        TORRES;OBLEAS;JUAN JOSE
+	     
+	      
+  	     2488
+	        TORREZ;HUANACU;MAXIMO OVALDO
+	     
+	      
+  	     2495
+	        TORRICO;BORJA;CARLOS ALBERTO
+	     
+	      
+  	     2181
+	        TORRICO;FUENTES;ANGEL
+	     
+	      
+  	     2345
+	        TORRICO;GUERRERO;CARLOS JUAN
+	     
+	      
+  	     2118
+	        TORRICO;PEREZ;GABRIELA
+	     
+	      
+  	     2285
+	        TORRICO;SEVILLA;DAYSY
+	     
+	      
+  	     106
+	        TRAVERSO;CORNEJO;TAZIO
+	     
+	      
+  	     2210
+	        TREVIÑO;PAREDES;ANTONIO
+	     
+	      
+  	     2051
+	        TROCHE;;HENRY
+	     
+	      
+  	     2148
+	        TRUJILLO;BLANCO;RAMIRO JUAN
+	     
+	      
+  	     2507
+	        TRUJILLO;INFANTES;OMAR JAVIER
+	     
+	      
+  	     2211
+	        TRUJILLO;MALLEA;MIGUEL
+	     
+	      
+  	     110
+	        TUDELA;JEMIO;CARLOS ALBERTO
+	     
+	      
+  	     2515
+	        UBERHUAGA;CONDE;JULIO CESAR
+	     
+	      
+  	     2674
+	        UZQUIANO;QUISBERT;ADOLFO GONZALO
+	     
+	      
+  	     136
+	        VALDEZ;CARDENAS;MAURICIO
+	     
+	      
+  	     2594
+	        VALDIVIA;NAVIA;CLAUDIA MARIA
+	     
+	      
+  	     2142
+	        VALENCIA;GOYZUETA;RAFAEL
+	     
+	      
+  	     2682" selected="
+	        VALLE;VELASQUEZ;FREDDY
+	     
+	      
+  	     2572
+	        VALVERDE;SALAZAR;NELSON JAVIER
+	     
+	      
+  	     2126
+	        VARGAS;ARCE;FERNANDO CRISTIAM
+	     
+	      
+  	     2308
+	        VARGAS;BALLESTER;WALDO
+	     
+	      
+  	     2498
+	        VARGAS;CHOCALA;FREDDY JAIME
+	     
+	      
+  	     2053
+	        VARGAS;COPA;EDWIN
+	     
+	      
+  	     2188
+	        VARGAS;FERNANDEZ;EDWIN GONZALO
+	     
+	      
+  	     2484
+	        VARGAS;PACHECO;ALDO FELIPE
+	     
+	      
+  	     2255
+	        VARGAS;PAREDES;MARCO ANTONIO
+	     
+	      
+  	     2639
+	        VARGAS;PAREDES;MARCO ANTONIO
+	     
+	      
+  	     2726
+	        VARGAS;RIVADENEIRA;ARIADNNE DANIELA
+	     
+	      
+  	     2482
+	        VARGAS;SALCEDO;ADHEMAR SELMAN
+	     
+	      
+  	     2275
+	        VASQUEZ;PEÑARANDA;JORGE
+	     
+	      
+  	     194
+	        VASQUEZ;TAMBO;RENE MANUEL
+	     
+	      
+  	     2164
+	        VASQUEZ;VILLAMOR;MARCELO
+	     
+	      
+  	     2212
+	        VEGA;AGUIRRE;NELSON
+	     
+	      
+  	     2738
+	        VEGA;LAZARTE;ROBERTO FRANZ
+	     
+	      
+  	     2037
+	        VEGA;VELASCO;WALTER SILVESTRE
+	     
+	      
+  	     165
+	        VELASCO;ALCONCE;GRIMA
+	     
+	      
+  	     2532
+	        VELASCO;CALSINA;JORGE ANTONIO
+	     
+	      
+  	     2117
+	        VELASCO;TUDELA;JORGE M.
+	     
+	      
+  	     2705
+	        VELASQUEZ;ARANDO;RODOLFO FREDDY
+	     
+	      
+  	     2701
+	        VELASQUEZ;FLORES;ANTONIO ISIDRO
+	     
+	      
+  	     2531
+	        VELASQUEZ;GARNICA;PATRICIA CLAUDIA
+	     
+	      
+  	     191
+	        VELASQUEZ;GARZON;RAUL
+	     
+	      
+  	     2093
+	        VELASQUEZ;SEJAS;CELSO MIGUEL
+	     
+	      
+  	     2544
+	        VENTURA;GOYZUETA;VICTOR GONZALO
+	     
+	      
+  	     187
+	        VERA;GUTIERREZ;ORLANDO
+	     
+	      
+  	     2378
+	        VERA;JIMENEZ;JOSE CRUZ
+	     
+	      
+  	     2554
+	        VERASTEGUI;VALLE;JUAN MILTON
+	     
+	      
+  	     2213
+	        VERGARA;MOSCOSO;FERNANDO
+	     
+	      
+  	     124
+	        VIA;ORELLANA;EDUARDO
+	     
+	      
+  	     2575
+	        VICENTE;SANCHEZ;GERARDO
+	     
+	      
+  	     2534
+	        VIDAURRE;FERNANDEZ;ANTONIO JOSE
+	     
+	      
+  	     2151
+	        VILA;CASTRO;JOSE LUIS
+	     
+	      
+  	     188
+	        VILA;RODRIGUEZ;OSCAR
+	     
+	      
+  	     2736
+	        VILLAFUERTE;OPORTO;ELISEO JAHDIEL
+	     
+	      
+  	     2054
+	        VILLALOBOS;CHOQUE;IRENE
+	     
+	      
+  	     2361
+	        VILLAMOR;SALAZAR;OSCAR
+	     
+	      
+  	     2468
+	        VILLCA;CASTILLO;CARLOS TITO
+	     
+	      
+  	     2777
+	        VILLCA;PAYE;ARIEL
+	     
+	      
+  	     2690
+	        VILLEGAS;ALVAREZ;JAVIER WILDE
+	     
+	      
+  	     134
+	        VILLEGAS;GONZALES;ROBERTO
+	     
+	      
+  	     2127
+	        VILLEGAS;IBAÑEZ;MARIO OSCAR
+	     
+	      
+  	     2717
+	        VILLEGAS;MAMANI;ROGER
+	     
+	      
+  	     2683
+	        VINO;CONTRERAS;EDDY MARCELO
+	     
+	      
+  	     2580
+	        VINOLAS;IBAÑEZ;ELIZABETH CLEMENCIA
+	     
+	      
+  	     2571
+	        VINOLAS;IBANEZ;ELIZABETH CLEMENCIA
+	     
+	      
+  	     2457
+	        VISCARRA;DE LA TORRE;OSCAR MARTIN
+	     
+	      
+  	     2647
+	        VISCARRA;ORTUÑO;SERGIO EDDY
+	     
+	      
+  	     2779
+	        YANA;CANCARI;RODOLFO
+	     
+	      
+  	     2269
+	        YANAGUAYA;APAZA;WALDO AGUSTIN
+	     
+	      
+  	     2435
+	        YANARICO;GUTIERREZ;SOLEDAD LUPE
+	     
+	      
+  	     2347
+	        YUCRA;ROJAS;MIGUEL
+	     
+	      
+  	     158
+	        YUJRA;ALVAREZ;FEDERICO
+	     
+	      
+  	     2559
+	        ZABALA;RIVAS;JOSE LUIS
+	     
+	      
+  	     2257
+	        ZAMBRANA;FLORES;ROBERTO GUIDO
+	     
+	      
+  	     2265
+	        ZAMBRANA;VELARDE;GONZALO
+	     
+	      
+  	     130
+	        ZAMORA;ARCE;OSCAR DANIEL
+	     
+	      
+  	     2028
+	        ZAPATA;CORONEL;JORGE LUIS
+	     
+	      
+  	     2687
+	        ZEBALLOS;ESPINOZA;ARIANA
+	     
+	      
+  	     2182
+	        ZEGARRA;VERASTEGUI;TITO
+	     
+	      
+  	     2214
+	        ZELAYA;MARQUEZ;JOSE ANTONIO
+	     
+	      
+  	     2365
+	        ZENTENO;BENITEZ;FRANZ
+	     
+	      
+  	     2108
+	        ZENTENO;BENITEZ;MARIO
+	     
+	      
+  	     2076
+	        ZOTA;UÑO;VIRGINIA
+	     
+	      
+	  </select>

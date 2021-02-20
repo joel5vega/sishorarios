@@ -143,7 +143,7 @@ export default class CrearClase extends Component {
         }
       } else {
         if (item.title === "evento") {
-          console.log("evento crado");
+          console.log("evento creado");
           let anterior = this.state.choqueAmbiente.concat(
             this.state.choqueSemestre
           );

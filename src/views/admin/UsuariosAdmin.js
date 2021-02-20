@@ -18,6 +18,7 @@ export default class UsuariosAdmin extends Component {
     return (
       <div className="tarjetas">
         <ListaCore
+          responsables={this.props.responsables}
           datos={usuarios}
           titulo="Usuarios"
           tipo="users"
