@@ -12,14 +12,19 @@ export default class Register extends Component {
   }
   componentDidMount() {
     //recibimos el dato desde props
-    this.setState({ selected: this.props.datos });
+    if (this.props.datos) {
+      this.setState({ selected: this.props.datos });
+    }
   }
   handleChange = (evento) => {
     const target = evento.target;
     const value = target.value;
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
-    this.props.onChange(evento);
+    if (this.props.onChange) {
+      this.props.onChange(evento);
+    }
+
     console.log(name + " es: " + value);
   };
 

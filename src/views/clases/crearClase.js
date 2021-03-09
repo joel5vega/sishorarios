@@ -26,7 +26,7 @@ export default class CrearClase extends Component {
       day: "",
       startTime: "",
       endTime: "",
-
+      paralelo: "A",
       selectedSemestre: "default",
       selectedMencion: "default",
 
@@ -143,7 +143,7 @@ export default class CrearClase extends Component {
         }
       } else {
         if (item.title === "evento") {
-          console.log("evento creado");
+          console.log("evento temporal creado");
           let anterior = this.state.choqueAmbiente.concat(
             this.state.choqueSemestre
           );
@@ -324,7 +324,7 @@ export default class CrearClase extends Component {
       day: this.state.day,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
-      paralelo: "A",
+      paralelo: this.state.paralelo,
     };
     console.log(evento);
     let urlPost = this.state.url + "/api/clases";
@@ -339,6 +339,8 @@ export default class CrearClase extends Component {
         }
       )
       .then(this.limpiarForm());
+    this.limpiarForm();
+    this.props.history.push("crear");
 
     alert("El evento se creo exitosamente");
   }
@@ -368,7 +370,7 @@ export default class CrearClase extends Component {
     const target = evento.target;
     const value = target.value;
     const name = target.name;
-    this.setState({ selected: { ...this.state.selected, [name]: value } });
+    this.setState({ [name]: value });
     console.log(name + " es: " + value);
   };
   render() {
@@ -391,6 +393,7 @@ export default class CrearClase extends Component {
       { id: "6", nombre: "Sabado" },
     ];
     const listaSemestres = [
+      { id: "default", nombre: "Seleccione" },
       { id: "1", nombre: "1" },
       { id: "2", nombre: "2" },
       { id: "3", nombre: "3" },
@@ -412,6 +415,7 @@ export default class CrearClase extends Component {
       selectedMateria,
       selectedNivel,
       selectedTipo,
+      paralelo,
       materias,
       responsables,
       ambientes,
@@ -466,6 +470,14 @@ export default class CrearClase extends Component {
                         handleChange={this.handleMateriaChange}
                         datos={materias}
                       />
+                      <div className="col-auto">
+                        <InputControlado
+                          label="Paralelo"
+                          nombre="paralelo"
+                          valor={paralelo}
+                          handleChange={this.handleChange}
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
@@ -491,6 +503,7 @@ export default class CrearClase extends Component {
                         name="responsable"
                         handleChange={this.handleResponsableChange}
                         datos={responsables}
+                        index={true}
                       />
                     </div>
                   )}

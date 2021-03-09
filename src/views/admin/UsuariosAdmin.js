@@ -23,6 +23,8 @@ export default class UsuariosAdmin extends Component {
           titulo="Usuarios"
           tipo="users"
           keys={keys}
+          menciones={[]}
+          pensums={[]}
         />
       </div>
     );

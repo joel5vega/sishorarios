@@ -312,7 +312,7 @@ class NavBar extends Component {
               )}
             </Nav>
             <Nav className="justify-content-end">
-              {!this.props.tipo ? (
+              {this.props.tipo === "estudiante" ? (
                 <Nav.Link
                   eventKey="login"
                   as={NavLink}

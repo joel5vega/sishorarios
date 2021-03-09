@@ -15,6 +15,7 @@ import CrearPensum from "../containers/crear/crearPeriodo";
 import CrearMencion from "../containers/crear/crearMencion";
 import Register from "../views/auth/Register.js";
 import DetalleClase from "../views/clases/DetalleClase";
+import DetalleUser from "../views/auth/DetalleUser";
 
 class ListaCore extends Component {
   constructor(props) {
@@ -66,13 +67,14 @@ class ListaCore extends Component {
     const name = target.name;
     const id = target.id;
     var tipo = this.props.tipo;
+    console.log(tipo);
 
     const response = this.buscar(id);
-    console.log(target.name);
-    // console.log(response[0]);
+    console.log(response[0]);
+
     this.setState({
       info: response[0],
-      selected:response[0],
+      selected: response[0],
       showInfo: true,
       showHabilitado: true,
       // selected: { ...this.state.selected, [name]: value },
@@ -87,7 +89,11 @@ class ListaCore extends Component {
     event.preventDefault();
     var id = this.state.idClase;
     console.log(id);
-    let urlPost = this.state.url + "api/clases/habilitar/" + id;
+    if (this.props.tipo === "users") {
+      var urlPost = this.state.url + "api/users/habilitar/" + id;
+    } else {
+      var urlPost = this.state.url + "api/clases/habilitar/" + id;
+    }
     axios
       .post(urlPost)
       .then(
@@ -108,7 +114,7 @@ class ListaCore extends Component {
       case "clases":
         return <DetalleClase clase={this.state.info} />;
       case "users":
-        return <DetalleClase clase={this.state.selected} />;
+        return <DetalleUser clase={this.state.selected} />;
 
       default:
         return <p>Envie el modo</p>;
@@ -134,7 +140,22 @@ class ListaCore extends Component {
   };
   eliminar(e) {
     console.log("eliminar: " + e);
-    console.log(this.state.tipo);
+    console.log(this.props.tipo);
+    switch (this.props.tipo) {
+      case "responsable": {
+        var url = this.state.url + "api/responsables/" + e;
+      }
+    }
+
+    console.log(url);
+    axios.delete(url).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   ///////////////////////////
   //end of CRUD
@@ -338,7 +359,7 @@ class ListaCore extends Component {
             </Modal.Body>
             <Modal.Footer>
               {this.state.showHabilitado && (
-                <Button onClick={this.habilitar}>Habilitar Clase</Button>
+                <Button onClick={this.habilitar}>Habilitar</Button>
               )}
 
               <Button onClick={this.onHide}>Cancelar</Button>

@@ -59,8 +59,9 @@ export default class Calendario extends Component {
         editable="true"
         //eje del tiempo
         minTime="7:00"
-        maxTime="21:00"
-        slotDuration="00:45:00"
+        maxTime="20:30"
+        slotDuration="00:30:00"
+        slotLabelInterval="00:30:00"
         height="auto"
         nowIndicator={true}
         // aspectRatio={5}

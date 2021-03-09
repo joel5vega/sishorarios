@@ -26,7 +26,7 @@ class AuthService {
       const options = { path: "/" };
       CookieService.set("access_token", response.access_token, options);
       CookieService.set("tipo", response.tipo, options);
-      CookieService.set("user",response.user.id,options);
+      CookieService.set("user", response.user.id, options);
       return true;
     }
     let date = new Date();
@@ -34,12 +34,14 @@ class AuthService {
     const options = { path: "/", expires: date };
     CookieService.set("access_token", response.access_token, options);
     CookieService.set("tipo", response.tipo, options);
-    CookieService.set("user",response.user.id,options);
+    CookieService.set("user", response.user.id, options);
     return true;
   }
   handleLogout() {
     console.log("authService_logout");
+    CookieService.remove("user");
     CookieService.remove("access_token");
+    CookieService.remove("tipo");
   }
 }
 

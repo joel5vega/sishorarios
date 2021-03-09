@@ -23,9 +23,9 @@ export default class SelectControlado extends Component {
                   {index
                     ? item.titulo +
                       " " +
-                      item.ap_paterno +
+                      item.nombre +
                       " " +
-                      item.ap_materno
+                      item.ap_paterno
                     : item.nombre}
                 </option>
               );

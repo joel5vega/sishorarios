@@ -123,7 +123,7 @@ class App extends Component {
             semestres={this.state.semestres}
           />
 
-          <h1>{this.state.tipo}</h1>
+          {/* <h1>{this.state.tipo}</h1> */}
           <div id="public-routes">
             <Route
               exact
