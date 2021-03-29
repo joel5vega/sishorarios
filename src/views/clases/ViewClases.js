@@ -16,6 +16,8 @@ class ViewClases extends Component {
     this.state = {
       usuario: "",
       fuente: "http://localhost:8000/api/clases",
+      width: window.innerWidth,
+      view: "timeGridWeek",
       externo: false,
       show: false,
       guardar: false,
@@ -26,6 +28,7 @@ class ViewClases extends Component {
 
   componentDidMount() {
     this.verificarEntrada();
+    window.addEventListener("resize", this.handleResize);
   }
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
@@ -73,6 +76,25 @@ class ViewClases extends Component {
   };
   onHide = () => {
     this.setState({ show: false });
+  };
+  ///////////////////////////
+  //Tamaño
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState({ width: window.innerWidth });
+    this.setView();
+    console.log(this.state.width);
+  };
+  setView = () => {
+    if (this.state.width < 300) {
+      this.setState({ view: "timeGrid", showNow: false });
+    } else this.setState({ view: "timeGridWeek", showNow: true });
+    console.log(this.state.view);
+    this.render();
   };
   ///////////////////////
   onRouteChanged() {
@@ -160,11 +182,31 @@ class ViewClases extends Component {
         </div>
 
         {this.state.externo && <h1>{this.state.titulo}</h1>}
+        {this.state.view === "timeGrid" && (
+          <Calendario
+            fuente={this.state.fuente}
+            getDateClick={this.getDateClick}
+            eventClick={this.eventClick}
+            view="timeGrid"
+          />
+        )}
+        {this.state.view === "timeGridWeek" && (
+          <div className="container">
+            <Calendario
+              fuente={this.state.fuente}
+              getDateClick={this.getDateClick}
+              eventClick={this.eventClick}
+              view="timeGridWeek"
+            />
+          </div>
+        )}
+
+        {/*           
         <Calendario
           fuente={this.state.fuente}
           getDateClick={this.getDateClick}
           eventClick={this.eventClick}
-        />
+        /> */}
       </div>
     );
   }

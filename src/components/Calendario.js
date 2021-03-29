@@ -22,7 +22,7 @@ export default class Calendario extends Component {
   }
 
   render() {
-    const {  view } = this.props;
+    const { view } = this.props;
     if (this.state.loading) {
       return <div>cargando todavia</div>;
     }
@@ -81,23 +81,23 @@ export default class Calendario extends Component {
     } = event.extendedProps;
     // extendedProps is used to access additional event properties.
     const content = (
-      <div>
-        <div className="texto-peque">
-          {ambiente}
-          <br />
-          {event.title} {paralelo}
-          <br />
-          {tituloResponsable} {responsable}
+      <div className="dato-cal">
+        <div className="texto-grande">
+          {event.title}{paralelo}
         </div>
+        <div className="texto-peque">
+          {tituloResponsable}.{responsable}
+        </div>
+        <div className="texto-grande">{ambiente}</div>
       </div>
     );
     const contentMinimal = (
-      <div>
+      <div className="dato-cal">
         <div className="texto-peque">
           {event.extendedProps.ambiente}
           <br />
-          {event.title}
         </div>
+        <div className="texto-grande">{event.title}</div>
       </div>
     );
     if (this.props.view === "timeGridWeek") {

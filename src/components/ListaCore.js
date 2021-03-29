@@ -134,10 +134,44 @@ class ListaCore extends Component {
   }
 
   // Crud
-  guardar = (e) => {
-    console.log("guardar");
+  guardar = () => {
+    let tipo = this.props.tipo;
+    console.log("guardar " + tipo);
+    var url = this.url(tipo);
+    
+    this.post(url, this.state.selected);
+    console.log("guardar " + tipo + " en " + url);
     console.log(this.state.selected);
   };
+  url = (tipo) => {
+    switch (tipo) {
+      case "responsable":
+        {
+          var url = this.state.url + "api/responsables/";
+        }
+        return url;
+    }
+  };
+  post = (urlPost, dato) => {
+    axios
+      .post(urlPost, dato)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .then(this.limpiarForm());
+  };
+  // Limpiar formulario
+  limpiarForm() {
+    this.setState({
+      selected: {}
+    });
+  }
+
   eliminar(e) {
     console.log("eliminar: " + e);
     console.log(this.props.tipo);

@@ -2,7 +2,15 @@ import React, { Component } from "react";
 
 export default class SelectControlado extends Component {
   render() {
-    const { label, value, name, datos, handleChange, index } = this.props;
+    const {
+      label,
+      value,
+      name,
+      datos,
+      handleChange,
+      index,
+      materia,
+    } = this.props;
     // const valor = "item.valor";
     return (
       <div>
@@ -16,16 +24,15 @@ export default class SelectControlado extends Component {
             // defaultValue="default"
           >
             <option value="default" disabled={true}>
-              Seleccione...            </option>
+              Seleccione...{" "}
+            </option>
             {datos.map((item) => {
               return (
                 <option key={item.id} value={item.id}>
                   {index
-                    ? item.titulo +
-                      " " +
-                      item.nombre +
-                      " " +
-                      item.ap_paterno
+                    ? item.titulo + "  " + item.ap_paterno + " " + item.nombre
+                    : materia
+                    ? item.sigla
                     : item.nombre}
                 </option>
               );

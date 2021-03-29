@@ -7,9 +7,9 @@ export default class InputControlado extends Component {
       <div>
         <div className="form-group col-auto">
           <label>{label}</label>
+          <br />
           <input
             type={tipo ? tipo : "text"}
-            
             placeholder={label}
             name={nombre}
             value={valor}

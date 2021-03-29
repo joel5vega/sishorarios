@@ -135,6 +135,9 @@ body {
   height: fit-content;
   width: fit-content;
 }
+.dato-cal {
+  margin: 0.3rem;
+}
 .sticky {
   position: -webkit-sticky; /* Safari */
   position: sticky;

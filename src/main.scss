@@ -1,16 +1,27 @@
-
 // you must include each plugins' css
 // paths prefixed with ~ signify node_modules
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/timegrid/main.css';
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+@import "~@fullcalendar/timegrid/main.css";
 
-.texto-peque{
-  font-size: x-small;
+.texto-peque {
+  margin: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: flex;
+  color: whitesmoke;
+  align-items: center;
+  justify-content: center;
 }
-.texto-grande{
-  font-size: smaller;
+.texto-grande {
+  font-family: Helvetica;
+  margin: 0.1rem;
+  font-size: 0.9rem;
+  color: black;
+  display: flex;
   font-weight: bolder;
+  align-items: center;
+  justify-content: center;
 }
 
 .demo-app {
@@ -27,6 +38,6 @@
   // max-width: 900px;
   padding-top: 10px;
 }
-.center-block{
-  float:none;
+.center-block {
+  float: none;
 }

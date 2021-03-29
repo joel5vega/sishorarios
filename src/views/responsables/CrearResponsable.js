@@ -48,6 +48,8 @@ export default class CrearResponsable extends Component {
       ap_materno,
       puesto,
       titulo,
+      telefono,
+      email,
       descripcion,
     } = this.state.selected;
     return (
@@ -90,6 +92,22 @@ export default class CrearResponsable extends Component {
             label="Titulo"
             nombre="titulo"
             valor={titulo}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <InputControlado
+            label="Teléfono"
+            nombre="telefono"
+            valor={telefono}
+            handleChange={this.handleChange}
+          />
+        </div>
+        <div className="tarjeta">
+          <InputControlado
+            label="Correo eléctronico"
+            nombre="email"
+            valor={email}
             handleChange={this.handleChange}
           />
         </div>
