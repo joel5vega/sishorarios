@@ -58,8 +58,8 @@ export default class Calendario extends Component {
         navLinks="true" // can click day/week names to navigate views
         editable="true"
         //eje del tiempo
-        minTime="7:00"
-        maxTime="20:30"
+        minTime="7:30"
+        maxTime="21:00"
         slotDuration="00:30:00"
         slotLabelInterval="00:30:00"
         height="auto"
@@ -83,7 +83,7 @@ export default class Calendario extends Component {
     const content = (
       <div className="dato-cal">
         <div className="texto-grande">
-          {event.title}{paralelo}
+          {event.title}-{paralelo}
         </div>
         <div className="texto-peque">
           {tituloResponsable}.{responsable}
@@ -97,7 +97,7 @@ export default class Calendario extends Component {
           {event.extendedProps.ambiente}
           <br />
         </div>
-        <div className="texto-grande">{event.title}</div>
+        <div className="texto-grande">{event.title}-{paralelo}</div>
       </div>
     );
     if (this.props.view === "timeGridWeek") {

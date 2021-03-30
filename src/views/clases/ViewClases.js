@@ -154,7 +154,7 @@ class ViewClases extends Component {
                     id="contained-modal-title-vcenter"
                     style={{ color: "white" }}
                   >
-                    {this.state.clase.tipo}
+                    Tipo: {this.state.clase.tipo} 
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">

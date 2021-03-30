@@ -11,34 +11,25 @@ export default class SelectControlado extends Component {
       index,
       materia,
     } = this.props;
-    // const valor = "item.valor";
     return (
-      <div>
-        <div className="form-group col-auto">
-          <label className="col-5">{label}</label>
-          <select
-            value={value}
-            className="col-auto"
-            name={name}
-            onChange={handleChange}
-            // defaultValue="default"
-          >
-            <option value="default" disabled={true}>
-              Seleccione...{" "}
-            </option>
-            {datos.map((item) => {
-              return (
-                <option key={item.id} value={item.id}>
-                  {index
-                    ? item.titulo + "  " + item.ap_paterno + " " + item.nombre
-                    : materia
-                    ? item.sigla
-                    : item.nombre}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+      <div className="tarjeta-peque">
+        <label >{label}</label>
+        <select value={value} name={name} onChange={handleChange}>
+          <option value="default" disabled={true}>
+            ...{" "}
+          </option>
+          {datos.map((item) => {
+            return (
+              <option key={item.id} value={item.id}>
+                {index
+                  ? item.titulo + "  " + item.ap_paterno + " " + item.nombre
+                  : materia
+                  ? item.sigla
+                  : item.nombre}
+              </option>
+            );
+          })}
+        </select>
       </div>
     );
   }

@@ -120,6 +120,7 @@ body {
   /* border: 1px solid red !important; */
   display: flex;
   flex-direction: row;
+  max-width: fit-content;
   flex-shrink: 3;
   border-radius: 15%;
   width: fit-content;
@@ -131,9 +132,14 @@ body {
   border-radius: 5%;
   background-color: white;
   display: flex;
-  margin: 0.8rem;
+  margin: 0.2rem;
   height: fit-content;
   width: fit-content;
+}
+
+.calendario {
+  margin: 0.5rem;
+  border-color: red;
 }
 .dato-cal {
   margin: 0.3rem;
@@ -182,6 +188,67 @@ body {
   }
 }
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+form {
+  padding: 10px;
+  background-color: #e7e7e7;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  flex-wrap: wrap;
+  flex-shrink: 2;
+}
+form-group {
+  display: flex;
+  /* width: 50px; */
+  background-color: white;
+}
+form label {
+  color: #0095eb;
+}
+form input {
+  font-family: "Roboto", sans-serif;
+  -webkit-box-sizing: border-box;
+  color: #525c66;
+  width: 60px;
+  height: 23px;
+  box-sizing: border-box;
+  color: #525c66;
+  font-size: 0.9rem;
+  resize: horizontal;
+}
+form select,
+form textarea {
+  font-family: "Roboto", sans-serif;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #525c66;
+  font-size: 0.9rem;
+  resize: horizontal;
+  max-width:100px;
+}
+
+form button {
+  display: block;
+  background-color: #0095eb;
+  padding: 10px 45px 10px 45px;
+  border: 0;
+  font-size: 1em;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+formbutton:: hover {
+  background-color: #046193;
+}
+textarea {
+  resize: none;
+}
+.progreso {
+  width: 100%;
+  margin:0.3rem;
+}
 @media (min-width: 992px) {
   .my-modal-lg {
     width: 100%;

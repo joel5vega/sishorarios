@@ -36,7 +36,14 @@
 .calendar {
   margin: 0 auto;
   // max-width: 900px;
+  border-color:green;
   padding-top: 10px;
+}
+
+.calendario{
+  margin:0.5rem;
+  border-color:red;
+  padding-bottom: 10px;
 }
 .center-block {
   float: none;

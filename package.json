@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.11.2",
     "@mui-treasury/components": "^1.4.0",
     "@mui-treasury/styles": "^1.7.1",
+    "@ramonak/react-progress-bar": "^2.1.6",
     "@react-pdf/renderer": "^2.0.0-beta.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",

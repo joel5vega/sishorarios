@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import SelectControlado from "../../components/SelectControlado";
 import Fab from "@material-ui/core/Fab";
 import { Typography } from "@material-ui/core";
+import { Modal, Button } from "react-bootstrap";
+import EditarClase from "./EditarClase";
 
 export default class BuscarClase extends Component {
   constructor(props) {
@@ -35,6 +37,10 @@ export default class BuscarClase extends Component {
       selectedMencion: "default",
       selectedAmbiente: "default",
       selectedResponsable: "default",
+      show: false,
+      guardar: false,
+      editar: false,
+      clase: {},
     };
   }
   async componentDidMount() {
@@ -241,6 +247,51 @@ export default class BuscarClase extends Component {
   crearClase = () => {
     alert("crear clase?");
   };
+  ///////////////////////
+  ////MODAL//////
+  modal = () => {
+    this.setState({ show: true, guardar: false, editar: true });
+  };
+  getDateClick = (e) => {
+    console.log(e);
+  };
+  eventClick = (e) => {
+    var id = e.event;
+    var clase = e.event.extendedProps;
+    var startTime = e.event.start.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    var endTime = e.event.end.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    var daysOfWeek = e.event.start.getDay();
+    clase = {
+      ...clase,
+      id:id.groupId,
+     
+      startTime: startTime,
+      endTime: endTime,
+      daysOfWeek: daysOfWeek,
+      color: e.event.backgroundColor,
+      title: e.event.title,
+    }
+    this.setState({
+      show: true,
+      guardar: true,
+      editar: false,
+      claseID: id,
+      clase: clase,
+      backgroundColor: e.event.backgroundColor,
+    });
+
+    console.log(id);
+  };
+  onHide = () => {
+    this.setState({ show: false });
+  };
+  ///////////////////////
 
   render() {
     var {
@@ -375,12 +426,37 @@ export default class BuscarClase extends Component {
               <Calendario
                 fuente={this.state.fuente}
                 getDateClick={this.getDateClick}
+                eventClick={this.eventClick}
                 view="timeGridWeek"
               />
             </div>
           )}
         </div>
-
+        <div>
+            <Modal
+              show={this.state.show}
+              onHide={this.onHide}
+              aria-labelledby="contained-modal-title-vcenter"
+            >
+              <form onSubmit={this.guardar}>
+                <Modal.Header
+                  closeButton
+                  style={{ backgroundColor: this.state.backgroundColor }}
+                >
+                  <div style={{ alignContent: "center" }}></div>
+                  <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    style={{ color: "white" }}
+                  >
+                    Tipo: {this.state.clase.tipo} 
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="show-grid">
+                  <EditarClase clase={this.state.clase} />
+                </Modal.Body>
+              </form>
+            </Modal>
+          </div>
         <div className="flotante">
           <div id="print" className="sticky">
             <Fab key="pdf" variant="extended" aria-label="option">
