@@ -17,7 +17,7 @@ const Login = (props) => {
   };
   return (
     <div className="container">
-      <h1>Login</h1>
+      {/* <h1>Ingresar</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
@@ -41,12 +41,12 @@ const Login = (props) => {
           />
         </div>
         <button type="submit" className="btn btn-primary btn-block">
-          Login
+          Ingresar
         </button>
         <NavLink to="/register">
           <p>Registrar Nuevo usuario</p>
         </NavLink>
-      </form>
+      </form> */}
     </div>
   );
 };

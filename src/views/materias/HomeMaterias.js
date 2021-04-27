@@ -43,7 +43,7 @@ export default class HomeMaterias extends Component {
             <MateriasMencion
               datos={datos}
               titulo={"Materias de Telecomunicaciones "}
-              mencion="Telecomunicaciones"
+              mencion="Telecom."
             />
           }
         />

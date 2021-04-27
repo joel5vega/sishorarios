@@ -7,7 +7,7 @@ class Estudiante extends Component {
       color: "blue",
     };
 
-    const { tipo, ambientes, usuario,semestres } = this.props;
+    const { tipo, ambientes, usuario, semestres } = this.props;
     return (
       <div>
         <Nav>
@@ -71,7 +71,6 @@ class Estudiante extends Component {
             Malla curricular
           </Nav.Link>
         </Nav>
-        ;
       </div>
     );
   }

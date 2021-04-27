@@ -11,13 +11,14 @@ class Auth {
       estado: "false",
       id: 5,
       name: "Pablo",
-      tipo: "estudiante",
+      // tipo: "estudiante",
     };
     const token = CookieService.get("access_token");
     const respuesta = CookieService.get("tipo");
     const usuario = CookieService.get("user");
     token ? (this.authenticated = true) : (this.authenticated = false);
-    respuesta ? (this.tipo = respuesta) : (this.tipo = "estudiante");
+    this.tipo = respuesta;
+    // respuesta ? (this.tipo = respuesta) : (this.tipo = "estudiante");
     usuario
       ? (this.user = usuario)
       : (this.user = {
@@ -25,24 +26,26 @@ class Auth {
           estado: "false",
           id: 4,
           name: "Pablo",
-          tipo: "estudiante",
+          // tipo: "estudiante",
         });
   }
   componentDidMount() {
     this.constructor();
   }
-  
+
   update() {
     console.log("auth actualizando");
     new Auth();
     this.authenticated = true;
   }
   logout() {
-    console.log("Auth logout");
     CookieService.remove("access_token");
     CookieService.remove("user");
     CookieService.remove("tipo");
     this.authenticated = false;
+    // this.constructor();
+    // this.tipo = "estudiante";
+    console.log("Auth logout");
     //cb();
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
-import { Nav, NavDropdown } from "react-bootstrap";
+import { Nav, NavbarBrand, NavDropdown } from "react-bootstrap";
 import mainlogo from "../../images/logo-UMSA.png";
 import AuthService from "../../services/AuthService";
 import auth from "../common/router/protected/auth";
@@ -14,26 +14,33 @@ class NavBar extends Component {
     super(props);
     this.state = {
       url: "http://127.0.0.1:8000",
-      backgroundColor: "black",
+      logged: false,
       key: "home",
       titulo: "Sistema de Horarios",
-      periodo: "",
-
-      periodos: [],
-      ambientes: [],
-      aulas: [],
-      laboratorios: [],
-
       imagen: mainlogo,
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
-
-      selectedSemestre: "",
-      selectedAmbiente: "",
-      selectedPeriodo: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    var tipo = this.props.tipo;
+    if (tipo != "estudiante") {
+      this.setState({ tipo: tipo, logged: true });
+    }
+  }
+  background() {
+    switch (this.props.tipo) {
+      case "estudiante": {
+        this.setState({ background: "#40826d" });
+      }
+      case "docente": {
+        this.setState({ background: "cyan" });
+      }
+      case "administrativo": {
+        this.setState({ background: "white" });
+      }
+    }
+  }
   //Para ver elemento seleccionado
   handleSelect(key) {
     this.setState({
@@ -41,32 +48,7 @@ class NavBar extends Component {
     });
     alert(`selected ${key}`);
   }
-  /*
-  handleAmbienteChange = (item) => {
-    this.setState({
-      titulo: item.nombre,
-      selectedAmbiente: item.id,
-      selectedSemestre: "",
-    });
-  };
-  handleSemestreChange = (item) => {
-    this.setState({
-      titulo: item.nombre,
-      selectedSemestre: item.id,
-      selectedAmbiente: "",
-    });
-  };
 
-  handlePeriodoChange = (item) => {
-    this.setState({
-      selectedPeriodo: item.id,
-      periodo: item.nombre,
-      titulo: "Todo",
-      selectedAmbiente: "",
-      selectedSemestre: "",
-    });
-  };
-  */
   titulo() {
     return this.state.titulo;
   }
@@ -82,10 +64,11 @@ class NavBar extends Component {
     auth.logout();
     AuthService.handleLogout();
     this.props.handleAuth();
+    this.setState({ tipo: "estudiante", logged: false });
   };
   render() {
     const NavActive = {
-      color: "blue",
+      color: "#40826d ",
     };
 
     const { tipo, ambientes, usuario, semestres } = this.props;
@@ -94,12 +77,12 @@ class NavBar extends Component {
         <Navbar
           collapseOnSelect
           expand="sm"
-          bg="light"
-          variant="light"
+          style={{ backgroundColor: this.state.background }}
+          // variant="light"
           fixed="top"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
-            Sistema de horarios
+            Horarios ETN
           </Navbar.Brand>
           <Navbar.Text>{this.props.titulo}</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -111,7 +94,19 @@ class NavBar extends Component {
             ) : tipo === "docente" ? (
               <div>
                 <NavDocente usuario={usuario} />
-                {/* <Nav>
+              </div>
+            ) : (
+              <Estudiante semestres={semestres} ambientes={ambientes} />
+            )}
+            <Nav
+              onSelect={this.handleSelect}
+              className="nav justify-content-end ml-auto"
+            >
+              <Navbar.Brand>
+                {tipo == "administrativo" && (
+                  <NavLink to="/admin/">Admin</NavLink>
+                )}
+                {tipo == "docente" && (
                   <Nav.Link
                     as={NavLink}
                     eventKey="mishorarios"
@@ -130,38 +125,14 @@ class NavBar extends Component {
                       },
                     }}
                   >
-                    Mis horarios
+                    {usuario.responsable.ap_paterno}
                   </Nav.Link>
-                  <Nav.Link
-                    as={NavLink}
-                    exact
-                    to="/clase/crear"
-                    eventKey="crearClase"
-                  >
-                    Crear Clase
-                  </Nav.Link>
-                  <Nav.Link
-                    as={NavLink}
-                    exact
-                    to="/materia/"
-                    eventKey="curricula"
-                  >
-                    Malla curricular
-                  </Nav.Link>
-                  </Nav> */}
-              </div> 
-            ) : (
-              <Estudiante semestres={semestres} ambientes={ambientes} />
-            )}
-            <Nav onSelect={this.handleSelect}>
-              {tipo == "administrativo" && (
-                <div>
-                  <NavLink to="/admin/">Admin</NavLink>
-                </div>
-              )}
+                )}
+              </Navbar.Brand>
             </Nav>
-            <Nav className="justify-content-end">
-              {this.props.tipo === "estudiante" ? (
+
+            <Nav className="nav justify-content-end ml-auto">
+              {!tipo ? (
                 <Nav.Link
                   eventKey="login"
                   as={NavLink}

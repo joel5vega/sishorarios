@@ -67,7 +67,7 @@ class Login extends Component {
 
             <div className="card">
               <div className="card-body login-card-body">
-                <h1 className="login-box-msg">Login</h1>
+                <h1 className="login-box-msg">Ingresar</h1>
 
                 <form onSubmit={(event) => this.handleFormSubmit(event)}>
                   <div className="input-group mb-3">
@@ -105,7 +105,7 @@ class Login extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-8">
+                    <div className="col-7">
                       <div className="icheck-primary">
                         <input
                           type="checkbox"
@@ -121,12 +121,12 @@ class Login extends Component {
                         </label>
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-5">
                       <button
                         type="submit"
                         className="btn btn-primary btn-block"
                       >
-                        Login
+                        Ingresar
                       </button>
                     </div>
                   </div>

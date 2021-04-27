@@ -17,7 +17,7 @@ export default class MateriasMencion extends Component {
       <div>
         {semestres.map((item) => {
           return (
-            <div key={item}>
+            <div key={item} className="tarjeta-big">
               <MateriasSemestre
                 datos={datos}
                 semestre={item}

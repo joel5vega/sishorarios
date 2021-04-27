@@ -97,14 +97,18 @@ class App extends Component {
 
   handleAuth = (tipo, usuario) => {
     var isAuth = Auth.isAuthenticated();
+
+    if (!usuario) {
+      usuario = "estudiante";
+      console.log("undef");
+    }
     console.log("estoy en Padre con ");
     console.log(usuario);
-
     this.setState({ auth: isAuth, tipo: tipo, usuario: usuario });
   };
   render() {
     if (this.state.loading) {
-      return <Loader/>;
+      return <Loader />;
     }
 
     return (
@@ -351,20 +355,6 @@ class App extends Component {
                   state: { referrer: "currentLocation" },
                 }}
               />
-              {/*               
-              <h3>Necesita estar autenticado</h3>
-              <Login handleAuth={this.handleAuth} />
-              <NavLink
-                to={{
-                  pathname: "/login",
-                  state: {
-                    from: this.props.location,
-                  },
-                }}
-              >
-                <h1>Login</h1>
-              </NavLink> */}
-              {/* <button onClick={this.handleAuth}>auth </button> */}
             </div>
           )}
         </BrowserRouter>

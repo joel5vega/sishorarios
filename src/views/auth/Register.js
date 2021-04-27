@@ -74,9 +74,9 @@ export default class Register extends Component {
       { id: "administrativo", nombre: "Administrativo" },
     ];
     return (
-      <div className="container">
+      <div className="tarjeta-big">
         <form onSubmit={(event) => this.handleFormSubmit(event)}>
-          <div className="tarjetas">
+          <div className="tarjeta-big">
             <div className="tarjeta">
               <InputControlado
                 label="Nombre"
@@ -93,6 +93,8 @@ export default class Register extends Component {
                 handleChange={this.handleChange}
               />
             </div>
+          </div>
+          <div className="tarjeta-big">
             <div className="tarjeta">
               <InputControlado
                 type="password"
@@ -107,6 +109,8 @@ export default class Register extends Component {
                 onChange={this.handleChange}
               />
             </div>
+          </div>
+          <div className="tarjeta-big">
             <div className="tarjeta">
               <SelectControlado
                 label="Tipo"

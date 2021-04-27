@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 class NavAdministrativo extends Component {
   render() {
-    const NavActive = {
-      color: "blue",
+    const background = {
+      color: "#40826d",
     };
 
     const { tipo, ambientes, usuario, semestres } = this.props;
     return (
       <div>
-        <Nav className="mr-auto">
+        <Nav>
           <NavDropdown title="Clases" id="collasible-nav-dropdown">
             <NavDropdown.Item eventKey="clase" as={NavLink} exact to="/clase/">
               Buscar
