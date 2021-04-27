@@ -4,6 +4,7 @@ import "../../fontawesome";
 import axios from "axios";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
+import CrearClase from "./crearClase";
 
 class EditarClase extends Component {
   constructor(props) {
@@ -105,7 +106,7 @@ class EditarClase extends Component {
         <div>
           <div className="tarjetas" style={{ borderColor: color }}>
             <div className="tarjetas-titulo">Editar clase {id}</div>
-            
+            <CrearClase index={this.props.index} />
           </div>
         </div>
       </div>

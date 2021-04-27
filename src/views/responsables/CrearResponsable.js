@@ -22,15 +22,6 @@ export default class CrearResponsable extends Component {
     this.props.onChange(evento);
   };
 
-  handleChange = (evento) => {
-    const target = evento.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({ selected: { ...this.state.selected, [name]: value } });
-    console.log(name + " es: " + value);
-    this.props.onChange(evento);
-  };
-
   render() {
     const puestos = [
       { id: "auxiliar", nombre: "Auxiliar" },

@@ -24,21 +24,34 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
+      ////selescted
       selectedPeriodo: "default",
       selectedMateria: "default",
       selectedAmbiente: "default",
-      selectedMencion: "default",
       day: "default",
       startTime: "",
       endTime: "",
       paralelo: "A",
       selectedSemestre: "default",
       selectedMencion: "default",
-
+      selectedResponsable: "default",
       selectedNivel: "default",
       selectedTipo: "default",
+      //////
+      selected: {
+        Periodo: "default",
+        Semestre: "default",
+        selectedMencion: "default",
+        Materia: "default",
+        selectedNivel: "default",
+        selectedResponsable: "default",
+        Ambiente: "default",
+        day: "default",
+        startTime: "",
+        endTime: "",
+        paralelo: "A",
+      },
 
-      selectedResponsable: "default",
       isSubmitting: false,
       porcentaje: 0,
     };
@@ -191,8 +204,36 @@ export default class CrearClase extends Component {
   //fetch data
   async componentDidMount() {
     //this.fetchData();
+    //this.verificar();
   }
+  verificar() {
+    if (this.props.selected) {
+      var selected = this.props.selected
+      this.setState({
+        selectedPeriodo: selected.periodo,
+        selectedMateria: selected.materia,
+        selectedMencion: selected.mencion,
+        selectedNivel: selected.nivel,
+      });
+    }
+  }
+  handleChange = (event) => {
+    alert("cambio");
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
+    // Propagar datos al padre
+    // this.props.onChange(evento);
+  };
   handlePeriodoChange = (event) => {
+    this.handleChange(event);
+
     var periodo = event.target.value;
     // console.log(periodo)
     this.setState({
@@ -207,6 +248,10 @@ export default class CrearClase extends Component {
       choqueSemestre: "",
       porcentaje: 10,
       eventos: this.state.evento,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
     });
   };
   handleSemestreChange = (event) => {
@@ -217,6 +262,10 @@ export default class CrearClase extends Component {
       selectedSemestre: semestre,
       porcentaje: 20,
       selectedMencion: "",
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
     });
     this.fetchMaterias(semestre, mencion);
     this.fetchChoqueSemestre(semestre, mencion);
@@ -225,35 +274,75 @@ export default class CrearClase extends Component {
     var mencion = event.target.value;
     var semestre = this.state.selectedSemestre;
     console.log(mencion);
-    this.setState({ selectedMencion: mencion, porcentaje: 20 });
+    this.setState({
+      selectedMencion: mencion,
+      porcentaje: 20,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     this.fetchMaterias(semestre, mencion);
     this.fetchChoqueSemestre(semestre, mencion);
   };
   handleMateriaChange = (event) => {
     var materia = event.target.value;
-    this.setState({ selectedMateria: materia, porcentaje: 40 });
+    this.setState({
+      selectedMateria: materia,
+      porcentaje: 40,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
   };
   handleAmbienteChange = (event) => {
     var ambiente = event.target.value;
-    this.setState({ selectedAmbiente: ambiente, porcentaje: 80 });
+    this.setState({
+      selectedAmbiente: ambiente,
+      porcentaje: 80,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     console.log(ambiente);
     this.fetchChoqueAmbiente(ambiente);
   };
   handleNivelChange = (event) => {
     var nivel = event.target.value;
-    this.setState({ selectedNivel: nivel });
+    this.setState({
+      selectedNivel: nivel,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     this.fetchResponsables(nivel);
     // console.log(ambiente)
   };
   handleTipoChange = (event) => {
     var tipo = event.target.value;
-    this.setState({ selectedTipo: tipo });
+    this.setState({
+      selectedTipo: tipo,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     this.fetchAmbientes(tipo);
   };
 
   handleResponsableChange = (event) => {
     var responsable = event.target.value;
-    this.setState({ selectedResponsable: responsable, porcentaje: 60 });
+    this.setState({
+      selectedResponsable: responsable,
+      porcentaje: 60,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     // this.fetchResponsables(responsable);
     // console.log(ambiente)
   };
@@ -267,7 +356,15 @@ export default class CrearClase extends Component {
         endTime: this.state.endTime,
       },
     ];
-    this.setState({ day: dia, evento: evento, view: "dayGrid" });
+    this.setState({
+      day: dia,
+      evento: evento,
+      view: "dayGrid",
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
+    });
     this.pushArray(evento);
     // console.log(evento)
   };
@@ -289,6 +386,10 @@ export default class CrearClase extends Component {
       endTime: nuevo,
       evento: evento,
       porcentaje: 100,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
     });
     this.pushArray(evento);
   };
@@ -300,6 +401,10 @@ export default class CrearClase extends Component {
         daysOfWeek: this.state.day,
         startTime: this.state.startTime,
         endTime: fin,
+        selected: {
+          ...this.state.selected,
+          [event.target.name]: event.target.value,
+        },
       },
     ];
     this.setState({ endTime: fin, evento: evento });
@@ -329,6 +434,10 @@ export default class CrearClase extends Component {
       day: day,
       endTime: fin,
       porcentaje: porcentaje,
+      selected: {
+        ...this.state.selected,
+        [event.target.name]: event.target.value,
+      },
     });
     this.pushArray(evento);
   };
@@ -355,6 +464,8 @@ export default class CrearClase extends Component {
       paralelo: this.state.paralelo,
     };
     console.log(evento);
+    console.log("selected:");
+    console.log(this.state.selected);
     let urlPost = this.state.url + "/api/clases";
     axios
       .post(urlPost, evento)

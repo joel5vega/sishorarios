@@ -269,14 +269,14 @@ export default class BuscarClase extends Component {
     var daysOfWeek = e.event.start.getDay();
     clase = {
       ...clase,
-      id:id.groupId,
-     
+      id: id.groupId,
+
       startTime: startTime,
       endTime: endTime,
       daysOfWeek: daysOfWeek,
       color: e.event.backgroundColor,
       title: e.event.title,
-    }
+    };
     this.setState({
       show: true,
       guardar: true,
@@ -433,30 +433,34 @@ export default class BuscarClase extends Component {
           )}
         </div>
         <div>
-            <Modal
-              show={this.state.show}
-              onHide={this.onHide}
-              aria-labelledby="contained-modal-title-vcenter"
-            >
-              <form onSubmit={this.guardar}>
-                <Modal.Header
-                  closeButton
-                  style={{ backgroundColor: this.state.backgroundColor }}
+          <Modal
+            show={this.state.show}
+            onHide={this.onHide}
+            aria-labelledby="contained-modal-title-vcenter"
+          >
+            <form onSubmit={this.guardar}>
+              <Modal.Header
+                closeButton
+                style={{ backgroundColor: this.state.backgroundColor }}
+              >
+                <div style={{ alignContent: "center" }}></div>
+                <Modal.Title
+                  id="contained-modal-title-vcenter"
+                  style={{ color: "white" }}
                 >
-                  <div style={{ alignContent: "center" }}></div>
-                  <Modal.Title
-                    id="contained-modal-title-vcenter"
-                    style={{ color: "white" }}
-                  >
-                    Tipo: {this.state.clase.tipo} 
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="show-grid">
-                  <EditarClase clase={this.state.clase} />
-                </Modal.Body>
-              </form>
-            </Modal>
-          </div>
+                  Tipo: {this.state.clase.tipo}
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="show-grid">
+                <EditarClase
+                  clase={this.state.clase}
+                  index={this.props.index}
+                  menciones={this.props.menciones}
+                />
+              </Modal.Body>
+            </form>
+          </Modal>
+        </div>
         <div className="flotante">
           <div id="print" className="sticky">
             <Fab key="pdf" variant="extended" aria-label="option">

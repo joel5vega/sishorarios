@@ -5,6 +5,9 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import mainlogo from "../../images/logo-UMSA.png";
 import AuthService from "../../services/AuthService";
 import auth from "../common/router/protected/auth";
+import Estudiante from "./NavEstudiante.js";
+import NavAdministrativo from "./NavAdministrativo.js";
+import NavDocente from "./NavDocente.js";
 
 class NavBar extends Component {
   constructor(props) {
@@ -38,6 +41,7 @@ class NavBar extends Component {
     });
     alert(`selected ${key}`);
   }
+  /*
   handleAmbienteChange = (item) => {
     this.setState({
       titulo: item.nombre,
@@ -62,6 +66,7 @@ class NavBar extends Component {
       selectedSemestre: "",
     });
   };
+  */
   titulo() {
     return this.state.titulo;
   }
@@ -71,6 +76,7 @@ class NavBar extends Component {
 
     console.log(name);
   };
+
   logout = () => {
     console.log("NavBar logout");
     auth.logout();
@@ -79,21 +85,17 @@ class NavBar extends Component {
   };
   render() {
     const NavActive = {
-      color: "lime",
+      color: "blue",
     };
-    // const styles = {
-    //   containerStyle: {
-    //     backgroundColor: this.state.backgroundColor,
-    //   },
-    // };
-    const { tipo, ambientes, usuario } = this.props;
+
+    const { tipo, ambientes, usuario, semestres } = this.props;
     return (
       <div>
         <Navbar
           collapseOnSelect
           expand="sm"
-          bg="dark"
-          variant="dark"
+          bg="light"
+          variant="light"
           fixed="top"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
@@ -103,206 +105,53 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             {tipo === "administrativo" ? (
-              <Nav className="mr-auto">
-                <NavDropdown title="Clases" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    eventKey="clase"
+              <div>
+                <NavAdministrativo />
+              </div>
+            ) : tipo === "docente" ? (
+              <div>
+                <NavDocente usuario={usuario} />
+                {/* <Nav>
+                  <Nav.Link
                     as={NavLink}
-                    exact
-                    to="/clase/"
+                    eventKey="mishorarios"
+                    to={{
+                      pathname: "/clase/view",
+                      state: {
+                        fuente:
+                          "http://localhost:8000/api/clases/responsable/" +
+                          usuario.responsable.id +
+                          "?periodo=4",
+                        titulo:
+                          "Horarios de " +
+                          usuario.responsable.titulo +
+                          " " +
+                          usuario.responsable.ap_paterno,
+                      },
+                    }}
                   >
-                    Buscar
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    eventKey="claseView"
-                    as={NavLink}
-                    exact
-                    to="/clase/view"
-                  >
-                    Ver Clase
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    eventKey="claseCrear"
+                    Mis horarios
+                  </Nav.Link>
+                  <Nav.Link
                     as={NavLink}
                     exact
                     to="/clase/crear"
+                    eventKey="crearClase"
                   >
-                    Crear
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    eventKey="ambiente"
-                    as={NavLink}
-                    exact
-                    to="/ambiente/"
-                  >
-                    Uso de ambientes
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    eventKey="ambienteLista"
-                    as={NavLink}
-                    exact
-                    to="/ambiente/lista"
-                  >
-                    Listado de ambientes
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <NavDropdown title="Responsables" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/responsable/"
-                    eventKey="allResponsables"
-                  >
-                    Docentes y Auxiliares
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/responsable/lista"
-                    eventKey="listaResponsable"
-                  >
-                    Lista de Responsables
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to={{
-                      pathname: "/clase/lista",
-                      state: {
-                        selectedBuscar: "responsable",
-                      },
-                    }}
-                    eventKey="horarioResponsable"
-                  >
-                    Horario de los Responsables
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <NavDropdown title="Materias" id="collasible-nav-dropdown">
-                  <NavDropdown.Item
+                    Crear Clase
+                  </Nav.Link>
+                  <Nav.Link
                     as={NavLink}
                     exact
                     to="/materia/"
                     eventKey="curricula"
                   >
                     Malla curricular
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    exact
-                    to="/materia/lista"
-                    eventKey="listaMateria"
-                  >
-                    Lista de Materias
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            ) : tipo === "docente" ? (
-              <Nav>
-                <Nav.Link
-                  as={NavLink}
-                  eventKey="mishorarios"
-                  to={{
-                    pathname: "/clase/view",
-                    state: {
-                      fuente:
-                        "http://localhost:8000/api/clases/responsable/" +
-                        usuario.responsable.id +
-                        "?periodo=4",
-                      titulo:
-                        "Horarios de " +
-                        usuario.responsable.titulo +
-                        " " +
-                        usuario.responsable.ap_paterno,
-                    },
-                  }}
-                >
-                  Mis horarios
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  exact
-                  to="/clase/crear"
-                  eventKey="crearClase"
-                >
-                  Crear Clase
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  exact
-                  to="/materia/"
-                  eventKey="curricula"
-                >
-                  Malla curricular
-                </Nav.Link>
-              </Nav>
+                  </Nav.Link>
+                  </Nav> */}
+              </div> 
             ) : (
-              <Nav>
-                <NavDropdown title="Semestres" id="collasible-nav-dropdown">
-                  {this.props.semestres.map((item) => {
-                    return (
-                      <div key={item.id}>
-                        <NavDropdown.Item
-                          as={NavLink}
-                          eventKey="semestres"
-                          to={{
-                            pathname: "/clase/view",
-                            state: {
-                              fuente:
-                                "http://localhost:8000/api/clases/semestre/" +
-                                item.semestre +
-                                "?mencion=" +
-                                item.mencion_id,
-                              titulo:
-                                item.mencion === "general"
-                                  ? item.semestre + " Semestre "
-                                  : item.semestre +
-                                    " Semestre - Mencion:" +
-                                    item.mencion,
-                            },
-                          }}
-                        >
-                          {item.semestre} {item.mencion}
-                        </NavDropdown.Item>
-                      </div>
-                    );
-                  })}
-                </NavDropdown>
-                <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
-                  {ambientes.map((item) => (
-                    <NavDropdown.Item
-                      key={item.id}
-                      eventKey="ambientes"
-                      as={NavLink}
-                      to={{
-                        pathname: "/clase/view",
-                        state: {
-                          fuente:
-                            "http://localhost:8000/api/clases/ambiente/" +
-                            item.id,
-                          titulo: "Horarios en " + item.nombre,
-                        },
-                      }}
-                    >
-                      {item.nombre}
-                    </NavDropdown.Item>
-                  ))}
-                </NavDropdown>
-
-                <Nav.Link
-                  as={NavLink}
-                  eventKey="materias"
-                  exact
-                  to="/materia/"
-                  activeStyle={NavActive}
-                >
-                  Malla curricular
-                </Nav.Link>
-              </Nav>
+              <Estudiante semestres={semestres} ambientes={ambientes} />
             )}
             <Nav onSelect={this.handleSelect}>
               {tipo == "administrativo" && (

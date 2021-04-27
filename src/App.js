@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import auth
 import Auth from "./components/common/router/protected/auth";
 import NavBar from "./components/NavBar/NavBar";
+import Loader from "./components/Loader.js";
 import Login from "./views/auth/index";
 
 import Register from "./views/auth/Register.js";
@@ -103,7 +104,7 @@ class App extends Component {
   };
   render() {
     if (this.state.loading) {
-      return <h1>Cargando</h1>;
+      return <Loader/>;
     }
 
     return (
@@ -123,7 +124,6 @@ class App extends Component {
             semestres={this.state.semestres}
           />
 
-          {/* <h1>{this.state.tipo}</h1> */}
           <div id="public-routes">
             <Route
               exact
