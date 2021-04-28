@@ -16,7 +16,7 @@ export default class BuscarClase extends Component {
     super(props);
     this.state = {
       url: "http://127.0.0.1:8000",
-      fuente: "http://localhost:8000/api/clases",
+      // fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
       show: true,

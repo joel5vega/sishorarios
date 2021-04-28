@@ -51,6 +51,8 @@ export default class Calendario extends Component {
         locale="es"
         //EVENTOS
         events={this.props.fuente}
+        //para evitar superposicion de elementos
+        slotEventOverlap={false}
         //para poner datos especificos en el cuadro
         eventRender={this.EventDetail}
         hiddenDays="0"
@@ -97,7 +99,9 @@ export default class Calendario extends Component {
           {event.extendedProps.ambiente}
           <br />
         </div>
-        <div className="texto-grande">{event.title}-{paralelo}</div>
+        <div className="texto-grande">
+          {event.title}-{paralelo}
+        </div>
       </div>
     );
     if (this.props.view === "timeGridWeek") {

@@ -94,7 +94,9 @@ body {
   display: row;
   width: 100%;
   font-weight: 1000;
+  font-size: large;
   margin: 0.5rem;
+  color: #40826d;
 }
 .tarjetas-titulo-col {
   display: row;
@@ -227,7 +229,7 @@ form textarea {
   color: #525c66;
   font-size: 0.9rem;
   resize: horizontal;
-  max-width:100px;
+  max-width: 100px;
 }
 
 form button {
@@ -247,7 +249,7 @@ textarea {
 }
 .progreso {
   width: 100%;
-  margin:0.3rem;
+  margin: 0.3rem;
 }
 @media (min-width: 992px) {
   .my-modal-lg {
