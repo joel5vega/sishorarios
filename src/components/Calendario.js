@@ -53,6 +53,9 @@ export default class Calendario extends Component {
         events={this.props.fuente}
         //para evitar superposicion de elementos
         slotEventOverlap={false}
+        eventOverlap={false}
+        //para evitar cambiar con pantalla tactil
+        longPressDelay="1000"
         //para poner datos especificos en el cuadro
         eventRender={this.EventDetail}
         hiddenDays="0"
@@ -69,11 +72,12 @@ export default class Calendario extends Component {
         // aspectRatio={5}
         dateClick={this.dateClick}
         eventClick={this.eventClick}
+        eventDrop={this.eventDrop}
       />
     );
   }
   EventDetail = ({ event, el }) => {
-    console.log(this.props.view);
+    // console.log(this.props.view);
     const {
       // semestre,
       paralelo,
@@ -125,9 +129,34 @@ export default class Calendario extends Component {
     let date = event.date;
     // console.log("horaIni:  "+horaini)
     let evento = { day: day, startTime: horaini, date: date };
-    // console.log(evento)
+    console.log(evento);
     getDateClick(evento);
     // return evento
+  };
+  eventDrop = (eventDrop) => {
+    // alert("paro");
+    var event=eventDrop.event
+    console.log(eventDrop);
+    
+    //Dia
+    let day = event.start.getDay();
+    
+    //hora inicio
+    let horaini = event.start.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    let horafin = event.end.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    let date = event.start.getUTCDate();
+    // console.log("horaIni:  "+horaini)
+    
+    let evento = { day: day, startTime: horaini,endTime:horafin ,date: date };
+    console.log(evento);
+    
+    // console.log(day);
   };
   eventClick = (event) => {
     // console.log("hacer click en el evento")
