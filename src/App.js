@@ -52,6 +52,7 @@ class App extends Component {
       usuario: "estudiante",
       periodo: "",
       auth: false,
+      user:"25"
     };
     // this.handleAuth = this.handleAuth.bind(this);
   }
