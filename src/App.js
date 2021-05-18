@@ -283,14 +283,14 @@ class App extends Component {
                 render={(props) => (
                   <CrearClase
                     {...props}
-                    datos={this.state.clases}
+                    // datos={this.state.clases}
                     index={this.state.index}
-                    periodoActual={this.state.periodoActual}
-                    periodos={this.state.periodos}
-                    ambientes={this.state.ambientes}
-                    responsables={this.state.responsables}
-                    semestres={this.state.semestres}
-                    menciones={this.state.menciones}
+                    // periodoActual={this.state.periodoActual}
+                    // periodos={this.state.periodos}
+                    // ambientes={this.state.ambientes}
+                    // responsables={this.state.responsables}
+                    // semestres={this.state.semestres}
+                    // menciones={this.state.menciones}
                   />
                 )}
               />

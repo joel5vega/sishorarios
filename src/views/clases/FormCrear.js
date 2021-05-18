@@ -3,12 +3,12 @@ import Calendario from "../../components/Calendario";
 // import "../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
-import FormCrear from "./FormCrear";
+
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
 
-export default class CrearClase extends Component {
+export default class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
@@ -20,10 +20,8 @@ export default class CrearClase extends Component {
       loading: true,
       choqueSemestre: [],
       choqueAmbiente: [],
-      Hambiente: [],
-      Hsemestre: [],
       eventos: [],
-      evento: [],
+      evento: this.props.evento,
       view: "timeGridWeek",
       valido: false,
       ////selescted
@@ -45,12 +43,13 @@ export default class CrearClase extends Component {
         semestre: "default",
         selectedMencion: "default",
         materia: "default",
+        
         nivel: "default",
         responsable: "default",
         ambiente: "default",
-        day: "default",
-        startTime: "",
-        endTime: "",
+        day: this.props.evento.daysOfWeek || "default",
+        startTime: this.props.evento.starTime||"07:45",
+        endTime: this.props.evento.endTime||"",
         paralelo: "A",
       },
 
@@ -59,6 +58,12 @@ export default class CrearClase extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  //fetch data
+  async componentDidMount() {
+    //this.fetchData();
+    this.verificar();
+    //this.setState({ evento: this.props.evento });
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
@@ -139,7 +144,7 @@ export default class CrearClase extends Component {
       axios.get(urlSemestre).then((response) => {
         var data = response.data;
         this.setState({ choqueSemestre: data, eventos: data });
-
+        this.props.getEventos(data, "Hsemestre");
         // this.setState({ eventos: anterior });
         // console.log(data);
         // this.pushArray(data);
@@ -196,6 +201,7 @@ export default class CrearClase extends Component {
         let anterior = this.state.evento.concat(this.state.choqueSemestre);
         this.setState({ choqueAmbiente: data, eventos: anterior });
         this.pushArray(data);
+        this.props.getEventos(data, "Hambiente");
       });
     } catch (e) {
       console.log(e);
@@ -203,19 +209,7 @@ export default class CrearClase extends Component {
     }
   }
 
-  //fetch data
-  async componentDidMount() {
-    //this.fetchData();
-    //this.verificar();
-  }
-  getEventos = (eventos, tipo) => {
-    console.log(eventos);
-    // let anterior = this.state.eventos;
-    this.setState({ [tipo]: [...eventos] });
-    this.setState({
-      eventos: [...this.state.Hambiente, ...this.state.Hsemestre],
-    });
-  };
+  
   verificar() {
     if (this.props.selected) {
       var selected = this.props.selected;
@@ -225,6 +219,16 @@ export default class CrearClase extends Component {
         selectedMencion: selected.mencion,
         selectedNivel: selected.nivel,
       });
+    }
+    if(this.props.evento){
+      var evento = this.props.evento
+      this.setState({
+        selected:{...evento,
+        day : evento.daysOfWeek,
+        startTime:evento.starTime,
+        endTime:evento.endTime,}
+      });
+      
     }
   }
   handlePeriodoChange = (event) => {
@@ -264,6 +268,7 @@ export default class CrearClase extends Component {
         [event.target.name]: event.target.value,
       },
     });
+
     this.fetchMaterias(semestre, mencion);
     this.fetchChoqueSemestre(semestre, mencion);
   };
@@ -425,7 +430,7 @@ export default class CrearClase extends Component {
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
     ];
-    this.setState({ evento: evento });
+
     if (this.state.selectedAmbiente !== "default") {
       var porcentaje = 100;
     } else {
@@ -530,8 +535,8 @@ export default class CrearClase extends Component {
     // console.log(this.state.selected);
   };
   render() {
-    // var { menciones } = this.props;
-    var { periodos, menciones } = this.props.index;
+    var { menciones } = this.props;
+    var { periodos } = this.props.index;
     const niveles = [
       { id: "docente", nombre: "Docente" },
       { id: "auxiliar", nombre: "Auxiliar" },
@@ -578,7 +583,7 @@ export default class CrearClase extends Component {
       endTime,
       day,
       porcentaje,
-    } = this.state;
+    } = this.state.selected;
 
     return (
       <div className="tarjetas">
@@ -600,7 +605,7 @@ export default class CrearClase extends Component {
                 />
               </div>
             </div>
-            {this.state.selectedPeriodo !== "default" && (
+            
               <div className="tarjeta-big">
                 <div className="tarjeta">
                   <SelectControlado
@@ -623,8 +628,6 @@ export default class CrearClase extends Component {
                   )}
                 </div>
               </div>
-            )}
-            {this.state.selectedSemestre !== "default" && (
               <div className="tarjeta-big">
                 <div className="tarjeta">
                   <SelectControlado
@@ -645,7 +648,6 @@ export default class CrearClase extends Component {
                   />
                 </div>
               </div>
-            )}
             {this.state.selectedMateria !== "default" && (
               <div className="tarjeta-big">
                 <div className="tarjeta">
@@ -742,22 +744,6 @@ export default class CrearClase extends Component {
               </div>
             )}
           </form>
-        </div>
-        <div className="col-4">
-          <FormCrear
-            index={this.props.index}
-            getEventos={this.getEventos}
-            evento={this.state.evento}
-          />
-        </div>
-        <div className="col-8">
-          <div className="calendario">
-            <Calendario
-              fuente={this.state.eventos}
-              getDateClick={this.getDateClick}
-              size="small"
-            />
-          </div>
         </div>
       </div>
     );

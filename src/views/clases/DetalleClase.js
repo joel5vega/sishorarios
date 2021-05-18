@@ -102,6 +102,7 @@ class DetalleClase extends Component {
                   <div className="tarjeta-peque">{title}</div>
                   <div className="tarjeta-peque">{paralelo}</div>
                 </div>
+
                 <div className="tarjetas">
                   <div className="tarjeta-peque">Semestre: {semestre}</div>
                   <div className="tarjeta-peque">{tipo}</div>
@@ -120,16 +121,18 @@ class DetalleClase extends Component {
               <div className="form-group">
                 <div className="tarjetas">
                   <div className="tarjetas-titulo-col">Horario</div>
-                  <div className="tarjeta-peque">{daysOfWeek}</div>
 
                   <div className="tarjeta-peque">
-                    {startTime} - {endTime}
+                    {daysOfWeek} : {startTime} - {endTime}
                   </div>
-
-                  <div className="tarjetas">
-                    <div className="tarjetas-titulo-col">Ambiente</div>
-                    <div className="tarjeta-peque">{ambiente}</div>
-                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="tarjeta-big">
+              <div className="form-group">
+                <div className="tarjetas">
+                  <div className="tarjetas-titulo-col">Ambiente</div>
+                  <div className="tarjeta-peque">{ambiente}</div>
                 </div>
               </div>
             </div>
