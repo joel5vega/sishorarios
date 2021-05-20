@@ -31,7 +31,7 @@ export default class BuscarClase extends Component {
       menciones: [],
       showNow: true,
       selectedBuscar: "default",
-      selectedPeriodo: "",
+      selectedPeriodo: "default",
       selectedSemestre: "default",
       selectedTipo: "default",
       selectedMencion: "default",

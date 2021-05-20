@@ -743,13 +743,13 @@ export default class CrearClase extends Component {
             )}
           </form>
         </div>
-        <div className="col-4">
+        {/* <div className="col-4">
           <FormCrear
             index={this.props.index}
             getEventos={this.getEventos}
             evento={this.state.evento}
           />
-        </div>
+        </div> */}
         <div className="col-8">
           <div className="calendario">
             <Calendario

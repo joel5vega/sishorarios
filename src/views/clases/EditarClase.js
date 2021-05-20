@@ -44,28 +44,7 @@ class EditarClase extends Component {
   onRouteChanged() {
     console.log("ROUTE CHANGED");
   }
-  /*
-  verificarEntrada() {
-    var estado = this.props.location.state;
-    this.setState({
-      clase: this.props.id,
-      clases: this.props.clase,
-    });
-    console.log(this.props.id);
 
-    if (estado) {
-      // console.log(estado);
-      this.setState({
-        clase: estado.clase,
-        titulo: estado.titulo,
-        externo: true,
-        clases: {},
-      });
-    } else {
-      console.log("no llego");
-    }
-  }
-*/
   ///////////////////
   render() {
     var dias = [
@@ -115,6 +94,7 @@ class EditarClase extends Component {
               evento={this.props.clase}
               index={this.props.index}
               getEventos={this.getEventos}
+              menciones={this.props.menciones}
             />
           </div>
         </div>
