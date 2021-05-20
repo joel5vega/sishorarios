@@ -43,7 +43,8 @@ export default class FormCrear extends Component {
         semestre: "default",
         selectedMencion: "default",
         materia: "default",
-        
+        materias:[],
+        porcentaje: 0,
         nivel: "default",
         responsable: "default",
         ambiente: "default",
@@ -217,7 +218,7 @@ export default class FormCrear extends Component {
         selectedPeriodo: selected.periodo,
         selectedMateria: selected.materia,
         selectedMencion: selected.mencion,
-        selectedNivel: selected.nivel,
+        selectedNivel: selected.nivel,porcentaje:0
       });
     }
     if(this.props.evento){
@@ -226,7 +227,7 @@ export default class FormCrear extends Component {
         selected:{...evento,
         day : evento.daysOfWeek,
         startTime:evento.starTime,
-        endTime:evento.endTime,}
+        endTime:evento.endTime,porcentaje:0,materias:[]},
       });
       
     }
@@ -577,6 +578,7 @@ export default class FormCrear extends Component {
       selectedTipo,
       paralelo,
       materias,
+      materia,
       responsables,
       ambientes,
       startTime,
