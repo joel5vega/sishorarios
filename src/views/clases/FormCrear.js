@@ -242,7 +242,7 @@ export default class FormCrear extends Component {
       this.fetchMaterias(evento.semestre,evento.mencion)
       
       this.fetchResponsables(evento.nivel)
-      this.fetchAmbientes(evento.tipo)
+      this.fetchAmbientes(evento.tipoAmbiente)
       
     }
   }
