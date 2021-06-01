@@ -123,7 +123,16 @@ export default class FormCrear extends Component {
       this.setState({ ...this.state, loading: false });
     }
   }
-
+  //eVENTOS
+  getEventos = (eventos, tipo) => {
+    console.log(eventos);
+    // let anterior = this.state.eventos;
+    this.setState({ [tipo]: [...eventos] });
+    this.setState({
+      eventos: [...this.state.Hambiente, ...this.state.Hsemestre],
+    });
+  };
+  //cHOQUES
   async fetchChoqueSemestre(semestre, mencion) {
     const url = this.state.url;
     try {
@@ -207,10 +216,10 @@ export default class FormCrear extends Component {
       axios.get(urlChoque).then((response) => {
         var data = response.data;
         //asignamos las materias del semestre correspondiente
-        let anterior = this.state.evento.concat(this.state.choqueSemestre);
+        let anterior = this.state.eventos.concat(this.state.choqueSemestre);
         this.setState({ choqueAmbiente: data, eventos: anterior });
         this.pushArray(data);
-        this.props.getEventos(data, "Hambiente");
+        this.getEventos(data, "Hambiente");
       });
     } catch (e) {
       console.log(e);
@@ -234,7 +243,7 @@ export default class FormCrear extends Component {
       this.setState({
         selected:{...evento,
         day : evento.daysOfWeek,
-        startTime:evento.starTime,
+        startTime:evento.startTime,
         endTime:evento.endTime,porcentaje:0,materias:[]},ambientes:[],
       });
 
@@ -265,7 +274,7 @@ export default class FormCrear extends Component {
       eventos: this.state.evento,
       selected: {
         ...this.state.selected,
-        [event.target.name]: event.target.value,
+        periodo_id: event.target.value,
       },
     });
   };
@@ -285,7 +294,8 @@ export default class FormCrear extends Component {
     });
 
     this.fetchMaterias(semestre, mencion);
-    this.fetchChoqueSemestre(semestre, mencion);
+    /// CHOQUES
+    // this.fetchChoqueSemestre(semestre, mencion);
   };
   handleMencionChange = (event) => {
     var mencion = event.target.value;
@@ -299,8 +309,10 @@ export default class FormCrear extends Component {
         [event.target.name]: event.target.value,
       },
     });
+    
     this.fetchMaterias(semestre, mencion);
-    this.fetchChoqueSemestre(semestre, mencion);
+      /// CHOQUES
+    // this.fetchChoqueSemestre(semestre, mencion);
   };
   handleMateriaChange = (event) => {
     var materia = event.target.value;
@@ -320,11 +332,12 @@ export default class FormCrear extends Component {
       porcentaje: 80,
       selected: {
         ...this.state.selected,
-        [event.target.name]: event.target.value,
+        ambiente_id: event.target.value,
       },
     });
     // console.log(ambiente);
-    this.fetchChoqueAmbiente(ambiente);
+      /// CHOQUES
+    // this.fetchChoqueAmbiente(ambiente);
   };
   handleNivelChange = (event) => {
     var nivel = event.target.value;
@@ -357,7 +370,7 @@ export default class FormCrear extends Component {
       porcentaje: 60,
       selected: {
         ...this.state.selected,
-        [event.target.name]: event.target.value,
+        responsable_id: event.target.value,
       },
     });
     // this.fetchResponsables(responsable);
@@ -379,11 +392,11 @@ export default class FormCrear extends Component {
       view: "dayGrid",
       selected: {
         ...this.state.selected,
-        [event.target.name]: event.target.value,
+        day: event.target.value,
       },
     });
     this.pushArray(evento);
-    // console.log(evento)
+     console.log(dia, this.state.selected.day)
   };
   handleStartChange = (event) => {
     var start = event.target.value;
@@ -477,24 +490,25 @@ export default class FormCrear extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    var evento = {
-      materia: this.state.selectedMateria,
-      responsable: this.state.selectedResponsable,
-      ambiente: this.state.selectedAmbiente,
-      periodo: this.state.selectedPeriodo,
-      tipo: this.state.selectedTipo,
-      nivel: this.state.selectedNivel,
-      day: this.state.day,
-      startTime: this.state.startTime,
-      endTime: this.state.endTime,
-      paralelo: this.state.paralelo,
-    };
+     var evento = {
+       materia: this.state.selected.materia_id,
+       responsable: this.state.selected.responsable_id,
+       ambiente: this.state.selected.ambiente_id,
+       periodo: this.state.selected.periodo_id,
+       tipo: this.state.selected.tipo,
+       nivel: this.state.selected.nivel,
+       day: this.state.selected.day,
+       startTime: this.state.selected.startTime,
+       endTime: this.state.selected.endTime,
+       paralelo: this.state.selected.paralelo,
+     };
+     var id = this.state.selected.id;
     console.log(evento);
     console.log("Para enviar selected:");
-    console.log(this.state.selected);
-    let urlPost = this.state.url + "/api/clases";
+    // console.log(this.state.selected);
+    let urlPut = this.state.url + "/api/clases/"+id;
     axios
-      .post(urlPost, evento)
+      .put(urlPut, evento)
       .then(
         (response) => {
           console.log(response);
@@ -505,7 +519,7 @@ export default class FormCrear extends Component {
       )
       .then(this.limpiarForm());
     this.limpiarForm();
-    this.props.history.push("crear");
+    // this.props.history.push("crear");
 
     alert("El evento se creo exitosamente");
   }
@@ -605,9 +619,9 @@ export default class FormCrear extends Component {
     return (
       <div className="tarjetas">
         <div className="col-4">
-          <form onSubmit={this.handleSubmit}>
+          
             <div className="progreso">
-              Crear Clase
+              Editar Clase
               <ProgressBar completed={porcentaje} bgcolor="#046193" />
             </div>
 
@@ -712,7 +726,7 @@ export default class FormCrear extends Component {
                   <SelectControlado
                     label="Dia"
                     value={day}
-                    name="tipo"
+                    name="dia"
                     handleChange={this.handleDayChange}
                     datos={dias}
                   />
@@ -736,18 +750,18 @@ export default class FormCrear extends Component {
                     />
                   </div>
               </div>
-            {this.state.porcentaje == 100 && (
+            
               <div className="tarjeta-big">
                 <button
                   className="btn btn-primary mb-2"
-                  type="submit"
+                  onClick={this.handleSubmit}
                   disabled={this.state.isSubmitting}
                 >
-                  Crear
+                  Editar
                 </button>
               </div>
-            )}
-          </form>
+            
+          
         </div>
       </div>
     );
