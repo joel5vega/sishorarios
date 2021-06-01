@@ -11,10 +11,10 @@ export default class ClasesAdmin extends Component {
     };
   }
   componentDidMount() {
-    this.getDatos();
+     this.getDatos();
   }
   componentDidUpdate() {
-    this.getDatos();
+    //this.getDatos();
   }
   async getDatos() {
     var url = this.state.url + "api/clases?estado=false";

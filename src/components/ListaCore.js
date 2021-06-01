@@ -179,6 +179,9 @@ class ListaCore extends Component {
       case "responsable": {
         var url = this.state.url + "api/responsables/" + e;
       }
+      case "clases":{
+        var url = this.state.url + "api/clases/" + e;
+      }
     }
 
     console.log(url);
