@@ -32,7 +32,7 @@ class EditarClase extends Component {
         loading: false,
       });
     });
-    console.log(this.state.clases);
+    // console.log(this.state.clases);
   }
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
@@ -95,6 +95,7 @@ class EditarClase extends Component {
               index={this.props.index}
               getEventos={this.getEventos}
               menciones={this.props.menciones}
+              hide={this.props.hide}
             />
           </div>
         </div>

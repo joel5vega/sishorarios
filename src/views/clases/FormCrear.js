@@ -3,12 +3,12 @@ import Calendario from "../../components/Calendario";
 // import "../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
-
+import { withRouter } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
 
-export default class FormCrear extends Component {
+class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
@@ -53,8 +53,8 @@ export default class FormCrear extends Component {
         responsable: "default",
         ambiente: "default",
         day: this.props.evento.daysOfWeek || "default",
-        startTime: this.props.evento.starTime||"07:45",
-        endTime: this.props.evento.endTime||"",
+        startTime: this.props.evento.startTime||"07:45",
+        endTime: this.props.evento.endTime||"09:15",
         paralelo: "A",
       },
 
@@ -63,6 +63,7 @@ export default class FormCrear extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
   //fetch data
   async componentDidMount() {
@@ -247,7 +248,7 @@ export default class FormCrear extends Component {
         endTime:evento.endTime,porcentaje:0,materias:[]},ambientes:[],
       });
 
-      console.log(evento.semestre,evento.mencion,evento.nivel,evento.tipo)
+      // console.log(evento.semestre,evento.mencion,evento.nivel,evento.tipo)
       this.fetchMaterias(evento.semestre,evento.mencion)
       
       this.fetchResponsables(evento.nivel)
@@ -403,10 +404,10 @@ export default class FormCrear extends Component {
     let nuevo;
     if (this.state.selectedTipo == "laboratorio") {
       nuevo = this.addTime(start, 180);
-      console.log("tiempo de labo");
+      console.log("tiempo de labo",nuevo);
     } else {
       nuevo = this.addTime(start, 90);
-      console.log("tiempo de teoria");
+      console.log("tiempo de teoria",nuevo);
     }
 
     var evento = [
@@ -424,7 +425,8 @@ export default class FormCrear extends Component {
       porcentaje: 100,
       selected: {
         ...this.state.selected,
-        [event.target.name]: event.target.value,
+        startTime: start,
+        endTime:nuevo
       },
     });
     this.pushArray(evento);
@@ -437,14 +439,17 @@ export default class FormCrear extends Component {
         daysOfWeek: this.state.day,
         startTime: this.state.startTime,
         endTime: fin,
-        selected: {
-          ...this.state.selected,
-          [event.target.name]: event.target.value,
-        },
+       
       },
     ];
-    this.setState({ endTime: fin, evento: evento });
+    this.setState({ endTime: fin, evento: evento ,
+       selected: {
+      ...this.state.selected,
+      endTime: fin,
+    },}
+    );
     this.pushArray(evento);
+    console.log(fin)
   };
   getDateClick = (event) => {
     let startTime = event.startTime;
@@ -453,7 +458,7 @@ export default class FormCrear extends Component {
     let minutes = 90;
     let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" }
+      { hour: "2-digit", minute: "2-digit",hour12:false }
     );
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
@@ -484,7 +489,7 @@ export default class FormCrear extends Component {
     let now = new Date("January 25, 1994 " + time);
     let nuevo = new Date(now.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" }
+      { hour: "2-digit", minute: "2-digit",hour12:false }
     );
     return nuevo;
   }
@@ -519,9 +524,11 @@ export default class FormCrear extends Component {
       )
       .then(this.limpiarForm());
     this.limpiarForm();
-    // this.props.history.push("crear");
+    this.props.hide(evento);
+    // this.props.history.push("");
 
-    alert("El evento se creo exitosamente");
+    alert("El evento se edito exitosamente");
+    this.props.hide(evento);
   }
 
   limpiarForm() {
@@ -767,3 +774,4 @@ export default class FormCrear extends Component {
     );
   }
 }
+export default withRouter(FormCrear);

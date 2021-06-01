@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
 import "../../fontawesome";
+import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
@@ -11,15 +12,17 @@ import { Typography } from "@material-ui/core";
 import { Modal, Button } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 
-export default class BuscarClase extends Component {
+ class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
       url: "http://127.0.0.1:8000",
+      
+      
       // fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
-      show: true,
+      showCal: true,
       loading: true,
       titulo: "",
       eventos: [],
@@ -47,7 +50,7 @@ export default class BuscarClase extends Component {
     // this.fetchData();
     let periodo = this.props.periodo;
     if (this.props.periodoActual) {
-      console.log(this.props.periodoActual);
+      // console.log(this.props.periodoActual);
       this.setState({
         loading: false,
         selectedPeriodo: this.props.periodoActual.id,
@@ -62,6 +65,9 @@ export default class BuscarClase extends Component {
 
     window.addEventListener("resize", this.handleResize);
     this.setState({ periodo: periodo });
+  }
+  async componentDidUpdate(){
+    
   }
 
   /////////////////////////////////////////////
@@ -143,7 +149,7 @@ export default class BuscarClase extends Component {
   handlePeriodoChange = (event) => {
     var periodo = event.target.value;
     var nombre = this.filtro(this.state.periodos, periodo);
-    console.log(nombre);
+    // console.log(nombre);
     const fuentePeriodo = this.state.url + "/api/clases?periodo=" + periodo;
 
     this.setState({
@@ -155,7 +161,7 @@ export default class BuscarClase extends Component {
       choqueAmbientes: "",
       choqueSemestre: "",
       eventos: this.state.evento,
-    });
+          });
   };
 
   handleSemestreChange = (event) => {
@@ -194,7 +200,7 @@ export default class BuscarClase extends Component {
     });
   };
   handleAmbienteChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     var ambiente = event.target.value;
     // var ambientes = this.state.ambientes;
     var nuevaFuente =
@@ -208,11 +214,11 @@ export default class BuscarClase extends Component {
       selectedSemestre: "",
       fuente: nuevaFuente,
     });
-    console.log(ambiente);
+    // console.log(ambiente);
   };
 
   handleResponsableChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     var responsable = event.target.value;
     // var ambientes = this.state.ambientes;
     var nuevaFuente =
@@ -221,20 +227,17 @@ export default class BuscarClase extends Component {
       responsable +
       "?periodo=" +
       this.state.selectedPeriodo;
-
+    console.log(nuevaFuente)
     this.setState({
       selectedResponsable: responsable,
       selectedSemestre: "",
       selectedAmbiente: "",
       fuente: nuevaFuente,
     });
-    console.log(responsable);
+    console.log("cambio",responsable,this.state.fuente);
   };
 
-  onHide = () => {
-    this.setState({ show: false });
-  };
-
+  
   filtro = (array, id) => {
     let filtrar = array;
     var nombre = filtrar.filter((item) => {
@@ -250,22 +253,28 @@ export default class BuscarClase extends Component {
   ///////////////////////
   ////MODAL//////
   modal = () => {
-    this.setState({ show: true, guardar: false, editar: true });
+    this.setState({ show: true,showCal:false, guardar: false, editar: true });
   };
   getDateClick = (e) => {
     console.log(e);
   };
   eventClick = (e) => {
+    
     var id = e.event;
     var clase = e.event.extendedProps;
     var startTime = e.event.start.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
+      hour12:false,
     });
+    
     var endTime = e.event.end.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
+      hour12:false,
     });
+
+    // console.log("hola",startTime,endTime);
     var daysOfWeek = e.event.start.getDay();
     clase = {
       ...clase,
@@ -286,11 +295,18 @@ export default class BuscarClase extends Component {
       backgroundColor: e.event.backgroundColor,
     });
 
-    console.log(id);
+    // console.log(id);
+    // alert("hola")
   };
   onHide = () => {
-    this.setState({ show: false });
+    var view=this.state.view;
+    this.setState({ show: false,showCal:true,view:""});
+    this.update(view)
   };
+  update = (view)=>{
+    console.log(this.state.view,"fuente",this.state.fuente)
+    this.setState({view:view})
+  }
   ///////////////////////
 
   render() {
@@ -414,10 +430,13 @@ export default class BuscarClase extends Component {
               </div>
             </div>
           </div>
-          {this.state.view === "timeGrid" && (
+          {this.state.showCal&&
+          <div>
+            {this.state.view === "timeGrid" && (
             <Calendario
               fuente={this.state.fuente}
               getDateClick={this.getDateClick}
+              eventClick={this.eventClick}
               view="timeGrid"
             />
           )}
@@ -431,6 +450,9 @@ export default class BuscarClase extends Component {
               />
             </div>
           )}
+          </div>
+          }
+          
         </div>
         <div>
           <Modal
@@ -456,6 +478,7 @@ export default class BuscarClase extends Component {
                   clase={this.state.clase}
                   index={this.props.index}
                   menciones={this.props.menciones}
+                  hide={this.onHide}
                 />
               </Modal.Body>
             </form>
@@ -495,3 +518,4 @@ export default class BuscarClase extends Component {
     );
   }
 }
+export default withRouter(BuscarClase);
