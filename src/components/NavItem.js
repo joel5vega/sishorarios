@@ -16,7 +16,7 @@ export default class NavItem extends Component {
         const { handleSelect } = this.props
 
         return (
-            <div className="search-container">
+            <div id="print" className="search-container">
                 <input 
                 value={this.state.search}
                 onChange={this.handleChange}
