@@ -625,9 +625,8 @@ class FormCrear extends Component {
 
     return (
       <div className="tarjetas">
-        <div className="col-4">
-          
-            <div className="progreso">
+        <div>
+          <div className="progreso">
               Editar Clase
               <ProgressBar completed={porcentaje} bgcolor="#046193" />
             </div>

@@ -420,7 +420,7 @@ export default class CrearClase extends Component {
     let minutes = 90;
     let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" }
+      { hour: "2-digit", minute: "2-digit" ,hour12:false}
     );
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
@@ -451,7 +451,7 @@ export default class CrearClase extends Component {
     let now = new Date("January 25, 1994 " + time);
     let nuevo = new Date(now.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" }
+      { hour: "2-digit", minute: "2-digit" ,hour12:false}
     );
     return nuevo;
   }
@@ -578,6 +578,7 @@ export default class CrearClase extends Component {
       endTime,
       day,
       porcentaje,
+      horarios
     } = this.state;
 
     return (

@@ -124,7 +124,7 @@ export default class Calendario extends Component {
     //hora inicio
     let horaini = event.date.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit",hour12:false
     });
     let date = event.date;
     // console.log("horaIni:  "+horaini)
@@ -144,11 +144,11 @@ export default class Calendario extends Component {
     //hora inicio
     let horaini = event.start.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit",hour12:false
     });
     let horafin = event.end.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit",hour12:false
     });
     let date = event.start.getUTCDate();
     // console.log("horaIni:  "+horaini)
