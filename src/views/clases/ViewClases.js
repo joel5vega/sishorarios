@@ -48,11 +48,11 @@ class ViewClases extends Component {
     var clase = e.event.extendedProps;
     var startTime = e.event.start.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit", hour12:false
     });
     var endTime = e.event.end.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit", hour12:false
     });
     var daysOfWeek = e.event.start.getDay();
     clase = {
@@ -116,7 +116,7 @@ class ViewClases extends Component {
 
   //Exportar PDF
   printPDF = () => {
-    const domElement = document.getElementById("root");
+    const domElement = document.getElementById("horarios");
     html2canvas(domElement, {
       onclone: (document) => {
         document.getElementById("print").style.visibility = "hidden";
@@ -126,10 +126,12 @@ class ViewClases extends Component {
       const pdf = new jsPdf({
         orientation: "landscape",
       });
-      // 180,160
-      pdf.addImage(imgData, "PNG", 5, 5, 270, 140);
-      // pdf.addImage(imgData, "JPEG", 5, 5, 265, 200);
-      pdf.save(`${new Date().toISOString()} Horario.pdf`);
+      const imgProps = pdf.getImageProperties(imgData);
+      const title = this.state.titulo||"hola";
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(` ${title} Horario.pdf`);
     });
     alert("Se empezo la descarga de su documento PDF");
   };
@@ -174,7 +176,7 @@ class ViewClases extends Component {
               aria-label="option"
             >
               <PictureAsPdfIcon />
-              <Typography variant="overline" gutterBottom>
+              <Typography variant="overline" gutterootrBottom>
                 Exportar
               </Typography>
             </Fab>
@@ -183,30 +185,28 @@ class ViewClases extends Component {
 
         {this.state.externo && <h1>{this.state.titulo}</h1>}
         {this.state.view === "timeGrid" && (
-          <Calendario
+          <div  id="horarios">
+            <Calendario
             fuente={this.state.fuente}
             getDateClick={this.getDateClick}
             eventClick={this.eventClick}
             view="timeGrid"
           />
+          .
+          </div>
         )}
         {this.state.view === "timeGridWeek" && (
-          <div className="container">
+          <div className="container" id="horarios">
             <Calendario
               fuente={this.state.fuente}
               getDateClick={this.getDateClick}
               eventClick={this.eventClick}
               view="timeGridWeek"
             />
+            .
           </div>
         )}
 
-        {/*           
-        <Calendario
-          fuente={this.state.fuente}
-          getDateClick={this.getDateClick}
-          eventClick={this.eventClick}
-        /> */}
       </div>
     );
   }
