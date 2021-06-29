@@ -113,7 +113,7 @@ class ViewClases extends Component {
       console.log("no llego");
     }
   }
-
+  ////////////////////////////////////////////////////////////////////////////
   //Exportar PDF
   printPDF = () => {
     const domElement = document.getElementById("horarios");
@@ -128,9 +128,17 @@ class ViewClases extends Component {
       });
       const imgProps = pdf.getImageProperties(imgData);
       const title = this.state.titulo||"hola";
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.text(35,15,title)
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth()*0.9;
+      const pdfHeight = ((imgProps.height * pdfWidth) / imgProps.width)*0.9;
+      
+      console.log(imgProps)
+      console.log(pdfWidth)
+      console.log(pdfHeight)
+      // pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(imgData,'png',20,20,pdfWidth,pdfHeight)
+      pdf.text("producido por Joel",0,pdfHeight,{align:"right"})
       pdf.save(` ${title} Horario.pdf`);
     });
     alert("Se empezo la descarga de su documento PDF");
@@ -176,7 +184,7 @@ class ViewClases extends Component {
               aria-label="option"
             >
               <PictureAsPdfIcon />
-              <Typography variant="overline" gutterootrBottom>
+              <Typography variant="overline" >
                 Exportar
               </Typography>
             </Fab>
