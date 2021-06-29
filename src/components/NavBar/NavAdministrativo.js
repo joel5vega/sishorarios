@@ -18,6 +18,14 @@ class NavAdministrativo extends Component {
       
             <NavDropdown.Divider />
             <NavDropdown.Item
+              eventKey="claseHabilitar"
+              as={NavLink}
+              exact
+              to="/clase/habilitar"
+            >
+              Habilitar clases
+            </NavDropdown.Item>
+            <NavDropdown.Item
               eventKey="claseCrear"
               as={NavLink}
               exact

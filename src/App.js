@@ -33,10 +33,11 @@ import DetalleClase from "./views/clases/DetalleClase";
 import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
 import CrearMateria from "./views/materias/CrearMateria";
+import HabilitarClases from "./views/admin/HabiltarClases";
 
 import HomeAdmin from "./views/admin/HomeAdmin";
 import DatosAdmin from "./views/admin/DatosAdmin";
-import ClasesAdmin from "./views/admin/ClasesAdmin";
+import ClasesAdmin from "./views/admin/HabiltarClases";
 import CrearResponsable from "./views/responsables/CrearResponsable";
 
 class App extends Component {
@@ -270,6 +271,18 @@ class App extends Component {
                     {...props}
                     
                     index={this.state.index}
+            
+                  />
+                )}
+              />
+               <Route
+                exact
+                path="/clase/habilitar"
+                render={(props) => (
+                  <HabilitarClases
+                    {...props}
+                    
+                    clases={this.state.index.clases}
             
                   />
                 )}
