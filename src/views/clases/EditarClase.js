@@ -8,6 +8,8 @@ import DetalleClase from "./DetalleClase";
 import CrearClase from "./crearClase";
 import FormCrear from "./FormCrear";
 
+import { Typography } from "@material-ui/core";
+
 class EditarClase extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +46,7 @@ class EditarClase extends Component {
   onRouteChanged() {
     console.log("ROUTE CHANGED");
   }
+  
 
   ///////////////////
   render() {
@@ -87,9 +90,10 @@ class EditarClase extends Component {
         <div>
           <div className="tarjetas" style={{ borderColor: color }}>
             <div className="tarjetas-titulo">Editar clase {id}</div>
-            {/* <CrearClase index={this.props.index} /> */}
-            {/* <DetalleClase clase={this.props.clase} /> */}
+            
+            
             <FormCrear
+              id={id}
               clase={this.props.clase}
               evento={this.props.clase}
               index={this.props.index}

@@ -8,6 +8,10 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
 
+
+import Fab from "@material-ui/core/Fab";
+import DeleteOutlineSharpIcon from '@material-ui/icons/DeleteOutlineSharp';
+
 class FormCrear extends Component {
   constructor(args) {
     super(args);
@@ -493,6 +497,19 @@ class FormCrear extends Component {
     );
     return nuevo;
   }
+
+  delete =()=>{
+    var id = this.props.clase.id
+    console.log(id)
+    var url = this.state.url+"/api/clases/"+id
+    axios.delete(url).then((response)=>{
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+    })
+    this.props.history.push("");
+  }
   handleSubmit(event) {
     event.preventDefault();
      var evento = {
@@ -621,7 +638,7 @@ class FormCrear extends Component {
       day,
       porcentaje,
     } = this.state.selected;
-    var {materias, menciones, ambientes, responsables} =       this.state
+    var {materias,  ambientes, responsables} =  this.state
 
     return (
       <div className="tarjetas">
@@ -765,10 +782,17 @@ class FormCrear extends Component {
                 >
                   Editar
                 </button>
-              </div>
-            
-          
-        </div>
+                <Fab
+              onClick={this.delete}
+              key="delete"
+              color="secondary"
+              variant="extended"
+              aria-label="option"
+            >
+              <DeleteOutlineSharpIcon />
+            </Fab>
+                </div>
+                </div>
       </div>
     );
   }

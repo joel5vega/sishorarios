@@ -202,7 +202,29 @@ export default class CrearClase extends Component {
       this.setState({ ...this.state, loading: false });
     }
   }
+  async fetchChoqueResponsable(responsable) {
+    const url = this.state.url;
+    try {
+      this.setState({ loading: true });
+      const urlChoque =
+        url +
+        "/api/clases/responsable/" +
+        responsable +
+        "?periodo=" +
+        this.state.selectedPeriodo;
 
+      axios.get(urlChoque).then((response) => {
+        var data = response.data;
+        //asignamos las materias del semestre correspondiente
+        let anterior = this.state.evento.concat(this.state.choqueSemestre, this.state.choqueAmbiente);
+        this.setState({ choqueResponsable: data, eventos: anterior });
+        this.pushArray(data);
+      });
+    } catch (e) {
+      console.log(e);
+      this.setState({ ...this.state, loading: false });
+    }
+  }
   //fetch data
   async componentDidMount() {
     //this.fetchData();
@@ -286,12 +308,14 @@ export default class CrearClase extends Component {
     var materia = event.target.value;
     this.setState({
       selectedMateria: materia,
+      selectedNivel: "docente",
       porcentaje: 40,
       selected: {
         ...this.state.selected,
         [event.target.name]: event.target.value,
       },
     });
+    this.fetchResponsables("docente");
   };
   handleAmbienteChange = (event) => {
     var ambiente = event.target.value;
@@ -334,14 +358,16 @@ export default class CrearClase extends Component {
     var responsable = event.target.value;
     this.setState({
       selectedResponsable: responsable,
+      selectedTipo: "teoria",
       porcentaje: 60,
       selected: {
         ...this.state.selected,
         [event.target.name]: event.target.value,
       },
     });
-    // this.fetchResponsables(responsable);
+    this.fetchChoqueResponsable(responsable);
     // console.log(ambiente)
+    this.fetchAmbientes("aula")
   };
   handleDayChange = (event) => {
     var dia = event.target.value;
@@ -413,6 +439,9 @@ export default class CrearClase extends Component {
     this.setState({ endTime: fin, evento: evento });
     this.pushArray(evento);
   };
+  eventClick(event) {
+    console.log(event)
+  }
   getDateClick = (event) => {
     let startTime = event.startTime;
     let day = event.day.toString();
@@ -420,7 +449,7 @@ export default class CrearClase extends Component {
     let minutes = 90;
     let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" ,hour12:false}
+      { hour: "2-digit", minute: "2-digit", hour12: false }
     );
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
@@ -451,7 +480,7 @@ export default class CrearClase extends Component {
     let now = new Date("January 25, 1994 " + time);
     let nuevo = new Date(now.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit" ,hour12:false}
+      { hour: "2-digit", minute: "2-digit", hour12: false }
     );
     return nuevo;
   }
@@ -500,9 +529,27 @@ export default class CrearClase extends Component {
       selectedResponsable: "default",
       selectedSemestre: "default",
       selectedTipo: "default",
+      day: "default",
       porcentaje: 0,
       eventos: [],
       evento: [],
+      choqueSemestre: [],
+      choqueAmbiente: [],
+      Hambiente: [],
+      Hsemestre: [],
+      selected: {
+        periodo_id: "default",
+        semestre: "default",
+        selectedMencion: "default",
+        materia: "default",
+        nivel: "default",
+        responsable: "default",
+        ambiente: "default",
+        day: "default",
+        startTime: "",
+        endTime: "",
+        paralelo: "A",
+      },
     });
   }
   onSubmit(event) {
@@ -548,6 +595,7 @@ export default class CrearClase extends Component {
       { id: "5", nombre: "Viernes" },
       { id: "6", nombre: "Sabado" },
     ];
+
     const listaSemestres = [
       { id: "1", nombre: "1" },
       { id: "2", nombre: "2" },
@@ -560,6 +608,8 @@ export default class CrearClase extends Component {
       { id: "9", nombre: "9" },
       { id: "10", nombre: "10" },
     ];
+
+
     var {
       selectedPeriodo,
       selectedSemestre,
@@ -754,6 +804,7 @@ export default class CrearClase extends Component {
         <div className="col-8">
           <div className="calendario">
             <Calendario
+              eventClick={this.eventClick}
               fuente={this.state.eventos}
               getDateClick={this.getDateClick}
               size="small"

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import TabPanel from "../../components/Tabs";
-import ClasesAdmin from "./ClasesAdmin";
 import DatosAdmin from "./DatosAdmin";
 import UsuariosAdmin from "./UsuariosAdmin";
 import axios from "axios";
+import HabilitarClases from "./HabiltarClases";
 
 export default class HomeAdmin extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class HomeAdmin extends Component {
           label03="Habilitar Clases"
           item01={<DatosAdmin index={this.props.index} />}
           item02={<UsuariosAdmin usuarios={this.state.usuarios} responsables={this.props.index.responsables}/>}
-          item03={<ClasesAdmin clases={this.props.index.clases}/>}
+          item03={<HabilitarClases clases={this.props.index.clases}/>}
         />
       </div>
     );

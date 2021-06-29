@@ -17,6 +17,10 @@ import Register from "../views/auth/Register.js";
 import DetalleClase from "../views/clases/DetalleClase";
 import DetalleUser from "../views/auth/DetalleUser";
 
+import Fab from "@material-ui/core/Fab";
+import { Typography } from "@material-ui/core";
+import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+
 class ListaCore extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +34,7 @@ class ListaCore extends Component {
       guardar: false,
       editar: false,
       selected: {},
-      info: {},
+      info: { color: "green" },
       menciones: this.props.datos.menciones,
       pensums: this.props.datos.pensums,
     };
@@ -138,7 +142,7 @@ class ListaCore extends Component {
     let tipo = this.props.tipo;
     console.log("guardar " + tipo);
     var url = this.url(tipo);
-    
+
     this.post(url, this.state.selected);
     console.log("guardar " + tipo + " en " + url);
     console.log(this.state.selected);
@@ -179,7 +183,7 @@ class ListaCore extends Component {
       case "responsable": {
         var url = this.state.url + "api/responsables/" + e;
       }
-      case "clases":{
+      case "clases": {
         var url = this.state.url + "api/clases/" + e;
       }
     }
@@ -304,6 +308,7 @@ class ListaCore extends Component {
                         if (campo === "estado") {
                           return (
                             <td key={item.id + campo}>
+
                               <input
                                 name={item.tipo}
                                 id={item.id}
@@ -311,7 +316,22 @@ class ListaCore extends Component {
                                 type="checkbox"
                                 checked={item[campo] === "true"}
                               />
-                              {item[campo]}
+
+                              {/* <Fab
+                                name={item.tipo}
+                                id={item.id}
+                                onClick={this.showHabil}
+                                key="habilitar"
+                                color="default"
+                                variant="round"
+                                aria-label="option"
+                              >
+                                <AssignmentTurnedInOutlinedIcon />
+
+                                <Typography variant="overline" gutterbottom>
+                                  OK
+                                </Typography></Fab> */}
+                              {/* {item[campo]} */}
                             </td>
                           );
                         } else {
