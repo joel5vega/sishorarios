@@ -85,7 +85,7 @@ export default class HomeAmbientes extends Component {
             </div>
           }
           item01={<AmbientesLibres datos={libres} />}
-          item03={<Login />}
+          
         />
       </div>
     );

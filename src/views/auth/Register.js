@@ -40,7 +40,7 @@ export default class Register extends Component {
     } = this.state.selected;
     console.log(this.state.selected);
     var url =
-      "http://localhost:8000/api/register?email=" +
+      "http://localhost:8000/api/users?email=" +
       email +
       "&name=" +
       name +
