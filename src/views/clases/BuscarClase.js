@@ -141,8 +141,9 @@ import EditarClase from "./EditarClase";
     var buscar = event.target.value;
     this.setState({
       selectedBuscar: buscar,
-      selectedAmbiente: "",
-      selectedSemestre: "",
+      selectedAmbiente: "default",
+      selectedSemestre: "default",
+      selectedResponsable:"default",
     });
   };
 

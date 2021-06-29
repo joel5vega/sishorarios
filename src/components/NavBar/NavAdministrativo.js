@@ -15,14 +15,7 @@ class NavAdministrativo extends Component {
             <NavDropdown.Item eventKey="clase" as={NavLink} exact to="/clase/">
               Buscar
             </NavDropdown.Item>
-            <NavDropdown.Item
-              eventKey="claseView"
-              as={NavLink}
-              exact
-              to="/clase/view"
-            >
-              Ver Clase
-            </NavDropdown.Item>
+      
             <NavDropdown.Divider />
             <NavDropdown.Item
               eventKey="claseCrear"
@@ -69,19 +62,7 @@ class NavAdministrativo extends Component {
             >
               Lista de Responsables
             </NavDropdown.Item>
-            <NavDropdown.Item
-              as={NavLink}
-              exact
-              to={{
-                pathname: "/clase/lista",
-                state: {
-                  selectedBuscar: "responsable",
-                },
-              }}
-              eventKey="horarioResponsable"
-            >
-              Horario de los Responsables
-            </NavDropdown.Item>
+        
           </NavDropdown>
 
           <NavDropdown title="Materias" id="collasible-nav-dropdown">

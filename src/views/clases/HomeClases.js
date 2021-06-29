@@ -12,6 +12,9 @@ export default class HomeClases extends Component {
     };
   }
   componentDidMount() {}
+  eventClick =(event)=>{
+    console.log(event)
+  }
   getDateClick = (event) => {
     let startTime = event.startTime;
     let day = event.day.toString();
@@ -70,6 +73,7 @@ export default class HomeClases extends Component {
             <Calendario
               fuente={this.state.fuenteNow}
               getDateClick={this.getDateClick}
+              eventClick={this.eventClick}
               view="timeGrid"
             />
           </div>
