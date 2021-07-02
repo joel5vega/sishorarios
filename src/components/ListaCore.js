@@ -29,14 +29,15 @@ class ListaCore extends Component {
       url: "http://localhost:8000/",
       dato: {},
       tipo: "",
+      urlpub: "",
       show: false,
       showInfo: false,
       guardar: false,
       editar: false,
       selected: {},
       info: { color: "green" },
-      menciones: this.props.datos.menciones,
-      pensums: this.props.datos.pensums,
+      menciones: this.props.datos[0].menciones,
+      pensums: this.props.datos[0].pensum,
     };
   }
 
@@ -55,7 +56,7 @@ class ListaCore extends Component {
   onHide = () => {
     this.setState({ show: false, showInfo: false });
   };
-
+  /////////////RECIBIR DATOS DE FORMULARIOS
   onChange = (evento) => {
     console.log("padre");
     const target = evento.target;
@@ -64,6 +65,18 @@ class ListaCore extends Component {
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     console.log(name + " es: " + value);
   };
+  onCheckChange = (event) => {
+    const { name, checked } = event.target
+    this.setState({
+      selected: {
+        ...this.state.selected,
+        ["menciones"]: {
+          ...this.state.selected.menciones,
+          [name]: checked,
+        }
+      },
+    })
+  }
   ////////////////////////
   showHabil = (e) => {
     const target = e.target;
@@ -103,6 +116,7 @@ class ListaCore extends Component {
       .then(
         (response) => {
           console.log(response);
+          console.log(response.request.response)
         },
         (error) => {
           console.log(error);
@@ -125,7 +139,7 @@ class ListaCore extends Component {
     }
   }
   /////////
-  editar(e) {
+  editar = (e) => {
     this.setState({
       show: true,
       dato: e,
@@ -133,18 +147,46 @@ class ListaCore extends Component {
       guardar: false,
       selected: e,
     });
+    if (this.props.tipo == "materia") {
+      var mencionesSeleccionadas = this.checkMenciones(e.menciones)
+      this.setState({
+        selected: { ...e, menciones: mencionesSeleccionadas }
+      })
+    }
     console.log("editar en lista");
     console.log(e);
+    /// Enviar para editar
+    /// obtener url
+    var url = this.url(this.props.tipo) + e.id
+    this.setState({ urlpub: url })
+    console.log(url)
+    /*
+    */
   }
-
+  checkMenciones = (menciones) => {
+    var mencionesSeleccionadas = {}
+    var keys = Object.keys(menciones);
+    keys.map((mencion) => {
+      var tag = menciones[mencion].id;
+      mencionesSeleccionadas = { ...mencionesSeleccionadas, [tag]: true }
+    })
+    return (mencionesSeleccionadas)
+  }
   // Crud
   guardar = () => {
     let tipo = this.props.tipo;
     console.log("guardar " + tipo);
-    var url = this.url(tipo);
 
-    this.post(url, this.state.selected);
-    console.log("guardar " + tipo + " en " + url);
+    if (this.state.editar) {
+      var url = this.state.urlpub
+      console.log("editar " + tipo + " en " + url);
+      this.put(url, this.state.selected);
+    } else {
+      var url = this.url(tipo); console.log("guardar " + tipo + " en " + url);
+      this.post(url, this.state.selected);
+
+    }
+
     console.log(this.state.selected);
   };
   url = (tipo) => {
@@ -153,8 +195,25 @@ class ListaCore extends Component {
         {
           var url = this.state.url + "api/responsables/";
         }
+      case "materia":
+        {
+          var url = this.state.url + "api/materias/";
+        }
         return url;
     }
+  };
+  put = (urlPut, dato) => {
+    axios
+      .put(urlPut, dato)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .then(this.limpiarForm());
   };
   post = (urlPost, dato) => {
     axios
@@ -172,7 +231,8 @@ class ListaCore extends Component {
   // Limpiar formulario
   limpiarForm() {
     this.setState({
-      selected: {}
+      selected: {},
+      show: false,
     });
   }
 
@@ -185,6 +245,9 @@ class ListaCore extends Component {
       }
       case "clases": {
         var url = this.state.url + "api/clases/" + e;
+      }
+      case "materia": {
+        var url = this.state.url + "api/materias/" + e;
       }
     }
 
@@ -225,6 +288,7 @@ class ListaCore extends Component {
             menciones={this.state.menciones}
             pensums={this.state.pensums}
             onChange={this.onChange}
+            onCheckChange={this.onCheckChange}
           />
         );
 
@@ -317,21 +381,7 @@ class ListaCore extends Component {
                                 checked={item[campo] === "true"}
                               />
 
-                              {/* <Fab
-                                name={item.tipo}
-                                id={item.id}
-                                onClick={this.showHabil}
-                                key="habilitar"
-                                color="default"
-                                variant="round"
-                                aria-label="option"
-                              >
-                                <AssignmentTurnedInOutlinedIcon />
 
-                                <Typography variant="overline" gutterbottom>
-                                  OK
-                                </Typography></Fab> */}
-                              {/* {item[campo]} */}
                             </td>
                           );
                         } else {

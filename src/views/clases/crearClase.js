@@ -753,7 +753,7 @@ export default class CrearClase extends Component {
                   <SelectControlado
                     label="Dia"
                     value={day}
-                    name="tipo"
+                    name="day"
                     handleChange={this.handleDayChange}
                     datos={dias}
                   />

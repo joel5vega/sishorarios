@@ -10,7 +10,6 @@ export default class InputControlado extends Component {
         <input
           type={tipo ? tipo : "text"}
           placeholder={label}
-          
           name={nombre}
           value={valor}
           onChange={handleChange}

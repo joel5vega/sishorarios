@@ -14,9 +14,7 @@ export default class CrearResponsable extends Component {
     // this.setState({selected:this.props})
   }
   handleChange = (evento) => {
-    const target = evento.target;
-    const value = target.value;
-    const name = target.name;
+    const {value,name} = evento.target;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     // Propagar datos al padre
     this.props.onChange(evento);
