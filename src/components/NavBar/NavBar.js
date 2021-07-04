@@ -19,13 +19,19 @@ class NavBar extends Component {
       titulo: "Sistema de Horarios",
       imagen: mainlogo,
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
+      // usuario: { responsable: { id: 5 } }
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
+
+
   componentDidMount() {
     var tipo = this.props.tipo;
     if (tipo != "estudiante") {
       this.setState({ tipo: tipo, logged: true });
+    }
+    if (this.props.usuario) {
+      this.setState({ usuario: this.props.usuario })
     }
   }
   background() {
@@ -46,7 +52,7 @@ class NavBar extends Component {
     this.setState({
       key: key,
     });
-    alert(`selected ${key}`);
+    console.log(`selected ${key}`);
   }
 
   titulo() {
@@ -65,13 +71,14 @@ class NavBar extends Component {
     AuthService.handleLogout();
     this.props.handleAuth();
     this.setState({ tipo: "estudiante", logged: false });
+    window.location.reload(false)
   };
   render() {
     const NavActive = {
       color: "#40826d ",
     };
 
-    const { tipo, ambientes, usuario, semestres } = this.props;
+    const { tipo, ambientes, semestres, usuario } = this.props;
     return (
       <div>
         <Navbar
@@ -112,6 +119,7 @@ class NavBar extends Component {
                     eventKey="mishorarios"
                     to={{
                       pathname: "/clase/view",
+
                       state: {
                         fuente:
                           "http://localhost:8000/api/clases/responsable/" +
@@ -123,6 +131,7 @@ class NavBar extends Component {
                           " " +
                           usuario.responsable.ap_paterno,
                       },
+
                     }}
                   >
                     {usuario.responsable.ap_paterno}

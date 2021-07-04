@@ -50,28 +50,33 @@ class App extends Component {
       fuente: "http://127.0.0.1:8000/clases/show",
       selectedPeriodo: "",
       selectedTitle: "Home",
-      usuario: "estudiante",
+      // usuario: "estudiante",
+      // usuario: { responsable: { id: 5 } },
       periodo: "",
       auth: false,
-      user: "25"
+      user: Auth.getUser() | "25"
     };
     // this.handleAuth = this.handleAuth.bind(this);
   }
 
   async componentDidMount() {
     this.fetchIndex();
+    var user = Auth.getUser()
     this.setState({
       auth: Auth.isAuthenticated(),
       tipo: Auth.getTipo(),
-      user: Auth.getUser(),
+      user: user,
     });
-    this.getUser();
+    this.getUser(user);
   }
-  async getUser() {
+  async getUser(user) {
     axios
-      .get(this.state.url + "/api/users/" + this.state.user)
+      .get(this.state.url + "/api/users/" + user)
       .then((response) => {
-        this.setState({ usuario: response });
+        var data = response.data.user
+        console.log(data)
+        alert("se obtuvo usuario " + data.id)
+        this.setState({ usuario: data });
       });
   }
   async fetchIndex() {
@@ -172,7 +177,7 @@ class App extends Component {
             />
           </div>
 
-          {Auth.isAuthenticated() ? (
+          {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
             <div name="rutas">
               <Route
                 exact
@@ -330,6 +335,7 @@ class App extends Component {
               />
             </div>
           ) : (
+
             <div className="container" id="print">
               <Route
                 exact
@@ -350,13 +356,30 @@ class App extends Component {
                 }}
               />
             </div>
+
           )}
+          {this.state.tipo == "docente" &&
+            <div name="rutas_doc">
+              <Route
+                exact
+                path="/clase/crear"
+                render={(props) => (
+                  <CrearClase
+                    {...props}
+                    usuario={this.state.usuario}
+                    index={this.state.index}
+
+                  />
+                )}
+              />
+            </div>
+          }
         </BrowserRouter>
 
         <div className="footer">
           (c) Sistema de horarios de Ingenieria Electrónica
         </div>
-      </div>
+      </div >
     );
   }
 }

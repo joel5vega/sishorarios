@@ -2,9 +2,16 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 class NavDocente extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+  
   render() {
     const NavActive = {
       color: "blue",
+
     };
 
     const { usuario } = this.props;

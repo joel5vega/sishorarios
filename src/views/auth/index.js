@@ -35,7 +35,7 @@ class Login extends Component {
       var autenticado = auth.isAuthenticated();
 
       this.props.handleAuth(tipo, usuario);
-      this.props.history.push("/clase");
+      this.props.history.push("/");
       console.log(autenticado + "ir a home");
     } else {
       this.props.history.push("/login");
