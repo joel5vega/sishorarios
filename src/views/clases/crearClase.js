@@ -28,7 +28,7 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
-      disabled: this.props.usuario.tipo == "docente",
+      disabled: this.props.usuario.tipo == "docente" | false,
       ////selescted
       selectedPeriodo: "default",
       selectedMateria: "default",
@@ -68,6 +68,7 @@ export default class CrearClase extends Component {
     if (user) {
       this.setState({ disabled: true })
     }
+    else { this.setState({ disabled: false }) }
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
@@ -662,53 +663,56 @@ export default class CrearClase extends Component {
                   datos={periodos}
                 />
               </div>
-            </div>
-            {this.state.selectedPeriodo !== "default" && (
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Semestre"
-                    value={selectedSemestre}
-                    name="semestre"
-                    handleChange={this.handleSemestreChange}
-                    datos={listaSemestres}
-                  />
-                </div>
-                <div className="tarjeta">
-                  {selectedSemestre > 6 && (
+
+              {this.state.selectedPeriodo !== "default" && (
+                <div >
+                  <div className="tarjeta">
                     <SelectControlado
-                      label="Mencion"
-                      value={selectedMencion}
-                      name="mencion"
-                      handleChange={this.handleMencionChange}
-                      datos={menciones}
+                      label="Semestre"
+                      value={selectedSemestre}
+                      name="semestre"
+                      handleChange={this.handleSemestreChange}
+                      datos={listaSemestres}
                     />
-                  )}
+                  </div>
+                  <div className="tarjeta">
+                    {selectedSemestre > 6 && (
+                      <SelectControlado
+                        label="Mencion"
+                        value={selectedMencion}
+                        name="mencion"
+                        handleChange={this.handleMencionChange}
+                        datos={menciones}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-            {this.state.selectedSemestre !== "default" && (
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Materia"
-                    value={selectedMateria}
-                    name="materia"
-                    handleChange={this.handleMateriaChange}
-                    materia={true}
-                    datos={materias}
-                  />
+              )}
+              {this.state.selectedSemestre !== "default" && (
+                <div>
+                  <div className="tarjeta">
+                    <SelectControlado
+                      label="Materia"
+                      value={selectedMateria}
+                      name="materia"
+                      handleChange={this.handleMateriaChange}
+                      materia={true}
+                      datos={materias}
+                    />
+                  </div>
+                  <div className="tarjeta">
+                    <InputControlado
+                      label="Paralelo"
+                      nombre="paralelo"
+                      valor={paralelo}
+                      handleChange={this.handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="tarjeta">
-                  <InputControlado
-                    label="Paralelo"
-                    nombre="paralelo"
-                    valor={paralelo}
-                    handleChange={this.handleChange}
-                  />
-                </div>
-              </div>
-            )}
+              )}
+
+            </div>
+
             {this.state.selectedMateria !== "default" && (
               <div className="tarjeta-big">
                 <div className="tarjeta">
@@ -763,7 +767,7 @@ export default class CrearClase extends Component {
                 )}
               </div>
             )}
-            {this.state.selectedResponsable !== "default" && (
+            {this.state.selectedAmbiente !== "default" && (
               <div className="tarjeta-big">
                 <div className="tarjeta">
                   <SelectControlado

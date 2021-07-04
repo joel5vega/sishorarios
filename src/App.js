@@ -276,6 +276,7 @@ class App extends Component {
                 render={(props) => (
                   <CrearClase
                     {...props}
+                    usuario={this.state.usuario}
                     index={this.state.index}
 
                   />
