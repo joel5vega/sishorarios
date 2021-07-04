@@ -7,12 +7,14 @@ import FormCrear from "./FormCrear";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
+import userEvent from "@testing-library/user-event";
 
 export default class CrearClase extends Component {
   constructor(args) {
     super(args);
     this.state = {
       url: "http://127.0.0.1:8000",
+      privilegio: this.props.usuario | "administrativo",
       ambientes: [],
       materias: [],
       responsables: [],
@@ -26,6 +28,7 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
+      disabled: this.props.usuario.tipo == "docente",
       ////selescted
       selectedPeriodo: "default",
       selectedMateria: "default",
@@ -36,8 +39,8 @@ export default class CrearClase extends Component {
       paralelo: "A",
       selectedSemestre: "default",
       selectedMencion: "default",
-      selectedResponsable: "default",
-      selectedNivel: "default",
+      selectedResponsable: this.props.usuario.responsable_id | "default",
+      selectedNivel: this.props.usuario.tipo | "default",
       selectedTipo: "default",
       //////
       selected: {
@@ -59,6 +62,12 @@ export default class CrearClase extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    const user = this.props.usuario;
+    if (user) {
+      this.setState({ disabled: true })
+    }
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
@@ -521,6 +530,7 @@ export default class CrearClase extends Component {
 
   limpiarForm() {
     this.setState({
+      disabled: false,
       selectedPeriodo: "default",
       selectedAmbiente: "default",
       selectedMateria: "default",
@@ -611,6 +621,7 @@ export default class CrearClase extends Component {
 
 
     var {
+      disabled,
       selectedPeriodo,
       selectedSemestre,
       selectedMencion,
@@ -637,6 +648,7 @@ export default class CrearClase extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="progreso">
               Crear Clase
+
               <ProgressBar completed={porcentaje} bgcolor="#046193" />
             </div>
 
@@ -706,10 +718,13 @@ export default class CrearClase extends Component {
                     name="nivel"
                     handleChange={this.handleNivelChange}
                     datos={niveles}
+                    disabled={disabled}
                   />
                 </div>
                 {this.state.selectedNivel !== "" && (
+
                   <div className="tarjeta">
+
                     <SelectControlado
                       label="Responsable"
                       value={selectedResponsable}
@@ -717,6 +732,7 @@ export default class CrearClase extends Component {
                       handleChange={this.handleResponsableChange}
                       datos={responsables}
                       index={true}
+                      disabled={disabled}
                     />
                   </div>
                 )}

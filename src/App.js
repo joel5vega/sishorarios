@@ -75,7 +75,7 @@ class App extends Component {
       .then((response) => {
         var data = response.data.user
         console.log(data)
-        alert("se obtuvo usuario " + data.id)
+        // alert("se obtuvo usuario " + data.id)
         this.setState({ usuario: data });
       });
   }

@@ -10,11 +10,12 @@ export default class SelectControlado extends Component {
       handleChange,
       index,
       materia,
+      disabled
     } = this.props;
     return (
       <div className="tarjeta-peque">
         <label >{label}</label>
-        <select value={value} name={name} onChange={handleChange}>
+        <select value={value} name={name} onChange={handleChange} disabled={disabled} >
           <option value="default" disabled={true}>
             ...{" "}
           </option>
@@ -24,11 +25,12 @@ export default class SelectControlado extends Component {
                 {index
                   ? item.titulo + "  " + item.ap_paterno + " " + item.nombre
                   : materia
-                  ? item.sigla
-                  : item.nombre}
+                    ? item.sigla
+                    : item.nombre}
               </option>
             );
-          })}
+          })
+          }
         </select>
       </div>
     );
