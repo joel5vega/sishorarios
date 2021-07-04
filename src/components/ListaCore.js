@@ -10,8 +10,8 @@ import CrearResponsable from "../views/responsables/CrearResponsable";
 import CrearAmbiente from "../views/ambientes/crearAmbiente";
 import CrearMateria from "../views/materias/CrearMateria";
 import CrearClase from "../views/clases/crearClase";
-import CrearPeriodo from "../containers/crear/crearPensum";
-import CrearPensum from "../containers/crear/crearPeriodo";
+import CrearPensum from "../containers/crear/crearPensum";
+import CrearPeriodo from "../containers/crear/crearPeriodo";
 import CrearMencion from "../containers/crear/crearMencion";
 import Register from "../views/auth/Register.js";
 import DetalleClase from "../views/clases/DetalleClase";
@@ -36,11 +36,18 @@ class ListaCore extends Component {
       editar: false,
       selected: {},
       info: { color: "green" },
-      menciones: this.props.datos[0].menciones,
-      pensums: this.props.datos[0].pensum,
+      // menciones: this.props.index.menciones,
+      //pensums: this.props.index.pensum,
     };
   }
-
+  componentDidMount() {
+    if (this.props.index) {
+      this.setState({
+        menciones: this.props.index.menciones,
+        pensums: this.props.index.pensums
+      })
+    }
+  }
   modal = () => {
     var tipo = this.props.tipo;
     this.setState({
@@ -153,15 +160,14 @@ class ListaCore extends Component {
         selected: { ...e, menciones: mencionesSeleccionadas }
       })
     }
-    console.log("editar en lista");
+    console.log("editar en " + this.props.tipo);
     console.log(e);
     /// Enviar para editar
     /// obtener url
     var url = this.url(this.props.tipo) + e.id
     this.setState({ urlpub: url })
     console.log(url)
-    /*
-    */
+
   }
   checkMenciones = (menciones) => {
     var mencionesSeleccionadas = {}
@@ -184,9 +190,7 @@ class ListaCore extends Component {
     } else {
       var url = this.url(tipo); console.log("guardar " + tipo + " en " + url);
       this.post(url, this.state.selected);
-
     }
-
     console.log(this.state.selected);
   };
   url = (tipo) => {
@@ -194,13 +198,30 @@ class ListaCore extends Component {
       case "responsable":
         {
           var url = this.state.url + "api/responsables/";
+          break;
         }
       case "materia":
         {
           var url = this.state.url + "api/materias/";
+          break;
         }
-        return url;
+      case "clases":
+        {
+          var url = this.state.url + "api/clases/"
+          break;
+        }
+      case "periodo":
+        {
+          var url = this.state.url + "api/periodos/"
+          break;
+        }
+      case "ambiente":
+        {
+          var url = this.state.url + "api/ambientes/"
+          break;
+        }
     }
+    return url;
   };
   put = (urlPut, dato) => {
     axios
@@ -208,6 +229,7 @@ class ListaCore extends Component {
       .then(
         (response) => {
           console.log(response);
+          window.location.reload(false)
         },
         (error) => {
           console.log(error);
@@ -221,6 +243,7 @@ class ListaCore extends Component {
       .then(
         (response) => {
           console.log(response);
+          window.location.reload(false)
         },
         (error) => {
           console.log(error);
@@ -234,6 +257,8 @@ class ListaCore extends Component {
       selected: {},
       show: false,
     });
+    // alert("cambios realizados, actualizar?")
+    // window.location.reload(false);
   }
 
   eliminar(e) {
@@ -242,12 +267,15 @@ class ListaCore extends Component {
     switch (this.props.tipo) {
       case "responsable": {
         var url = this.state.url + "api/responsables/" + e;
+        break;
       }
       case "clases": {
         var url = this.state.url + "api/clases/" + e;
+        break;
       }
       case "materia": {
         var url = this.state.url + "api/materias/" + e;
+        break;
       }
     }
 
@@ -292,8 +320,8 @@ class ListaCore extends Component {
           />
         );
 
-      case "clase":
-        return <CrearClase />;
+      case "clases":
+        return <CrearClase {...this.props} />;
       case "periodo":
         return (
           <CrearPeriodo datos={this.state.selected} onChange={this.onChange} />

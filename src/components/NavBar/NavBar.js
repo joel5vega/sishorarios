@@ -78,7 +78,7 @@ class NavBar extends Component {
           collapseOnSelect
           expand="sm"
           style={{ backgroundColor: this.state.background }}
-          // variant="light"
+          // variant="dark"
           fixed="top"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>

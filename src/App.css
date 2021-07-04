@@ -122,7 +122,7 @@ body {
   /* border: 1px solid red !important; */
   display: flex;
   flex-direction: row;
-  max-width: fit-content;
+  /* max-width: fit-content; */
   flex-shrink: 3;
   border-radius: 15%;
   width: fit-content;
@@ -198,10 +198,10 @@ body {
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 form {
-  padding: 10px;
+  padding: 5px;
   background-color: #e7e7e7;
   margin: 0 auto;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   align-items: right;
   justify-content: right;
@@ -220,7 +220,7 @@ form input {
   font-family: "Roboto", sans-serif;
   -webkit-box-sizing: border-box;
   color: #525c66;
-  width: 60px;
+  width: 6rem;
   height: 23px;
   box-sizing: border-box;
   color: #525c66;

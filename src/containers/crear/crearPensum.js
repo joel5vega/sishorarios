@@ -27,29 +27,32 @@ export default class CrearPensum extends Component {
     // console.log(name + " es: " + value);
   };
   render() {
-    var { nombre,descripcion } = this.state.selected;
-  
+    var { nombre, descripcion, } = this.state.selected;
+    var { startDate } = this.props
     return (
       <div className="tarjetas">
-        
-        <div className="tarjeta">
-          <InputControlado
-            
-            label="Nombre"
-            nombre="nombre"
-            valor={nombre}
-            handleChange={this.handleChange}
-          />
+        <div className="tarjeta-big">
+          <div className="tarjeta-peque">
+            <InputControlado
+
+              label="Nombre"
+              nombre="nombre"
+              valor={nombre}
+              handleChange={this.handleChange}
+            />
+          </div>
+          <div className="tarjeta-peque">
+            <InputControlado
+              tipo="textarea"
+              label="Descripción"
+              nombre="descripcion"
+              valor={descripcion}
+              handleChange={this.handleChange}
+            />
+          </div>
+
         </div>
-        <div className="tarjeta">
-          <InputControlado
-            tipo="textarea"
-            label="Descripción"
-            nombre="descripcion"
-            valor={descripcion}
-            handleChange={this.handleChange}
-          />
-        </div>
+
       </div>
     );
   }

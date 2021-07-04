@@ -38,40 +38,42 @@ export default class CrearPeriodo extends Component {
     ];
     return (
       <div className="tarjetas">
-        <div className="tarjeta">
-          <SelectControlado
-            label="Nombre"
-            value={nombre}
-            name="nombre"
-            handleChange={this.handleChange}
-            datos={periodos}
-          />
-        </div>
-        <div className="tarjeta">
-          <InputControlado
-            label="Gestión"
-            nombre="gestion"
-            valor={gestion}
-            handleChange={this.handleChange}
-          />
-        </div>
-        <div className="tarjeta">
-          <InputControlado
-            tipo="date"
-            label="Inicio de Periodo"
-            nombre="start_date"
-            valor={start_date}
-            handleChange={this.handleChange}
-          />
-        </div>
-        <div className="tarjeta">
-          <InputControlado
-            tipo="date"
-            label="Fin de Periodo"
-            nombre="end_date"
-            valor={end_date}
-            handleChange={this.handleChange}
-          />
+        <div className="tarjeta-big">
+          <div className="tarjeta">
+            <SelectControlado
+              label="Nombre"
+              value={nombre}
+              name="nombre"
+              handleChange={this.handleChange}
+              datos={periodos}
+            />
+          </div>
+          <div className="tarjeta">
+            <InputControlado
+              label="Gestión"
+              nombre="gestion"
+              valor={gestion}
+              handleChange={this.handleChange}
+            />
+          </div>
+          <div className="tarjeta">
+            <InputControlado
+              tipo="date"
+              label="Inicio de Periodo"
+              nombre="start_date"
+              valor={start_date}
+              handleChange={this.handleChange}
+            />
+          </div>
+          <div className="tarjeta">
+            <InputControlado
+              tipo="date"
+              label="Fin de Periodo"
+              nombre="end_date"
+              valor={end_date}
+              handleChange={this.handleChange}
+            />
+          </div>
         </div>
       </div>
     );

@@ -53,7 +53,7 @@ class App extends Component {
       usuario: "estudiante",
       periodo: "",
       auth: false,
-      user:"25"
+      user: "25"
     };
     // this.handleAuth = this.handleAuth.bind(this);
   }
@@ -75,7 +75,8 @@ class App extends Component {
       });
   }
   async fetchIndex() {
-    axios.get(this.state.url + "/api/index").then((response) => {
+    console.log("estoy en app")
+    axios.get("http://127.0.0.1:8000/api/index").then((response) => {
       this.setState({
         materias: response.data.materias,
         ambientes: response.data.ambientes,
@@ -200,6 +201,7 @@ class App extends Component {
                 render={(props) => (
                   <ListaResponsables
                     {...props}
+                    fetch={this.fetchIndex}
                     datos={this.state.responsables}
                   />
                 )}
@@ -262,28 +264,27 @@ class App extends Component {
                 )}
               />
 
-       
+
               <Route
                 exact
                 path="/clase/crear"
                 render={(props) => (
                   <CrearClase
                     {...props}
-                    
                     index={this.state.index}
-            
+
                   />
                 )}
               />
-               <Route
+              <Route
                 exact
                 path="/clase/habilitar"
                 render={(props) => (
                   <HabilitarClases
                     {...props}
-                    
+                    index={this.state.index}
                     clases={this.state.index.clases}
-            
+
                   />
                 )}
               />
@@ -296,7 +297,7 @@ class App extends Component {
                 exact
                 path="/materia/lista"
                 render={(props) => (
-                  <ListaMaterias {...props} datos={this.state.materias} />
+                  <ListaMaterias {...props} index={this.state.index} datos={this.state.materias} />
                 )}
               />
               <Route

@@ -21,15 +21,19 @@ export default class ListaMaterias extends Component {
       console.log("no llego");
     }
   }
+
   render() {
     var { datos } = this.props;
-    var keys=["sigla", "nombre", "semestre", "tipo"];
+    var keys = ["sigla", "nombre", "semestre", "tipo"];
     return (
       <div>
-        
-        <ListaCore datos={datos} tipo="materia" titulo="Lista de materias" keys={keys} /> 
+
+        <ListaCore
+          index={this.props.index}
+          datos={datos} tipo="materia"
+          titulo="Lista de materias"
+          keys={keys} />
         {this.state.externo && <p>LLego</p>}
-        <h1>{this.state.fuente}</h1>
       </div>
     );
   }

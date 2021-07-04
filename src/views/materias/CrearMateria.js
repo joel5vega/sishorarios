@@ -24,6 +24,14 @@ export default class CrearMateria extends Component {
     componentDidMount() {
         if (this.props.datos) {
             this.setState({ selected: this.props.datos })
+            if (!this.props.datos.menciones) {
+                this.setState({
+                    selected: {
+                        ...this.state.selected,
+                        menciones: { 2: false, 3: false, 4: false }, 
+                    }
+                })
+            }
             // console.log(this.props.datos.menciones)
             // this.checkMenciones(this.props.datos.menciones)
         }

@@ -70,6 +70,7 @@ export default class HabilitarClases extends Component {
               </Typography></Fab>
           </div>
           <ListaCore
+            index={this.props.index}
             titulo="Clases"
             datos={this.state.clases}
             tipo="clases"

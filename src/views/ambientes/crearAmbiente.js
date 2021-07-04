@@ -35,8 +35,8 @@ export default class CrearAmbiente extends Component {
       { id: "auditorio", nombre: "Auditorio" },
     ];
     return (
-      <div className="tarjetas">
-        <div className="tarjeta">
+      <div className="tarjeta-big">
+        <div className="tarjeta-peque">
           <InputControlado
             label="Nombre"
             nombre="nombre"
