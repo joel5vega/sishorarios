@@ -4,13 +4,13 @@ import DatosAdmin from "./DatosAdmin";
 import UsuariosAdmin from "./UsuariosAdmin";
 import axios from "axios";
 import HabilitarClases from "./HabiltarClases";
-
+import EstadisticasAdmin from "./EstadisticasAdmin";
 export default class HomeAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url:'http://localhost:8000'
+      url: 'http://localhost:8000'
     };
   }
   componentDidMount() {
@@ -28,12 +28,12 @@ export default class HomeAdmin extends Component {
     return (
       <div>
         <TabPanel
-          label01="Datos del sistema"
+          label03="Datos del sistema"
           label02="Usuarios"
-          label03="Habilitar Clases"
-          item01={<DatosAdmin index={this.props.index} />}
-          item02={<UsuariosAdmin usuarios={this.state.usuarios} responsables={this.props.index.responsables}/>}
-          item03={<HabilitarClases clases={this.props.index.clases}/>}
+          label01="Estadisticas Admin"
+          item03={<DatosAdmin index={this.props.index} />}
+          item02={<UsuariosAdmin usuarios={this.state.usuarios} responsables={this.props.index.responsables} />}
+          item01={<EstadisticasAdmin />}
         />
       </div>
     );

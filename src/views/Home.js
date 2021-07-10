@@ -28,7 +28,7 @@ class Home extends Component {
     return (
       <div>
         <h2>
-          Bienvenido al Sistema de Administración de horarios
+          {/* Bienvenido al Sistema de Administración de horarios */}
           {this.state.usuario}
         </h2>
         <div className="row flex">

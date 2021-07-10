@@ -113,7 +113,7 @@ body {
   flex-direction: column;
   align-items: left;
   flex-wrap: wrap;
-  margin: 0.2rem;
+  margin: 0.1rem;
   flex-shrink: 4;
   width: fit-content;
   flex-basis: 7rem;
@@ -132,11 +132,14 @@ body {
 .tarjeta-big {
   border: 1px solid #ccc !important;
   border-radius: 5%;
-  background-color: white;
+  /* background-color: blue; */
   display: flex;
   margin: 0.2rem;
   height: fit-content;
   width: fit-content;
+  justify-content: space-around;
+  flex-shrink: 2;
+  flex-wrap: wrap;
 }
 
 .calendario {
@@ -177,6 +180,18 @@ body {
   flex-wrap: unset;
   margin-right: 0.2em;
   margin-left: 0.2em;
+}
+
+.cuadricula{
+  display: grid;
+  grid-template-columns: repeat(9,1fr);
+  grid: gap 22px;
+  grid-auto-rows: minmax(10px,auto);
+
+}
+.cuadro{
+  justify-content: space-around;
+  border: #0095eb;
 }
 @media screen and (min-width: 980px) {
   .row {

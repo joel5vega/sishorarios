@@ -25,9 +25,9 @@ export default class MateriasSemestre extends Component {
                   <div>
                     {item.semestre < 7 ? (
                       <TarjetaMateria
-                        nombre={item.nombre}
-                        sigla={item.sigla}
-                        tipo={item.tipo}
+                        tipo={item.nombre}
+                        avatar={item.sigla}
+                        nombre={item.tipo}
                         ancho={ancho}
                         alto={alto}
                         size="0.7em"
@@ -44,7 +44,7 @@ export default class MateriasSemestre extends Component {
                             {menciones.nombre === mencion && (
                               <TarjetaMateria
                                 nombre={item.nombre}
-                                sigla={item.sigla}
+                                avatar={item.sigla}
                                 tipo={item.tipo}
                                 ancho={ancho}
                                 alto={alto}

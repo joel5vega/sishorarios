@@ -19,16 +19,19 @@ const useBasicProfileStyles = makeStyles({
     marginRight: 5,
   },
   avatar: {
-    fontSize: (props) => props.size,
+     fontSize: (props) => props.size,
     borderRadius: 8,
     alignContent: "center",
+    justifyContent:"align-center",
+    verticalAlign:"center",
     backgroundColor: (props) => props.color,
   },
   overline: {
     fontSize: (props) => props.size,
-    textTransform: "uppercase",
+    // textTransform: "uppercase",
     letterSpacing: "0.01em",
-    color: "#8D9CAD",
+    overflowWrap:'break-word'
+    // color: "#8D9CAD",
   },
   name: {
     fontSize: (props) => props.size,
@@ -41,12 +44,12 @@ const useBasicProfileStyles = makeStyles({
 
 export default function BasicProfile(props) {
   // same styles
-  const { sigla, nombre, tipo } = props;
+  const { avatar, nombre, tipo } = props;
   const styles = useBasicProfileStyles(props);
   return (
     <div className="tarjeta">
       <Row gap={1} {...props}>
-        <Avatar className={styles.avatar}>{sigla}</Avatar>
+        <Avatar className={styles.avatar}>{avatar}</Avatar>
         <Item position={"middle"}>
           <Typography className={styles.overline}>{tipo}</Typography>
           <Typography className={styles.name}>{nombre}</Typography>

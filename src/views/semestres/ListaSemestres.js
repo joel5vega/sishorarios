@@ -1,3 +1,4 @@
+import { blue } from "@material-ui/core/colors";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import TarjetaMateria from "../../components/TarjetaMateria";
@@ -11,6 +12,7 @@ export default class ListaSemestres extends Component {
   }
 
   render() {
+    const color = { "general": "green", "control": "red", "telecom": "blue", "sistemas": "purple" }
     return (
       <div className="tarjetas">
         <div className="tarjetas-titulo">Ver horarios por Semestres</div>
@@ -31,18 +33,19 @@ export default class ListaSemestres extends Component {
                         item.mencion === "general"
                           ? item.semestre + " Semestre "
                           : item.semestre +
-                            " Semestre - Mencion:" +
-                            item.mencion,
+                          " Semestre - Mencion:" +
+                          item.mencion,
                     },
                   }}
                 >
                   <TarjetaMateria
-                    sigla={item.semestre}
-                    tipo={item.mencion}
-                    nombre={item.nombre}
+                    avatar={item.semestre}
+                    tipo="Semestre"
+                    nombre={item.mencion}
                     ancho="1rem"
                     size="0.8rem"
-                    // accion={this.onClick}
+                    color={color[item.mencion]}
+                  // accion={this.onClick}
                   />
                 </NavLink>
               </div>
