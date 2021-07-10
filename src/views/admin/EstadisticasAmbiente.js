@@ -31,15 +31,15 @@ export default class EstadisticasAmbiente extends Component {
     return (
       <div className="tarjeta-big">
         <div className="tarjeta-big">
-        <div className="tarjetas-titulo">Uso Total de ambientes</div>
+          <div className="tarjetas-titulo">Uso Total de ambientes</div>
           {Object.keys(total).map((key) => (
             <div >
               {/* <div className="tarjetas-titulo">{key}</div> */}
               <TarjetaMateria
-              avatar={total[key]}
-              tipo={key}
-              nombre="horas"
-              color="green"
+                avatar={total[key]}
+                tipo={key}
+                nombre="horas"
+                color="green"
               />
               <div className="tarjeta-peque">
                 {/* {total[key]} horas */}
@@ -49,12 +49,12 @@ export default class EstadisticasAmbiente extends Component {
           ))}
         </div>
         <div className="tarjeta-big">
-        <div className="tarjetas-titulo">Uso de Ambientes por día</div>
+          <div className="tarjetas-titulo">Uso de Ambientes por día</div>
           {Object.keys(diario).map((aula) => (
             <div className="tarjeta-big">
               <div className="tarjetas-titulo">{aula}</div>
               {Object.keys(diario[aula]).map((key) =>
-                <div className="tarjeta-peque">
+                <div className="cuadro">
                   {key}
                   <br></br>
                   {diario[aula][key]} h

@@ -27,10 +27,11 @@ export default class EstadisticasResponsable extends Component {
     catch (e) { console.log(e) }
   }
   render() {
-    var { responsables, total } = this.state.responsable;
+    var { responsables, docente_equivalente } = this.state.responsable;
     return (
-      <div
-      ><div className="tarjetas-titulo">Horas Asignadas a Docentes</div>
+      <div>
+        <div className="tarjetas-titulo">Docente equivalente: {docente_equivalente}</div>
+        <div className="tarjetas-titulo">Horas Asignadas a Docentes</div>
         <div className="cuadricula">
 
           {Object.keys(responsables).map((key) => (

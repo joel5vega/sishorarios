@@ -15,9 +15,9 @@ export default class MateriasSemestre extends Component {
     var { datos, semestre, mencion, titulo } = this.props;
     var { ancho, alto } = this.state;
     return (
-      <div>
-        <div className="tarjetas">
-          <div className="tarjetas-titulo">{titulo}</div>
+      <div> 
+        <div className="tarjeta-big">
+         <div className="tarjetas-titulo">{titulo}</div>
           {datos.map((item) => {
             return (
               <div key={item.id}>
