@@ -11,11 +11,12 @@ class NavAdministrativo extends Component {
     return (
       <div>
         <Nav>
-          <NavDropdown title="Clases" id="collasible-nav-dropdown">
+
+          <NavDropdown title="Clases" id="collasible-nav-dropdown" >
             <NavDropdown.Item eventKey="clase" as={NavLink} exact to="/clase/">
               Buscar
             </NavDropdown.Item>
-      
+
             <NavDropdown.Divider />
             <NavDropdown.Item
               eventKey="claseHabilitar"
@@ -34,6 +35,8 @@ class NavAdministrativo extends Component {
               Crear
             </NavDropdown.Item>
           </NavDropdown>
+
+
           <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
             <NavDropdown.Item
               eventKey="ambiente"
@@ -70,7 +73,7 @@ class NavAdministrativo extends Component {
             >
               Lista de Responsables
             </NavDropdown.Item>
-        
+
           </NavDropdown>
 
           <NavDropdown title="Materias" id="collasible-nav-dropdown">
@@ -89,6 +92,24 @@ class NavAdministrativo extends Component {
               eventKey="listaMateria"
             >
               Lista de Materias
+            </NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Estadística" id="collasible-nav-dropdown">
+            <NavDropdown.Item
+              as={NavLink}
+              exact
+              to="/stats/ambiente"
+              eventKey="statA"
+            >
+              Ambiente
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              as={NavLink}
+              exact
+              to="/stats/responsable"
+              eventKey="statR"
+            >
+              Responsable
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

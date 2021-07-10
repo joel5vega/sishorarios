@@ -32,10 +32,10 @@ export default class EstadisticasResponsable extends Component {
       <div>
         <div className="tarjetas-titulo">Docente equivalente: {docente_equivalente}</div>
         <div className="tarjetas-titulo">Horas Asignadas a Docentes</div>
-        <div className="cuadricula">
+        <div className="tarjetas">
 
           {Object.keys(responsables).map((key) => (
-            <div className="cuadro">
+            <div>
               {/* <div className="tarjetas-titulo">Ing. {key}</div> */}
               <TarjetaMateria
                 nombre="horas"

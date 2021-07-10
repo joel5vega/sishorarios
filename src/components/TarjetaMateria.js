@@ -47,7 +47,7 @@ export default function BasicProfile(props) {
   const { avatar, nombre, tipo } = props;
   const styles = useBasicProfileStyles(props);
   return (
-    <div className="tarjeta">
+    <div className="tarjeta" >
       <Row gap={1} {...props}>
         <Avatar className={styles.avatar}>{avatar}</Avatar>
         <Item position={"middle"}>

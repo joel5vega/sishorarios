@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
 import TabPanel from "../../components/Tabs";
 import AmbientesLibres from "./AmbientesLibres";
+import ListaAmbientes from "./ListaAmbientes";
 import axios from "axios";
 import Login from "../auth/Login";
 
@@ -52,40 +53,41 @@ export default class HomeAmbientes extends Component {
   }
 
   render() {
-    var { libres, ocupados,  } = this.state;
+    var { libres, ocupados, } = this.state;
     // const label = ["Ambientes Ocupados", "Ambientes disponibles"];
     return (
       <div>
         <TabPanel
-          // label={label}
+          label03="Lista de Ambientes"
           label02="Ambientes Ocupados"
           label01="Ambientes Libres"
           item02={
             <div className="tarjetas">
               {ocupados.length > 0
                 ? ocupados.map((item) => {
-                    return (
-                      <div key={item.id}>
-                        <TarjetaAmbiente
-                          nombre={item.nombre}
-                          tipo={item.tipo}
-                          capacidad={item.capacidad}
-                          color={
-                            item.tipo === "laboratorio"
-                              ? "#006600"
-                              : item.tipo === "auditorio"
+                  return (
+                    <div key={item.id}>
+                      <TarjetaAmbiente
+                        nombre={item.nombre}
+                        tipo={item.tipo}
+                        capacidad={item.capacidad}
+                        color={
+                          item.tipo === "laboratorio"
+                            ? "#006600"
+                            : item.tipo === "auditorio"
                               ? "#ffa500"
                               : "#0066CC"
-                          }
-                        />
-                      </div>
-                    );
-                  })
+                        }
+                      />
+                    </div>
+                  );
+                })
                 : "No existen registros de ambientes ocupados en este momento"}
             </div>
           }
           item01={<AmbientesLibres datos={libres} />}
-          
+          item03={<ListaAmbientes datos={this.props.datos} />}
+
         />
       </div>
     );

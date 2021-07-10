@@ -34,7 +34,10 @@ import HomeMaterias from "./views/materias/HomeMaterias";
 import ListaMaterias from "./views/materias/ListaMaterias";
 import CrearMateria from "./views/materias/CrearMateria";
 import HabilitarClases from "./views/admin/HabiltarClases";
-
+///admin
+import EstadisticasResponsable from "./views/admin/EstadisticasResponsables";
+import EstadisticasAmbiente from "./views/admin/EstadisticasAmbiente";
+import EstadisticasAdmin from "./views/admin/EstadisticasAdmin";
 import HomeAdmin from "./views/admin/HomeAdmin";
 import DatosAdmin from "./views/admin/DatosAdmin";
 import ClasesAdmin from "./views/admin/HabiltarClases";
@@ -332,6 +335,27 @@ class App extends Component {
                 path="/admin/clases"
                 render={(props) => (
                   <ClasesAdmin {...props} clases={this.state.index.clases} />
+                )}
+              />
+              <Route
+                exact
+                path="/stats"
+                render={(props) => (
+                  <EstadisticasAdmin />
+                )}
+              />
+              <Route
+                exact
+                path="/stats/ambiente"
+                render={(props) => (
+                  <EstadisticasAmbiente />
+                )}
+              />
+              <Route
+                exact
+                path="/stats/responsable"
+                render={(props) => (
+                  <EstadisticasResponsable />
                 )}
               />
             </div>

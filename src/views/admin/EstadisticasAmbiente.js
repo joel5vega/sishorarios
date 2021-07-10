@@ -54,7 +54,7 @@ export default class EstadisticasAmbiente extends Component {
             <div className="tarjeta-big">
               <div className="tarjetas-titulo">{aula}</div>
               {Object.keys(diario[aula]).map((key) =>
-                <div className="cuadro">
+                <div className="tarjeta-peque">
                   {key}
                   <br></br>
                   {diario[aula][key]} h

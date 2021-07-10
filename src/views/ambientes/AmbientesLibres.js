@@ -42,19 +42,6 @@ export default class AmbientesLibres extends Component {
               )}
             </div>
           ))}
-          <div className="tarjetas-titulo">Auditorios</div>
-          {this.props.datos.map((item) => (
-            <div key={item.id}>
-              {item.tipo === "auditorio" && (
-                <TarjetaAmbiente
-                  nombre={item.nombre}
-                  tipo={item.tipo}
-                  capacidad={item.capacidad}
-                  color="#ffa500"
-                />
-              )}
-            </div>
-          ))}
         </div>
       </div>
     );
