@@ -5,13 +5,7 @@ import { NavLink } from "react-router-dom";
 export default class HomeResponsables extends Component {
   componentDidMount() { }
   render() {
-    // let data = this.context;
     let { datos } = this.props;
-
-    // console.log("----componente home responsables---");
-    // console.log(data);
-    console.log(datos);
-
     return (
       <div>
         <div className="box">
@@ -74,5 +68,3 @@ export default class HomeResponsables extends Component {
     );
   }
 }
-
-// HomeResponsables.contextType = ContextProvider;

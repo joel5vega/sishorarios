@@ -20,7 +20,6 @@ export default class HomeMaterias extends Component {
   render() {
     var { datos } = this.props;
     var { general,semestres } = this.state
-    // var { mencion, titulo, semestre } = this.state;
     return (
       <div>
         <div >
@@ -33,9 +32,9 @@ export default class HomeMaterias extends Component {
         </div>
 
         <TabPanel
-          label01="Materias Mencion Control"
-          label02="Materias Mencion Sistemas"
-          label03="Materias Mencion Telecomunicaciones"
+          label01="Mencion Control"
+          label02="Mencion Sistemas"
+          label03="Mencion Telecomunicaciones"
           item01={
             <MateriasMencion
               datos={datos}
