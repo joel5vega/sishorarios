@@ -9,7 +9,9 @@ export default class UsuariosAdmin extends Component {
     };
   }
   componentDidMount() {
+    console.group("users")
     console.log(this.props.usuarios);
+    console.groupEnd()
   }
 
   render() {

@@ -7,7 +7,7 @@ import "../../fontawesome";
 import Fab from "@material-ui/core/Fab";
 import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import { Typography } from "@material-ui/core";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import DetalleClase from "./DetalleClase";
 
 class ViewClases extends Component {

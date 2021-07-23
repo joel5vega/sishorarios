@@ -77,13 +77,15 @@ class App extends Component {
       .get(this.state.url + "/api/users/" + user)
       .then((response) => {
         var data = response.data.user
-        console.log(data)
+        console.log("Usuario es",data)
+        console.groupEnd()
         // alert("se obtuvo usuario " + data.id)
         this.setState({ usuario: data });
       });
   }
   async fetchIndex() {
-    console.log("estoy en app")
+    console.group("inicio")
+    
     axios.get("http://127.0.0.1:8000/api/index").then((response) => {
       this.setState({
         materias: response.data.materias,
@@ -97,6 +99,8 @@ class App extends Component {
         index: response.data,
         loading: false,
       });
+      console.log("descarga exitosa")
+      console.groupEnd()
     });
   }
 

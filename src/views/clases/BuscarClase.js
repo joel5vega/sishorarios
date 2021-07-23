@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import SelectControlado from "../../components/SelectControlado";
 import Fab from "@material-ui/core/Fab";
 import { Typography } from "@material-ui/core";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 
  class BuscarClase extends Component {
@@ -149,7 +149,7 @@ import EditarClase from "./EditarClase";
 
   handlePeriodoChange = (event) => {
     var periodo = event.target.value;
-    var nombre = this.filtro(this.state.periodos, periodo);
+    // var nombre = this.filtro(this.state.periodos, periodo);
     // console.log(nombre);
     const fuentePeriodo = this.state.url + "/api/clases?periodo=" + periodo;
 

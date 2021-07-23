@@ -44,21 +44,21 @@ class FormCrear extends Component {
       //////
       selected: {
         periodo_id: "default",
-        ambiente_id:"default",
-        ambientes:[],
+        ambiente_id: "default",
+        ambientes: [],
         semestre: "default",
         selectedMencion: "default",
         materia: "default",
-        materias:[],
-        mencion:"default",
+        materias: [],
+        mencion: "default",
         porcentaje: 0,
         nivel: "default",
-        tipo:"default",
+        tipo: "default",
         responsable: "default",
         ambiente: "default",
         day: this.props.evento.daysOfWeek || "default",
-        startTime: this.props.evento.startTime||"07:45",
-        endTime: this.props.evento.endTime||"09:15",
+        startTime: this.props.evento.startTime || "07:45",
+        endTime: this.props.evento.endTime || "09:15",
         paralelo: "A",
       },
 
@@ -67,7 +67,7 @@ class FormCrear extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    
+
   }
   //fetch data
   async componentDidMount() {
@@ -81,7 +81,7 @@ class FormCrear extends Component {
 
     try {
       this.setState({ loading: true });
-      if (mencion !== "" && typeof(mencion) !== 'undefined') {
+      if (mencion !== "" && typeof (mencion) !== 'undefined') {
         var urlMaterias =
           url + "/api/materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
@@ -232,7 +232,7 @@ class FormCrear extends Component {
     }
   }
 
-  
+
   verificar() {
     if (this.props.selected) {
       var selected = this.props.selected;
@@ -240,24 +240,26 @@ class FormCrear extends Component {
         selectedPeriodo: selected.periodo,
         selectedMateria: selected.materia,
         selectedMencion: selected.mencion,
-        selectedNivel: selected.nivel,porcentaje:0
+        selectedNivel: selected.nivel, porcentaje: 0
       });
     }
-    if(this.props.evento){
+    if (this.props.evento) {
       var evento = this.props.evento
       this.setState({
-        selected:{...evento,
-        day : evento.daysOfWeek,
-        startTime:evento.startTime,
-        endTime:evento.endTime,porcentaje:0,materias:[]},ambientes:[],
+        selected: {
+          ...evento,
+          day: evento.daysOfWeek,
+          startTime: evento.startTime,
+          endTime: evento.endTime, porcentaje: 0, materias: []
+        }, ambientes: [],
       });
 
       // console.log(evento.semestre,evento.mencion,evento.nivel,evento.tipo)
-      this.fetchMaterias(evento.semestre,evento.mencion)
-      
+      this.fetchMaterias(evento.semestre, evento.mencion)
+
       this.fetchResponsables(evento.nivel)
       this.fetchAmbientes(evento.tipoAmbiente)
-      
+
     }
   }
   handlePeriodoChange = (event) => {
@@ -287,7 +289,7 @@ class FormCrear extends Component {
     this.handleChange(event);
     var semestre = event.target.value;
     var mencion = "";
-    console.log("semestre",event.target.value);
+    console.log("semestre", event.target.value);
     this.setState({
       selectedSemestre: semestre,
       porcentaje: 20,
@@ -314,9 +316,9 @@ class FormCrear extends Component {
         [event.target.name]: event.target.value,
       },
     });
-    
+
     this.fetchMaterias(semestre, mencion);
-      /// CHOQUES
+    /// CHOQUES
     // this.fetchChoqueSemestre(semestre, mencion);
   };
   handleMateriaChange = (event) => {
@@ -341,7 +343,7 @@ class FormCrear extends Component {
       },
     });
     // console.log(ambiente);
-      /// CHOQUES
+    /// CHOQUES
     // this.fetchChoqueAmbiente(ambiente);
   };
   handleNivelChange = (event) => {
@@ -401,17 +403,17 @@ class FormCrear extends Component {
       },
     });
     this.pushArray(evento);
-     console.log(dia, this.state.selected.day)
+    console.log(dia, this.state.selected.day)
   };
   handleStartChange = (event) => {
     var start = event.target.value;
     let nuevo;
     if (this.state.selectedTipo == "laboratorio") {
       nuevo = this.addTime(start, 180);
-      console.log("tiempo de labo",nuevo);
+      console.log("tiempo de labo", nuevo);
     } else {
       nuevo = this.addTime(start, 90);
-      console.log("tiempo de teoria",nuevo);
+      console.log("tiempo de teoria", nuevo);
     }
 
     var evento = [
@@ -430,7 +432,7 @@ class FormCrear extends Component {
       selected: {
         ...this.state.selected,
         startTime: start,
-        endTime:nuevo
+        endTime: nuevo
       },
     });
     this.pushArray(evento);
@@ -443,14 +445,16 @@ class FormCrear extends Component {
         daysOfWeek: this.state.day,
         startTime: this.state.startTime,
         endTime: fin,
-       
+
       },
     ];
-    this.setState({ endTime: fin, evento: evento ,
-       selected: {
-      ...this.state.selected,
-      endTime: fin,
-    },}
+    this.setState({
+      endTime: fin, evento: evento,
+      selected: {
+        ...this.state.selected,
+        endTime: fin,
+      },
+    }
     );
     this.pushArray(evento);
     console.log(fin)
@@ -462,7 +466,7 @@ class FormCrear extends Component {
     let minutes = 90;
     let fin = new Date(date.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit",hour12:false }
+      { hour: "2-digit", minute: "2-digit", hour12: false }
     );
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
@@ -493,47 +497,54 @@ class FormCrear extends Component {
     let now = new Date("January 25, 1994 " + time);
     let nuevo = new Date(now.getTime() + minutes * 60000).toLocaleTimeString(
       [],
-      { hour: "2-digit", minute: "2-digit",hour12:false }
+      { hour: "2-digit", minute: "2-digit", hour12: false }
     );
     return nuevo;
   }
 
-  delete =()=>{
+  delete = () => {
     var id = this.props.clase.id
     console.log(id)
-    var url = this.state.url+"/api/clases/"+id
-    axios.delete(url).then((response)=>{
+    var url = this.state.url + "/api/clases/" + id
+    axios.delete(url).then((response) => {
       console.log(response);
     },
-    (error) => {
-      console.log(error);
-    })
+      (error) => {
+        console.log(error);
+      })
     this.props.history.push("");
   }
   handleSubmit(event) {
+    const form = event.currentTarget
+
     event.preventDefault();
-     var evento = {
-       materia: this.state.selected.materia_id,
-       responsable: this.state.selected.responsable_id,
-       ambiente: this.state.selected.ambiente_id,
-       periodo: this.state.selected.periodo_id,
-       tipo: this.state.selected.tipo,
-       nivel: this.state.selected.nivel,
-       day: this.state.selected.day,
-       startTime: this.state.selected.startTime,
-       endTime: this.state.selected.endTime,
-       paralelo: this.state.selected.paralelo,
-     };
-     var id = this.state.selected.id;
+    var evento = {
+      materia: this.state.selected.materia_id,
+      responsable: this.state.selected.responsable_id,
+      ambiente: this.state.selected.ambiente_id,
+      periodo: this.state.selected.periodo_id,
+      tipo: this.state.selected.tipo,
+      nivel: this.state.selected.nivel,
+      day: this.state.selected.day,
+      startTime: this.state.selected.startTime,
+      endTime: this.state.selected.endTime,
+      paralelo: this.state.selected.paralelo,
+    };
+    var id = this.state.selected.id;
     console.log(evento);
     console.log("Para enviar selected:");
     // console.log(this.state.selected);
-    let urlPut = this.state.url + "/api/clases/"+id;
+    let urlPut = this.state.url + "/api/clases/" + id;
     axios
       .put(urlPut, evento)
       .then(
         (response) => {
           console.log(response);
+          window.location.reload(false)
+          this.props.history.push("/clase", {
+            selectedBuscar: this.state.selectedBuscar,
+
+          });
         },
         (error) => {
           console.log(error);
@@ -542,7 +553,8 @@ class FormCrear extends Component {
       .then(this.limpiarForm());
     this.limpiarForm();
     this.props.hide(evento);
-    // this.props.history.push("");
+
+
 
     alert("El evento se edito exitosamente");
     this.props.hide(evento);
@@ -624,12 +636,11 @@ class FormCrear extends Component {
       responsable_id,
       tipo,
       ambiente_id,
-      materia_id,
       selectedNivel,
       tipo,
       paralelo,
       materias,
-      periodo_id ,
+      periodo_id,
       materia,
       responsables,
       ambientes,
@@ -638,151 +649,152 @@ class FormCrear extends Component {
       day,
       porcentaje,
     } = this.state.selected;
-    var {materias,  ambientes, responsables} =  this.state
+    var { materias, ambientes, responsables } = this.state
 
     return (
       <div className="tarjetas">
-        <div>
+        <form noValidate onSubmit={this.handleSubmit}>
           <div className="progreso">
-              Editar Clase
-              <ProgressBar completed={porcentaje} bgcolor="#046193" />
-            </div>
+            Editar Clase
+            <ProgressBar completed={porcentaje} bgcolor="#046193" />
+          </div>
 
-            <div className="tarjeta-big">
-              <div className="tarjeta">
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Periodo"
+                value={periodo_id}
+                name="periodo_id"
+                handleChange={this.handlePeriodoChange}
+                datos={periodos}
+              />
+            </div>
+          </div>
+
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Semestre"
+                value={semestre}
+                name="semestre"
+                handleChange={this.handleSemestreChange}
+                datos={listaSemestres}
+              />
+            </div>
+            <div className="tarjeta">
+              {semestre > 6 && (
                 <SelectControlado
-                  label="Periodo"
-                  value={periodo_id}
-                  name="periodo_id"
-                  handleChange={this.handlePeriodoChange}
-                  datos={periodos}
+                  label="Mencion"
+                  value={mencion}
+                  name="mencion"
+                  handleChange={this.handleMencionChange}
+                  datos={menciones}
                 />
-              </div>
+              )}
             </div>
-            
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Semestre"
-                    value={semestre}
-                    name="semestre"
-                    handleChange={this.handleSemestreChange}
-                    datos={listaSemestres}
-                  />
-                </div>
-                <div className="tarjeta">
-                  {semestre > 6 && (
-                    <SelectControlado
-                      label="Mencion"
-                      value={mencion}
-                      name="mencion"
-                      handleChange={this.handleMencionChange}
-                      datos={menciones}
-                    />
-                  )}
-                </div>
-              </div>
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Materia"
-                    value={materia}
-                    name="materia"
-                    handleChange={this.handleMateriaChange}
-                    materia={true}
-                    datos={materias}
-                  />
-                </div>
-                <div className="tarjeta">
-                  <InputControlado
-                    label="Paralelo"
-                    nombre="paralelo"
-                    valor={paralelo}
-                    handleChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Nivel"
-                    value={selectedNivel}
-                    name="nivel"
-                    handleChange={this.handleNivelChange}
-                    datos={niveles}
-                  />
-                </div>
-                  <div className="tarjeta">
-                    <SelectControlado
-                      label="Responsable"
-                      value={responsable_id}
-                      name="responsable"
-                      handleChange={this.handleResponsableChange}
-                      datos={responsables}
-                      index={true}
-                    />
-                  </div>
-              </div>
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Tipo"
-                    value={tipo}
-                    name="tipo"
-                    handleChange={this.handleTipoChange}
-                    datos={tipos}
-                  />
-                </div>
+          </div>
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Materia"
+                value={materia}
+                name="materia"
+                handleChange={this.handleMateriaChange}
+                materia={true}
+                datos={materias}
+              />
+            </div>
+            <div className="tarjeta">
+              <InputControlado
+                label="Paralelo"
+                nombre="paralelo"
+                valor={paralelo}
+                handleChange={this.handleChange}
+              />
+            </div>
+          </div>
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Nivel"
+                value={selectedNivel}
+                name="nivel"
+                handleChange={this.handleNivelChange}
+                datos={niveles}
+              />
+            </div>
+            <div className="tarjeta">
+              <SelectControlado
+                label="Responsable"
+                value={responsable_id}
+                name="responsable"
+                handleChange={this.handleResponsableChange}
+                datos={responsables}
+                index={true}
+              />
+            </div>
+          </div>
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Tipo"
+                value={tipo}
+                name="tipo"
+                handleChange={this.handleTipoChange}
+                datos={tipos}
+              />
+            </div>
 
-                  <div className="tarjeta">
-                    <SelectControlado
-                      label="Ambiente"
-                      value={ambiente_id}
-                      name="ambiente"
-                      handleChange={this.handleAmbienteChange}
-                      datos={ambientes}
-                    />
-                  </div>
-              </div>
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Dia"
-                    value={day}
-                    name="dia"
-                    handleChange={this.handleDayChange}
-                    datos={dias}
-                  />
-                </div>
+            <div className="tarjeta">
+              <SelectControlado
+                label="Ambiente"
+                value={ambiente_id}
+                name="ambiente"
+                handleChange={this.handleAmbienteChange}
+                datos={ambientes}
+              />
+            </div>
+          </div>
+          <div className="tarjeta-big">
+            <div className="tarjeta">
+              <SelectControlado
+                label="Dia"
+                value={day}
+                name="dia"
+                handleChange={this.handleDayChange}
+                datos={dias}
+              />
+            </div>
 
-                  <div className="tarjeta">
-                    <InputControlado
-                      label="Inicio"
-                      nombre="startTime"
-                      valor={startTime}
-                      handleChange={this.handleStartChange}
-                    />
-                  </div>
-                
-                  <div className="tarjeta">
-                    <InputControlado
-                      label="Final"
-                      nombre="endTime"
-                      valor={endTime}
-                      handleChange={this.handleEndChange}
-                    />
-                  </div>
-              </div>
-            
-              <div className="tarjeta-big">
-                <button
-                  className="btn btn-primary mb-2"
-                  onClick={this.handleSubmit}
-                  disabled={this.state.isSubmitting}
-                >
-                  Editar
-                </button>
-                <Fab
+            <div className="tarjeta"  >
+              <InputControlado
+                label="Inicio"
+                nombre="startTime"
+                valor={startTime}
+                handleChange={this.handleStartChange}
+              />
+            </div>
+
+            <div className="tarjeta">
+              <InputControlado
+                label="Final"
+                nombre="endTime"
+                valor={endTime}
+                handleChange={this.handleEndChange}
+              />
+            </div>
+          </div>
+
+          <div className="tarjeta-big">
+            <button
+              type="submit"
+              className="btn btn-primary mb-2"
+              onClick={this.handleSubmit}
+              disabled={this.state.isSubmitting}
+            >
+              Editar
+            </button>
+            <Fab
               onClick={this.delete}
               key="delete"
               color="secondary"
@@ -791,8 +803,8 @@ class FormCrear extends Component {
             >
               <DeleteOutlineSharpIcon />
             </Fab>
-                </div>
-                </div>
+          </div>
+        </form>
       </div>
     );
   }

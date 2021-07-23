@@ -7,7 +7,7 @@ class Estudiante extends Component {
       color: "blue",
     };
 
-    const { tipo, ambientes, usuario, semestres } = this.props;
+    const {  ambientes } = this.props;
     return (
       <div>
         <Nav>

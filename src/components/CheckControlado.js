@@ -5,11 +5,8 @@ export default class CheckControlado extends Component {
     const {
       label,
       value,
-      // name,
       datos,
       handleChange,
-      index,
-      materia,
     } = this.props;
     return (
       <div className="tarjeta-peque">
@@ -18,7 +15,7 @@ export default class CheckControlado extends Component {
           {datos.map((item) => {
             return (
               <div>
-                {item.nombre != "General" && (
+                {item.nombre !== "General" && (
                   <div key={item.id} className="tarjeta-peque">
                     <input type="checkbox"
                       onChange={handleChange}

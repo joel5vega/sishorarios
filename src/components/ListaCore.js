@@ -20,6 +20,8 @@ import DetalleUser from "../views/auth/DetalleUser";
 import Fab from "@material-ui/core/Fab";
 import { Typography } from "@material-ui/core";
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+import EditarClase from "../views/clases/EditarClase";
+import EditarUser from "../views/auth/EditarUser";
 
 class ListaCore extends Component {
   constructor(props) {
@@ -47,6 +49,7 @@ class ListaCore extends Component {
         pensums: this.props.index.pensums
       })
     }
+    console.group("Lista")
   }
   modal = () => {
     var tipo = this.props.tipo;
@@ -58,7 +61,8 @@ class ListaCore extends Component {
       tipo: tipo,
       selected: {},
     });
-    console.log(tipo);
+    console.log("modal tipo:", tipo);
+    console.log(this.state.selected)
   };
   onHide = () => {
     this.setState({ show: false, showInfo: false });
@@ -71,6 +75,7 @@ class ListaCore extends Component {
     const name = target.name;
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     console.log(name + " es: " + value);
+    console.log(this.state.selected)
   };
   onCheckChange = (event) => {
     const { name, checked } = event.target
@@ -166,7 +171,7 @@ class ListaCore extends Component {
     /// obtener url
     var url = this.url(this.props.tipo) + e.id
     this.setState({ urlpub: url })
-    console.log(url)
+    console.log("URL es", url)
 
   }
   checkMenciones = (menciones) => {
@@ -218,6 +223,11 @@ class ListaCore extends Component {
       case "ambiente":
         {
           var url = this.state.url + "api/ambientes/"
+          break;
+        }
+      case "users":
+        {
+          var url = this.state.url + "api/users/"
           break;
         }
     }
@@ -277,12 +287,18 @@ class ListaCore extends Component {
         var url = this.state.url + "api/materias/" + e;
         break;
       }
+      case "users": {
+        var url = this.state.url + "api/users/" + e;
+        break;
+      }
+
     }
 
     console.log(url);
     axios.delete(url).then(
       (response) => {
         console.log(response);
+        window.location.reload(false)
       },
       (error) => {
         console.log(error);
@@ -293,6 +309,7 @@ class ListaCore extends Component {
   //end of CRUD
   ///////////////////////////
   selectCrear(e) {
+
     // console.log("tipo: " + e);
     switch (e) {
       case "ambiente":
@@ -306,7 +323,6 @@ class ListaCore extends Component {
             selected={this.state.selected}
             onChange={this.onChange}
           />
-          // <CrearResponsable {...this.state.selected} onChange={this.onChange} />
         );
 
       case "materia":
@@ -338,11 +354,13 @@ class ListaCore extends Component {
       case "users":
         return (
           <Register
+            modo={this.state.editar}
             datos={this.state.selected}
             responsables={this.props.responsables}
             onChange={this.onChange}
           />
         );
+
 
       default:
         return <p>Envie el modo</p>;

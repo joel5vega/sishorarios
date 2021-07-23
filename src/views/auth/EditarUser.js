@@ -3,7 +3,7 @@ import axios from "axios";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
 
-export default class Register extends Component {
+export default class EditarUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,20 +13,20 @@ export default class Register extends Component {
   }
   componentDidMount() {
     //recibimos el dato desde props
+    console.log("sdfsdfff fs df")
     if (this.props.datos) {
       this.setState({ selected: this.props.datos });
       if (this.props.modo == true) {
         this.setState({ modo: "editar" })
-        if (this.props.datos.tipo) {
-          if (!this.props.datos.tipo == "docente") {
-            this.setState({
-              selected: {
-                ...this.state.selected.responsable,
-                responsable: { responsable_id: "default" }
-              }
-            })
-          }
+        if (this.props.datos.tipo && !this.props.datos.tipo == "docente") {
+          this.setState({
+            selected: {
+              ...this.state.selected.responsable,
+              responsable: { responsable_id: "default" }
+            }
+          })
         }
+
       } else {
         console.log(this.state.selected)
         this.setState({
