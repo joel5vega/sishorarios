@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 import TarjetaMateria from "../../components/TarjetaMateria"
+import { Bar } from "react-chartjs-2";
+
 export default class EstadisticasResponsable extends Component {
   constructor(props) {
     super(props);

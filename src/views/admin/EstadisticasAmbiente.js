@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 import TarjetaMateria from "../../components/TarjetaMateria"
+import { Bar } from "react-chartjs-2";
+
 export default class EstadisticasAmbiente extends Component {
   constructor(props) {
     super(props);
@@ -28,43 +30,109 @@ export default class EstadisticasAmbiente extends Component {
   }
   render() {
     var { diario, total } = this.state.ambiente;
+    var labels = Object.keys(total)
+    const opcionT = {
+      mantainAspectRatio: true,
+      responsive: true,
+      scales: {
+        y: {
+          ticks: {
+            stepSize:6,
+            callback: function (value, index, values) {
+              return value + ' hrs.';
+            }
+          }
+        },
+        x: {
+          ticks: {
+            padding:1,
+            display: "auto", autoSkip: true,
+            callback: function (value, index, values) {
+              var id = values
+              if (labels[value] == "length") {
+                // this.display = true
+                return "";
+              }
+              else {
+                return labels[value];
+              }
+            }
+
+          }
+        }
+      }
+    }
+
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        type: 'bar',
+        label: "Uso total",
+        backgroundColor: '#40826d',
+        borderColor: 'black',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(0,255,0,0.2)',
+        hoverBorderColor: 'white',
+        data: total,
+        skipNull: true
+      }]
+    }
+    
     return (
-      <div className="tarjeta-big">
+      <div className="tarjeta-big" >
+        <div className="diagrama">
+          <Bar data={data} options={opcionT} />
+        </div>
+
         <div className="tarjeta-big">
-          <div className="tarjetas-titulo">Uso Total de ambientes</div>
-          {Object.keys(total).map((key) => (
-            <div >
-              {/* <div className="tarjetas-titulo">{key}</div> */}
-              <TarjetaMateria
-                avatar={total[key]}
-                tipo={key}
-                nombre="horas"
-                color="green"
-              />
+          <div className="tarjetas-titulo">Uso de Ambientes por día</div>
+          {Object.keys(diario).map((aula) => (
+            <div className="tarjeta-big">
+              {/* <div className="tarjetas-titulo">{aula}</div> */}
               <div className="tarjeta-peque">
-                {/* {total[key]} horas */}
+                <Bar data={{
+                  labels: Object.keys(diario[aula]),
+                  // labels:["Lun","Ma","mi","J","V"],
+                  datasets: [{
+                    label: aula,
+                    backgroundColor: "#add8e6",
+                    borderColor: 'black',
+                    data: diario[aula]
+                  }]
+                }} options={{
+                  mantainAspectRatio: true,
+                  responsive: true,
+                  scales: {
+                    y: {
+                      ticks: {
+                        callback: function (value, index, values) {
+                          return value + ' hrs.';
+                        }
+                      }
+                    },
+                    x: {
+                      ticks: {
+                        display: "auto", autoSkip: true,
+                        callback: function (value, index, values) {
+                          var dias = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab."]
+                          if (labels[value] == "length") {
+                          }
+                          else {
+                            return dias[index];
+                          }
+                        }
+                      }
+                    }
+                  }
+                }} />
               </div>
 
             </div>
           ))}
         </div>
-        <div className="tarjeta-big">
-          <div className="tarjetas-titulo">Uso de Ambientes por día</div>
-          {Object.keys(diario).map((aula) => (
-            <div className="tarjeta-big">
-              <div className="tarjetas-titulo">{aula}</div>
-              {Object.keys(diario[aula]).map((key) =>
-                <div className="tarjeta-peque">
-                  {key}
-                  <br></br>
-                  {diario[aula][key]} h
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
 
-      </div>
+      </div >
     );
   }
 }
