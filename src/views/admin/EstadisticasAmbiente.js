@@ -37,7 +37,7 @@ export default class EstadisticasAmbiente extends Component {
       scales: {
         y: {
           ticks: {
-            stepSize:6,
+            stepSize: 6,
             callback: function (value, index, values) {
               return value + ' hrs.';
             }
@@ -45,7 +45,7 @@ export default class EstadisticasAmbiente extends Component {
         },
         x: {
           ticks: {
-            padding:1,
+            padding: 1,
             display: "auto", autoSkip: true,
             callback: function (value, index, values) {
               var id = values
@@ -78,9 +78,10 @@ export default class EstadisticasAmbiente extends Component {
         skipNull: true
       }]
     }
-    
+
     return (
       <div className="tarjeta-big" >
+        <div className="tarjetas-titulo">Uso de ambientes</div>
         <div className="diagrama">
           <Bar data={data} options={opcionT} />
         </div>
@@ -107,7 +108,7 @@ export default class EstadisticasAmbiente extends Component {
                     y: {
                       ticks: {
                         callback: function (value, index, values) {
-                          return value + ' hrs.';
+                          return value + ' h.';
                         }
                       }
                     },
@@ -117,6 +118,7 @@ export default class EstadisticasAmbiente extends Component {
                         callback: function (value, index, values) {
                           var dias = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab."]
                           if (labels[value] == "length") {
+                            
                           }
                           else {
                             return dias[index];

@@ -52,10 +52,6 @@ export default class HomeClases extends Component {
     return (
       <div>
         <div className="tarjetas">
-          <div className="col-8 border-right">
-            <div className="tarjeta-titulo" id="print">
-              Buscar horarios
-            </div>
             <BuscarClase
               {...this.props}
               index={this.props.index}
@@ -67,16 +63,6 @@ export default class HomeClases extends Component {
               menciones={this.props.menciones}
               onChange={this.onChange}
             />
-          </div>
-          <div className="col-4" id="print">
-            <div className="tarjeta-titulo">Actividades en curso</div>
-            <Calendario
-              fuente={this.state.fuenteNow}
-              getDateClick={this.getDateClick}
-              eventClick={this.eventClick}
-              view="timeGrid"
-            />
-          </div>
         </div>
       </div>
     );

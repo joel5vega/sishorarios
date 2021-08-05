@@ -17,6 +17,11 @@ export default class EstadisticasResponsable extends Component {
   }
   componentDidMount() {
     this.getDatosDocentes();
+    this.prueba();
+  }
+  async prueba() {
+    var url = "http://localhost:8000/oauth/scopes";
+    axios.get(url).then(response => { console.log(response.data) })
   }
   async getDatosDocentes() {
     var url = this.state.url + 'datos?tipo=responsable'
@@ -32,42 +37,22 @@ export default class EstadisticasResponsable extends Component {
     var { responsables, docente_equivalente } = this.state.responsable;
     return (
       <div>
-        <div className="tarjetas-titulo">Docente equivalente: {docente_equivalente}</div>
+        <div className="tarjetas-titulo">Docente equivalente: </div>{docente_equivalente}
         <div className="tarjetas-titulo">Horas Asignadas a Docentes</div>
         <div className="tarjetas">
 
           {Object.keys(responsables).map((key) => (
             <div>
-              {/* <div className="tarjetas-titulo">Ing. {key}</div> */}
               <TarjetaMateria
-                nombre="horas"
-                avatar={responsables[key]}
+                // nombre="horas"
+                avatar={responsables[key]+"h"}
                 tipo={key}
                 color="#0007CC"
               />
-
-              <div className="tarjeta-peque">
-                {/* {responsables[key]} horas */}
-              </div>
-
             </div>
           ))}
         </div>
-        {/* <div className="tarjeta-big">
-        <div className="tarjetas-titulo">Uso de Ambientes por día</div>
-          {Object.keys(diario).map((aula) => (
-            <div className="tarjeta-big">
-              <div className="tarjetas-titulo">{aula}</div>
-              {Object.keys(diario[aula]).map((key) =>
-                <div className="tarjeta-peque">
-                  {key}
-                  <br></br>
-                  {diario[aula][key]} h
-                </div>
-              )}
-            </div>
-          ))}
-        </div> */}
+
 
       </div>
     );

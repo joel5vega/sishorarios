@@ -127,7 +127,7 @@ class ViewClases extends Component {
         orientation: "landscape",
       });
       const imgProps = pdf.getImageProperties(imgData);
-      const title = this.state.titulo||"hola";
+      const title = this.state.titulo||"Horario";
       pdf.text(35,15,title)
       
       const pdfWidth = pdf.internal.pageSize.getWidth()*0.9;
@@ -139,7 +139,7 @@ class ViewClases extends Component {
       // pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
       pdf.addImage(imgData,'png',20,20,pdfWidth,pdfHeight)
       pdf.text("producido por Joel",0,pdfHeight,{align:"right"})
-      pdf.save(` ${title} Horario.pdf`);
+      pdf.save(` ${title} .pdf`);
     });
     alert("Se empezo la descarga de su documento PDF");
   };

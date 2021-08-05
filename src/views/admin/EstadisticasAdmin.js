@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import EstadisticasAmbiente from "./EstadisticasAmbiente";
+import Calendario from "../../components/Calendario";
 import EstadisticasResponsable from "./EstadisticasResponsables";
 export default class EstadisticasAdmin extends Component {
   constructor(props) {
@@ -8,34 +9,32 @@ export default class EstadisticasAdmin extends Component {
     this.state = {
       usuario: "",
       url: 'http://127.0.0.1:8000/api/',
+      fuenteNow: "http://localhost:8000/api/clases/",
       responsable: {},
       ambiente: {}
     };
   }
-  componentDidMount() {
-    // this.getDatosDocentes();
-
-  }
-  // async getDatosDocentes() {
-  //   var url = this.state.url + 'datos?tipo=responsable'
-  //   try {
-  //     axios.get(url).then((response) => {
-  //       this.setState({ responsable: response.data.responsable })
-  //       // console.log(response.data.responsable)
-  //     })
-  //   }
-  //   catch (e) { console.log(e) }
-  // }
 
   render() {
     var { docente_equivalente } = this.state.responsable;
     return (
-      <div>
-        <EstadisticasResponsable />
-        <br></br>
+      <div className="tarjeta-big">
+        <div className="col  border-right">
+
+          <div className="tarjeta-titulo">Actividades en curso</div>
+          <Calendario
+            fuente={this.state.fuenteNow}
+            getDateClick={this.getDateClick}
+            eventClick={this.eventClick}
+            view="timeGrid"
+          />
+
+        </div>
+        <div className="col">
+          <EstadisticasAmbiente datos={this.state.ambiente} />
+        </div>
         {docente_equivalente}
-        <br />
-        <EstadisticasAmbiente datos={this.state.ambiente} />
+
       </div>
     );
   }

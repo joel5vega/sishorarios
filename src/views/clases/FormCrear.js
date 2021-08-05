@@ -553,9 +553,6 @@ class FormCrear extends Component {
       .then(this.limpiarForm());
     this.limpiarForm();
     this.props.hide(evento);
-
-
-
     alert("El evento se edito exitosamente");
     this.props.hide(evento);
   }

@@ -26,13 +26,15 @@ export default class HomeAdmin extends Component {
   }
   render() {
     return (
-      <div>
-        <TabPanel
+      <div className="tarjeta-big">
+    
+         <TabPanel
           label03="Datos del sistema"
           label02="Usuarios"
           label01="Estadisticas Admin"
           item03={<DatosAdmin index={this.props.index} />}
-          item02={<UsuariosAdmin usuarios={this.state.usuarios} responsables={this.props.index.responsables} />}
+          item02={<UsuariosAdmin usuarios={this.state.usuarios} 
+          responsables={this.props.index.responsables} />}
           item01={<EstadisticasAdmin />}
         />
       </div>

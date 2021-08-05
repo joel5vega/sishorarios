@@ -85,7 +85,6 @@ class App extends Component {
   }
   async fetchIndex() {
     console.group("inicio")
-    
     axios.get("http://127.0.0.1:8000/api/index").then((response) => {
       this.setState({
         materias: response.data.materias,

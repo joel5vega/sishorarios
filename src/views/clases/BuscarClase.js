@@ -345,6 +345,7 @@ import EditarClase from "./EditarClase";
     return (
       <div>
         <div className="sticky" id="print">
+          <div className="tarjetas-titulo">Buscar Clase</div>
           <div className="tarjetas">
             {this.state.loading === false && (
               <div className="tarjeta">
