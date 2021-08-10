@@ -19,7 +19,7 @@ import Home from "./pages/homepage";
 import Profile from "./pages/profile";
 */
 import Login from "./views/auth/index";
-import Home from "./views/Home";
+import Home from "./views/home/Home";
 import Error from "./views/auth/index";
 import { ProtectedRoute } from "./components/common/router/protected";
 

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faUniversity, faGraduationCap, faBook, faSignal ,faChartBar} from '@fortawesome/free-solid-svg-icons'
+import { Font } from "@react-pdf/renderer";
 class Estudiante extends Component {
   render() {
     const NavActive = {
@@ -11,6 +14,9 @@ class Estudiante extends Component {
     return (
       <div>
         <Nav>
+          <div className="icon">
+            <FontAwesomeIcon icon={faGraduationCap}/>
+          
           <NavDropdown title="Semestres" id="collasible-nav-dropdown">
             {this.props.semestres.map((item) => {
               return (
@@ -41,6 +47,9 @@ class Estudiante extends Component {
               );
             })}
           </NavDropdown>
+          </div>
+          <div className="icon">
+            <FontAwesomeIcon icon={faUniversity}/>
           <NavDropdown title="Ambientes" id="collasible-nav-dropdown">
             {ambientes.map((item) => (
               <NavDropdown.Item
@@ -60,7 +69,10 @@ class Estudiante extends Component {
               </NavDropdown.Item>
             ))}
           </NavDropdown>
+          </div>
 
+          <div className="icon">
+            <FontAwesomeIcon icon={faBook}/>
           <Nav.Link
             as={NavLink}
             eventKey="materias"
@@ -70,6 +82,8 @@ class Estudiante extends Component {
           >
             Malla curricular
           </Nav.Link>
+          </div>
+
         </Nav>
       </div>
     );

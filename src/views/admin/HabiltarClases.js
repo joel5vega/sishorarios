@@ -55,27 +55,27 @@ export default class HabilitarClases extends Component {
     return (
       <div>
         <div>
-          <div className="sticky">
-            <Fab
+          <div >
+            <button
               onClick={this.habilitarTodos}
               key="habilitar"
-              color="default"
-              variant="round"
-              aria-label="option"
+
             >
               <AssignmentTurnedInOutlinedIcon />
-
-              <Typography variant="overline" >
-                Habilitar todos
-              </Typography></Fab>
+              Habilitar todos
+            </button>
           </div>
-          <ListaCore
-            index={this.props.index}
-            titulo="Clases"
-            datos={this.state.clases}
-            tipo="clases"
-            keys={keys}
-          />
+          <div className="container">
+
+
+            <ListaCore
+              index={this.props.index}
+              titulo="Clases"
+              datos={this.state.clases}
+              tipo="clases"
+              keys={keys}
+            />
+          </div>
         </div>
       </div>
     );

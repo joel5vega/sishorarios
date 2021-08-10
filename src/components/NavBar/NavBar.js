@@ -8,18 +8,20 @@ import auth from "../common/router/protected/auth";
 import Estudiante from "./NavEstudiante.js";
 import NavAdministrativo from "./NavAdministrativo.js";
 import NavDocente from "./NavDocente.js";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000",
+      url: "http://127.0.0.1:8000/api",
       logged: false,
       key: "home",
       titulo: "Sistema de Horarios",
       imagen: mainlogo,
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
-      // usuario: { responsable: { id: 5 } }
+      usuario: { responsable: { id: 0 } }
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
@@ -32,7 +34,27 @@ class NavBar extends Component {
     }
     if (this.props.usuario) {
       this.setState({ usuario: this.props.usuario })
+
     }
+    else {
+      this.getUser("21")
+    }
+  }
+
+  async getUser(id) {
+
+    const url = this.state.url + "/users/" + id;
+    try {
+      this.setState({ loading: true });
+      axios.get(url).then((response) => {
+        var data = response.data;
+        this.setState({ usuarios: data });
+      });
+    } catch (e) {
+      console.log(e);
+      this.setState({ ...this.state, loading: false });
+    }
+    console.log("DDD")
   }
   background() {
     switch (this.props.tipo) {
@@ -83,9 +105,9 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="sm"
+          expand="lg"
           // style={{ backgroundColor: this.state.background }}
-          style={{ backgroundColor: "white " }}
+          style={{ backgroundColor: "white" }}
           // variant="dark"
           fixed="top"
         >
@@ -108,13 +130,22 @@ class NavBar extends Component {
             )}
             <Nav
               onSelect={this.handleSelect}
-              className="nav justify-content-end ml-auto"
             >
-              <Navbar.Brand>
-                {tipo == "administrativo" && (
+
+
+
+
+              {tipo == "administrativo" && (
+                <div className="icon ">
+                  <FontAwesomeIcon icon={faUser} />
                   <NavLink to="/admin/">Admin</NavLink>
-                )}
-                {tipo == "docente" && (
+                </div>
+              )}
+
+              {tipo == "docente" && (
+                <div className="icon justify-content-end ">
+                  <FontAwesomeIcon icon={faUser} />
+
                   <Nav.Link
                     as={NavLink}
                     eventKey="mishorarios"
@@ -135,37 +166,45 @@ class NavBar extends Component {
 
                     }}
                   >
-                    {usuario.responsable.ap_paterno}
+                    Horarios: {usuario.responsable.ap_paterno}
                   </Nav.Link>
-                )}
-              </Navbar.Brand>
+                </div>
+              )}
+
             </Nav>
 
             <Nav className="nav justify-content-end ml-auto">
               {!tipo ? (
-                <Nav.Link
-                  eventKey="login"
-                  as={NavLink}
-                  to="/login/"
-                  activeStyle={NavActive}
-                >
-                  Login
-                </Nav.Link>
+                <div className="icon">
+                  <FontAwesomeIcon icon={faSignInAlt} />
+
+                  <Nav.Link
+                    eventKey="login"
+                    as={NavLink}
+                    to="/login/"
+                    activeStyle={NavActive}
+                  >
+                    Login
+                  </Nav.Link>
+                </div>
               ) : (
-                <Nav.Link
-                  eventKey="login"
-                  as={NavLink}
-                  to="/home/"
-                  activeStyle={NavActive}
-                  onClick={this.logout}
-                >
-                  Salir
-                </Nav.Link>
+                <div className="icon">
+                  <FontAwesomeIcon icon={faSignOutAlt} />
+                  <Nav.Link
+                    eventKey="login"
+                    as={NavLink}
+                    to="/home/"
+                    activeStyle={NavActive}
+                    onClick={this.logout}
+                  >
+                    Salir
+                  </Nav.Link>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </div>
+      </div >
     );
   }
 }

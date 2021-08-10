@@ -184,10 +184,26 @@ body {
 }
 .cuadricula {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid: gap 2px;
-  grid-auto-rows: minmax(1px, auto);
+  grid-gap:0.05em;
+  grid-auto-flow: dense; 
+  /* grid-auto-rows: 22rem; */
+  grid-template-columns: repeat(auto-fill,minmax(1em,1fr) );
+  align-items: center;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  justify-content: center;
 }
+.icon{
+  display: grid;
+  grid-gap:0.05em;
+  /* grid-auto-flow: dense; */
+  /* grid-auto-rows: 22rem; */
+  grid-template-columns: repeat(auto-fill,minmax(1em,1fr) );
+  align-items: center;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+/*
 @media screen and (min-width: 300) {
   .cuadricula {
     display: grid;
@@ -204,7 +220,7 @@ body {
     grid-auto-rows: minmax(1px, auto);
   }
 }
-
+*/
 .columnas {
   display: grid;
   max-width: max-content;

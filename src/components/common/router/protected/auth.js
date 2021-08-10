@@ -22,9 +22,9 @@ class Auth {
     usuario
       ? (this.user = usuario)
       : (this.user = {
-          email: "estudiante@gmail.com",
+          email: "estudiante@mail.com",
           estado: "false",
-          id: 4,
+          id: 1,
           name: "Pablo",
           // tipo: "estudiante",
         });

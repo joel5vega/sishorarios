@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import HabilitarClases from "./HabiltarClases";
+import UsuariosAdmin from "./UsuariosAdmin";
 
-import ListaCore from "../../components/ListaCore";
-
-export default class UsuariosAdmin extends Component {
+export default class HabilitarAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,17 +19,10 @@ export default class UsuariosAdmin extends Component {
     const { usuarios } = this.props;
     const keys = ["name", "email", "tipo", "estado"];
     return (
-      <div className="tarjetas">
-        <ListaCore
-          responsables={this.props.responsables}
-          datos={usuarios}
-          titulo="Usuarios"
-          tipo="users"
-          keys={keys}
-          menciones={[]}
-          pensums={[]}
-        />
+      <div className="tarjetas-big">
         
+        <HabilitarClases index={this.props.index} clases={this.props.clases}/>
+        <UsuariosAdmin usuarios={this.props.usuarios} responsables={this.props.responsables} />
       </div>
     );
   }

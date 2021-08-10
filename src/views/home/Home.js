@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "../fontawesome";
-import "../css/home.css";
-import ListaSemestres from "../views/semestres/ListaSemestres";
-import TarjetaAmbiente from "../components/TarjetaAmbiente";
+import "../../fontawesome";
+import "../../css/home.css";
+import ListaSemestres from "../semestres/ListaSemestres";
+import TarjetaAmbiente from "../../components/TarjetaAmbiente";
 
 class Home extends Component {
   constructor(props) {

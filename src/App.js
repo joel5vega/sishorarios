@@ -18,7 +18,7 @@ import Login from "./views/auth/index";
 
 import Register from "./views/auth/Register.js";
 //Componentes
-import Home from "./views/Home";
+import Home from "./views/home/Home";
 import HomeResponsables from "./views/responsables/HomeResponsables";
 import ListaResponsables from "./views/responsables/ListaResponsables";
 
@@ -57,7 +57,7 @@ class App extends Component {
       // usuario: { responsable: { id: 5 } },
       periodo: "",
       auth: false,
-      user: Auth.getUser() | "25"
+      user: Auth.getUser() | "1"
     };
     // this.handleAuth = this.handleAuth.bind(this);
   }
@@ -70,14 +70,15 @@ class App extends Component {
       tipo: Auth.getTipo(),
       user: user,
     });
-    this.getUser(user);
+    // this.getUser(user);
   }
   async getUser(user) {
+    console.log("user is "+user)
     axios
       .get(this.state.url + "/api/users/" + user)
       .then((response) => {
         var data = response.data.user
-        console.log("Usuario es",data)
+        console.log("Usuario es", data)
         console.groupEnd()
         // alert("se obtuvo usuario " + data.id)
         this.setState({ usuario: data });
@@ -85,6 +86,7 @@ class App extends Component {
   }
   async fetchIndex() {
     console.group("inicio")
+    this.getUser("21")
     axios.get("http://127.0.0.1:8000/api/index").then((response) => {
       this.setState({
         materias: response.data.materias,
@@ -182,18 +184,26 @@ class App extends Component {
               )}
             />
           </div>
-
+          {!Auth.isAuthenticated() &&
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Home
+                  {...props}
+                  semestres={this.state.semestres}
+                  ambientes={this.state.ambientes}
+                />
+              )}
+            />
+          }
           {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
             <div name="rutas">
               <Route
                 exact
                 path="/"
                 render={(props) => (
-                  <Home
-                    {...props}
-                    semestres={this.state.semestres}
-                    ambientes={this.state.ambientes}
-                  />
+                  <HomeAdmin {...props} index={this.state.index} />
                 )}
               />
               <Route
@@ -365,17 +375,7 @@ class App extends Component {
           ) : (
 
             <div className="container" id="print">
-              <Route
-                exact
-                path="/"
-                render={(props) => (
-                  <Home
-                    {...props}
-                    semestres={this.state.semestres}
-                    ambientes={this.state.ambientes}
-                  />
-                )}
-              />
+
               <Redirect
                 to={{
                   pathname: "/",
@@ -400,8 +400,20 @@ class App extends Component {
                   />
                 )}
               />
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Home
+                  {...props}
+                  semestres={this.state.semestres}
+                  ambientes={this.state.ambientes}
+                />
+                )}
+              />
             </div>
           }
+
         </BrowserRouter>
 
         <div className="footer">
