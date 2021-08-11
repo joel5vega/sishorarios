@@ -14,7 +14,7 @@ export default class ListaResponsables extends Component {
     var keys = ["titulo", "nombre", "ap_paterno", "ap_materno", "puesto"]
     return (
       <div>
-        <ListaCore titulo="Responsable" datos={datos} tipo="responsable" keys={keys} />
+        <ListaCore titulo="Responsables" datos={datos} tipo="responsable" keys={keys} />
       </div>
     );
   }

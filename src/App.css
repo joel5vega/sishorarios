@@ -184,21 +184,21 @@ body {
 }
 .cuadricula {
   display: grid;
-  grid-gap:0.05em;
-  grid-auto-flow: dense; 
+  grid-gap: 0.05em;
+  grid-auto-flow: dense;
   /* grid-auto-rows: 22rem; */
-  grid-template-columns: repeat(auto-fill,minmax(1em,1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(1em, 1fr));
   align-items: center;
   margin-right: 1.5rem;
   margin-left: 1.5rem;
   justify-content: center;
 }
-.icon{
+.icon {
   display: grid;
-  grid-gap:0.05em;
+  grid-gap: 0.05em;
   /* grid-auto-flow: dense; */
   /* grid-auto-rows: 22rem; */
-  grid-template-columns: repeat(auto-fill,minmax(1em,1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(1em, 1fr));
   align-items: center;
   margin-right: 1.5rem;
   margin-left: 1.5rem;
@@ -249,8 +249,12 @@ body {
     flex: 7;
   }
 }
-.diagrama{
-  width: 100%
+.diagrama {
+  width:  75%;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* background-color: darkblue; */
+  text-align: center;
 }
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 form {

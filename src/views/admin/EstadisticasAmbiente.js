@@ -32,7 +32,7 @@ export default class EstadisticasAmbiente extends Component {
     var { diario, total } = this.state.ambiente;
     var labels = Object.keys(total)
     const opcionT = {
-      mantainAspectRatio: true,
+      mantainAspectRatio: false,
       responsive: true,
       scales: {
         y: {
@@ -80,7 +80,7 @@ export default class EstadisticasAmbiente extends Component {
     }
 
     return (
-      <div className="tarjeta-big" >
+      <div className="cuadro" >
         <div className="tarjetas-titulo">Uso de ambientes</div>
         <div className="diagrama">
           <Bar data={data} options={opcionT} />
@@ -102,7 +102,7 @@ export default class EstadisticasAmbiente extends Component {
                     data: diario[aula]
                   }]
                 }} options={{
-                  mantainAspectRatio: true,
+                  mantainAspectRatio: false,
                   responsive: true,
                   scales: {
                     y: {

@@ -343,10 +343,10 @@ import EditarClase from "./EditarClase";
     ];
 
     return (
-      <div>
-        <div className="sticky" id="print">
+      <div className="tarjetas"> 
+        <div className="col-2" id="print">
           <div className="tarjetas-titulo">Buscar Clase</div>
-          <div className="tarjetas">
+          <div className="tarjeta-big">
             {this.state.loading === false && (
               <div className="tarjeta">
                 <SelectControlado
@@ -419,8 +419,8 @@ import EditarClase from "./EditarClase";
           </div>
         </div>
 
-        <div id="calendario">
-          <div className="row align-items-center">
+        <div classname="col-8" id="calendario">
+          <div>
             <div className="col-auto col-md-offset-5">
               <div id="periodo">
                 <h3>{this.state.periodo}</h3>
