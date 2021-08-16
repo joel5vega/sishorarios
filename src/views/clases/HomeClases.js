@@ -51,7 +51,7 @@ export default class HomeClases extends Component {
   render() {
     return (
       <div>
-        <div className="tarjetas">
+        <div>
             <BuscarClase
               {...this.props}
               index={this.props.index}

@@ -28,7 +28,7 @@ export default class CrearMateria extends Component {
                 this.setState({
                     selected: {
                         ...this.state.selected,
-                        menciones: { 2: false, 3: false, 4: false }, 
+                        menciones: { 2: false, 3: false, 4: false },
                     }
                 })
             }
@@ -105,9 +105,9 @@ export default class CrearMateria extends Component {
                 id: "laboratorio", nombre: "Laboratorio"
             }
         ]
-        return <div className="tarjetas">
-            <div className="tarjeta-big">
-                <div className="tarjeta">
+        return <div className="formulario">
+            <div className="itemSecundario">
+                <div className="itemInfo">
                     <InputControlado
                         label="Sigla"
                         nombre="sigla"
@@ -115,7 +115,7 @@ export default class CrearMateria extends Component {
                         handleChange={this.handleChange}
                     />
                 </div>
-                <div className="tarjeta">
+                <div className="itemInfo">
                     <InputControlado
                         label="Nombre"
                         nombre="nombre"
@@ -124,7 +124,7 @@ export default class CrearMateria extends Component {
                     />
                 </div>
 
-                <div className="tarjeta">
+                <div className="itemInfo">
                     <SelectControlado
                         label="Semestre"
                         value={semestre}
@@ -134,28 +134,8 @@ export default class CrearMateria extends Component {
                     />
                 </div>
             </div>
-            <div className="tarjeta-big">
-                <div className="tarjeta">
-                    <SelectControlado
-                        label="Tipo"
-                        value={tipo}
-                        name="tipo"
-                        handleChange={this.handleChange}
-                        datos={tipos}
-                    />
-                </div>
-                <div className="tarjeta">
-                    <SelectControlado
-                        label="Pensum"
-                        value={pensum}
-                        name="pensum"
-                        handleChange={this.handleChange}
-                        datos={pensums}
-                    />
-                </div>
-            </div>
-            <div className="tarjeta-big">
-                <div className="tarjeta">
+            <div className="itemLargo">
+                <div className="itemInfo">
                     <CheckControlado
                         label="Menciones"
                         value={menciones}
@@ -165,6 +145,27 @@ export default class CrearMateria extends Component {
                     />
                 </div>
             </div>
+            <div className="itemSecundario">
+                <div className="itemInfo">
+                    <SelectControlado
+                        label="Tipo"
+                        value={tipo}
+                        name="tipo"
+                        handleChange={this.handleChange}
+                        datos={tipos}
+                    />
+                </div>
+                <div className="itemInfo">
+                    <SelectControlado
+                        label="Pensum"
+                        value={pensum}
+                        name="pensum"
+                        handleChange={this.handleChange}
+                        datos={pensums}
+                    />
+                </div>
+            </div>
+
         </div>;
     }
 }

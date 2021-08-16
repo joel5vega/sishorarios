@@ -19,9 +19,10 @@ export default class HabilitarAdmin extends Component {
     const { usuarios } = this.props;
     const keys = ["name", "email", "tipo", "estado"];
     return (
-      <div className="tarjetas-big">
-        
-        <HabilitarClases index={this.props.index} clases={this.props.clases}/>
+      <div>
+
+        <HabilitarClases index={this.props.index} clases={this.props.clases} />
+        <div className="border-bottom"/>
         <UsuariosAdmin usuarios={this.props.usuarios} responsables={this.props.responsables} />
       </div>
     );

@@ -52,12 +52,12 @@ class App extends Component {
       loading: true,
       fuente: "http://127.0.0.1:8000/clases/show",
       selectedPeriodo: "",
-      selectedTitle: "Home",
+      selectedTitle: "",
       // usuario: "estudiante",
       // usuario: { responsable: { id: 5 } },
       periodo: "",
       auth: false,
-      user: Auth.getUser() | "1"
+      user: Auth.getUser()
     };
     // this.handleAuth = this.handleAuth.bind(this);
   }
@@ -73,7 +73,7 @@ class App extends Component {
     // this.getUser(user);
   }
   async getUser(user) {
-    console.log("user is "+user)
+    console.log("user is " + user)
     axios
       .get(this.state.url + "/api/users/" + user)
       .then((response) => {
@@ -86,7 +86,7 @@ class App extends Component {
   }
   async fetchIndex() {
     console.group("inicio")
-    this.getUser("21")
+    this.getUser(this.state.user)
     axios.get("http://127.0.0.1:8000/api/index").then((response) => {
       this.setState({
         materias: response.data.materias,
@@ -110,7 +110,10 @@ class App extends Component {
     console.log(a);
     return a;
   }
-
+  getTitulo = (titulo) => {
+    console.log(titulo)
+    this.setState({ selectedTitle: titulo })
+  }
   handleAuth = (tipo, usuario) => {
     var isAuth = Auth.isAuthenticated();
 
@@ -130,6 +133,7 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
+
           <NavBar
             usuario={this.state.usuario}
             tipo={this.state.tipo}
@@ -142,138 +146,33 @@ class App extends Component {
             ambientes={this.state.ambientes}
             handleAuth={this.handleAuth}
             semestres={this.state.semestres}
+            titulo={this.state.selectedTitle}
+            getTitulo={this.getTitulo}
           />
 
-          <div id="public-routes">
-            <Route
-              exact
-              path="/login"
-              render={(props) => <Login handleAuth={this.handleAuth} />}
-            />
-            <Route
-              exact
-              path="/register"
-              render={(props) => (
-                <Register {...props} responsables={this.state.responsables} />
-              )}
-            />
+          <div className="body">
 
-            {/* este es el general */}
-            <Route
-              exact
-              path="/clase/view"
-              render={(props) => (
-                <ViewClases
-                  {...props}
-                  index={this.state.index}
-                  periodoActual={this.state.periodoActual}
-                  periodos={this.state.periodos}
-                  ambientes={this.state.ambientes}
-                  responsables={this.state.responsables}
-                  semestres={this.state.semestres}
-                  menciones={this.state.menciones}
-                />
-              )}
-            />
-
-            <Route
-              exact
-              path="/materia"
-              render={(props) => (
-                <HomeMaterias {...props} datos={this.state.materias} />
-              )}
-            />
-          </div>
-          {!Auth.isAuthenticated() &&
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Home
-                  {...props}
-                  semestres={this.state.semestres}
-                  ambientes={this.state.ambientes}
-                />
-              )}
-            />
-          }
-          {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
-            <div name="rutas">
+            <div id="public-routes">
               <Route
                 exact
-                path="/"
-                render={(props) => (
-                  <HomeAdmin {...props} index={this.state.index} />
-                )}
+                path="/login"
+                render={(props) => <Login handleAuth={this.handleAuth} />}
               />
               <Route
                 exact
-                path="/responsable"
+                path="/register"
                 render={(props) => (
-                  <HomeResponsables
-                    {...props}
-                    datos={this.state.responsables}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/responsable/lista"
-                render={(props) => (
-                  <ListaResponsables
-                    {...props}
-                    fetch={this.fetchIndex}
-                    datos={this.state.responsables}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/responsable/crear"
-                render={(props) => (
-                  <CrearResponsable
-                    {...props}
-                    datos={this.state.responsables}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/responsable/horario"
-                render={(props) => (
-                  <clase {...props} datos={this.state.responsables} />
+                  <Register {...props} responsables={this.state.responsables} />
                 )}
               />
 
+              {/* este es el general */}
               <Route
                 exact
-                path="/ambiente"
+                path="/clase/view"
                 render={(props) => (
-                  <HomeAmbientes {...props} datos={this.state.ambientes} />
-                )}
-              />
-              <Route
-                exact
-                path="/ambiente/lista"
-                render={(props) => (
-                  <ListaAmbientes {...props} datos={this.state.ambientes} />
-                )}
-              />
-              <Route
-                exact
-                path="/ambiente/crear"
-                render={(props) => (
-                  <CrearAmbiente {...props} datos={this.state.ambientes} />
-                )}
-              />
-
-              <Route
-                exact
-                path="/clase"
-                render={(props) => (
-                  <HomeClases
+                  <ViewClases
                     {...props}
-                    datos={this.state.clases}
                     index={this.state.index}
                     periodoActual={this.state.periodoActual}
                     periodos={this.state.periodos}
@@ -281,139 +180,249 @@ class App extends Component {
                     responsables={this.state.responsables}
                     semestres={this.state.semestres}
                     menciones={this.state.menciones}
+                    getTitulo={this.getTitulo}
                   />
                 )}
               />
 
-
               <Route
                 exact
-                path="/clase/crear"
+                path="/materia"
                 render={(props) => (
-                  <CrearClase
-                    {...props}
-                    usuario={this.state.usuario}
-                    index={this.state.index}
-
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/clase/habilitar"
-                render={(props) => (
-                  <HabilitarClases
-                    {...props}
-                    index={this.state.index}
-                    clases={this.state.index.clases}
-
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/clase/detalle"
-                render={(props) => <DetalleClase />}
-              />
-              <Route
-                exact
-                path="/materia/lista"
-                render={(props) => (
-                  <ListaMaterias {...props} index={this.state.index} datos={this.state.materias} />
-                )}
-              />
-              <Route
-                exact
-                path="/materia/crear"
-                render={(props) => (
-                  <CrearMateria {...props} datos={this.state.materias} />
-                )}
-              />
-              <Route
-                exact
-                path="/admin"
-                render={(props) => (
-                  <HomeAdmin {...props} index={this.state.index} />
-                )}
-              />
-              <Route
-                exact
-                path="/admin/datos"
-                render={(props) => (
-                  <DatosAdmin {...props} index={this.state.index} />
-                )}
-              />
-              <Route
-                exact
-                path="/admin/clases"
-                render={(props) => (
-                  <ClasesAdmin {...props} clases={this.state.index.clases} />
-                )}
-              />
-              <Route
-                exact
-                path="/stats"
-                render={(props) => (
-                  <EstadisticasAdmin />
-                )}
-              />
-              <Route
-                exact
-                path="/stats/ambiente"
-                render={(props) => (
-                  <EstadisticasAmbiente />
-                )}
-              />
-              <Route
-                exact
-                path="/stats/responsable"
-                render={(props) => (
-                  <EstadisticasResponsable />
+                  <HomeMaterias {...props} datos={this.state.materias} />
                 )}
               />
             </div>
-          ) : (
-
-            <div className="container" id="print">
-
-              <Redirect
-                to={{
-                  pathname: "/",
-                  // search: "?utm=your+face",
-                  state: { referrer: "currentLocation" },
-                }}
-              />
-            </div>
-
-          )}
-          {this.state.tipo == "docente" &&
-            <div name="rutas_doc">
-              <Route
-                exact
-                path="/clase/crear"
-                render={(props) => (
-                  <CrearClase
-                    {...props}
-                    usuario={this.state.usuario}
-                    index={this.state.index}
-
-                  />
-                )}
-              />
+            {!Auth.isAuthenticated() &&
               <Route
                 exact
                 path="/"
                 render={(props) => (
                   <Home
-                  {...props}
-                  semestres={this.state.semestres}
-                  ambientes={this.state.ambientes}
-                />
+                    {...props}
+                    semestres={this.state.semestres}
+                    ambientes={this.state.ambientes}
+                  />
                 )}
               />
-            </div>
-          }
+            }
+            {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
+              <div name="rutas">
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <HomeAdmin {...props} index={this.state.index} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/responsable"
+                  render={(props) => (
+                    <HomeResponsables
+                      {...props}
+                      datos={this.state.responsables}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/responsable/lista"
+                  render={(props) => (
+                    <ListaResponsables
+                      {...props}
+                      fetch={this.fetchIndex}
+                      datos={this.state.responsables}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/responsable/crear"
+                  render={(props) => (
+                    <CrearResponsable
+                      {...props}
+                      datos={this.state.responsables}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/responsable/horario"
+                  render={(props) => (
+                    <clase {...props} datos={this.state.responsables} />
+                  )}
+                />
 
+                <Route
+                  exact
+                  path="/ambiente"
+                  render={(props) => (
+                    <HomeAmbientes {...props} datos={this.state.ambientes} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/ambiente/lista"
+                  render={(props) => (
+                    <ListaAmbientes {...props} datos={this.state.ambientes} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/ambiente/crear"
+                  render={(props) => (
+                    <CrearAmbiente {...props} datos={this.state.ambientes} />
+                  )}
+                />
+
+                <Route
+                  exact
+                  path="/clase"
+                  render={(props) => (
+                    <HomeClases
+                      {...props}
+                      datos={this.state.clases}
+                      index={this.state.index}
+                      periodoActual={this.state.periodoActual}
+                      periodos={this.state.periodos}
+                      ambientes={this.state.ambientes}
+                      responsables={this.state.responsables}
+                      semestres={this.state.semestres}
+                      menciones={this.state.menciones}
+                    />
+                  )}
+                />
+
+
+                <Route
+                  exact
+                  path="/clase/crear"
+                  render={(props) => (
+                    <CrearClase
+                      {...props}
+                      usuario={this.state.usuario}
+                      index={this.state.index}
+
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/clase/habilitar"
+                  render={(props) => (
+                    <HabilitarClases
+                      {...props}
+                      index={this.state.index}
+                      clases={this.state.index.clases}
+
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/clase/detalle"
+                  render={(props) => <DetalleClase />}
+                />
+                <Route
+                  exact
+                  path="/materia/lista"
+                  render={(props) => (
+                    <ListaMaterias {...props} index={this.state.index} datos={this.state.materias} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/materia/crear"
+                  render={(props) => (
+                    <CrearMateria {...props} datos={this.state.materias} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/admin"
+                  render={(props) => (
+                    <HomeAdmin {...props} index={this.state.index} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/admin/datos"
+                  render={(props) => (
+                    <DatosAdmin {...props} index={this.state.index} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/admin/clases"
+                  render={(props) => (
+                    <ClasesAdmin {...props} clases={this.state.index.clases} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/stats"
+                  render={(props) => (
+                    <EstadisticasAdmin />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/stats/ambiente"
+                  render={(props) => (
+                    <EstadisticasAmbiente />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/stats/responsable"
+                  render={(props) => (
+                    <EstadisticasResponsable />
+                  )}
+                />
+              </div>
+            ) : (
+
+              <div id="print">
+
+                <Redirect
+                  to={{
+                    pathname: "/",
+                    // search: "?utm=your+face",
+                    state: { referrer: "currentLocation" },
+                  }}
+                />
+              </div>
+
+            )}
+            {this.state.tipo == "docente" &&
+              <div name="rutas_doc">
+                <Route
+                  exact
+                  path="/clase/crear"
+                  render={(props) => (
+                    <CrearClase
+                      {...props}
+                      usuario={this.state.usuario}
+                      index={this.state.index}
+
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/"
+                  render={(props) => (
+                    <Home
+                      {...props}
+                      semestres={this.state.semestres}
+                      ambientes={this.state.ambientes}
+                    />
+                  )}
+                />
+              </div>
+            }
+          </div>
         </BrowserRouter>
 
         <div className="footer">

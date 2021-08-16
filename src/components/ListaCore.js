@@ -63,6 +63,7 @@ class ListaCore extends Component {
     });
     console.log("modal tipo:", tipo);
     console.log(this.state.selected)
+    this.setState({ info: { tipo: tipo }})
   };
   onHide = () => {
     this.setState({ show: false, showInfo: false });

@@ -8,8 +8,8 @@ export default class HomeResponsables extends Component {
     let { datos } = this.props;
     return (
       <div>
-        <div className="box">
-          <div className="tarjetas">
+        <div className="">
+          <div className="">
             <div className="tarjetas-titulo">Docentes</div>
             <div className="cuadricula">
               {datos.map((item) => {

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "../../fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookReader, faClock, faTimes, faUniversity, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+
 import axios from "axios";
 
 class DetalleClase extends Component {
@@ -91,54 +94,60 @@ class DetalleClase extends Component {
     } = this.props.clase;
     return (
       <div>
-        <div>
-          <div className="tarjetas" style={{ borderColor: color }}>
-            {/* <div className="tarjetas-titulo">Detalle de clase</div> */}
-            <div className="tarjeta-big">
-              <div className="form-group">
-                <div className="tarjetas-titulo-col">Materia</div>
-                <div className="tarjeta-peque">{materia}</div>
-                <div className="tarjetas">
-                  <div className="tarjeta-peque">{title}</div>
-                  <div className="tarjeta-peque">{paralelo}</div>
-                </div>
-
-                <div className="tarjetas">
-                  <div className="tarjeta-peque">Semestre: {semestre}</div>
-                  <div className="tarjeta-peque">{tipo}</div>
-                  <div className="tarjeta-peque">{nivel}</div>
-                </div>
-              </div>
+        <div className="informacion">
+          <div className="itemPrincipal">
+            <div className="itemTitulo">
+              <FontAwesomeIcon icon={faBookReader} /> <b> Materia</b>
             </div>
-            <div className="tarjeta-big">
-              <div className="form-group">
-                <div className="tarjetas-titulo-col">Docencia</div>
-                {tituloResponsable} {responsable}
-              </div>
+            <div className="itemInfo">
+              {title} {paralelo}
             </div>
-
-            <div className="tarjeta-big">
-              <div className="form-group">
-                <div className="tarjetas">
-                  <div className="tarjetas-titulo-col">Horario</div>
-
-                  <div className="tarjeta-peque">
-                    {daysOfWeek} : {startTime} - {endTime}
-                  </div>
-                </div>
-              </div>
+            <div className="itemInfo">
+              {materia}
             </div>
-            <div className="tarjeta-big">
-              <div className="form-group">
-                <div className="tarjetas">
-                  <div className="tarjetas-titulo-col">Ambiente</div>
-                  <div className="tarjeta-peque">{ambiente}</div>
-                </div>
-              </div>
+            <div className="itemInfo"><b>Tipo: </b> {tipo}</div>
+            <div className="itemInfo">
+              <b>Semestre: </b> {semestre}
             </div>
           </div>
+          <div className="itemSecundario">
+            <div className="itemTitulo">
+              <FontAwesomeIcon icon={faClock} />
+              Horario
+            </div>
+            <div className="itemInfo">
+              <b>{daysOfWeek} :</b>
+            </div>
+            <div className="itemInfo">
+              {startTime} - {endTime}
+            </div>
+          </div>
+          <div className="itemSecundario">
+            <div className="itemTitulo">
+              <FontAwesomeIcon icon={faUserGraduate} />
+               Docencia
+            </div>
+
+            <div className="itemInfo">
+              {tituloResponsable}. {responsable}
+            </div>
+
+          </div>
+          <div className="itemSecundario">
+            <div className="itemTitulo">
+              <FontAwesomeIcon icon={faUniversity} />
+              <b>Ambiente</b>
+            </div>
+
+
+            <div className="itemInfo">
+              {ambiente}
+            </div>
+          </div>
+
         </div>
       </div>
+
     );
   }
 }

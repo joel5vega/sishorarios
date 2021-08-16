@@ -13,7 +13,7 @@ export default class SelectControlado extends Component {
       disabled
     } = this.props;
     return (
-      <div className="tarjeta-peque">
+      <div className="entrada">
         <label >{label}</label>
         <select value={value} name={name} onChange={handleChange} disabled={disabled} >
           <option value="default" disabled={true}>

@@ -38,10 +38,11 @@ export default class Calendario extends Component {
         //para ocultar el encabezado
         header={false}
         //Para simplificar los dias 'long' nos dara el nombre completo
-        columnHeaderFormat={{ weekday: "long" }}
-        // columnHeaderFormat={{ weekday: "short" }}//corto
+        // columnHeaderFormat={{ weekday: "long" }}
+        columnHeaderFormat={{ weekday: "short" }}//corto
         //Para que la altura se ajuste a la de la pantalla
         // contentHeight='auto'
+        height='auto'
         slotLabelFormat={{
           hour: "numeric",
           minute: "2-digit",
@@ -63,11 +64,12 @@ export default class Calendario extends Component {
         navLinks="true" // can click day/week names to navigate views
         editable="true"
         //eje del tiempo
+        
         minTime="7:30"
         maxTime="21:00"
-        slotDuration="00:30:00"
+        // slotDuration="00:30:00"
         slotLabelInterval="00:30:00"
-        height="auto"
+        
         nowIndicator={true}
         // aspectRatio={5}
         dateClick={this.dateClick}
@@ -88,10 +90,10 @@ export default class Calendario extends Component {
     // extendedProps is used to access additional event properties.
     const content = (
       <div className="dato-cal">
-        <div className="texto-grande">
+        <div className="sigla">
           {event.title}-{paralelo}
         </div>
-        <div className="texto-peque">
+        <div className="responsable">
           {tituloResponsable}.{responsable}
         </div>
         <div className="texto-grande">{ambiente}</div>
@@ -99,11 +101,11 @@ export default class Calendario extends Component {
     );
     const contentMinimal = (
       <div className="dato-cal">
-        <div className="texto-peque">
+        <div className="texto-grande">
           {event.extendedProps.ambiente}
           <br />
         </div>
-        <div className="texto-grande">
+        <div className="sigla">
           {event.title}-{paralelo}
         </div>
       </div>

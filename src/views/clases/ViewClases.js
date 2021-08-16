@@ -48,11 +48,11 @@ class ViewClases extends Component {
     var clase = e.event.extendedProps;
     var startTime = e.event.start.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit", hour12:false
+      minute: "2-digit", hour12: false
     });
     var endTime = e.event.end.toLocaleTimeString([], {
       hour: "2-digit",
-      minute: "2-digit", hour12:false
+      minute: "2-digit", hour12: false
     });
     var daysOfWeek = e.event.start.getDay();
     clase = {
@@ -90,7 +90,7 @@ class ViewClases extends Component {
     console.log(this.state.width);
   };
   setView = () => {
-    if (this.state.width < 300) {
+    if (this.state.width < 350) {
       this.setState({ view: "timeGrid", showNow: false });
     } else this.setState({ view: "timeGridWeek", showNow: true });
     console.log(this.state.view);
@@ -109,6 +109,7 @@ class ViewClases extends Component {
         titulo: estado.titulo,
         externo: true,
       });
+      this.props.getTitulo(estado.titulo)
     } else {
       console.log("no llego");
     }
@@ -127,18 +128,18 @@ class ViewClases extends Component {
         orientation: "landscape",
       });
       const imgProps = pdf.getImageProperties(imgData);
-      const title = this.state.titulo||"Horario";
-      pdf.text(35,15,title)
-      
-      const pdfWidth = pdf.internal.pageSize.getWidth()*0.9;
-      const pdfHeight = ((imgProps.height * pdfWidth) / imgProps.width)*0.9;
-      
+      const title = this.state.titulo || "Horario";
+      pdf.text(35, 15, title)
+
+      const pdfWidth = pdf.internal.pageSize.getWidth() * 0.9;
+      const pdfHeight = ((imgProps.height * pdfWidth) / imgProps.width) * 0.9;
+
       console.log(imgProps)
       console.log(pdfWidth)
       console.log(pdfHeight)
       // pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
-      pdf.addImage(imgData,'png',20,20,pdfWidth,pdfHeight)
-      pdf.text("producido por Joel",0,pdfHeight,{align:"right"})
+      pdf.addImage(imgData, 'png', 20, 20, pdfWidth, pdfHeight)
+      pdf.text("producido por Joel", 0, pdfHeight, { align: "right" })
       pdf.save(` ${title} .pdf`);
     });
     alert("Se empezo la descarga de su documento PDF");
@@ -151,20 +152,18 @@ class ViewClases extends Component {
           <div>
             <Modal
               show={this.state.show}
+              size="xlg"
               onHide={this.onHide}
               aria-labelledby="contained-modal-title-vcenter"
+              centered
             >
               <form onSubmit={this.guardar}>
                 <Modal.Header
                   closeButton
                   style={{ backgroundColor: this.state.backgroundColor }}
                 >
-                  <div style={{ alignContent: "center" }}></div>
-                  <Modal.Title
-                    id="contained-modal-title-vcenter"
-                    style={{ color: "white" }}
-                  >
-                    Tipo: {this.state.clase.tipo} 
+                  <Modal.Title>
+                    Tipo: {this.state.clase.tipo}
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
@@ -191,27 +190,26 @@ class ViewClases extends Component {
           </div>
         </div>
 
-        {this.state.externo && <h1>{this.state.titulo}</h1>}
+        {/* {this.state.externo && <h1>{this.state.titulo}</h1>} */}
         {this.state.view === "timeGrid" && (
-          <div  id="horarios">
+          <div id="horarios">
             <Calendario
-            fuente={this.state.fuente}
-            getDateClick={this.getDateClick}
-            eventClick={this.eventClick}
-            view="timeGrid"
-          />
-          .
+              fuente={this.state.fuente}
+              getDateClick={this.getDateClick}
+              eventClick={this.eventClick}
+              view="timeGrid"
+            />
+            .
           </div>
         )}
         {this.state.view === "timeGridWeek" && (
-          <div className="container" id="horarios">
+          <div  id="horarios">
             <Calendario
               fuente={this.state.fuente}
               getDateClick={this.getDateClick}
               eventClick={this.eventClick}
               view="timeGridWeek"
             />
-            .
           </div>
         )}
 

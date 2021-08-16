@@ -74,15 +74,9 @@ export default function FloatingActionButtonZoom(props) {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-
-  // const transitionDuration = {
-  //   enter: theme.transitions.duration.enteringScreen,
-  //   exit: theme.transitions.duration.leavingScreen,
-  // };
-
   return (
     <div className={classes.root}>
-      <div className="sticky">
+      <div >
         <AppBar position="static" color="default">
           <Tabs
             value={value}

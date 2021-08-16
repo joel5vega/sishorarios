@@ -9,7 +9,7 @@ import Estudiante from "./NavEstudiante.js";
 import NavAdministrativo from "./NavAdministrativo.js";
 import NavDocente from "./NavDocente.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSignOutAlt, faSignInAlt, faTh } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 class NavBar extends Component {
   constructor(props) {
@@ -105,17 +105,23 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="lg"
+          expand="xl"
           // style={{ backgroundColor: this.state.background }}
-          style={{ backgroundColor: "white" }}
+           style={{ backgroundColor: "white", maxHeight: 'auto' }}
           // variant="dark"
           fixed="top"
+
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
             Horarios ETN
           </Navbar.Brand>
-          <Navbar.Text>{this.props.titulo}</Navbar.Text>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <div className="b">
+            <Navbar.Text
+              style={{ "color": "#40826d", "font-weight": "bolder", "fontSize": "20px","white-space":"nowrap" }}
+            >{this.props.titulo}</Navbar.Text>
+          </div>
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" ><FontAwesomeIcon icon={faTh} /></Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav">
             {tipo === "administrativo" ? (
               <div>
@@ -136,7 +142,7 @@ class NavBar extends Component {
 
 
               {tipo == "administrativo" && (
-                <div className="icon ">
+                <div className="icon">
                   <FontAwesomeIcon icon={faUser} />
                   <NavLink to="/admin/">Admin</NavLink>
                 </div>
@@ -175,7 +181,7 @@ class NavBar extends Component {
 
             <Nav className="nav justify-content-end ml-auto">
               {!tipo ? (
-                <div className="icon">
+                <div className="b">
                   <FontAwesomeIcon icon={faSignInAlt} />
 
                   <Nav.Link

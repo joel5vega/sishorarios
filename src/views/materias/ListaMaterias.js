@@ -31,7 +31,7 @@ export default class ListaMaterias extends Component {
         <ListaCore
           index={this.props.index}
           datos={datos} tipo="materia"
-          titulo="Lista de materias"
+          titulo="Materia"
           keys={keys} />
         {this.state.externo && <p>LLego</p>}
       </div>

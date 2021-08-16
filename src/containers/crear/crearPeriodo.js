@@ -37,8 +37,8 @@ export default class CrearPeriodo extends Component {
       { id: "Invierno", nombre: "Invierno" },
     ];
     return (
-      <div className="tarjetas">
-        <div className="tarjeta-big">
+      <div className="formulario">
+        {/* <div className="tarjeta-big"> */}
           <div className="tarjeta">
             <SelectControlado
               label="Nombre"
@@ -74,7 +74,7 @@ export default class CrearPeriodo extends Component {
               handleChange={this.handleChange}
             />
           </div>
-        </div>
+        {/* </div> */}
       </div>
     );
   }

@@ -2,7 +2,11 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Component } from "react";
 // import './_style.scss';
-
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+import Popper from 'popper.js';
 import AuthService from "../../services/AuthService";
 import auth from "../../components/common/router/protected/auth";
 

@@ -4,21 +4,20 @@ import jsPdf from "jspdf";
 import "../../fontawesome";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faFilePdf, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
 import SelectControlado from "../../components/SelectControlado";
-import Fab from "@material-ui/core/Fab";
-import { Typography } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 
- class BuscarClase extends Component {
+class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
       url: "http://127.0.0.1:8000",
-      
-      
+
+
       // fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
@@ -66,8 +65,8 @@ import EditarClase from "./EditarClase";
     window.addEventListener("resize", this.handleResize);
     this.setState({ periodo: periodo });
   }
-  async componentDidUpdate(){
-    
+  async componentDidUpdate() {
+
   }
 
   /////////////////////////////////////////////
@@ -143,7 +142,7 @@ import EditarClase from "./EditarClase";
       selectedBuscar: buscar,
       selectedAmbiente: "default",
       selectedSemestre: "default",
-      selectedResponsable:"default",
+      selectedResponsable: "default",
     });
   };
 
@@ -162,7 +161,7 @@ import EditarClase from "./EditarClase";
       choqueAmbientes: "",
       choqueSemestre: "",
       eventos: this.state.evento,
-          });
+    });
   };
 
   handleSemestreChange = (event) => {
@@ -184,8 +183,9 @@ import EditarClase from "./EditarClase";
   };
   handleMencionChange = (event) => {
     var mencion = event.target.value;
+    const menciones = ["", "General", "Control", "Sistemas", "Telecom"]
     var semestre = this.state.selectedSemestre;
-    let title = "Semestre:  " + semestre + " - " + mencion;
+    let title = "Semestre:  " + semestre + " - " + menciones[mencion];
     var fuenteDatos =
       this.state.url +
       "/api/clases/semestre/" +
@@ -204,6 +204,9 @@ import EditarClase from "./EditarClase";
     // console.log(event.target.value);
     var ambiente = event.target.value;
     // var ambientes = this.state.ambientes;
+    var nombre = this.filtro(this.state.ambientes, ambiente).nombre;
+    // var nombre = "AULS"
+    // console.log("nombre"+nombre)
     var nuevaFuente =
       this.state.url +
       "/api/clases/ambiente/" +
@@ -214,6 +217,7 @@ import EditarClase from "./EditarClase";
       selectedAmbiente: ambiente,
       selectedSemestre: "",
       fuente: nuevaFuente,
+      titulo: nombre
     });
     // console.log(ambiente);
   };
@@ -221,32 +225,40 @@ import EditarClase from "./EditarClase";
   handleResponsableChange = (event) => {
     // console.log(event.target.value);
     var responsable = event.target.value;
-    // var ambientes = this.state.ambientes;
+    var item = this.filtro(this.state.responsables, responsable);
+    var title = item.titulo + ". " + item.ap_paterno
     var nuevaFuente =
       this.state.url +
       "/api/clases/responsable/" +
       responsable +
       "?periodo=" +
       this.state.selectedPeriodo;
-    console.log(nuevaFuente)
+    // console.log(nuevaFuente)
     this.setState({
       selectedResponsable: responsable,
       selectedSemestre: "",
       selectedAmbiente: "",
       fuente: nuevaFuente,
+      titulo: title
     });
-    console.log("cambio",responsable,this.state.fuente);
+    console.log("cambio", item, this.state.fuente);
   };
 
-  
-  filtro = (array, id) => {
+
+  filtro = (array, ids) => {
     let filtrar = array;
-    var nombre = filtrar.filter((item) => {
+    var id = parseInt(ids)
+    var item = filtrar.filter((item) => {
+
       if (item.id === id) {
+        console.log(item.nombre, id)
         return item.nombre;
       }
     });
-    return nombre[0];
+    // var item = item[0].nombre
+    // console.log(names)
+    return item[0];
+
   };
   crearClase = () => {
     alert("crear clase?");
@@ -254,25 +266,25 @@ import EditarClase from "./EditarClase";
   ///////////////////////
   ////MODAL//////
   modal = () => {
-    this.setState({ show: true,showCal:false, guardar: false, editar: true });
+    this.setState({ show: true, showCal: false, guardar: false, editar: true });
   };
   getDateClick = (e) => {
     console.log(e);
   };
   eventClick = (e) => {
-    
+
     var id = e.event;
     var clase = e.event.extendedProps;
     var startTime = e.event.start.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
-      hour12:false,
+      hour12: false,
     });
-    
+
     var endTime = e.event.end.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
-      hour12:false,
+      hour12: false,
     });
 
     // console.log("hola",startTime,endTime);
@@ -300,13 +312,13 @@ import EditarClase from "./EditarClase";
     // alert("hola")
   };
   onHide = () => {
-    var view=this.state.view;
-    this.setState({ show: false,showCal:true,view:""});
+    var view = this.state.view;
+    this.setState({ show: false, showCal: true, view: "" });
     this.update(view)
   };
-  update = (view)=>{
-    console.log(this.state.view,"fuente",this.state.fuente)
-    this.setState({view:view})
+  update = (view) => {
+    console.log(this.state.view, "fuente", this.state.fuente)
+    this.setState({ view: view })
   }
   ///////////////////////
 
@@ -343,10 +355,11 @@ import EditarClase from "./EditarClase";
     ];
 
     return (
-      <div className="tarjetas"> 
-        <div className="col-2" id="print">
-          <div className="tarjetas-titulo">Buscar Clase</div>
-          <div className="tarjeta-big">
+      <div className="considebar">
+        <div className="sidebar" id="print">
+
+          <div className="titulo"><FontAwesomeIcon icon={faSearch} /> Buscar Clase</div>
+          <div className="tarjetas-big">
             {this.state.loading === false && (
               <div className="tarjeta">
                 <SelectControlado
@@ -417,9 +430,36 @@ import EditarClase from "./EditarClase";
               </div>
             )}
           </div>
+          <div className="">
+            <div id="print" className="sticky">
+              <div className="boton">
+                <Link
+                  to={{
+                    pathname: "/clase/view",
+                    state: {
+                      fuente: this.state.fuente,
+                      titulo: this.state.titulo
+                    },
+                  }}
+                >
+                  <FontAwesomeIcon icon={faFilePdf} /> Exportar
+                </Link>
+              </div>
+              <div className="boton">
+                <Link
+                  to={{
+                    pathname: "/clase/crear",
+                  }}
+                >
+                  <FontAwesomeIcon icon={faPlusCircle} /> Crear
+                </Link>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div classname="col-8" id="calendario">
+        <div classname="contenido" id="calendario">
           <div>
             <div className="col-auto col-md-offset-5">
               <div id="periodo">
@@ -432,29 +472,29 @@ import EditarClase from "./EditarClase";
               </div>
             </div>
           </div>
-          {this.state.showCal&&
-          <div>
-            {this.state.view === "timeGrid" && (
-            <Calendario
-              fuente={this.state.fuente}
-              getDateClick={this.getDateClick}
-              eventClick={this.eventClick}
-              view="timeGrid"
-            />
-          )}
-          {this.state.view === "timeGridWeek" && (
-            <div className="container">
-              <Calendario
-                fuente={this.state.fuente}
-                getDateClick={this.getDateClick}
-                eventClick={this.eventClick}
-                view="timeGridWeek"
-              />
+          {this.state.showCal &&
+            <div>
+              {this.state.view === "timeGrid" && (
+                <Calendario
+                  fuente={this.state.fuente}
+                  getDateClick={this.getDateClick}
+                  eventClick={this.eventClick}
+                  view="timeGrid"
+                />
+              )}
+              {this.state.view === "timeGridWeek" && (
+                <div className="container">
+                  <Calendario
+                    fuente={this.state.fuente}
+                    getDateClick={this.getDateClick}
+                    eventClick={this.eventClick}
+                    view="timeGridWeek"
+                  />
+                </div>
+              )}
             </div>
-          )}
-          </div>
           }
-          
+
         </div>
         <div>
           <Modal
@@ -486,36 +526,7 @@ import EditarClase from "./EditarClase";
             </form>
           </Modal>
         </div>
-        <div className="flotante">
-          <div id="print" className="sticky">
-            <Fab key="pdf" variant="extended" aria-label="option">
-              <Link
-                to={{
-                  pathname: "/clase/view",
-                  state: {
-                    fuente: this.state.fuente,
-                  },
-                }}
-              >
-                <Typography variant="overline" gutterBottom>
-                  Ver y exportar
-                </Typography>
-              </Link>
-            </Fab>
-          </div>
-          <div className="tarjeta">
-            <Fab key="new" variant="extended" aria-label="option">
-              <Link
-                to={{
-                  pathname: "/clase/crear",
-                }}
-              >
-                <FontAwesomeIcon icon={"plus"} size="1x" />
-                <Typography variant="overline">Nuevo</Typography>
-              </Link>
-            </Fab>
-          </div>
-        </div>
+
       </div>
     );
   }

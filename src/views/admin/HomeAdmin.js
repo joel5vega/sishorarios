@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import TabPanel from "../../components/Tabs";
 import DatosAdmin from "./DatosAdmin";
-import UsuariosAdmin from "./UsuariosAdmin";
 import axios from "axios";
-import HabilitarClases from "./HabiltarClases";
 import HabilitarAdmin from "./HabilitarAdmin";
 import EstadisticasAdmin from "./EstadisticasAdmin";
 
@@ -32,8 +30,7 @@ export default class HomeAdmin extends Component {
   }
   render() {
     return (
-      <div className="tarjeta-big">
-
+      <div>
         <TabPanel
           label03={<div className="icon"><FontAwesomeIcon icon={faSlidersH} />Configuración</div>}
           label02={<div className="icon"><FontAwesomeIcon icon={faUserCog} />Habilitar</div>}
@@ -41,11 +38,11 @@ export default class HomeAdmin extends Component {
           item03={<DatosAdmin index={this.props.index} />}
           item02={<HabilitarAdmin
             usuarios={this.state.usuarios}
-            responsables={this.props.index.responsables} 
+            responsables={this.props.index.responsables}
             index={this.props.index}
             clases={this.props.index.clases}
 
-                 />}
+          />}
           item01={<EstadisticasAdmin />}
         />
       </div>

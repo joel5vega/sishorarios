@@ -28,7 +28,8 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
-      disabled: this.props.usuario.tipo == "docente" | false,
+      disable:false,
+      // disabled: this.props.usuario.tipo == "docente" | false,
       ////selescted
       selectedPeriodo: "default",
       selectedMateria: "default",
@@ -40,7 +41,8 @@ export default class CrearClase extends Component {
       selectedSemestre: "default",
       selectedMencion: "default",
       selectedResponsable: this.props.usuario.responsable_id | "default",
-      selectedNivel: this.props.usuario.tipo | "default",
+      // selectedNivel: this.props.usuario.tipo | "default",
+      selectedNivel: "default",
       selectedTipo: "default",
       //////
       selected: {
@@ -644,8 +646,8 @@ export default class CrearClase extends Component {
     } = this.state;
 
     return (
-      <div className="tarjetas">
-        <div className="col-4">
+      <div className="considebar">
+        <div className="sidebar">
           <form onSubmit={this.handleSubmit}>
             <div className="progreso">
               Crear Clase
@@ -821,7 +823,7 @@ export default class CrearClase extends Component {
             evento={this.state.evento}
           />
         </div> */}
-        <div className="col-8">
+        <div className="contenido">
           <div className="calendario">
             <Calendario
               eventClick={this.eventClick}

@@ -19,7 +19,7 @@ export default class UsuariosAdmin extends Component {
     const { usuarios } = this.props;
     const keys = ["name", "email", "tipo", "estado"];
     return (
-      <div className="tarjetas">
+      <div >
         <ListaCore
           responsables={this.props.responsables}
           datos={usuarios}
@@ -29,7 +29,7 @@ export default class UsuariosAdmin extends Component {
           menciones={[]}
           pensums={[]}
         />
-        
+
       </div>
     );
   }

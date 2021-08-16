@@ -19,7 +19,7 @@ export default class EstadisticasAdmin extends Component {
     var { docente_equivalente } = this.state.responsable;
     return (
       <div className="tarjeta-big">
-        <div className="col  border-right">
+        <div className="col border-right">
 
           <div className="tarjeta-titulo">Actividades en curso</div>
           <Calendario

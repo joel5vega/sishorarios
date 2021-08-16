@@ -44,15 +44,17 @@ export default class Register extends Component {
     const target = evento.target;
     const value = target.value;
     const name = target.name;
+    console.log(name + " esjjj: " + value);
     this.setState({ selected: { ...this.state.selected, [name]: value } });
     if (this.props.onChange) {
       this.props.onChange(evento);
     }
 
-    console.log(name + " esjjj: " + value);
+    
   };
 
   async handleFormSubmit(event) {
+    console.log("submit")
     event.preventDefault();
     var {
       name,
@@ -101,10 +103,10 @@ export default class Register extends Component {
       { id: "administrativo", nombre: "Administrativo" },
     ];
     return (
-      <div className="tarjeta-big">
-        <form onSubmit={(event) => this.handleFormSubmit(event)}>
-          <div className="tarjeta-big">
-            <div className="tarjeta">
+      <div className="formulario">
+        {/* <form > */}
+          <div className="itemSecundario">
+            <div className="itemInfo">
               <InputControlado
 
                 label="Nombre"
@@ -113,7 +115,7 @@ export default class Register extends Component {
                 handleChange={this.handleChange}
               />
             </div>
-            <div className="tarjeta">
+            <div className="itemInfo">
               <InputControlado
                 label="Correo electronico"
                 nombre="email"
@@ -122,26 +124,30 @@ export default class Register extends Component {
               />
             </div>
           </div>
-          {modo == "crear" &&
-            <div className="tarjeta-big">
-              <div className="tarjeta">
+          {/* {modo == "crear" && */}
+            <div className="itemSecundario">
+              <div className="itemInfo">
                 <InputControlado
-                  tipo="password"
+                  // tipo="password"
                   label="Contraseña"
-                  value={password}
-                  onChange={this.handleChange}
+                  nombre="password"
+                  valor={password}
+                  handleChange={this.handleChange}
                 />
+              </div>
+              <div className="itemInfo">
                 <InputControlado
                   tipo="password"
+                  nombre="c_password"
                   label="Confirme la Contraseña"
-                  value={c_password}
-                  onChange={this.handleChange}
+                  valor={c_password}
+                  handleChange={this.handleChange}
                 />
               </div>
             </div>
-          }
-          <div className="tarjeta-big">
-            <div className="tarjeta">
+          {/* } */}
+          <div className="itemSecundario">
+            <div className="itemInfo">
               <SelectControlado
                 label="Tipo"
                 value={tipo}
@@ -151,25 +157,28 @@ export default class Register extends Component {
               />
 
               {this.state.selected.tipo === "docente" && (
-                <SelectControlado
-                  label="Responsable"
-                  value={responsable_id}
-                  name="responsable"
-                  handleChange={this.handleChange}
-                  datos={this.props.responsables}
-                />
+                <div className="itemInfo">
+                  <SelectControlado
+                    label="Responsable"
+                    value={responsable_id}
+                    name="responsable"
+                    handleChange={this.handleChange}
+                    datos={this.props.responsables}
+                  />
+                </div>
               )}
             </div>
           </div>
 
-          <div >
+          {/* <div  className="itemLargo">
             {modo == "crear" &&
-              <button type="submit" className="btn btn-primary btn-block">
+              <button type="submit" className="btn btn-primary btn-block"
+                onClick={(event) => this.handleFormSubmit(event)}>
                 Registrar
               </button>
             }
-          </div>
-        </form>
+          </div> */}
+        {/* </form> */}
       </div>
     );
   }
