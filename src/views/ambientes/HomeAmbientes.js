@@ -4,7 +4,6 @@ import TabPanel from "../../components/Tabs";
 import AmbientesLibres from "./AmbientesLibres";
 import ListaAmbientes from "./ListaAmbientes";
 import axios from "axios";
-import Login from "../auth/Login";
 
 export default class HomeAmbientes extends Component {
   constructor(args) {

@@ -22,15 +22,15 @@ class NavDocente extends Component {
       <div>
         <Nav>
           <div className="icon">
-          <FontAwesomeIcon icon={faCalendarPlus} />   
+
             <Nav.Link as={NavLink} exact to="/clase/crear" eventKey="crearClase">
-              Crear Clase
+              <FontAwesomeIcon icon={faCalendarPlus} />  Crear Clase
             </Nav.Link>
           </div>
           <div className="icon">
-            <FontAwesomeIcon icon={faBook} />
+
             <Nav.Link as={NavLink} exact to="/materia/" eventKey="curricula">
-              Malla curricular
+              <FontAwesomeIcon icon={faBook} />  Malla curricular
             </Nav.Link>
           </div>
         </Nav>

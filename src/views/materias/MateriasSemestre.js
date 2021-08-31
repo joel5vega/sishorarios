@@ -16,36 +16,38 @@ export default class MateriasSemestre extends Component {
     var { ancho, alto } = this.state;
     return (
       <div><div className="tarjetas-titulo">{titulo}</div>
-        <div className="tarjeta-big">
-          
+        <div >
           {datos.map((item) => {
             return (
               <div key={item.id}>
                 {item.semestre == semestre && (
-                  <div>
+                  <div className="pila">
                     {item.semestre < 7 ? (
-                      <TarjetaMateria
-                        tipo={item.nombre}
-                        avatar={item.sigla}
-                        nombre={item.tipo}
-                        ancho={ancho}
-                        alto={alto}
-                        size="0.7em"
-                        color={
-                          item.tipo === "laboratorio" ? "#006600" : "#0066CC"
-                        }
-                        enlace={"http://localhost:3000/responsable/" + item.id}
-                      />
+                      <div className="itemInfo">
+                        <TarjetaMateria
+                          tipo={item.nombre}
+                          avatar={item.sigla}
+                          nombre={item.tipo}
+                          ancho={ancho}
+                          alto={alto}
+                          size="0.7em"
+                          color={
+                            item.tipo === "laboratorio" ? "#006600" : "#0066CC"
+                          }
+                          enlace={"http://localhost:3000/responsable/" + item.id}
+                        />
+                      </div>
                     ) : (
                       item.menciones.length &&
                       item.menciones.map((menciones) => {
                         return (
                           <div key={menciones.nombre}>
                             {menciones.nombre === mencion && (
+                              <div className="itemInfo">
                               <TarjetaMateria
-                                nombre={item.nombre}
+                                nombre={item.tipo}
                                 avatar={item.sigla}
-                                tipo={item.tipo}
+                                tipo={item.nombre}
                                 ancho={ancho}
                                 alto={alto}
                                 size="0.7em"
@@ -58,6 +60,7 @@ export default class MateriasSemestre extends Component {
                                   "http://localhost:3000/responsable/" + item.id
                                 }
                               />
+                              </div>
                             )}
                           </div>
                         );

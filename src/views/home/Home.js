@@ -46,7 +46,7 @@ class Home extends Component {
                               fuente:
                                 "http://localhost:8000/api/clases/ambiente/" +
                                 item.id,
-                              titulo: "Horarios en " + item.nombre,
+                              titulo: "" + item.nombre,
                             },
                           }}
                         >

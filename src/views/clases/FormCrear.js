@@ -48,7 +48,7 @@ class FormCrear extends Component {
         ambientes: [],
         semestre: "default",
         selectedMencion: "default",
-        materia: "default",
+        materia_id: "default",
         materias: [],
         mencion: "default",
         porcentaje: 0,
@@ -638,7 +638,7 @@ class FormCrear extends Component {
       paralelo,
       materias,
       periodo_id,
-      materia,
+      materia_id,
       responsables,
       ambientes,
       startTime,
@@ -694,8 +694,8 @@ class FormCrear extends Component {
             <div className="tarjeta">
               <SelectControlado
                 label="Materia"
-                value={materia}
-                name="materia"
+                value={materia_id}
+                name="materia_id"
                 handleChange={this.handleMateriaChange}
                 materia={true}
                 datos={materias}

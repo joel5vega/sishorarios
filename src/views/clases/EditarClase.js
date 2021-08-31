@@ -89,7 +89,7 @@ class EditarClase extends Component {
       <div>
         <div>
           <div className="tarjetas" style={{ borderColor: color }}>
-            <div className="tarjetas-titulo">Editar clase {id}</div>
+            {/* <div className="tarjetas-titulo">Editar clase {id}</div> */}
             
             
             <FormCrear

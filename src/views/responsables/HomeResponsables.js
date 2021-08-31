@@ -23,7 +23,7 @@ export default class HomeResponsables extends Component {
                             fuente:
                               "http://localhost:8000/api/clases/responsable/" +
                               item.id,
-                            titulo: "Horarios en " + item.titulo + item.nombre,
+                            titulo: " " + item.titulo + item.nombre,
                           },
                         }}
                       >

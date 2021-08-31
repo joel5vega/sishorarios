@@ -103,8 +103,9 @@ export default class Register extends Component {
       { id: "administrativo", nombre: "Administrativo" },
     ];
     return (
-      <div className="formulario">
-        {/* <form > */}
+      <div>
+        <div className="tarjetas-titulo">Registrar</div>
+        <div  className="formulario">
           <div className="itemSecundario">
             <div className="itemInfo">
               <InputControlado
@@ -128,7 +129,7 @@ export default class Register extends Component {
             <div className="itemSecundario">
               <div className="itemInfo">
                 <InputControlado
-                  // tipo="password"
+                  tipo="password"
                   label="Contraseña"
                   nombre="password"
                   valor={password}
@@ -170,15 +171,16 @@ export default class Register extends Component {
             </div>
           </div>
 
-          {/* <div  className="itemLargo">
+        
+        </div>.
+          <div  className="tarjetas-titulo">
             {modo == "crear" &&
               <button type="submit" className="btn btn-primary btn-block"
                 onClick={(event) => this.handleFormSubmit(event)}>
                 Registrar
               </button>
             }
-          </div> */}
-        {/* </form> */}
+          </div>
       </div>
     );
   }

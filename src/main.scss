@@ -41,7 +41,7 @@
 .fc-time-grid .fc-slats td {
   height: 1.7em; // Change This to your required height
   border-bottom: 0;
-  color:red;
+  color:black;
   font-size: 0.7em;
 }
 h1{
@@ -52,12 +52,12 @@ h1{
 @media only screen and (max-width:450px){
   .responsable{
     display: none;
-    color: red;
+    color: white;
   }
   .fc-time-grid .fc-slats td {
     height: 1.7em; // Change This to your required height
     border-bottom: 0;
-    color:blue;
+    color:black;
     font-size: 1.6vmax;
   }
   h1{
@@ -83,7 +83,7 @@ h1{
   .fc-time-grid .fc-slats td {
     height: 1.7em; // Change This to your required height
     border-bottom: 0;
-    color:green;
+    color:black;
     font-size: 1.7vmin;
   }
 }

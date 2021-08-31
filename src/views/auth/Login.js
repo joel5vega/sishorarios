@@ -1,54 +1,134 @@
 import React from "react";
-import axios from "axios";
-import { NavLink } from "react-router-dom";
-const Login = (props) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("https://localhost:8000/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  };
-  return (
-    <div className="container">
-      {/* <h1>Ingresar</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary btn-block">
-          Ingresar
-        </button>
-        <NavLink to="/register">
-          <p>Registrar Nuevo usuario</p>
-        </NavLink>
-      </form> */}
-    </div>
-  );
-};
+import { NavLink, withRouter } from "react-router-dom";
+import { Component } from "react";
+// import './_style.scss';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import AuthService from "../../services/AuthService";
+import auth from "../../components/common/router/protected/auth";
 
-export default Login;
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAuth = this.props.handleAuth;
+  }
+
+  state = {
+    username: "",
+    password: "",
+    isChecked: false,
+  };
+
+  async handleFormSubmit(event) {
+    event.preventDefault();
+    const postData = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    const response = await AuthService.doUserLogin(postData);
+    var tipo = response.tipo;
+    var usuario = response.user;
+    console.log("response", response.tipo);
+    if (response) {
+      AuthService.handleLoginSucess(response, this.state.isChecked);
+
+      auth.update();
+      var autenticado = auth.isAuthenticated();
+
+      this.props.handleAuth(tipo, usuario);
+      this.props.history.push("/");
+      console.log(autenticado + "ir a home");
+    } else {
+      this.props.history.push("/login");
+      alert("revise sus credenciales");
+    }
+  }
+
+  handleChecked() {
+    this.setState({ isChecked: !this.state.isChecked });
+  }
+
+  render() {
+    const { username, password, isChecked } = this.state;
+
+    return (
+      <React.Fragment>
+        <div className="login-page">
+          <div className="login-box">
+            <div className="login-logo">
+              <a
+                href="/"
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+              </a>
+            </div>
+
+            <div className="card">
+              <div className="card-body login-card-body">
+                <h1 className="login-box-msg">Ingresar</h1>
+
+                <form onSubmit={(event) => this.handleFormSubmit(event)}>
+                  <div className="input-group mb-3">
+                    <input
+                      type="email"
+                      name="name"
+                      className="form-control"
+                      placeholder="Email"
+                      value={username}
+                      onChange={(event) =>
+                        this.setState({ username: event.target.value })
+                      }
+                    />
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-envelope"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="input-group mb-3">
+                    <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      placeholder="Contraseña"
+                      value={password}
+                      onChange={(event) =>
+                        this.setState({ password: event.target.value })
+                      }
+                    />
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                     <div className="tarjetas-titulo">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                      >
+                        Ingresar
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                <p className="mb-0">
+                  <NavLink to="/register">Registrar Nuevo usuario</NavLink>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+export default withRouter(Login);

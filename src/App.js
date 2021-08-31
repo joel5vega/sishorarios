@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Auth from "./components/common/router/protected/auth";
 import NavBar from "./components/NavBar/NavBar";
 import Loader from "./components/Loader.js";
-import Login from "./views/auth/index";
+import Login from "./views/auth/Login.js";
 
 import Register from "./views/auth/Register.js";
 //Componentes

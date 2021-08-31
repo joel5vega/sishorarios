@@ -18,9 +18,9 @@ import Login from "./pages/login";
 import Home from "./pages/homepage";
 import Profile from "./pages/profile";
 */
-import Login from "./views/auth/index";
+import Login from "./views/auth/Login.js";
 import Home from "./views/home/Home";
-import Error from "./views/auth/index";
+import Error from "./views/auth/Login.js";
 import { ProtectedRoute } from "./components/common/router/protected";
 
 interface GuestRouteInterface {

@@ -9,7 +9,7 @@ import Estudiante from "./NavEstudiante.js";
 import NavAdministrativo from "./NavAdministrativo.js";
 import NavDocente from "./NavDocente.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt, faSignInAlt, faTh } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSignOutAlt, faSignInAlt, faTh ,faHouseUser, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 class NavBar extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class NavBar extends Component {
       console.log(e);
       this.setState({ ...this.state, loading: false });
     }
-    console.log("DDD")
+    // console.log("DDD")
   }
   background() {
     switch (this.props.tipo) {
@@ -107,22 +107,24 @@ class NavBar extends Component {
           collapseOnSelect
           expand="xl"
           // style={{ backgroundColor: this.state.background }}
-           style={{ backgroundColor: "white", maxHeight: 'auto' }}
+          style={{ backgroundColor: "white", maxHeight: 'auto' }}
           // variant="dark"
           fixed="top"
 
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
-            Horarios ETN
+            <FontAwesomeIcon icon={faHouseUser} />
+             Horarios ETN
           </Navbar.Brand>
           <div className="b">
             <Navbar.Text
-              style={{ "color": "#40826d", "font-weight": "bolder", "fontSize": "20px","white-space":"nowrap" }}
+              style={{ "color": "#40826d", "font-weight": "bolder", "fontSize": "20px", "white-space": "nowrap" }}
             >{this.props.titulo}</Navbar.Text>
           </div>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" ><FontAwesomeIcon icon={faTh} /></Navbar.Toggle>
-          <Navbar.Collapse id="responsive-navbar-nav">
+          {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+          <Navbar.Collapse id="navbarScroll">
             {tipo === "administrativo" ? (
               <div>
                 <NavAdministrativo />
@@ -143,15 +145,13 @@ class NavBar extends Component {
 
               {tipo == "administrativo" && (
                 <div className="icon">
-                  <FontAwesomeIcon icon={faUser} />
-                  <NavLink to="/admin/">Admin</NavLink>
+
+                  {/* <NavLink to="/admin/"><FontAwesomeIcon icon={faUser} />Admin</NavLink> */}
                 </div>
               )}
 
               {tipo == "docente" && (
                 <div className="icon justify-content-end ">
-                  <FontAwesomeIcon icon={faUser} />
-
                   <Nav.Link
                     as={NavLink}
                     eventKey="mishorarios"
@@ -172,6 +172,7 @@ class NavBar extends Component {
 
                     }}
                   >
+                    <FontAwesomeIcon icon={faUser} />
                     Horarios: {usuario.responsable.ap_paterno}
                   </Nav.Link>
                 </div>
@@ -181,21 +182,34 @@ class NavBar extends Component {
 
             <Nav className="nav justify-content-end ml-auto">
               {!tipo ? (
-                <div className="b">
-                  <FontAwesomeIcon icon={faSignInAlt} />
-
-                  <Nav.Link
+                <div> 
+            <NavDropdown  title={<div><FontAwesomeIcon icon={faUser}/>  Usuario</div>} id="collasible-nav-dropdown">
+                 <NavDropdown.Item
+                    eventKey="register"
+                    as={NavLink}
+                    to="/register/"
+                    activeStyle={NavActive}
+                  >
+                    <FontAwesomeIcon icon={faUserPlus} />
+                    Registrar
+                  </NavDropdown.Item>
+                
+                
+                
+                  <NavDropdown.Item
                     eventKey="login"
                     as={NavLink}
                     to="/login/"
                     activeStyle={NavActive}
                   >
+                    <FontAwesomeIcon icon={faSignInAlt} />
                     Login
-                  </Nav.Link>
+                  </NavDropdown.Item>
+                </NavDropdown>
                 </div>
               ) : (
                 <div className="icon">
-                  <FontAwesomeIcon icon={faSignOutAlt} />
+
                   <Nav.Link
                     eventKey="login"
                     as={NavLink}
@@ -203,7 +217,7 @@ class NavBar extends Component {
                     activeStyle={NavActive}
                     onClick={this.logout}
                   >
-                    Salir
+                    <FontAwesomeIcon icon={faSignOutAlt} />  Salir
                   </Nav.Link>
                 </div>
               )}

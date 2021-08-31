@@ -26,7 +26,7 @@ export default class HomeMaterias extends Component {
         <MateriasMencion
               datos={datos}
               titulo={"Materias de Control "}
-              mencion="Control"
+              mencion="General"
               semestres={general}
             />
         </div>

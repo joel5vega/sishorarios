@@ -79,12 +79,12 @@ export default class CrearMateria extends Component {
         this.props.onCheckChange(event);
     }
     render() {
-        var { sigla, nombre, tipo, semestre, pensum, menciones } = this.state.selected
+        var { sigla, nombre, tipo, semestre, pensum_id, menciones } = this.state.selected
         //  var menciones = this.state.menciones
         var { mencionesSeleccionadas } = this.state
         // var {menciones}=this.props.datos.menciones
         var listaMenciones = this.props.menciones
-        var pensums = [this.props.pensums]
+        var pensums = this.props.pensums
         const semestres = [
             { id: "1", nombre: "1" },
             { id: "2", nombre: "2" },
@@ -105,6 +105,7 @@ export default class CrearMateria extends Component {
                 id: "laboratorio", nombre: "Laboratorio"
             }
         ]
+        // const pensums=[ {id: 1, nombre: "Pensum 2000"}]
         return <div className="formulario">
             <div className="itemSecundario">
                 <div className="itemInfo">
@@ -158,7 +159,7 @@ export default class CrearMateria extends Component {
                 <div className="itemInfo">
                     <SelectControlado
                         label="Pensum"
-                        value={pensum}
+                        value={pensum_id}
                         name="pensum"
                         handleChange={this.handleChange}
                         datos={pensums}

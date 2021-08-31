@@ -9,7 +9,7 @@
   height: 50px;
 }
 .body {
-  padding-top: 52px;
+  padding-top: 55px;
   margin: 0;
   background:transparent;
   width: 100%;
@@ -74,7 +74,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   border: 1rem #282c34;
-  border-color: gold;
+  border-color: rgb(133, 132, 129);
   /* background-color: cadetblue; */
 }
 
@@ -101,11 +101,13 @@
 .tarjetas-titulo {
   /* max-width: 20em; */
   /* display: inline-table; */
-  width: 90%;
+  width: 100%;
   font-weight: 1000;
   font-size: large;
   margin: 0.1rem;
   color: #40826d;
+  /* background-color: #0095eb; */
+  padding: 5px;
   /* max-width: max-content; */
 }
 .tarjetas-titulo-col {
@@ -118,7 +120,7 @@
 .tarjeta {
   /* border: 1px solid #ccc !important; */
   /* border-radius: 5px; */
-  background-color: transparent;
+  /* background-color:cyan; */
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -127,6 +129,8 @@
   flex-shrink: 4;
   width: fit-content;
   flex-basis: 7rem;
+  min-width: 150px;
+  max-width: 210px;
 }
 .tarjeta-peque {
   /* border: 1px solid red !important; */
@@ -143,12 +147,14 @@
   /* border: 1px solid #ccc !important; */
   /* border-radius: 5%; */
   display: flex;
-  margin: 0.2rem;
+  /* margin: 2px; */
   height: fit-content;
-  justify-content: left;
+  width: 100%;
+  justify-content: center;
   align-content: center;
   flex-wrap: wrap;
   flex-shrink: 5;
+  /* background-color: gainsboro; */
 }
 
 .calendario {
@@ -196,21 +202,38 @@
   margin-left: 0.2em;
 }
 .cuadricula {
+  /* width: 100%; */
+  /* background-color: gainsboro ; */
   display: grid;
-  grid-gap: 1rem;
+  grid-row-gap:1rem;
   grid-auto-flow: dense;
-  grid-auto-rows: auto;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-  align-items: center;
+  /* grid-auto-rows: auto; */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: flex-start;
   margin-right: 1.5rem;
   margin-left: 1.5rem;
   justify-content: center;
+}
+.pila{
+  display: flex;
+  flex-direction: column  ;
+  /* background-color: #40826d; */
+  margin: 2px;
+}
+dropdown-item{
+  
+  background-color:red;
+  color:green;
 }
 .cuadro {
   grid-column: span 1;
   width: 100%;
   justify-content: space-around;
   border: black;
+}
+.midrop .opcion{
+  color:green;
+  background-color:green;
 }
 .considebar {
   display: grid;
@@ -242,14 +265,14 @@
 }
 
 .icon {
-  display: grid;
+  display: flex;
   grid-gap: 0.06em;
   /* grid-auto-flow: dense; */
   /* grid-auto-rows: 22rem; */
   grid-template-columns: repeat(auto-fill, minmax(1em, 1fr));
   align-items: center;
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
+  /* margin-right: 1.5rem; */
+  margin-left: 15px;
   white-space: nowrap;
 }
 .navbar{
@@ -267,6 +290,12 @@
   display: inline-flex;
   align-items: flex-start;
   /* border-color: #0095eb solid ; */
+}
+.navbar-expand-xl .navbar-nav .nav-link{
+  /* background-color: #40826d; */
+  display: inline-flex;
+  padding: 1px;
+  align-items: center;
 }
 .columnas {
   display: grid;
@@ -402,16 +431,16 @@ textarea {
   grid-row-end: 4;
   width: 100%;
   background-color: white;
-  border-radius: 2rem;
-  margin: 1px;
-  padding: 0.5rem;
+  /* border-radius: 2rem; */
+  /* margin: 1px; */
+  padding: 1px;
   justify-content: center;
 }
 .itemSecundario {
   grid-column: span 1;
   height: fit-content;
   background-color: white;
-  border-radius: 2rem;
+  /* border-radius: 2rem; */
   margin: 0.1rem;
   padding: 0.4rem;
 }
@@ -422,8 +451,8 @@ textarea {
   width: 100%;
   background-color: white;
   border-radius: 2rem;
-  margin: 1px;
-  padding: 0.5rem;
+  /* margin: 1px; */
+  padding: 2px;
   justify-content: center;
 }
 .itemTitulo {
@@ -435,13 +464,16 @@ textarea {
 .itemInfo {
   background-color: white;
   border-radius: 2rem;
-  margin: 1px;
-  padding: 0.5rem;
+  /* margin: 2px; */
+  padding: 1px;
   justify-content: right;
   align-items: center;
+  border-color: #0095eb solid;
+  overflow: hidden;
 }
 .b {
   margin: 0;
+  width: fit-content;
   /* padding: auto; */
   font-size: bold;
   /* margin-right: 5px; */
@@ -449,11 +481,12 @@ textarea {
 }
 
 .entrada {
-  padding: 5%;
+  padding: 5px;
   display: grid;
   gap: 2px;
   grid-template-rows: auto auto;
   margin: 0;
+  width:fit-content
 }
 .entrada label {
   font-weight: bolder;
@@ -461,9 +494,12 @@ textarea {
   text-align: left;
 }
 .entrada input {
+  grid-column:span 1;
   grid-row-start: 2;
   grid-row-end: 3;
-  text-align: right;
+  text-align: left;
+  width:fit-content;
+  max-width:150px;
 }
 
 /* //cuando no es movil */
