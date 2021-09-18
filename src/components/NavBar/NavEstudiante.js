@@ -8,8 +8,8 @@ class Estudiante extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-      url: "http://127.0.0.1:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      //url: "http://127.0.0.1:8000/api/",
     };
   }
   render() {
@@ -69,7 +69,7 @@ class Estudiante extends Component {
                     pathname: "/clase/view",
                     state: {
                       fuente:
-                        this.state.url+":clases/ambiente/" + item.id,
+                        this.state.url+"clases/ambiente/" + item.id,
                       titulo: " " + item.nombre,
                     },
                   }}

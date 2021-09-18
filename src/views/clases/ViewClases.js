@@ -15,8 +15,8 @@ class ViewClases extends Component {
     super(props);
     this.state = {
       usuario: "",
-      //fuente: "http://sishorarios.azurewebsites.net/public/api/clases",
-      fuente: "http://localhost:8000/api/clases",
+      fuente: "https://sishorarios.azurewebsites.net/public/api/clases",
+      // fuente: "http://localhost:8000/api/clases",
       width: window.innerWidth,
       view: "timeGridWeek",
       externo: false,

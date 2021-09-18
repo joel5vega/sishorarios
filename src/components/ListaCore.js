@@ -28,7 +28,7 @@ class ListaCore extends Component {
     super(props);
     this.state = {
       id: "",
-      url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
       // url: "http://localhost:8000/api/",
       dato: {},
       tipo: "",

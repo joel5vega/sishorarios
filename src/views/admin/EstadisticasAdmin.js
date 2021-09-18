@@ -9,7 +9,7 @@ export default class EstadisticasAdmin extends Component {
     this.state = {
       usuario: "",
       // fuenteNow: "http://localhost:8000/api/clases/",
-      fuenteNow: "http://sishorarios.azurewebsites.net/public/api/clases/",
+      fuenteNow: "https://sishorarios.azurewebsites.net/public/api/clases/",
       responsable: {},
       ambiente: {}
     };

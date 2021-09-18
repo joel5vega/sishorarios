@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 
     //fetch data
     async componentDidMount() {
-        const url = "http://127.0.0.1:8000";
         const urlMaterias = url + "/index/materias/" + this.props.semestre;
         if (!this.props.tipo) {
             var urlAmbientes = url + "/index/ambientes";

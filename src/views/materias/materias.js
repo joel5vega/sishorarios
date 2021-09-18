@@ -13,8 +13,8 @@ export default class Materias extends Component {
         super(props);
         this.state = {
             materias: [],
-            //url: "http://sishorarios.azurewebsites.net/public/api/",
-            url: "http://127.0.0.1:8000/api/",
+            url: "https://sishorarios.azurewebsites.net/public/api/",
+            // url: "http://127.0.0.1:8000/api/",
             show: false,
             menciones: ['control', 'sistemas'],
             pensum: "", semestre: "", sigla: "", nombre: "", mencion: "", tipo: "", paralelo: "",

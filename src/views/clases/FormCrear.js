@@ -16,8 +16,8 @@ class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-      url: "http://127.0.0.1:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://127.0.0.1:8000/api/",
       ambientes: [],
       materias: [],
       responsables: [],

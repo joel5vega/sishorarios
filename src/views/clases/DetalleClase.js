@@ -11,8 +11,8 @@ class DetalleClase extends Component {
     super(props);
     this.state = {
       usuario: "",
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-      url: "http://localhost:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://localhost:8000/api/",
       externo: false,
       clase: this.props.id,
       clases: {},

@@ -12,11 +12,6 @@ import React, { Component } from 'react'
     
     //fetch data
     async componentDidMount() {
-        const url = "https://api.randomuser.me"
-        const url1 = "http://127.0.0.1:8000/ambientes/1"
-        // const url2 = "http://192.168.100.44:8000/ambientes/1"
-        const response = await fetch(url1);
-        const data = await response.json();
         this.setState({ clases: data, loading: false })
         console.log(data);  
            

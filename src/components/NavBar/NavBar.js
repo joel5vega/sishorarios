@@ -15,8 +15,8 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-      url: "http://127.0.0.1:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://127.0.0.1:8000/api/",
       logged: false,
       key: "home",
       titulo: "Sistema de Horarios",

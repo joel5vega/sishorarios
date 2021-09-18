@@ -7,8 +7,8 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url:"http://localhost:8000/api/",
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      // url:"http://localhost:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
       selected: { tipo: "default", responsable: { responsable_id: "default" } },
       modo: "crear"
     };

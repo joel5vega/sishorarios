@@ -48,8 +48,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-       url:"http://localhost:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      //  url:"http://localhost:8000/api/",
       index: {},
       loading: true,
       selectedPeriodo: "",

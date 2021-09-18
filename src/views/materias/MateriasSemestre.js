@@ -7,6 +7,8 @@ export default class MateriasSemestre extends Component {
     this.state = {
       usuario: "",
       ancho: "5rem",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://127.0.0.1:8000/api/",
       // alto: "1rem",
     };
   }
@@ -34,7 +36,7 @@ export default class MateriasSemestre extends Component {
                           color={
                             item.tipo === "laboratorio" ? "#006600" : "#0066CC"
                           }
-                          enlace={"http://localhost:3000/responsable/" + item.id}
+                          enlace={this.state.url+"responsable/" + item.id}
                         />
                       </div>
                     ) : (
@@ -57,7 +59,7 @@ export default class MateriasSemestre extends Component {
                                     : "#0066CC"
                                 }
                                 enlace={
-                                  "http://localhost:3000/responsable/" + item.id
+                                  this.state.url+"responsable/" + item.id
                                 }
                               />
                               </div>

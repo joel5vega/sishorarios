@@ -9,8 +9,8 @@ export default class HabilitarClases extends Component {
     super(props);
     this.state = {
       usuario: "",
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
-      url: "http://localhost:8000/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://localhost:8000/api/",
       clases: this.props.clases,
     };
   }

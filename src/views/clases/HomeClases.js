@@ -5,11 +5,11 @@ export default class HomeClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "https://sishorarios.azurewebsites.net/public/api/",
       usuario: "",
       datos: this.props.semestres,
       fuente: "",
-      url: "http://localhost:8000/api/",
+      // url: "http://localhost:8000/api/",
     };
   }
   componentDidMount() {}
