@@ -103,7 +103,6 @@ export const responsables = [
 ];
 /*
 async function responsable() {
-  let urlResponsables = "http://127.0.0.1:8000/index/responsables";
   const data = await fetch(urlResponsables).then((value) => value.json());
   const datos = data.responsables;
   // console.log(datos);

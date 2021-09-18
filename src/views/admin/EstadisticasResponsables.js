@@ -8,6 +8,7 @@ export default class EstadisticasResponsable extends Component {
     super(props);
     this.state = {
       usuario: "",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       url: 'http://127.0.0.1:8000/api/',
       responsable: {
         responsables: {},
@@ -17,12 +18,12 @@ export default class EstadisticasResponsable extends Component {
   }
   componentDidMount() {
     this.getDatosDocentes();
-    this.prueba();
+    // this.prueba();
   }
-  async prueba() {
-    var url = "http://localhost:8000/oauth/scopes";
-    axios.get(url).then(response => { console.log(response.data) })
-  }
+  // async prueba() {
+  //   console.group("pruebita")
+  //   axios.get(url).then(response => { console.log(response.data) })
+  // }
   async getDatosDocentes() {
     var url = this.state.url + 'datos?tipo=responsable'
     try {

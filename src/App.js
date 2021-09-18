@@ -43,14 +43,15 @@ import DatosAdmin from "./views/admin/DatosAdmin";
 import ClasesAdmin from "./views/admin/HabiltarClases";
 import CrearResponsable from "./views/responsables/CrearResponsable";
 
+const SERVER_URL =process.env.REACT_APP_SERVER_URL;
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+       url:"http://localhost:8000/api/",
       index: {},
       loading: true,
-      fuente: "http://127.0.0.1:8000/clases/show",
       selectedPeriodo: "",
       selectedTitle: "",
       // usuario: "estudiante",
@@ -75,7 +76,7 @@ class App extends Component {
   async getUser(user) {
     console.log("user is " + user)
     axios
-      .get(this.state.url + "/api/users/" + user)
+      .get(this.state.url + "users/" + user)
       .then((response) => {
         var data = response.data.user
         console.log("Usuario es", data)
@@ -87,7 +88,7 @@ class App extends Component {
   async fetchIndex() {
     console.group("inicio")
     this.getUser(this.state.user)
-    axios.get("http://127.0.0.1:8000/api/index").then((response) => {
+    axios.get(this.state.url+"index").then((response) => {
       this.setState({
         materias: response.data.materias,
         ambientes: response.data.ambientes,

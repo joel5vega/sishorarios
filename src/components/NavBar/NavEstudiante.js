@@ -5,6 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUniversity, faGraduationCap, faBook, faSignal, faChartBar } from '@fortawesome/free-solid-svg-icons'
 import { Font } from "@react-pdf/renderer";
 class Estudiante extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
+    };
+  }
   render() {
     const NavActive = {
       color: "blue",
@@ -14,23 +21,23 @@ class Estudiante extends Component {
     return (
       <div>
         <Nav style={{ maxHeight: '400px' }}
-        navbarScroll>
+          navbarScroll>
           <div className="icon">
 
-            <NavDropdown 
-            title={<div><FontAwesomeIcon icon={faGraduationCap} />Semestres</div>} 
-            id="navbarScrollingDropdown">
+            <NavDropdown
+              title={<div><FontAwesomeIcon icon={faGraduationCap} />Semestres</div>}
+              id="navbarScrollingDropdown">
               {this.props.semestres.map((item) => {
                 return (
                   <div className="opcion" key={item.id}>
-                    <NavDropdown.Item  eventKey="semestres"
+                    <NavDropdown.Item eventKey="semestres"
                       as={NavLink}
-                     
+
                       to={{
                         pathname: "/clase/view",
                         state: {
                           fuente:
-                            "http://localhost:8000/api/clases/semestre/" +
+                            this.state.url + "clases/semestre/" +
                             item.semestre +
                             "?mencion=" +
                             item.mencion_id,
@@ -56,13 +63,13 @@ class Estudiante extends Component {
               {ambientes.map((item) => (
                 <NavDropdown.Item eventKey="ambientes"
                   key={item.id}
-                  
+
                   as={NavLink}
                   to={{
                     pathname: "/clase/view",
                     state: {
                       fuente:
-                        "http://localhost:8000/api/clases/ambiente/" + item.id,
+                        this.state.url+":clases/ambiente/" + item.id,
                       titulo: " " + item.nombre,
                     },
                   }}
@@ -77,7 +84,7 @@ class Estudiante extends Component {
 
             <Nav.Link eventKey="materias"
               as={NavLink}
-              
+
               exact
               to="/materia/"
               activeStyle={NavActive}

@@ -9,18 +9,19 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url : "http://localhost:8000/api/",
       usuario: "",
       datos: this.props.semestres,
       fuente: "",
     };
   }
-  componentDidMount() {}
+  componentDidMount() { }
 
   onClick = (e) => {
     //elaboramos la fuente de consulta
-    const url = "http://localhost:8000/";
     var fuente =
-      url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+      this.state.url + "clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
   };
@@ -37,35 +38,36 @@ class Home extends Component {
             <div className="tarjetas">
               {this.props.ambientes.length > 0
                 ? this.props.ambientes.map((item) => {
-                    return (
-                      <div key={item.id}>
-                        <NavLink
-                          to={{
-                            pathname: "/clase/view",
-                            state: {
-                              fuente:
-                                "http://localhost:8000/api/clases/ambiente/" +
-                                item.id,
-                              titulo: "" + item.nombre,
-                            },
-                          }}
-                        >
-                          <TarjetaAmbiente
-                            nombre={item.nombre}
-                            tipo={item.tipo}
-                            capacidad={item.capacidad}
-                            color={
-                              item.tipo === "laboratorio"
-                                ? "#006600"
-                                : item.tipo === "auditorio"
+                  return (
+                    <div key={item.id}>
+                      <NavLink
+                        to={{
+                          pathname: "/clase/view",
+                          state: {
+                            fuente:
+                              this.state.url +
+                              "clases/ambiente/" +
+                              item.id,
+                            titulo: "" + item.nombre,
+                          },
+                        }}
+                      >
+                        <TarjetaAmbiente
+                          nombre={item.nombre}
+                          tipo={item.tipo}
+                          capacidad={item.capacidad}
+                          color={
+                            item.tipo === "laboratorio"
+                              ? "#006600"
+                              : item.tipo === "auditorio"
                                 ? "#ffa500"
                                 : "#0066CC"
-                            }
-                          />
-                        </NavLink>
-                      </div>
-                    );
-                  })
+                          }
+                        />
+                      </NavLink>
+                    </div>
+                  );
+                })
                 : "No existen registros de ambientes ocupados en este momento"}
             </div>
           </div>

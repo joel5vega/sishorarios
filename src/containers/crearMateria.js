@@ -6,6 +6,7 @@ export default class CrearMateria extends Component {
     super(props);
     this.state = {
       materias: [],
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       url: "http://127.0.0.1:8000",
       data: [],
       show: true,

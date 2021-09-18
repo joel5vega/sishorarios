@@ -16,7 +16,8 @@ class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
       ambientes: [],
       materias: [],
       responsables: [],
@@ -83,9 +84,9 @@ class FormCrear extends Component {
       this.setState({ loading: true });
       if (mencion !== "" && typeof (mencion) !== 'undefined') {
         var urlMaterias =
-          url + "/api/materias/semestre/" + semestre + "?mencion=" + mencion;
+          url + "materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        urlMaterias = url + "/api/materias/semestre/" + semestre;
+        urlMaterias = url + "materias/semestre/" + semestre;
       }
       axios.get(urlMaterias).then((response) => {
         this.setState({ materias: response.data.materias, loading: false });
@@ -102,7 +103,7 @@ class FormCrear extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      var urlAmbientes = url + "/api/ambientes?tipo=" + tipo;
+      var urlAmbientes = url + "ambientes?tipo=" + tipo;
       axios.get(urlAmbientes).then((response) => {
         var data = response.data;
         //asignamos las aulas del tipo  correspondiente
@@ -118,7 +119,7 @@ class FormCrear extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      const urlResponsables = url + "/api/responsables?nivel=" + nivel;
+      const urlResponsables = url + "responsables?nivel=" + nivel;
       axios.get(urlResponsables).then((response) => {
         var data = response.data.responsables;
         this.setState({ responsables: data });
@@ -145,7 +146,7 @@ class FormCrear extends Component {
       if (mencion !== "") {
         var urlSemestre =
           url +
-          "/api/clases/semestre/" +
+          "clases/semestre/" +
           semestre +
           "?mencion=" +
           mencion +
@@ -154,7 +155,7 @@ class FormCrear extends Component {
       } else {
         var urlSemestre =
           url +
-          "/api/clases/semestre/" +
+          "clases/semestre/" +
           semestre +
           "?periodo=" +
           this.state.selectedPeriodo;
@@ -213,7 +214,7 @@ class FormCrear extends Component {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "/api/clases/ambiente/" +
+        "clases/ambiente/" +
         ambiente +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -505,7 +506,7 @@ class FormCrear extends Component {
   delete = () => {
     var id = this.props.clase.id
     console.log(id)
-    var url = this.state.url + "/api/clases/" + id
+    var url = this.state.url + "clases/" + id
     axios.delete(url).then((response) => {
       console.log(response);
     },
@@ -534,7 +535,7 @@ class FormCrear extends Component {
     console.log(evento);
     console.log("Para enviar selected:");
     // console.log(this.state.selected);
-    let urlPut = this.state.url + "/api/clases/" + id;
+    let urlPut = this.state.url + "clases/" + id;
     axios
       .put(urlPut, evento)
       .then(

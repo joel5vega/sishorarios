@@ -8,6 +8,7 @@ export default class EstadisticasAmbiente extends Component {
     super(props);
     this.state = {
       usuario: "",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       url: 'http://127.0.0.1:8000/api/',
       ambiente: {
         total: {},

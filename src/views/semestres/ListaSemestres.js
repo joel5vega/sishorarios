@@ -8,6 +8,8 @@ export default class ListaSemestres extends Component {
     super(props);
     this.state = {
       datos: this.props.semestres,
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
     };
   }
 
@@ -25,7 +27,7 @@ export default class ListaSemestres extends Component {
                     pathname: "/clase/view",
                     state: {
                       fuente:
-                        "http://localhost:8000/api/clases/semestre/" +
+                        this.state.url+"clases/semestre/" +
                         item.semestre +
                         "?mencion=" +
                         item.mencion_id,

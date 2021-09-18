@@ -20,7 +20,6 @@ export default class EventCalendar extends Component {
     //fetch data
     async componentDidMount() {
         const url = "https://api.randomuser.me"
-        const url1 = "http://127.0.0.1:8000/api/clases"
         const response = await fetch(url1);
         const data = await response.json();
         // this.setState({ clases: data.results, loading: false })

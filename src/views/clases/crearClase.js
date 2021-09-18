@@ -13,7 +13,8 @@ export default class CrearClase extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
       privilegio: this.props.usuario | "administrativo",
       ambientes: [],
       materias: [],
@@ -80,9 +81,9 @@ export default class CrearClase extends Component {
       this.setState({ loading: true });
       if (mencion !== "") {
         var urlMaterias =
-          url + "/api/materias/semestre/" + semestre + "?mencion=" + mencion;
+          url + "materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        urlMaterias = url + "/api/materias/semestre/" + semestre;
+        urlMaterias = url + "materias/semestre/" + semestre;
       }
       axios.get(urlMaterias).then((response) => {
         this.setState({ materias: response.data.materias, loading: false });
@@ -97,7 +98,7 @@ export default class CrearClase extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      var urlAmbientes = url + "/api/ambientes?tipo=" + tipo;
+      var urlAmbientes = url + "ambientes?tipo=" + tipo;
       axios.get(urlAmbientes).then((response) => {
         var data = response.data;
         //asignamos las aulas del tipo  correspondiente
@@ -113,7 +114,7 @@ export default class CrearClase extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      const urlResponsables = url + "/api/responsables?nivel=" + nivel;
+      const urlResponsables = url + "responsables?nivel=" + nivel;
       axios.get(urlResponsables).then((response) => {
         var data = response.data.responsables;
         this.setState({ responsables: data });
@@ -131,7 +132,7 @@ export default class CrearClase extends Component {
       if (mencion !== "") {
         var urlSemestre =
           url +
-          "/api/clases/semestre/" +
+          "clases/semestre/" +
           semestre +
           "?mencion=" +
           mencion +
@@ -140,7 +141,7 @@ export default class CrearClase extends Component {
       } else {
         var urlSemestre =
           url +
-          "/api/clases/semestre/" +
+          "clases/semestre/" +
           semestre +
           "?periodo=" +
           this.state.selectedPeriodo;
@@ -197,7 +198,7 @@ export default class CrearClase extends Component {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "/api/clases/ambiente/" +
+        "clases/ambiente/" +
         ambiente +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -220,7 +221,7 @@ export default class CrearClase extends Component {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "/api/clases/responsable/" +
+        "clases/responsable/" +
         responsable +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -513,7 +514,7 @@ export default class CrearClase extends Component {
     console.log(evento);
     console.log("Para enviar selected:");
     console.log(this.state.selected);
-    let urlPost = this.state.url + "/api/clases";
+    let urlPost = this.state.url + "clases";
     axios
       .post(urlPost, evento)
       .then(

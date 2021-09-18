@@ -14,14 +14,15 @@ export default class HomeAdmin extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: 'http://localhost:8000'
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: 'http://localhost:8000/api/'
     };
   }
   componentDidMount() {
     this.getUsers();
   }
   getUsers() {
-    axios.get(this.state.url + "/api/users").then((response) => {
+    axios.get(this.state.url + "users").then((response) => {
       this.setState({
         usuarios: response.data,
         loading: false,

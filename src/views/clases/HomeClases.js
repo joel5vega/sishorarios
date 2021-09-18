@@ -5,10 +5,11 @@ export default class HomeClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       usuario: "",
       datos: this.props.semestres,
       fuente: "",
-      fuenteNow: "http://localhost:8000/api/clases/",
+      url: "http://localhost:8000/api/",
     };
   }
   componentDidMount() {}
@@ -32,17 +33,15 @@ export default class HomeClases extends Component {
   };
   onClick = (e) => {
     //elaboramos la fuente de consulta
-    const url = "http://localhost:8000/";
     var fuente =
-      url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+      this.state.url + "clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
   };
   onChange = (e) => {
     //elaboramos la fuente de consulta
-    const url = "http://localhost:8000/";
     var fuente =
-      url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+      this.state.url + "clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
     alert(e);

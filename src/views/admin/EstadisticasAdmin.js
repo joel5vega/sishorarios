@@ -8,8 +8,8 @@ export default class EstadisticasAdmin extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: 'http://127.0.0.1:8000/api/',
-      fuenteNow: "http://localhost:8000/api/clases/",
+      // fuenteNow: "http://localhost:8000/api/clases/",
+      fuenteNow: "http://sishorarios.azurewebsites.net/public/api/clases/",
       responsable: {},
       ambiente: {}
     };

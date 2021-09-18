@@ -3,12 +3,12 @@ import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default class Ambientes extends Component {
+class Ambientes extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ambientes: [],
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       data: [],
       show: false,
     };
@@ -18,7 +18,6 @@ export default class Ambientes extends Component {
     this.fetchData();
   }
   async fetchData() {
-    let urlAmbientes = "http://127.0.0.1:8000/index/ambientes";
     const data = await fetch(urlAmbientes).then((value) => value.json());
     this.setState({ data: data.ambientes, ambientes: data.ambientes });
   }

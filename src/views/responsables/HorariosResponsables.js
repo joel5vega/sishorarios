@@ -5,12 +5,11 @@ import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Calendario from "../../components/Calendario";
 import { Link } from "react-router-dom";
-export default class HorariosResponsables extends Component {
+class HorariosResponsables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000",
-      fuente: "http://127.0.0.1:8000/index?periodo=1",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       width: window.innerWidth,
       view: "timeGridWeek",
       loading: true,

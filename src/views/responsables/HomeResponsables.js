@@ -3,7 +3,16 @@ import React, { Component } from "react";
 import TarjetaMateria from "../../components/TarjetaMateria";
 import { NavLink } from "react-router-dom";
 export default class HomeResponsables extends Component {
-  componentDidMount() { }
+  constructor(props) {
+    super(props);
+    this.state = {
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
+    }
+  }
+  componentDidMount() {
+
+  }
   render() {
     let { datos } = this.props;
     return (
@@ -21,7 +30,7 @@ export default class HomeResponsables extends Component {
                           pathname: "/clase/view",
                           state: {
                             fuente:
-                              "http://localhost:8000/api/clases/responsable/" +
+                              this.state.url + "clases/responsable/" +
                               item.id,
                             titulo: " " + item.titulo + item.nombre,
                           },
@@ -32,7 +41,7 @@ export default class HomeResponsables extends Component {
                           nombre={item.puesto}
                           avatar={item.titulo}
                           size="1rem"
-                          enlace={"http://localhost:3000/api/responsable/" + item.id}
+                          enlace={this.state.url + "responsable/" + item.id}
                           color="#0066CC"
                         />
                       </NavLink>
@@ -55,7 +64,7 @@ export default class HomeResponsables extends Component {
                       nombre={item.nombre + " " + item.ap_paterno}
                       tipo={item.puesto}
                       sigla={item.titulo}
-                      enlace={"http://localhost:3000/responsable/" + item.id}
+                      enlace={this.state.url+"responsable/" + item.id}
                       color="#00CCFF"
                     />
                   )}

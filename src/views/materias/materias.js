@@ -13,7 +13,8 @@ export default class Materias extends Component {
         super(props);
         this.state = {
             materias: [],
-            url: "http://127.0.0.1:8000",
+            //url: "http://sishorarios.azurewebsites.net/public/api/",
+            url: "http://127.0.0.1:8000/api/",
             show: false,
             menciones: ['control', 'sistemas'],
             pensum: "", semestre: "", sigla: "", nombre: "", mencion: "", tipo: "", paralelo: "",
@@ -28,12 +29,12 @@ export default class Materias extends Component {
     }
     async fetchData() {
         let url = this.state.url;
-        var urlMaterias = url + "/api/materias/";
+        var urlMaterias = url + "materias/";
         const data = await fetch(urlMaterias).then(value => value.json());
         this.setState({ materias: data.materias })
     }
     async getData(id) {
-        var urlData = this.state.url + "/api/materias?id=" + id;
+        var urlData = this.state.url + "materias?id=" + id;
         const data = await fetch(urlData).then(value => value.json());
         var materia = data.materias;
         let control = (materia.control == 'si');
@@ -62,7 +63,7 @@ export default class Materias extends Component {
         // e.preventDefault();
         let id = e
         console.log(id)
-        let urlPost = this.state.url + "/api/materias/eliminar/" + id
+        let urlPost = this.state.url + "materias/eliminar/" + id
 
         fetch(urlPost, {
             method: 'post',

@@ -15,7 +15,8 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000/api",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
       logged: false,
       key: "home",
       titulo: "Sistema de Horarios",
@@ -43,7 +44,7 @@ class NavBar extends Component {
 
   async getUser(id) {
 
-    const url = this.state.url + "/users/" + id;
+    const url = this.state.url + "users/" + id;
     try {
       this.setState({ loading: true });
       axios.get(url).then((response) => {
@@ -160,7 +161,7 @@ class NavBar extends Component {
 
                       state: {
                         fuente:
-                          "http://localhost:8000/api/clases/responsable/" +
+                          this.state.url+"clases/responsable/" +
                           usuario.responsable.id +
                           "?periodo=4",
                         titulo:

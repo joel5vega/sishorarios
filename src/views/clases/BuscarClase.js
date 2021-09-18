@@ -15,10 +15,8 @@ class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000",
-
-
-      // fuente: "http://localhost:8000/api/clases",
+      url: "http://127.0.0.1:8000/api/",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",  
       width: window.innerWidth,
       view: "timeGridWeek",
       showCal: true,
@@ -126,15 +124,7 @@ class BuscarClase extends Component {
   };
   ////////////////////
   //obtenemos cambio de fuente
-  /*onClick = (e) => {
-  //elaboramos la fuente de consulta
-  const url = "http://localhost:8000/";
-  var fuente =
-    url + "api/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
-  console.log(fuente);
-  this.setState({ fuente: fuente });
-
-};*/
+ 
   /////////////////////////Handler
   handleBuscarChange = (event) => {
     var buscar = event.target.value;
@@ -150,7 +140,7 @@ class BuscarClase extends Component {
     var periodo = event.target.value;
     // var nombre = this.filtro(this.state.periodos, periodo);
     // console.log(nombre);
-    const fuentePeriodo = this.state.url + "/api/clases?periodo=" + periodo;
+    const fuentePeriodo = this.state.url + "clases?periodo=" + periodo;
 
     this.setState({
       // periodo: nombre.nombre,
@@ -169,7 +159,7 @@ class BuscarClase extends Component {
     let title = "Semestre:  " + semestre;
     var nuevaFuente =
       this.state.url +
-      "/api/clases/semestre/" +
+      "clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo;
@@ -188,7 +178,7 @@ class BuscarClase extends Component {
     let title = "Semestre:  " + semestre + " - " + menciones[mencion];
     var fuenteDatos =
       this.state.url +
-      "/api/clases/semestre/" +
+      "clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo +
@@ -209,7 +199,7 @@ class BuscarClase extends Component {
     // console.log("nombre"+nombre)
     var nuevaFuente =
       this.state.url +
-      "/api/clases/ambiente/" +
+      "clases/ambiente/" +
       ambiente +
       "?periodo=" +
       this.state.selectedPeriodo;
@@ -229,7 +219,7 @@ class BuscarClase extends Component {
     var title = item.titulo + ". " + item.ap_paterno
     var nuevaFuente =
       this.state.url +
-      "/api/clases/responsable/" +
+      "clases/responsable/" +
       responsable +
       "?periodo=" +
       this.state.selectedPeriodo;

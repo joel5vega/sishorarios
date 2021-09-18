@@ -28,7 +28,8 @@ class ListaCore extends Component {
     super(props);
     this.state = {
       id: "",
-      url: "http://localhost:8000/",
+      url: "http://sishorarios.azurewebsites.net/public/api/",
+      // url: "http://localhost:8000/api/",
       dato: {},
       tipo: "",
       urlpub: "",
@@ -120,9 +121,9 @@ class ListaCore extends Component {
     var id = this.state.idClase;
     console.log(id);
     if (this.props.tipo === "users") {
-      var urlPost = this.state.url + "api/users/habilitar/" + id;
+      var urlPost = this.state.url + "users/habilitar/" + id;
     } else {
-      var urlPost = this.state.url + "api/clases/habilitar/" + id;
+      var urlPost = this.state.url + "clases/habilitar/" + id;
     }
     axios
       .post(urlPost)
@@ -203,32 +204,32 @@ class ListaCore extends Component {
     switch (tipo) {
       case "responsable":
         {
-          var url = this.state.url + "api/responsables/";
+          var url = this.state.url + "responsables/";
           break;
         }
       case "materia":
         {
-          var url = this.state.url + "api/materias/";
+          var url = this.state.url + "materias/";
           break;
         }
       case "clases":
         {
-          var url = this.state.url + "api/clases/"
+          var url = this.state.url + "clases/"
           break;
         }
       case "periodo":
         {
-          var url = this.state.url + "api/periodos/"
+          var url = this.state.url + "periodos/"
           break;
         }
       case "ambiente":
         {
-          var url = this.state.url + "api/ambientes/"
+          var url = this.state.url + "ambientes/"
           break;
         }
       case "users":
         {
-          var url = this.state.url + "api/users/"
+          var url = this.state.url + "users/"
           break;
         }
     }

@@ -10,7 +10,8 @@ export default class HomeAmbientes extends Component {
     super(args);
     this.state = {
       loading: true,
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://127.0.0.1:8000/api/",
       libres: [],
       ocupados: [],
       showLib: true,
@@ -41,7 +42,7 @@ export default class HomeAmbientes extends Component {
     }));
   };
   async getAmbientes() {
-    axios.get(this.state.url + "/api/now?index=ambientes").then((response) => {
+    axios.get(this.state.url + "now?index=ambientes").then((response) => {
       this.setState({
         ocupados: response.data.ocupados,
         libres: response.data.libres,

@@ -8,7 +8,8 @@ class DetalleUser extends Component {
     super(props);
     this.state = {
       usuario: "",
-      fuente: "http://localhost:8000/api/clases/",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://localhost:8000/api/",
       externo: false,
       clase: this.props.id,
       clases: {},
@@ -20,7 +21,7 @@ class DetalleUser extends Component {
     // this.getDatos(this.state.clase);
   }
   getDatos(id) {
-    var url = this.state.fuente + id;
+    var url = this.state.url + "clases/"+ id;
     axios.get(url).then((response) => {
       this.setState({
         clases: response.data,

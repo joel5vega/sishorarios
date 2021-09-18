@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import "../../fontawesome";
 import "../../css/nav.css";
 
-export default class Responsables extends Component {
+class Responsables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:8000",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
       data: [],
       show: false,
     };
@@ -16,7 +16,6 @@ export default class Responsables extends Component {
     this.fetchData();
   }
   async fetchData() {
-    let urlResponsables = "http://127.0.0.1:8000/index/responsables";
     const data = await fetch(urlResponsables).then((value) => value.json());
     this.setState({ data: data.responsables });
     // console.log(this.state.data);

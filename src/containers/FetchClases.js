@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class FetchClases extends Component {
+ class FetchClases extends Component {
     //state
     state = {
         loading: true,

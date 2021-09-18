@@ -8,7 +8,6 @@ export default class Ambientes extends Component {
         super(props);
         this.state = {
             ambientes: [],
-            url: "http://127.0.0.1:8000",
             data: [],
             show: false, guardar: false, editar: false,
             nombre: "", tipo: "", capacidad: "", edificio: "", piso: "", id: ""
@@ -21,7 +20,6 @@ export default class Ambientes extends Component {
         this.fetchData();
     }
     async fetchData() {
-        let urlAmbientes = "http://127.0.0.1:8000/index/ambientes"
         const data = await fetch(urlAmbientes).then(value => value.json());
         this.setState({ data: data, ambientes: data.ambientes })
 

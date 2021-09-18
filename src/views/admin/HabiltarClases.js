@@ -9,7 +9,8 @@ export default class HabilitarClases extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: "http://localhost:8000/",
+      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      url: "http://localhost:8000/api/",
       clases: this.props.clases,
     };
   }
@@ -20,14 +21,14 @@ export default class HabilitarClases extends Component {
     //this.getDatos();
   }
   async getDatos() {
-    var url = this.state.url + "api/clases?estado=false";
+    var url = this.state.url + "clases?estado=false";
     axios.get(url).then((response) => {
       this.setState({ clases: response.data });
     });
   }
 
   habilitarTodos = () => {
-    var url = this.state.url + "api/clases/habilitar/0?todos=yes"
+    var url = this.state.url + "clases/habilitar/0?todos=yes"
     axios.post(url).then((response) => {
       console.log(response)
     },
