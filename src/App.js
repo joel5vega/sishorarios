@@ -43,7 +43,7 @@ import DatosAdmin from "./views/admin/DatosAdmin";
 import ClasesAdmin from "./views/admin/HabiltarClases";
 import CrearResponsable from "./views/responsables/CrearResponsable";
 
-const SERVER_URL =process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -66,6 +66,7 @@ class App extends Component {
   async componentDidMount() {
     this.fetchIndex();
     var user = Auth.getUser()
+    console.log(user)
     this.setState({
       auth: Auth.isAuthenticated(),
       tipo: Auth.getTipo(),
@@ -74,9 +75,16 @@ class App extends Component {
     // this.getUser(user);
   }
   async getUser(user) {
-    console.log("user is " + user)
+    console.log("user is ")
+    if (user.id) {
+      console.log(user.id)
+      var id = user.id
+    }
+    else {
+      var id = user
+    }
     axios
-      .get(this.state.url + "users/" + user)
+      .get(this.state.url + "users/" + id)
       .then((response) => {
         var data = response.data.user
         console.log("Usuario es", data)
@@ -88,7 +96,7 @@ class App extends Component {
   async fetchIndex() {
     console.group("inicio")
     this.getUser(this.state.user)
-    axios.get(this.state.url+"index").then((response) => {
+    axios.get(this.state.url + "index").then((response) => {
       this.setState({
         materias: response.data.materias,
         ambientes: response.data.ambientes,

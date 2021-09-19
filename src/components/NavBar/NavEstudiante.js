@@ -20,8 +20,8 @@ class Estudiante extends Component {
     const { ambientes } = this.props;
     return (
       <div>
-        <Nav style={{ maxHeight: '400px' }}
-          navbarScroll>
+        <Nav style={{ maxHeight: '400px' }}>
+          {/* // navbarScroll> */}
           <div className="icon">
 
             <NavDropdown

@@ -119,7 +119,7 @@ class NavBar extends Component {
           </Navbar.Brand>
           <div className="b">
             <Navbar.Text
-              style={{ "color": "#40826d", "font-weight": "bolder", "fontSize": "20px", "white-space": "nowrap" }}
+              style={{ "color": "#40826d", "fontWeight": "bolder", "fontSize": "20px", "whiteSpace": "nowrap" }}
             >{this.props.titulo}</Navbar.Text>
           </div>
 

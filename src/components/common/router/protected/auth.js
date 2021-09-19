@@ -10,7 +10,7 @@ class Auth {
       email: "estudiante@gmail.com",
       estado: "false",
       id: 5,
-      name: "Pablo",
+      name: "Joel",
       // tipo: "estudiante",
     };
     const token = CookieService.get("access_token");

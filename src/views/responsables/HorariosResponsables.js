@@ -9,7 +9,7 @@ class HorariosResponsables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //url: "http://sishorarios.azurewebsites.net/public/api/",
+      //url: "https://sishorarios.azurewebsites.net/public/api/",
       width: window.innerWidth,
       view: "timeGridWeek",
       loading: true,

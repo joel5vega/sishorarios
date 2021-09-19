@@ -12,7 +12,7 @@ class AuthService {
     try {
       const response = await axios.post(UrlService.loginUrl(), credentials);
       // alert("se logeo");
-      // console.log(response.data);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error", error.response);
@@ -20,21 +20,26 @@ class AuthService {
     }
   }
   handleLoginSucess(response: any, remember: boolean) {
+    console.group("login")
     console.log(response, remember);
 
-    if (!remember) {
-      const options = { path: "/" };
-      CookieService.set("access_token", response.access_token, options);
-      CookieService.set("tipo", response.tipo, options);
-      CookieService.set("user", response.user.id, options);
-      return true;
+    if (response.user) {
+      var userId =response.user.id
+    //   const options = { path: "/" };
+    //   CookieService.set("access_token", response.access_token, options);
+    //   CookieService.set("tipo", response.tipo, options);
+    //   CookieService.set("user", response.user.id, options);
+    //   return true;
+    }
+    else{
+       userId = 1
     }
     let date = new Date();
     date.setTime(date.getTime() + expiresAt * 60 * 1000);
     const options = { path: "/", expires: date };
     CookieService.set("access_token", response.access_token, options);
     CookieService.set("tipo", response.tipo, options);
-    CookieService.set("user", response.user.id, options);
+    CookieService.set("user", userId, options);
     return true;
   }
   handleLogout() {
