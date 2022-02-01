@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import UrlService from "../../services/UrlService";
 
 export default class AmbientesLibres extends Component {
   constructor(args) {
     super(args);
     this.state = {
       loading: true,
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000",
+      url: UrlService.apiUrl(),
       libres: [],
       ocupados: [],
     };

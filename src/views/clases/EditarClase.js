@@ -2,21 +2,16 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "../../fontawesome";
 import axios from "axios";
-import InputControlado from "../../components/InputControlado";
-import SelectControlado from "../../components/SelectControlado";
-import DetalleClase from "./DetalleClase";
-import CrearClase from "./crearClase";
 import FormCrear from "./FormCrear";
 
-import { Typography } from "@material-ui/core";
+import UrlService from "../../services/UrlService";
 
 class EditarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://localhost:8000/api/",
+      url: UrlService.apiUrl(),
       externo: false,
       clase: this.props.id,
       clases: {},

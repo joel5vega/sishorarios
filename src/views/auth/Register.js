@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
+import UrlService from "../../services/UrlService";
 
 export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // url:"http://localhost:8000/api/",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      selected: { tipo: "default", responsable: { responsable_id: "default" } },
+      url: UrlService.apiUrl(),
+      // selected: { tipo: "default" },
+      selected: { tipo: "default", responsable: { responsable_id: "default",email:"@mail.com" } },
       modo: "crear"
     };
   }
@@ -17,10 +18,10 @@ export default class Register extends Component {
     //recibimos el dato desde props
     if (this.props.datos) {
       this.setState({ selected: this.props.datos });
-      if (this.props.modo == true) {
+      if (this.props.modo === true) {
         this.setState({ modo: "editar" })
         if (this.props.datos.tipo) {
-          if (!this.props.datos.tipo == "docente") {
+          if (!this.props.datos.tipo === "docente") {
             this.setState({
               selected: {
                 ...this.state.selected.responsable,
@@ -97,8 +98,8 @@ export default class Register extends Component {
       c_password,
 
     } = this.state.selected;
-    // const responsable_id = 1
-    const responsable_id = this.state.selected.responsable.responsable_id
+     const responsable_id = 1
+    // const responsable_id = this.state.selected.responsable.responsable_id
     const { modo } = this.state
     const tipos = [
       { id: "docente", nombre: "Docente" },

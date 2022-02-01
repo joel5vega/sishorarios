@@ -1,8 +1,8 @@
+/**
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../../fontawesome";
 import "../../css/nav.css";
-
 class Responsables extends Component {
   constructor(props) {
     super(props);
@@ -46,3 +46,5 @@ class Responsables extends Component {
     );
   }
 }
+
+*/

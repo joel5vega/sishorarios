@@ -11,7 +11,8 @@ class AuthService {
   async doUserLogin(credentials: Credentials) {
     try {
       const response = await axios.post(UrlService.loginUrl(), credentials);
-      // alert("se logeo");
+      console.log("Datos",response.data);
+      alert("se logeo");
       console.log(response.data);
       return response.data;
     } catch (error) {

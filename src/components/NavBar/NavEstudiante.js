@@ -4,12 +4,12 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUniversity, faGraduationCap, faBook, faSignal, faChartBar } from '@fortawesome/free-solid-svg-icons'
 import { Font } from "@react-pdf/renderer";
+import UrlService from "../../services/UrlService";
 class Estudiante extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      //url: "http://127.0.0.1:8000/api/",
+      url: UrlService.apiUrl(),
     };
   }
   render() {

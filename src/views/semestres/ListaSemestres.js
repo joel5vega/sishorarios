@@ -2,14 +2,13 @@ import { blue } from "@material-ui/core/colors";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import TarjetaMateria from "../../components/TarjetaMateria";
-
+import UrlService from "../../services/UrlService";
 export default class ListaSemestres extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datos: this.props.semestres,
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
+      url:UrlService.apiUrl()
     };
   }
 

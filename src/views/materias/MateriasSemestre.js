@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TarjetaMateria from "../../components/TarjetaMateria";
+import UrlService from "../../services/UrlService";
 
 export default class MateriasSemestre extends Component {
   constructor(props) {
@@ -7,9 +8,7 @@ export default class MateriasSemestre extends Component {
     this.state = {
       usuario: "",
       ancho: "5rem",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
-      // alto: "1rem",
+      url: UrlService.apiUrl(),
     };
   }
 

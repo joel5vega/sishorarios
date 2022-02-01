@@ -4,13 +4,13 @@ import "../../fontawesome";
 import "../../css/home.css";
 import ListaSemestres from "../semestres/ListaSemestres";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import UrlService from "../../services/UrlService";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url : "http://localhost:8000/api/",
+      url :UrlService.apiUrl(),
       usuario: "",
       datos: this.props.semestres,
       fuente: "",

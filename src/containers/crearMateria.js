@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-// import SelectControlado from "../components/SelectControlado";
+import UrlService from "../services/UrlService";
 
 export default class CrearMateria extends Component {
   constructor(props) {
     super(props);
     this.state = {
       materias: [],
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000",
+    
+      url: UrlService.apiUrl(),
       data: [],
       show: true,
       menciones: ["Control", "Sistemas"],

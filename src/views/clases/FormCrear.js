@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Calendario from "../../components/Calendario";
-// import "../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
 import { withRouter } from "react-router-dom";
@@ -11,13 +9,13 @@ import axios from "axios";
 
 import Fab from "@material-ui/core/Fab";
 import DeleteOutlineSharpIcon from '@material-ui/icons/DeleteOutlineSharp';
+import UrlService from "../../services/UrlService";
 
 class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
+      url: UrlService.apiUrl(),
       ambientes: [],
       materias: [],
       responsables: [],

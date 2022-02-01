@@ -22,14 +22,13 @@ import { Typography } from "@material-ui/core";
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
 import EditarClase from "../views/clases/EditarClase";
 import EditarUser from "../views/auth/EditarUser";
+import UrlService from "../services/UrlService";
 
 class ListaCore extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://localhost:8000/api/",
       dato: {},
       tipo: "",
       urlpub: "",
@@ -38,16 +37,15 @@ class ListaCore extends Component {
       guardar: false,
       editar: false,
       selected: {},
-      info: { color: "green" },
-      // menciones: this.props.index.menciones,
-      //pensums: this.props.index.pensum,
+      info: { color: "green" }, 
     };
   }
   componentDidMount() {
     if (this.props.index) {
       this.setState({
         menciones: this.props.index.menciones,
-        pensums: this.props.index.pensums
+        pensums: this.props.index.pensums,
+        url: UrlService.apiUrl(),
       })
     }
     console.group("Lista")

@@ -6,7 +6,8 @@ import HabilitarAdmin from "./HabilitarAdmin";
 import EstadisticasAdmin from "./EstadisticasAdmin";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faSlidersH, faUserCog, faBook, faSignal, faChartBar, faUser } from '@fortawesome/free-solid-svg-icons'
+import {  faSlidersH, faUserCog,  faSignal } from '@fortawesome/free-solid-svg-icons'
+import UrlService from "../../services/UrlService";
 
 
 export default class HomeAdmin extends Component {
@@ -14,8 +15,7 @@ export default class HomeAdmin extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: 'http://localhost:8000/api/'
+      url: UrlService.apiUrl(),
     };
   }
   componentDidMount() {

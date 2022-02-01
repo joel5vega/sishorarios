@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookReader, faClock, faTimes, faUniversity, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
 import axios from "axios";
+import UrlService from "../../services/UrlService";
 
 class DetalleClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://localhost:8000/api/",
+      url: UrlService.apiUrl(),
       externo: false,
       clase: this.props.id,
       clases: {},

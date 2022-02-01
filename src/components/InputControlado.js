@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class InputControlado extends Component {
   render() {
-    const { tipo, label, valor, nombre, handleChange } = this.props;
+    var { tipo, label, valor, nombre, handleChange } = this.props;
     return (
       <div className="entrada">
         <label>{label}</label>

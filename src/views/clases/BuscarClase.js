@@ -10,13 +10,13 @@ import { Link } from "react-router-dom";
 import SelectControlado from "../../components/SelectControlado";
 import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
+import UrlService from "../../services/UrlService";
 
 class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // url: "http://127.0.0.1:8000/api/",
-      url: "https://sishorarios.azurewebsites.net/public/api/",  
+      url: UrlService.apiUrl(),
       width: window.innerWidth,
       view: "timeGridWeek",
       showCal: true,

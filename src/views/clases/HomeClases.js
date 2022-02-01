@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Calendario from "../../components/Calendario";
+import UrlService from "../../services/UrlService";
 import BuscarClase from "./BuscarClase";
 export default class HomeClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
       usuario: "",
       datos: this.props.semestres,
       fuente: "",
-      // url: "http://localhost:8000/api/",
+      url: UrlService.apiUrl(),
     };
   }
   componentDidMount() {}

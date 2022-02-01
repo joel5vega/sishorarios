@@ -4,6 +4,7 @@ import '../../fontawesome';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal, Button } from 'react-bootstrap';
+import UrlService from "../../services/UrlService";
 
 
 
@@ -13,8 +14,7 @@ export default class Materias extends Component {
         super(props);
         this.state = {
             materias: [],
-            url: "https://sishorarios.azurewebsites.net/public/api/",
-            // url: "http://127.0.0.1:8000/api/",
+            url: UrlService.apiUrl(),
             show: false,
             menciones: ['control', 'sistemas'],
             pensum: "", semestre: "", sigla: "", nombre: "", mencion: "", tipo: "", paralelo: "",

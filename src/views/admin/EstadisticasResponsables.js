@@ -1,15 +1,14 @@
 import axios from "axios";
 import React, { Component } from "react";
 import TarjetaMateria from "../../components/TarjetaMateria"
-import { Bar } from "react-chartjs-2";
+import UrlService from "../../services/UrlService";
 
 export default class EstadisticasResponsable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: 'http://127.0.0.1:8000/api/',
+      url: UrlService.apiUrl(),
       responsable: {
         responsables: {},
         diario: {}
@@ -18,12 +17,8 @@ export default class EstadisticasResponsable extends Component {
   }
   componentDidMount() {
     this.getDatosDocentes();
-    // this.prueba();
   }
-  // async prueba() {
-  //   console.group("pruebita")
-  //   axios.get(url).then(response => { console.log(response.data) })
-  // }
+  
   async getDatosDocentes() {
     var url = this.state.url + 'datos?tipo=responsable'
     try {
@@ -43,9 +38,8 @@ export default class EstadisticasResponsable extends Component {
         <div className="tarjetas">
 
           {Object.keys(responsables).map((key) => (
-            <div>
+            <div key={key}>
               <TarjetaMateria
-                // nombre="horas"
                 avatar={responsables[key]+"h"}
                 tipo={key}
                 color="#0007CC"

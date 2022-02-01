@@ -1,15 +1,13 @@
 import axios from "axios";
 import React, { Component } from "react";
-import TarjetaMateria from "../../components/TarjetaMateria"
 import { Bar } from "react-chartjs-2";
-
+import UrlService from "../../services/UrlService";
 export default class EstadisticasAmbiente extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: 'http://127.0.0.1:8000/api/',
+      url: UrlService.apiUrl(),
       ambiente: {
         total: {},
         diario: {}
@@ -90,7 +88,7 @@ export default class EstadisticasAmbiente extends Component {
         <div className="tarjeta-big">
           <div className="tarjetas-titulo">Uso de Ambientes por día</div>
           {Object.keys(diario).map((aula) => (
-            <div className="tarjeta-big">
+            <div className="tarjeta-big" key={aula}>
               {/* <div className="tarjetas-titulo">{aula}</div> */}
               <div className="tarjeta-peque">
                 <Bar data={{
@@ -118,7 +116,7 @@ export default class EstadisticasAmbiente extends Component {
                         display: "auto", autoSkip: true,
                         callback: function (value, index, values) {
                           var dias = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab."]
-                          if (labels[value] == "length") {
+                          if (labels[value] === "length") {
                             
                           }
                           else {

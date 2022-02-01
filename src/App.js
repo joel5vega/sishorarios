@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import {
-  Switch,
   BrowserRouter,
   Route,
-  NavLink,
   Redirect,
 } from "react-router-dom";
 import "./App.css";
@@ -11,7 +9,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //import auth
-import Auth from "./components/common/router/protected/auth";
+
 import NavBar from "./components/NavBar/NavBar";
 import Loader from "./components/Loader.js";
 import Login from "./views/auth/Login.js";
@@ -43,60 +41,40 @@ import DatosAdmin from "./views/admin/DatosAdmin";
 import ClasesAdmin from "./views/admin/HabiltarClases";
 import CrearResponsable from "./views/responsables/CrearResponsable";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+// servicios
+import UrlService from "./services/UrlService";
+import DataService from "./services/DataService";
+import Auth from "./components/common/router/protected/auth";
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      //  url:"http://localhost:8000/api/",
       index: {},
       loading: true,
       selectedPeriodo: "",
       selectedTitle: "",
-      // usuario: "estudiante",
-      // usuario: { responsable: { id: 5 } },
       periodo: "",
       auth: false,
       user: Auth.getUser()
     };
-    // this.handleAuth = this.handleAuth.bind(this);
   }
 
   async componentDidMount() {
     this.fetchIndex();
-    var user = Auth.getUser()
-    console.log(user)
+    console.log(Auth.getUser())
     this.setState({
       auth: Auth.isAuthenticated(),
       tipo: Auth.getTipo(),
-      user: user,
+      user: Auth.getUser(),
+      url: UrlService.apiUrl(),
+      index:DataService.indexData()
     });
-    // this.getUser(user);
-  }
-  async getUser(user) {
-    console.log("user is ")
-    if (user.id) {
-      console.log(user.id)
-      var id = user.id
-    }
-    else {
-      var id = user
-    }
-    axios
-      .get(this.state.url + "users/" + id)
-      .then((response) => {
-        var data = response.data.user
-        console.log("Usuario es", data)
-        console.groupEnd()
-        // alert("se obtuvo usuario " + data.id)
-        this.setState({ usuario: data });
-      });
   }
   async fetchIndex() {
     console.group("inicio")
-    this.getUser(this.state.user)
-    axios.get(this.state.url + "index").then((response) => {
+    this.getUser(Auth.getUser())
+    axios.get(UrlService.apiUrl() + "index").then((response) => {
       this.setState({
         materias: response.data.materias,
         ambientes: response.data.ambientes,
@@ -113,6 +91,31 @@ class App extends Component {
       console.groupEnd()
     });
   }
+
+
+  async getUser(user) {
+    console.group("User")
+    var id
+    if (user.id!==1) {
+      console.log("user:",user)
+       id = user
+// Conseguimos datos del usuario
+       axios
+      .get(UrlService.apiUrl() + "users/" + id)
+      .then((response) => {
+        var data = response.data.user
+        console.log("Usuario es", data)
+        this.setState({ usuario: data });
+      });
+    }
+    else {
+       id = user|1
+      console.log("no hay user")
+      
+    }
+    console.groupEnd()
+  }
+  
 
   async fuente() {
     var a = Auth.isAuthenticated();

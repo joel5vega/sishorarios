@@ -3,18 +3,17 @@ import Calendario from "../../components/Calendario";
 // import "../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
-import FormCrear from "./FormCrear";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
 import userEvent from "@testing-library/user-event";
+import UrlService from "../../services/UrlService";
 
 export default class CrearClase extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
+      url: UrlService.apiUrl(),
       privilegio: this.props.usuario | "administrativo",
       ambientes: [],
       materias: [],

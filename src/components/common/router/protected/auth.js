@@ -4,20 +4,22 @@ import { withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
 class Auth {
   constructor() {
+    console.group("Servicio Auth");
     this.authenticated = false;
     this.tipo = "Estudiante";
-    this.user = {
-      email: "estudiante@gmail.com",
-      estado: "false",
-      id: 5,
-      name: "Joel",
-      // tipo: "estudiante",
-    };
+    // this.user = {
+    //   email: "estudiante@gmail.com",
+    //   estado: "false",
+    //   id: 5,
+    //   name: "Joel",
+    //   // tipo: "estudiante",
+    // };
     const token = CookieService.get("access_token");
     const respuesta = CookieService.get("tipo");
     const usuario = CookieService.get("user");
     token ? (this.authenticated = true) : (this.authenticated = false);
     this.tipo = respuesta;
+    
     // respuesta ? (this.tipo = respuesta) : (this.tipo = "estudiante");
     usuario
       ? (this.user = usuario)
@@ -25,9 +27,14 @@ class Auth {
           email: "estudiante@mail.com",
           estado: "false",
           id: 1,
-          name: "Pablo",
+          name: "Cookie Joel",
           // tipo: "estudiante",
         });
+
+        console.log("cookie returns:",this.user)
+        console.groupEnd()
+
+        
   }
   componentDidMount() {
     this.constructor();

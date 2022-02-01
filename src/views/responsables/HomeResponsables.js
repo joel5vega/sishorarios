@@ -2,12 +2,12 @@ import React, { Component } from "react";
 // import ContextProvider from "../../containers/ContextProvider";
 import TarjetaMateria from "../../components/TarjetaMateria";
 import { NavLink } from "react-router-dom";
+import UrlService from "../../services/UrlService";
 export default class HomeResponsables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
+      url: UrlService.apiUrl(),
     }
   }
   componentDidMount() {

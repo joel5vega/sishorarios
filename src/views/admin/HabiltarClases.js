@@ -2,24 +2,22 @@ import React, { Component } from "react";
 import ListaCore from "../../components/ListaCore";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import UrlService from "../../services/UrlService";
 
 export default class HabilitarClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://localhost:8000/api/",
+      url: UrlService.apiUrl(),
       clases: this.props.clases,
     };
   }
   componentDidMount() {
     this.getDatos();
   }
-  componentDidUpdate() {
-    //this.getDatos();
-  }
+  
   async getDatos() {
     var url = this.state.url + "clases?estado=false";
     axios.get(url).then((response) => {

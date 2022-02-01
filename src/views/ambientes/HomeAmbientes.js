@@ -4,14 +4,14 @@ import TabPanel from "../../components/Tabs";
 import AmbientesLibres from "./AmbientesLibres";
 import ListaAmbientes from "./ListaAmbientes";
 import axios from "axios";
+import UrlService from "../../services/UrlService";
 
 export default class HomeAmbientes extends Component {
   constructor(args) {
     super(args);
     this.state = {
       loading: true,
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
+      url: UrlService.apiUrl(),
       libres: [],
       ocupados: [],
       showLib: true,

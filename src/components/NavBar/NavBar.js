@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
-import { Nav, NavbarBrand, NavDropdown } from "react-bootstrap";
+import { Nav,  NavDropdown } from "react-bootstrap";
 import mainlogo from "../../images/logo-UMSA.png";
 import AuthService from "../../services/AuthService";
 import auth from "../common/router/protected/auth";
@@ -11,12 +11,12 @@ import NavDocente from "./NavDocente.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSignOutAlt, faSignInAlt, faTh ,faHouseUser, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
+import UrlService from "../../services/UrlService";
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "https://sishorarios.azurewebsites.net/public/api/",
-      // url: "http://127.0.0.1:8000/api/",
       logged: false,
       key: "home",
       titulo: "Sistema de Horarios",
@@ -30,7 +30,7 @@ class NavBar extends Component {
 
   componentDidMount() {
     var tipo = this.props.tipo;
-    if (tipo != "estudiante") {
+    if (tipo !== "estudiante") {
       this.setState({ tipo: tipo, logged: true });
     }
     if (this.props.usuario) {
@@ -44,7 +44,7 @@ class NavBar extends Component {
 
   async getUser(id) {
 
-    const url = this.state.url + "users/" + id;
+    const url = UrlService.apiUrl() + "users/" + id;
     try {
       this.setState({ loading: true });
       axios.get(url).then((response) => {
@@ -106,7 +106,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="xl"
+          expand="s"
           // style={{ backgroundColor: this.state.background }}
           style={{ backgroundColor: "white", maxHeight: 'auto' }}
           // variant="dark"
@@ -161,7 +161,7 @@ class NavBar extends Component {
 
                       state: {
                         fuente:
-                          this.state.url+"clases/responsable/" +
+                          UrlService.apiUrl()+"clases/responsable/" +
                           usuario.responsable.id +
                           "?periodo=4",
                         titulo:
