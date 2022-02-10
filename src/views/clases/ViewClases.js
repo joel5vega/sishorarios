@@ -9,14 +9,14 @@ import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import { Typography } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import DetalleClase from "./DetalleClase";
+import UrlService from "../../services/UrlService";
 
 class ViewClases extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      // fuente: "https://sishorarios.azurewebsites.net/public/api/clases",
-      fuente: "http://localhost:8000/api/clases",
+      fuente:UrlService.apiUrl(),
       width: window.innerWidth,
       view: "timeGridWeek",
       externo: false,

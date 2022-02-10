@@ -106,7 +106,7 @@ class NavBar extends Component {
       <div>
         <Navbar
           collapseOnSelect
-          expand="s"
+          expand="xl"
           // style={{ backgroundColor: this.state.background }}
           style={{ backgroundColor: "white", maxHeight: 'auto' }}
           // variant="dark"

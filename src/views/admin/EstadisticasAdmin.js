@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import EstadisticasAmbiente from "./EstadisticasAmbiente";
 import Calendario from "../../components/Calendario";
 import EstadisticasResponsable from "./EstadisticasResponsables";
+import UrlService from "../../services/UrlService";
 export default class EstadisticasAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      fuenteNow: "http://localhost:8000/api/clases/",
-      // fuenteNow: "https://sishorarios.azurewebsites.net/public/api/clases/",
+      fuenteNow: UrlService.apiUrl()+"/clases/",
       responsable: {},
       ambiente: {}
     };
@@ -34,7 +34,6 @@ export default class EstadisticasAdmin extends Component {
           <EstadisticasAmbiente datos={this.state.ambiente} />
         </div>
         {docente_equivalente}
-
       </div>
     );
   }
