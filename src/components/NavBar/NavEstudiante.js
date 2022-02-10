@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faUniversity, faGraduationCap, faBook, faSignal, faChartBar } from '@fortawesome/free-solid-svg-icons'
-import { Font } from "@react-pdf/renderer";
+import {  faUniversity, faGraduationCap, faBook } from '@fortawesome/free-solid-svg-icons'
 import UrlService from "../../services/UrlService";
 class Estudiante extends Component {
   constructor(props) {

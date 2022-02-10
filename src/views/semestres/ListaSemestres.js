@@ -1,4 +1,3 @@
-import { blue } from "@material-ui/core/colors";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import TarjetaMateria from "../../components/TarjetaMateria";

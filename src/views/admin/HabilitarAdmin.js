@@ -16,8 +16,8 @@ export default class HabilitarAdmin extends Component {
   }
 
   render() {
-    const { usuarios } = this.props;
-    const keys = ["name", "email", "tipo", "estado"];
+    // const { usuarios } = this.props;
+    // const keys = ["name", "email", "tipo", "estado"];
     return (
       <div>
 

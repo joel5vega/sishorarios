@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import MateriasMencion from "./MateriasMencion";
 import TabPanel from "../../components/Tabs";
-import MateriasSemestre from "./MateriasSemestre";
 export default class HomeMaterias extends Component {
   constructor(props) {
     super(props);

@@ -139,10 +139,11 @@ class FormCrear extends Component {
   //cHOQUES
   async fetchChoqueSemestre(semestre, mencion) {
     const url = this.state.url;
+    var urlSemestre
     try {
       this.setState({ loading: true });
       if (mencion !== "") {
-        var urlSemestre =
+        urlSemestre =
           url +
           "clases/semestre/" +
           semestre +
@@ -151,7 +152,7 @@ class FormCrear extends Component {
           "&periodo=" +
           this.state.selectedPeriodo;
       } else {
-        var urlSemestre =
+        urlSemestre =
           url +
           "clases/semestre/" +
           semestre +
@@ -267,7 +268,6 @@ class FormCrear extends Component {
     var periodo = event.target.value;
     // console.log()
     this.setState({
-      eventos: [],
       evento: [],
       selectedPeriodo: periodo,
       selectedSemestre: "default",
@@ -407,7 +407,7 @@ class FormCrear extends Component {
   handleStartChange = (event) => {
     var start = event.target.value;
     let nuevo;
-    if (this.state.selectedTipo == "laboratorio") {
+    if (this.state.selectedTipo === "laboratorio") {
       nuevo = this.addTime(start, 180);
       console.log("tiempo de labo", nuevo);
     } else {
@@ -470,11 +470,11 @@ class FormCrear extends Component {
     var evento = [
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
     ];
-
+    var porcentaje
     if (this.state.selectedAmbiente !== "default") {
-      var porcentaje = 100;
+      porcentaje = 100;
     } else {
-      var porcentaje = 10;
+      porcentaje = 10;
     }
 
     this.setState({
@@ -514,7 +514,7 @@ class FormCrear extends Component {
     this.props.history.push("");
   }
   handleSubmit(event) {
-    const form = event.currentTarget
+    // const form = event.currentTarget
 
     event.preventDefault();
     var evento = {
@@ -630,7 +630,6 @@ class FormCrear extends Component {
       semestre,
       mencion,
       responsable_id,
-      tipo,
       ambiente_id,
       selectedNivel,
       tipo,
@@ -645,7 +644,7 @@ class FormCrear extends Component {
       day,
       porcentaje,
     } = this.state.selected;
-    var { materias, ambientes, responsables } = this.state
+    // var { materias, ambientes, responsables } = this.state
 
     return (
       <div className="tarjetas">

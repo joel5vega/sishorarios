@@ -28,7 +28,7 @@ export default class CrearPensum extends Component {
   };
   render() {
     var { nombre, descripcion, } = this.state.selected;
-    var { startDate } = this.props
+    // var { startDate } = this.props
     return (
       <div className="tarjetas">
         <div className="tarjeta-big">

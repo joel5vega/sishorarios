@@ -123,7 +123,7 @@ export default class EditarUser extends Component {
               />
             </div>
           </div>
-          {modo == "crear" &&
+          {modo === "crear" &&
             <div className="tarjeta-big">
               <div className="tarjeta">
                 <InputControlado

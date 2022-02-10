@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Calendario from "../../components/Calendario";
 import UrlService from "../../services/UrlService";
 import BuscarClase from "./BuscarClase";
 export default class HomeClases extends Component {

@@ -81,7 +81,7 @@ export default class CrearMateria extends Component {
     render() {
         var { sigla, nombre, tipo, semestre, pensum_id, menciones } = this.state.selected
         //  var menciones = this.state.menciones
-        var { mencionesSeleccionadas } = this.state
+        // var { mencionesSeleccionadas } = this.state
         // var {menciones}=this.props.datos.menciones
         var listaMenciones = this.props.menciones
         var pensums = this.props.pensums

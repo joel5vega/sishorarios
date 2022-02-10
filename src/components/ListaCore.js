@@ -17,11 +17,6 @@ import Register from "../views/auth/Register.js";
 import DetalleClase from "../views/clases/DetalleClase";
 import DetalleUser from "../views/auth/DetalleUser";
 
-import Fab from "@material-ui/core/Fab";
-import { Typography } from "@material-ui/core";
-import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
-import EditarClase from "../views/clases/EditarClase";
-import EditarUser from "../views/auth/EditarUser";
 import UrlService from "../services/UrlService";
 
 class ListaCore extends Component {
@@ -92,8 +87,8 @@ class ListaCore extends Component {
   ////////////////////////
   showHabil = (e) => {
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
+    // const value = target.value;
+    // const name = target.name;
     const id = target.id;
     var tipo = this.props.tipo;
     console.log(tipo);
@@ -111,17 +106,18 @@ class ListaCore extends Component {
     });
   };
   buscar(id) {
-    var dato = this.props.datos.filter((e) => e.id == id);
+    var dato = this.props.datos.filter((e) => e.id === id);
     return dato;
   }
   habilitar = (event) => {
     event.preventDefault();
     var id = this.state.idClase;
     console.log(id);
+    var urlPost
     if (this.props.tipo === "users") {
-      var urlPost = this.state.url + "users/habilitar/" + id;
+      urlPost = this.state.url + "users/habilitar/" + id;
     } else {
-      var urlPost = this.state.url + "clases/habilitar/" + id;
+      urlPost = this.state.url + "clases/habilitar/" + id;
     }
     axios
       .post(urlPost)
@@ -159,7 +155,7 @@ class ListaCore extends Component {
       guardar: false,
       selected: e,
     });
-    if (this.props.tipo == "materia") {
+    if (this.props.tipo === "materia") {
       var mencionesSeleccionadas = this.checkMenciones(e.menciones)
       this.setState({
         selected: { ...e, menciones: mencionesSeleccionadas }
@@ -187,49 +183,51 @@ class ListaCore extends Component {
   guardar = () => {
     let tipo = this.props.tipo;
     console.log("guardar " + tipo);
-
+    var url
     if (this.state.editar) {
-      var url = this.state.urlpub
+      url = this.state.urlpub
       console.log("editar " + tipo + " en " + url);
       this.put(url, this.state.selected);
     } else {
-      var url = this.url(tipo); console.log("guardar " + tipo + " en " + url);
+      url = this.url(tipo); console.log("guardar " + tipo + " en " + url);
       this.post(url, this.state.selected);
     }
     console.log(this.state.selected);
   };
   url = (tipo) => {
+    var url
     switch (tipo) {
       case "responsable":
         {
-          var url = this.state.url + "responsables/";
+          url = this.state.url + "responsables/";
           break;
         }
       case "materia":
         {
-          var url = this.state.url + "materias/";
+          url = this.state.url + "materias/";
           break;
         }
       case "clases":
         {
-          var url = this.state.url + "clases/"
+          url = this.state.url + "clases/"
           break;
         }
       case "periodo":
         {
-          var url = this.state.url + "periodos/"
+          url = this.state.url + "periodos/"
           break;
         }
       case "ambiente":
         {
-          var url = this.state.url + "ambientes/"
+          url = this.state.url + "ambientes/"
           break;
         }
       case "users":
         {
-          var url = this.state.url + "users/"
+          url = this.state.url + "users/"
           break;
         }
+      default:
     }
     return url;
   };
@@ -274,24 +272,25 @@ class ListaCore extends Component {
   eliminar(e) {
     console.log("eliminar: " + e);
     console.log(this.props.tipo);
+    var url
     switch (this.props.tipo) {
       case "responsable": {
-        var url = this.state.url + "api/responsables/" + e;
+        url = this.state.url + "api/responsables/" + e;
         break;
       }
       case "clases": {
-        var url = this.state.url + "api/clases/" + e;
+        url = this.state.url + "api/clases/" + e;
         break;
       }
       case "materia": {
-        var url = this.state.url + "api/materias/" + e;
+        url = this.state.url + "api/materias/" + e;
         break;
       }
       case "users": {
-        var url = this.state.url + "api/users/" + e;
+        url = this.state.url + "api/users/" + e;
         break;
       }
-
+      default: url=this.state.url + "api/users/" + e;
     }
 
     console.log(url);

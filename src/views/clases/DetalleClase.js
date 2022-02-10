@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookReader, faClock, faTimes, faUniversity, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { faBookReader, faClock,  faUniversity, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
 import axios from "axios";
 import UrlService from "../../services/UrlService";
@@ -77,12 +77,12 @@ class DetalleClase extends Component {
     ];
     var daysOfWeek = dias[this.props.clase.daysOfWeek];
     var {
-      color,
+      // color,
       materia,
       paralelo,
       semestre,
       tipo,
-      nivel,
+      // nivel,
       tituloResponsable,
       responsable,
       ambiente,

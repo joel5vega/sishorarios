@@ -49,7 +49,7 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password, isChecked } = this.state;
+    const { username, password } = this.state;
 
     return (
       <React.Fragment>

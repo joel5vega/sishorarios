@@ -407,7 +407,7 @@ class App extends Component {
               </div>
 
             )}
-            {this.state.tipo == "docente" &&
+            {this.state.tipo === "docente" &&
               <div name="rutas_doc">
                 <Route
                   exact

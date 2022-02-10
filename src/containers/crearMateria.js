@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UrlService from "../services/UrlService";
 
-export default class CrearMateria extends Component {
+export default class crearMateria extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,13 +53,7 @@ export default class CrearMateria extends Component {
       <div style={styles}>
         <div className="form-row">
           <div className="form group col-auto">
-            {/* <SelectControlado
-              label="Pensum"
-              value={pensum}
-              name="puesto"
-              handleChange={this.handleChange}
-              datos={pensums}
-            /> */}
+           
 
             <label>Pensum</label>
             <select

@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faUniversity, faUserGraduate, faBook, faSignal, faChartBar } from '@fortawesome/free-solid-svg-icons'
-import { Font } from "@react-pdf/renderer";
+import { faCalendar, faUniversity, faUserGraduate, faBook, faChartBar } from '@fortawesome/free-solid-svg-icons'
 class NavAdministrativo extends Component {
   render() {
-    const background = {
-      color: "#40826d",
-    };
+    // const background = {
+    //   color: "#40826d",
+    // };
 
-    const { tipo, ambientes, usuario, semestres } = this.props;
+    // const { tipo, ambientes, usuario, semestres } = this.props;
     return (
       <div>
         <Nav>

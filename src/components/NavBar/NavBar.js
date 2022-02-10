@@ -59,14 +59,20 @@ class NavBar extends Component {
   }
   background() {
     switch (this.props.tipo) {
-      case "estudiante": {
+      case  "estudiante": {
         this.setState({ background: "#40826d" });
+        break;
       }
       case "docente": {
         this.setState({ background: "cyan" });
+        break;
       }
       case "administrativo": {
         this.setState({ background: "white" });
+        break;
+      }
+      default : {
+      this.setState({ background: "#40826d" });
       }
     }
   }
@@ -144,14 +150,14 @@ class NavBar extends Component {
 
 
 
-              {tipo == "administrativo" && (
+              {tipo === "administrativo" && (
                 <div className="icon">
 
                   {/* <NavLink to="/admin/"><FontAwesomeIcon icon={faUser} />Admin</NavLink> */}
                 </div>
               )}
 
-              {tipo == "docente" && (
+              {tipo === "docente" && (
                 <div className="icon justify-content-end ">
                   <Nav.Link
                     as={NavLink}

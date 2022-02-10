@@ -1,7 +1,6 @@
 // import AuthService from "./../../../../services/AuthService";
 import CookieService from "../../../../services/CookieService";
 import { withRouter } from "react-router-dom";
-import Cookies from "universal-cookie";
 class Auth {
   constructor() {
     console.group("Servicio Auth");

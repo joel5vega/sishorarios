@@ -47,8 +47,8 @@ export default class EstadisticasAmbiente extends Component {
             padding: 1,
             display: "auto", autoSkip: true,
             callback: function (value, index, values) {
-              var id = values
-              if (labels[value] == "length") {
+              // var id = values
+              if (labels[value] === "length") {
                 // this.display = true
                 return "";
               }

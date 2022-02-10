@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Nav, NavDropdown } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faUniversity, faUserGraduate, faBook, faSignal, faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBook,  faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 
 class NavDocente extends Component {
   constructor(props) {
@@ -12,12 +12,7 @@ class NavDocente extends Component {
   }
 
   render() {
-    const NavActive = {
-      color: "blue",
-
-    };
-
-    const { usuario } = this.props;
+            // const { usuario } = this.props;
     return (
       <div>
         <Nav>

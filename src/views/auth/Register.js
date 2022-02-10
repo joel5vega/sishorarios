@@ -93,7 +93,7 @@ export default class Register extends Component {
       name,
       email,
       tipo,
-      responsable,
+      // responsable,
       password,
       c_password,
 
@@ -177,7 +177,7 @@ export default class Register extends Component {
         
         </div>.
           <div  className="tarjetas-titulo">
-            {modo == "crear" &&
+            {modo === "crear" &&
               <button type="submit" className="btn btn-primary btn-block"
                 onClick={(event) => this.handleFormSubmit(event)}>
                 Registrar

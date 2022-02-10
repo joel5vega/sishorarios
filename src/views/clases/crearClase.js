@@ -6,7 +6,7 @@ import SelectControlado from "../../components/SelectControlado";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 import axios from "axios";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 import UrlService from "../../services/UrlService";
 
 export default class CrearClase extends Component {
@@ -128,8 +128,9 @@ export default class CrearClase extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
+      var urlSemestre
       if (mencion !== "") {
-        var urlSemestre =
+        urlSemestre =
           url +
           "clases/semestre/" +
           semestre +
@@ -138,7 +139,7 @@ export default class CrearClase extends Component {
           "&periodo=" +
           this.state.selectedPeriodo;
       } else {
-        var urlSemestre =
+        urlSemestre =
           url +
           "clases/semestre/" +
           semestre +
@@ -238,10 +239,10 @@ export default class CrearClase extends Component {
     }
   }
   //fetch data
-  async componentDidMount() {
-    //this.fetchData();
-    //this.verificar();
-  }
+  // async componentDidMount() {
+  //   //this.fetchData();
+  //   //this.verificar();
+  // }
   getEventos = (eventos, tipo) => {
     console.log(eventos);
     // let anterior = this.state.eventos;
@@ -267,7 +268,7 @@ export default class CrearClase extends Component {
     var periodo = event.target.value;
     // console.log()
     this.setState({
-      eventos: [],
+      // eventos: [],
       evento: [],
       selectedPeriodo: periodo,
       selectedSemestre: "default",
@@ -406,7 +407,7 @@ export default class CrearClase extends Component {
   handleStartChange = (event) => {
     var start = event.target.value;
     let nuevo;
-    if (this.state.selectedTipo == "laboratorio") {
+    if (this.state.selectedTipo === "laboratorio") {
       nuevo = this.addTime(start, 180);
       console.log("tiempo de labo");
     } else {
@@ -467,10 +468,11 @@ export default class CrearClase extends Component {
       { title: "evento", daysOfWeek: day, startTime: startTime, endTime: fin },
     ];
     this.setState({ evento: evento });
+    var porcentaje
     if (this.state.selectedAmbiente !== "default") {
-      var porcentaje = 100;
+      porcentaje = 100;
     } else {
-      var porcentaje = 10;
+      porcentaje = 10;
     }
 
     this.setState({
@@ -629,7 +631,6 @@ export default class CrearClase extends Component {
       selectedSemestre,
       selectedMencion,
       selectedResponsable,
-      selectedTipo,
       selectedAmbiente,
       selectedMateria,
       selectedNivel,
@@ -642,7 +643,7 @@ export default class CrearClase extends Component {
       endTime,
       day,
       porcentaje,
-      horarios
+      // horarios
     } = this.state;
 
     return (
@@ -803,7 +804,7 @@ export default class CrearClase extends Component {
                 )}
               </div>
             )}
-            {this.state.porcentaje == 100 && (
+            {this.state.porcentaje === 100 && (
               <div className="tarjeta-big">
                 <button
                   className="btn btn-primary mb-2"

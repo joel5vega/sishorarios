@@ -46,50 +46,34 @@ class EditarClase extends Component {
 
   ///////////////////
   render() {
-    var dias = [
-      "Domingo",
-      "Lunes",
-      "Martes",
-      "Miercoles",
-      "Jueves",
-      "Viernes",
-      "Sabado",
-    ];
-    var daysOfWeek = dias[this.props.clase.daysOfWeek];
-    var {
-      id,
-      color,
-      materia,
-      paralelo,
-      semestre,
-      tipo,
-      nivel,
-      tituloResponsable,
-      responsable,
-      ambiente,
-      startTime,
-      endTime,
-      title,
+    // var dias = [
+    //   "Domingo",
+    //   "Lunes",
+    //   "Martes",
+    //   "Miercoles",
+    //   "Jueves",
+    //   "Viernes",
+    //   "Sabado",
+    // ];
+    // var daysOfWeek = dias[this.props.clase.daysOfWeek];
+    
 
-      // periodo,
-    } = this.props.clase;
-
-    var {
-      materia_id,
-      responsable_id,
-      ambiente_id,
-      periodo_id,
-      dia,
-    } = this.state.clases;
+    // var {
+    //   materia_id,
+    //   responsable_id,
+    //   ambiente_id,
+    //   periodo_id,
+    //   dia,
+    // } = this.state.clases;
     return (
       <div>
         <div>
-          <div className="tarjetas" style={{ borderColor: color }}>
+          <div className="tarjetas" style={{ borderColor: this.props.color }}>
             {/* <div className="tarjetas-titulo">Editar clase {id}</div> */}
             
             
             <FormCrear
-              id={id}
+              id={this.props.clase.id}
               clase={this.props.clase}
               evento={this.props.clase}
               index={this.props.index}
