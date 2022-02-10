@@ -32,7 +32,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "jquery": "^3.6.0",
     "jspdf": "^2.3.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-chartjs-2": "^3.0.4",
