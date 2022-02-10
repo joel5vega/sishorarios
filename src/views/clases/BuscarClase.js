@@ -449,7 +449,7 @@ class BuscarClase extends Component {
           </div>
         </div>
 
-        <div classname="contenido" id="calendario">
+        <div className="contenido" id="calendario">
           <div>
             <div className="col-auto col-md-offset-5">
               <div id="periodo">
