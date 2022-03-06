@@ -1,6 +1,6 @@
 let apiDomain = ''
 if (process.env.NODE_ENV === 'production') {
-  apiDomain = "https://bkhorarios.azurewebsites.net/public/";
+  apiDomain = "https://bkhorarios.azurewebsites.net/";
 } else {
   apiDomain = 'http://localhost:8000/';
   // apiDomain = "https://sishorarios.azurewebsites.net/public/";
