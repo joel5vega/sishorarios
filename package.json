@@ -32,7 +32,6 @@
     "html2canvas": "^1.0.0-rc.5",
     "jquery": "^3.6.0",
     "jspdf": "^2.3.1",
-    "node-sass": "^7.0.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-chartjs-2": "^3.0.4",
@@ -42,6 +41,7 @@
     "react-scripts": "3.4.0",
     "react-swipeable-views": "^0.13.9",
     "rechart": "0.0.1",
+    "sass": "^1.49.9",
     "typescript": "^3.9.0",
     "universal-cookie": "^4.0.4"
   },

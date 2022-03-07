@@ -6,3 +6,6 @@ Published in [Sishorarios](https://joelvega.me/sishorarios).
 
 ## Para iniciar el proyecto
 ### `npm start`
+
+## Para desplegar el proyecto
+`npm run deploy`
