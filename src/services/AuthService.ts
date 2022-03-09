@@ -22,8 +22,8 @@ class AuthService {
   }
   handleLoginSucess(response: any, remember: boolean) {
     console.group("login")
-    console.log(response, remember);
-
+    console.log(response);
+    console.log("user is ", response.user);
     if (response.user) {
       var userId =response.user.id
     //   const options = { path: "/" };
@@ -41,7 +41,9 @@ class AuthService {
     CookieService.set("access_token", response.access_token, options);
     CookieService.set("tipo", response.tipo, options);
     CookieService.set("user", userId, options);
+    console.groupEnd();
     return true;
+
   }
   handleLogout() {
     console.log("authService_logout");

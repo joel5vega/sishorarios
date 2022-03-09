@@ -21,7 +21,7 @@ export default class MateriasSemestre extends Component {
           {datos.map((item) => {
             return (
               <div key={item.id}>
-                {item.semestre === semestre && (
+                {item.semestre == semestre && (
                   <div className="pila">
                     {item.semestre < 7 ? (
                       <div className="itemInfo">

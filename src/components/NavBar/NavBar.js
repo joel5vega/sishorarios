@@ -22,24 +22,38 @@ class NavBar extends Component {
       titulo: "Sistema de Horarios",
       imagen: mainlogo,
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
-      usuario: { responsable: { id: 0 } }
+      usuario: this.props.usuario||{ responsable: { id: 0 } },
+      fuente: "",
+      titulo: "",
+      responsable:"",
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
 
 
   componentDidMount() {
-    var tipo = this.props.tipo;
+    var tipo = this.props.tipo||"estudiante";
+    var usuario = this.props.usuario||this.state.usuario;
+    var fuente = UrlService.apiUrl()+"clases/responsable/" +usuario.responsable.id +"?periodo=4";
+    
+    var responsable= usuario.responsable.titulo +    " " +    usuario.responsable.ap_paterno;
     if (tipo !== "estudiante") {
       this.setState({ tipo: tipo, logged: true });
     }
     if (this.props.usuario) {
-      this.setState({ usuario: this.props.usuario })
+      // var titulo= "Horarios de " +    usuario.responsable.titulo +    " " +    usuario.responsable.ap_paterno;
+      
+      this.setState({ usuario: this.props.usuario ,fuente:fuente, responsable:responsable});
 
     }
     else {
       this.getUser("21")
     }
+    
+    console.group("NavBar");
+    console.log("tipo:",tipo);
+    console.log("usuario:",this.state.usuario);
+    console.groupEnd();
   }
 
   async getUser(id) {
@@ -55,6 +69,10 @@ class NavBar extends Component {
       console.log(e);
       this.setState({ ...this.state, loading: false });
     }
+    console.group("getUser");
+    console.log("id:", id);
+    console.log("usuario:", this.state.usuario);
+    console.groupEnd();
     // console.log("DDD")
   }
   background() {
@@ -126,7 +144,7 @@ class NavBar extends Component {
           <div className="b">
             <Navbar.Text
               style={{ "color": "#40826d", "fontWeight": "bolder", "fontSize": "20px", "whiteSpace": "nowrap" }}
-            >{this.props.titulo}</Navbar.Text>
+            >{this.state.titulo}</Navbar.Text>
           </div>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" ><FontAwesomeIcon icon={faTh} /></Navbar.Toggle>
@@ -147,16 +165,6 @@ class NavBar extends Component {
               onSelect={this.handleSelect}
             >
 
-
-
-
-              {tipo === "administrativo" && (
-                <div className="icon">
-
-                  {/* <NavLink to="/admin/"><FontAwesomeIcon icon={faUser} />Admin</NavLink> */}
-                </div>
-              )}
-
               {tipo === "docente" && (
                 <div className="icon justify-content-end ">
                   <Nav.Link
@@ -164,23 +172,17 @@ class NavBar extends Component {
                     eventKey="mishorarios"
                     to={{
                       pathname: "/clase/view",
-
                       state: {
                         fuente:
-                          UrlService.apiUrl()+"clases/responsable/" +
-                          usuario.responsable.id +
-                          "?periodo=4",
+                        this.state.fuente,
                         titulo:
-                          "Horarios de " +
-                          usuario.responsable.titulo +
-                          " " +
-                          usuario.responsable.ap_paterno,
+                          this.state.titulo,
                       },
 
                     }}
                   >
                     <FontAwesomeIcon icon={faUser} />
-                    Horarios: {usuario.responsable.ap_paterno}
+                    Mis Horarios: {this.state.responsable}
                   </Nav.Link>
                 </div>
               )}
