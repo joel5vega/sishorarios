@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "485bac66f07b563b4f04bbea6d04a781",
+    "revision": "0196b910e7b6b34cba0385f7c0677702",
     "url": "/sishorarios/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sishorarios/static/css/2.2713b059.chunk.css"
   },
   {
-    "revision": "aa9c2bfa55bb6b94248b",
+    "revision": "f2701e69267afc5f59e4",
     "url": "/sishorarios/static/css/main.fbaac134.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sishorarios/static/js/4.5921488b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "aa9c2bfa55bb6b94248b",
-    "url": "/sishorarios/static/js/main.266c2531.chunk.js"
+    "revision": "f2701e69267afc5f59e4",
+    "url": "/sishorarios/static/js/main.8a60d5eb.chunk.js"
   },
   {
     "revision": "3de9c998c8811b8cfc82",

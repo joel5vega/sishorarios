@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sishorarios/static/css/main.fbaac134.chunk.css",
-    "main.js": "/sishorarios/static/js/main.266c2531.chunk.js",
-    "main.js.map": "/sishorarios/static/js/main.266c2531.chunk.js.map",
+    "main.js": "/sishorarios/static/js/main.8a60d5eb.chunk.js",
+    "main.js.map": "/sishorarios/static/js/main.8a60d5eb.chunk.js.map",
     "runtime-main.js": "/sishorarios/static/js/runtime-main.385c9cd8.js",
     "runtime-main.js.map": "/sishorarios/static/js/runtime-main.385c9cd8.js.map",
     "static/css/2.2713b059.chunk.css": "/sishorarios/static/css/2.2713b059.chunk.css",
@@ -13,7 +13,7 @@
     "static/js/4.5921488b.chunk.js": "/sishorarios/static/js/4.5921488b.chunk.js",
     "static/js/4.5921488b.chunk.js.map": "/sishorarios/static/js/4.5921488b.chunk.js.map",
     "index.html": "/sishorarios/index.html",
-    "precache-manifest.1349c83086a68683ca0e18edbfac7976.js": "/sishorarios/precache-manifest.1349c83086a68683ca0e18edbfac7976.js",
+    "precache-manifest.b59da4ff8e4dc0406c7b75954d89d199.js": "/sishorarios/precache-manifest.b59da4ff8e4dc0406c7b75954d89d199.js",
     "service-worker.js": "/sishorarios/service-worker.js",
     "static/css/2.2713b059.chunk.css.map": "/sishorarios/static/css/2.2713b059.chunk.css.map",
     "static/css/main.fbaac134.chunk.css.map": "/sishorarios/static/css/main.fbaac134.chunk.css.map",
@@ -27,6 +27,6 @@
     "static/css/2.2713b059.chunk.css",
     "static/js/2.bd94ba4b.chunk.js",
     "static/css/main.fbaac134.chunk.css",
-    "static/js/main.266c2531.chunk.js"
+    "static/js/main.8a60d5eb.chunk.js"
   ]
 }
