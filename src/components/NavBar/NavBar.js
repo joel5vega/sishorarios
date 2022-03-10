@@ -193,7 +193,7 @@ class NavBar extends Component {
               {!tipo ? (
                 <div> 
             <NavDropdown  title={<div><FontAwesomeIcon icon={faUser}/>  Usuario</div>} id="collasible-nav-dropdown">
-                 <NavDropdown.Item
+                 {/* <NavDropdown.Item
                     eventKey="register"
                     as={NavLink}
                     to="/register/"
@@ -201,7 +201,7 @@ class NavBar extends Component {
                   >
                     <FontAwesomeIcon icon={faUserPlus} />
                     Registrar
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
                 
                 
                 

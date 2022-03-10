@@ -437,7 +437,7 @@ class App extends Component {
         </BrowserRouter>
 
         <div className="footer">
-          (c) Sistema de horarios de Ingenieria Electrónica - Desarrollado por <a href="https:joelvega.me">Joel Vega</a>
+          (c) Sistema de horarios de Ingenieria Electrónica - Desarrollado por <a href="https://joelvega.me">Joel Vega</a>
         </div>
       </div >
     );
