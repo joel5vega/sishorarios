@@ -44,7 +44,9 @@ export default class HomeAdmin extends Component {
             clases={this.props.index.clases}
 
           />}
-          item01={<EstadisticasAdmin />}
+          item01={<EstadisticasAdmin 
+            clases={this.props.index.clases}
+            />}
         />
       </div>
     );

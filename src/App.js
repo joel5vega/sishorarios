@@ -92,7 +92,6 @@ class App extends Component {
     });
   }
 
-
   async getUser(user) {
     console.group("User")
     var id
@@ -163,7 +162,7 @@ class App extends Component {
           />
 
           <div className="body">
-
+            <Route path="/sishorarios" component={App} />
             <div id="public-routes">
               <Route
                 exact

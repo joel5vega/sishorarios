@@ -11,27 +11,22 @@ class AuthService {
   async doUserLogin(credentials: Credentials) {
     try {
       const response = await axios.post(UrlService.loginUrl(), credentials);
-      console.log("Datos",response.data);
-      alert("se logeo");
-      console.log(response.data);
+      // console.log("Datos",response.data);
+      // alert("se logeo");
+      // console.log("response",response.data);
       return response.data;
     } catch (error) {
       console.error("Error", error.response);
       return false;
     }
   }
-  handleLoginSucess(response: any, remember: boolean) {
+  handleLoginSucess(response: any) {
     console.group("login")
     console.log(response);
     console.log("user is ", response.user);
     if (response.user) {
       var userId =response.user.id
-    //   const options = { path: "/" };
-    //   CookieService.set("access_token", response.access_token, options);
-    //   CookieService.set("tipo", response.tipo, options);
-    //   CookieService.set("user", response.user.id, options);
-    //   return true;
-    }
+  }
     else{
        userId = 1
     }
