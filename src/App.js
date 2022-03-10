@@ -143,7 +143,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename="/sishorarios">
 
           <NavBar
             usuario={this.state.usuario}
@@ -162,7 +162,7 @@ class App extends Component {
           />
 
           <div className="body">
-            <Route path="/sishorarios" component={App} />
+            
             <div id="public-routes">
               <Route
                 exact
@@ -437,7 +437,7 @@ class App extends Component {
         </BrowserRouter>
 
         <div className="footer">
-          (c) Sistema de horarios de Ingenieria Electrónica
+          (c) Sistema de horarios de Ingenieria Electrónica - Desarrollado por <a href="https:joelvega.me">Joel Vega</a>
         </div>
       </div >
     );

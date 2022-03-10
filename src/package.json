@@ -1,8 +1,7 @@
 {
   "homepage":"http://localhost:3000/sishorarios",
-  "private": true,
   "license": "ISC",
-  "author": "Josh Ruff",
+  "author": "Joel Vega",
   "scripts": {
     "clean": "rm -rf dist",
     "watch": "webpack --watch",
