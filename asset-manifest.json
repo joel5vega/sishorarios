@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/sishorarios/static/css/main.fbaac134.chunk.css",
-    "main.js": "/sishorarios/static/js/main.f196c012.chunk.js",
-    "main.js.map": "/sishorarios/static/js/main.f196c012.chunk.js.map",
+    "main.js": "/sishorarios/static/js/main.ce216beb.chunk.js",
+    "main.js.map": "/sishorarios/static/js/main.ce216beb.chunk.js.map",
     "runtime-main.js": "/sishorarios/static/js/runtime-main.385c9cd8.js",
     "runtime-main.js.map": "/sishorarios/static/js/runtime-main.385c9cd8.js.map",
     "static/css/2.2713b059.chunk.css": "/sishorarios/static/css/2.2713b059.chunk.css",
-    "static/js/2.bd94ba4b.chunk.js": "/sishorarios/static/js/2.bd94ba4b.chunk.js",
-    "static/js/2.bd94ba4b.chunk.js.map": "/sishorarios/static/js/2.bd94ba4b.chunk.js.map",
+    "static/js/2.3e7ad4d2.chunk.js": "/sishorarios/static/js/2.3e7ad4d2.chunk.js",
+    "static/js/2.3e7ad4d2.chunk.js.map": "/sishorarios/static/js/2.3e7ad4d2.chunk.js.map",
     "static/js/3.2556a72c.chunk.js": "/sishorarios/static/js/3.2556a72c.chunk.js",
     "static/js/3.2556a72c.chunk.js.map": "/sishorarios/static/js/3.2556a72c.chunk.js.map",
     "static/js/4.5921488b.chunk.js": "/sishorarios/static/js/4.5921488b.chunk.js",
     "static/js/4.5921488b.chunk.js.map": "/sishorarios/static/js/4.5921488b.chunk.js.map",
     "index.html": "/sishorarios/index.html",
-    "precache-manifest.02ea2892ab0627270ee173b0e7949d19.js": "/sishorarios/precache-manifest.02ea2892ab0627270ee173b0e7949d19.js",
+    "precache-manifest.959e94577070171429e76bd1d0e03eab.js": "/sishorarios/precache-manifest.959e94577070171429e76bd1d0e03eab.js",
     "service-worker.js": "/sishorarios/service-worker.js",
     "static/css/2.2713b059.chunk.css.map": "/sishorarios/static/css/2.2713b059.chunk.css.map",
     "static/css/main.fbaac134.chunk.css.map": "/sishorarios/static/css/main.fbaac134.chunk.css.map",
-    "static/js/2.bd94ba4b.chunk.js.LICENSE.txt": "/sishorarios/static/js/2.bd94ba4b.chunk.js.LICENSE.txt",
+    "static/js/2.3e7ad4d2.chunk.js.LICENSE.txt": "/sishorarios/static/js/2.3e7ad4d2.chunk.js.LICENSE.txt",
     "static/js/3.2556a72c.chunk.js.LICENSE.txt": "/sishorarios/static/js/3.2556a72c.chunk.js.LICENSE.txt",
     "static/js/4.5921488b.chunk.js.LICENSE.txt": "/sishorarios/static/js/4.5921488b.chunk.js.LICENSE.txt",
     "static/media/logo-UMSA.png": "/sishorarios/static/media/logo-UMSA.1d1d00a5.png"
@@ -25,8 +25,8 @@
   "entrypoints": [
     "static/js/runtime-main.385c9cd8.js",
     "static/css/2.2713b059.chunk.css",
-    "static/js/2.bd94ba4b.chunk.js",
+    "static/js/2.3e7ad4d2.chunk.js",
     "static/css/main.fbaac134.chunk.css",
-    "static/js/main.f196c012.chunk.js"
+    "static/js/main.ce216beb.chunk.js"
   ]
 }
