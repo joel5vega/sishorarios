@@ -9,7 +9,7 @@ import Estudiante from "./NavEstudiante.js";
 import NavAdministrativo from "./NavAdministrativo.js";
 import NavDocente from "./NavDocente.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt, faSignInAlt, faTh ,faHouseUser, faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faSignOutAlt, faSignInAlt, faTh ,faHouseUser} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import UrlService from "../../services/UrlService";
 
@@ -35,18 +35,17 @@ class NavBar extends Component {
     var tipo = this.props.tipo||"estudiante";
     var usuario = this.props.usuario||this.state.usuario;
     var fuente = UrlService.apiUrl()+"clases/responsable/" +usuario.responsable.id +"?periodo=4";
-    
     var responsable= usuario.responsable.titulo +    " " +    usuario.responsable.ap_paterno;
     if (tipo !== "estudiante") {
       this.setState({ tipo: tipo, logged: true });
     }
     if (this.props.usuario) {
       // var titulo= "Horarios de " +    usuario.responsable.titulo +    " " +    usuario.responsable.ap_paterno;
-      
       this.setState({ usuario: this.props.usuario ,fuente:fuente, responsable:responsable});
-
     }
     else {
+      // alert("No hay usuario");
+      
       this.getUser("21")
     }
     
@@ -57,7 +56,7 @@ class NavBar extends Component {
   }
 
   async getUser(id) {
-
+/*
     const url = UrlService.apiUrl() + "users/" + id;
     try {
       this.setState({ loading: true });
@@ -69,6 +68,7 @@ class NavBar extends Component {
       console.log(e);
       this.setState({ ...this.state, loading: false });
     }
+    */
     console.group("getUser");
     console.log("id:", id);
     console.log("usuario:", this.state.usuario);

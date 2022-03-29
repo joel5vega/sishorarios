@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import EstadisticasAmbiente from "./EstadisticasAmbiente";
 import Calendario from "../../components/Calendario";
-// import UrlService from "../../services/UrlService";
 export default class EstadisticasAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: "",
-      // fuenteNow: UrlService.apiUrl()+"clases/",
       responsable: {},
       ambiente: {}
     };
@@ -28,7 +26,6 @@ export default class EstadisticasAdmin extends Component {
 
           <div className="tarjeta-titulo">Actividades en curso {eventos}</div>
           <Calendario
-            // fuente={this.state.fuenteNow}
             fuente={this.props.clases}
             getDateClick={this.getDateClick}
             eventClick={this.eventClick}

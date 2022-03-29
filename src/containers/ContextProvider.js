@@ -101,19 +101,3 @@ export const responsables = [
     estado: "",
   },
 ];
-/*
-async function responsable() {
-  const data = await fetch(urlResponsables).then((value) => value.json());
-  const datos = data.responsables;
-  // console.log(datos);
-  return datos;
-}
-*/
-// export const responsables = responsable();
-/*
-export const ContextProvider = createContext(
-  //   themes.dark, // default value,
-  { width: 0, heigth: 0, responsables }
-);
-export default ContextProvider;
-*/
