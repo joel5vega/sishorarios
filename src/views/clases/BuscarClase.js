@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component ,lazy} from "react";
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
 import "../../fontawesome";
@@ -11,7 +11,7 @@ import SelectControlado from "../../components/SelectControlado";
 import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 import UrlService from "../../services/UrlService";
-
+// const jsPdf =lazy(()=>import("jspdf"));
 class BuscarClase extends Component {
   constructor(props) {
     super(props);

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component,lazy } from "react";
 import Calendario from "../../components/Calendario";
 import { withRouter } from "react-router-dom";
 import html2canvas from "html2canvas";
-import jsPdf from "jspdf";
+ import jsPdf from "jspdf";
 import "../../fontawesome";
 import Fab from "@material-ui/core/Fab";
 import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
@@ -10,6 +10,8 @@ import { Typography } from "@material-ui/core";
 import { Modal } from "react-bootstrap";
 import DetalleClase from "./DetalleClase";
 import UrlService from "../../services/UrlService";
+
+// const jsPdf =lazy(()=>import("jspdf"));
 
 class ViewClases extends Component {
   constructor(props) {

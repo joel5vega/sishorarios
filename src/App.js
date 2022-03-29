@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import {
   BrowserRouter,
   Route,
@@ -8,44 +8,57 @@ import "./App.css";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-//import auth
+import DataAmbientes from "./data/DataAmbientes";
+import DataSemestres from "./data/DataSemestres";
+
+//Componentes indispensables////////
 
 import NavBar from "./components/NavBar/NavBar";
 import Loader from "./components/Loader.js";
-import Login from "./views/auth/Login.js";
-
-import Register from "./views/auth/Register.js";
-//Componentes
 import Home from "./views/home/Home";
-import HomeResponsables from "./views/responsables/HomeResponsables";
-import ListaResponsables from "./views/responsables/ListaResponsables";
+// import HomeAdmin from "./views/admin/HomeAdmin";
 
-import HomeAmbientes from "./views/ambientes/HomeAmbientes";
-import ListaAmbientes from "./views/ambientes/ListaAmbientes";
-import CrearAmbiente from "./views/ambientes/crearAmbiente";
-//Clases
-import ViewClases from "./views/clases/ViewClases";
-import HomeClases from "./views/clases/HomeClases";
-import CrearClase from "./views/clases/crearClase";
-import DetalleClase from "./views/clases/DetalleClase";
-import HomeMaterias from "./views/materias/HomeMaterias";
-import ListaMaterias from "./views/materias/ListaMaterias";
-import CrearMateria from "./views/materias/CrearMateria";
-import HabilitarClases from "./views/admin/HabiltarClases";
-///admin
-import EstadisticasResponsable from "./views/admin/EstadisticasResponsables";
-import EstadisticasAmbiente from "./views/admin/EstadisticasAmbiente";
-import EstadisticasAdmin from "./views/admin/EstadisticasAdmin";
-import HomeAdmin from "./views/admin/HomeAdmin";
-import DatosAdmin from "./views/admin/DatosAdmin";
-import ClasesAdmin from "./views/admin/HabiltarClases";
-import CrearResponsable from "./views/responsables/CrearResponsable";
 
 // servicios
 import UrlService from "./services/UrlService";
 import DataService from "./services/DataService";
 import Auth from "./components/common/router/protected/auth";
 
+///////////////////////////////////
+/*Componentes inmediatos*/
+import Login from "./views/auth/Login.js";
+import Register from "./views/auth/Register.js";
+///////////////////////////////////////////////////////************************************************** */
+//Componentes No fundamentales////
+///// Lazy loading******************************************************************************************************
+const HomeAdmin = lazy(() => import("./views/admin/HomeAdmin"));
+const DataMaterias =lazy(() =>import("./data/DataMaterias"));
+//
+const HomeClases = lazy(() => import("./views/clases/HomeClases"));
+// import HomeClases from "./views/clases/HomeClases";
+const ViewClases = lazy(() => import("./views/clases/ViewClases"));
+// import ViewClases from "./views/clases/ViewClases";
+///admin
+const EstadisticasResponsable = lazy(() => import("./views/admin/EstadisticasResponsables"));
+const EstadisticasAmbiente = lazy(() => import("./views/admin/EstadisticasAmbiente"));
+const EstadisticasAdmin = lazy(() => import("./views/admin/EstadisticasAdmin"));
+const DatosAdmin = lazy(() => import("./views/admin/DatosAdmin"));
+const ClasesAdmin = lazy(() => import("./views/admin/HabiltarClases"));
+const CrearResponsable = lazy(() => import("./views/responsables/CrearResponsable"));
+///////Clases
+const CrearClase = lazy(() => import("./views/clases/crearClase"));
+const DetalleClase = lazy(() => import("./views/clases/DetalleClase"));
+const HomeMaterias = lazy(() => import("./views/materias/HomeMaterias"));
+const ListaMaterias = lazy(() => import("./views/materias/ListaMaterias"));
+const CrearMateria = lazy(() => import("./views/materias/CrearMateria"));
+const HabilitarClases = lazy(() => import("./views/admin/HabiltarClases"));
+/////////////////
+const HomeResponsables = lazy(() => import("./views/responsables/HomeResponsables"));
+const ListaResponsables = lazy(() => import("./views/responsables/ListaResponsables"));
+const HomeAmbientes = lazy(() => import("./views/ambientes/HomeAmbientes"));
+const ListaAmbientes = lazy(() => import("./views/ambientes/ListaAmbientes"));
+const CrearAmbiente = lazy(() => import("./views/ambientes/crearAmbiente"));
+//---------------------------------------------------------------------------------------------------------------------//
 class App extends Component {
   constructor(props) {
     super(props);
@@ -56,11 +69,17 @@ class App extends Component {
       selectedTitle: "",
       periodo: "",
       auth: false,
-      user: Auth.getUser()
+      user: Auth.getUser(),
+      semestres: DataSemestres,
+      ambientes: DataAmbientes,
+      materias: DataMaterias,
     };
   }
 
   async componentDidMount() {
+    console.group("montaje")
+    // console.log(DataSemestres)
+    // console.log(DataAmbientes)
     this.fetchIndex();
     console.log(Auth.getUser())
     this.setState({
@@ -68,8 +87,9 @@ class App extends Component {
       tipo: Auth.getTipo(),
       user: Auth.getUser(),
       url: UrlService.apiUrl(),
-      index:DataService.indexData()
+      index: DataService.indexData()
     });
+    console.groupEnd()
   }
   async fetchIndex() {
     console.group("inicio")
@@ -95,26 +115,25 @@ class App extends Component {
   async getUser(user) {
     console.group("User")
     var id
-    if (user.id!==1) {
-      console.log("user:",user)
-       id = user
-// Conseguimos datos del usuario
-       axios
-      .get(UrlService.apiUrl() + "users/" + id)
-      .then((response) => {
-        var data = response.data.user
-        console.log("Usuario es", data)
-        this.setState({ usuario: data });
-      });
+    if (user.id !== 1) {
+      console.log("user:", user)
+      id = user
+      // Conseguimos datos del usuario
+      axios
+        .get(UrlService.apiUrl() + "users/" + id)
+        .then((response) => {
+          var data = response.data.user
+          console.log("Usuario es", data)
+          this.setState({ usuario: data });
+        });
     }
     else {
-       id = user|1
+      id = user | 1
       console.log("no hay user")
-      
+
     }
     console.groupEnd()
   }
-  
 
   async fuente() {
     var a = Auth.isAuthenticated();
@@ -137,10 +156,11 @@ class App extends Component {
     this.setState({ auth: isAuth, tipo: tipo, usuario: usuario });
   };
   render() {
-    if (this.state.loading) {
-      return <Loader />;
-    }
-
+    /* 
+     if (this.state.loading) {
+       return <Loader />;
+     }
+ */
     return (
       <div className="App">
         <BrowserRouter basename="/sishorarios">
@@ -160,15 +180,15 @@ class App extends Component {
             titulo={this.state.selectedTitle}
             getTitulo={this.getTitulo}
           />
-
           <div className="body">
-            
+            {/* <Loader /> */}
             <div id="public-routes">
               <Route
                 exact
                 path="/login"
                 render={(props) => <Login handleAuth={this.handleAuth} />}
               />
+
               <Route
                 exact
                 path="/register"
@@ -182,17 +202,19 @@ class App extends Component {
                 exact
                 path="/clase/view"
                 render={(props) => (
-                  <ViewClases
-                    {...props}
-                    index={this.state.index}
-                    periodoActual={this.state.periodoActual}
-                    periodos={this.state.periodos}
-                    ambientes={this.state.ambientes}
-                    responsables={this.state.responsables}
-                    semestres={this.state.semestres}
-                    menciones={this.state.menciones}
-                    getTitulo={this.getTitulo}
-                  />
+                  <Suspense fallback={<Loader />}>
+                    <ViewClases
+                      {...props}
+                      index={this.state.index}
+                      periodoActual={this.state.periodoActual}
+                      periodos={this.state.periodos}
+                      ambientes={this.state.ambientes}
+                      responsables={this.state.responsables}
+                      semestres={this.state.semestres}
+                      menciones={this.state.menciones}
+                      getTitulo={this.getTitulo}
+                    />
+                  </Suspense>
                 )}
               />
 
@@ -200,7 +222,9 @@ class App extends Component {
                 exact
                 path="/materia"
                 render={(props) => (
-                  <HomeMaterias {...props} datos={this.state.materias} />
+                  <Suspense fallback={<Loader />}>
+                    <HomeMaterias {...props} datos={this.state.materias} />
+                  </Suspense>
                 )}
               />
             </div>
@@ -217,223 +241,269 @@ class App extends Component {
                 )}
               />
             }
-            {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
-              <div name="rutas">
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => (
-                    <HomeAdmin {...props} index={this.state.index} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/responsable"
-                  render={(props) => (
-                    <HomeResponsables
-                      {...props}
-                      datos={this.state.responsables}
+            {!this.state.loading &&
+              <div className="load-complete">
+                {Auth.isAuthenticated() && this.state.tipo !== "docente" ? (
+                  <div name="rutas">
+                    <Route
+                      exact
+                      path="/"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HomeAdmin {...props} index={this.state.index} />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/responsable/lista"
-                  render={(props) => (
-                    <ListaResponsables
-                      {...props}
-                      fetch={this.fetchIndex}
-                      datos={this.state.responsables}
+                    <Route
+                      exact
+                      path="/responsable"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HomeResponsables
+                            {...props}
+                            datos={this.state.responsables}
+                          />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/responsable/crear"
-                  render={(props) => (
-                    <CrearResponsable
-                      {...props}
-                      datos={this.state.responsables}
+                    <Route
+                      exact
+                      path="/responsable/lista"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <ListaResponsables
+                            {...props}
+                            fetch={this.fetchIndex}
+                            datos={this.state.responsables}
+                          />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/responsable/horario"
-                  render={(props) => (
-                    <clase {...props} datos={this.state.responsables} />
-                  )}
-                />
-
-                <Route
-                  exact
-                  path="/ambiente"
-                  render={(props) => (
-                    <HomeAmbientes {...props} datos={this.state.ambientes} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/ambiente/lista"
-                  render={(props) => (
-                    <ListaAmbientes {...props} datos={this.state.ambientes} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/ambiente/crear"
-                  render={(props) => (
-                    <CrearAmbiente {...props} datos={this.state.ambientes} />
-                  )}
-                />
-
-                <Route
-                  exact
-                  path="/clase"
-                  render={(props) => (
-                    <HomeClases
-                      {...props}
-                      datos={this.state.clases}
-                      index={this.state.index}
-                      periodoActual={this.state.periodoActual}
-                      periodos={this.state.periodos}
-                      ambientes={this.state.ambientes}
-                      responsables={this.state.responsables}
-                      semestres={this.state.semestres}
-                      menciones={this.state.menciones}
+                    <Route
+                      exact
+                      path="/responsable/crear"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <CrearResponsable
+                            {...props}
+                            datos={this.state.responsables}
+                          />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-
-
-                <Route
-                  exact
-                  path="/clase/crear"
-                  render={(props) => (
-                    <CrearClase
-                      {...props}
-                      usuario={this.state.usuario}
-                      index={this.state.index}
-
+                    <Route
+                      exact
+                      path="/responsable/horario"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <clase {...props} datos={this.state.responsables} />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/clase/habilitar"
-                  render={(props) => (
-                    <HabilitarClases
-                      {...props}
-                      index={this.state.index}
-                      clases={this.state.index.clases}
 
+                    <Route
+                      exact
+                      path="/ambiente"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HomeAmbientes {...props} datos={this.state.ambientes} />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/clase/detalle"
-                  render={(props) => <DetalleClase />}
-                />
-                <Route
-                  exact
-                  path="/materia/lista"
-                  render={(props) => (
-                    <ListaMaterias {...props} index={this.state.index} datos={this.state.materias} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/materia/crear"
-                  render={(props) => (
-                    <CrearMateria {...props} datos={this.state.materias} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/admin"
-                  render={(props) => (
-                    <HomeAdmin {...props} index={this.state.index} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/admin/datos"
-                  render={(props) => (
-                    <DatosAdmin {...props} index={this.state.index} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/admin/clases"
-                  render={(props) => (
-                    <ClasesAdmin {...props} clases={this.state.index.clases} />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/stats"
-                  render={(props) => (
-                    <EstadisticasAdmin />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/stats/ambiente"
-                  render={(props) => (
-                    <EstadisticasAmbiente />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/stats/responsable"
-                  render={(props) => (
-                    <EstadisticasResponsable />
-                  )}
-                />
-              </div>
-            ) : (
-
-              <div id="print">
-
-                <Redirect
-                  to={{
-                    pathname: "/",
-                    // search: "?utm=your+face",
-                    state: { referrer: "currentLocation" },
-                  }}
-                />
-              </div>
-
-            )}
-            {this.state.tipo === "docente" &&
-              <div name="rutas_doc">
-                <Route
-                  exact
-                  path="/clase/crear"
-                  render={(props) => (
-                    <CrearClase
-                      {...props}
-                      usuario={this.state.usuario}
-                      index={this.state.index}
-
+                    <Route
+                      exact
+                      path="/ambiente/lista"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <ListaAmbientes {...props} datos={this.state.ambientes} />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => (
-                    <Home
-                      {...props}
-                      semestres={this.state.semestres}
-                      ambientes={this.state.ambientes}
+                    <Route
+                      exact
+                      path="/ambiente/crear"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <CrearAmbiente {...props} datos={this.state.ambientes} />
+                        </Suspense>
+                      )}
                     />
-                  )}
-                />
-              </div>
-            }
+
+                    <Route
+                      exact
+                      path="/clase"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HomeClases
+                            {...props}
+                            datos={this.state.clases}
+                            index={this.state.index}
+                            periodoActual={this.state.periodoActual}
+                            periodos={this.state.periodos}
+                            ambientes={this.state.ambientes}
+                            responsables={this.state.responsables}
+                            semestres={this.state.semestres}
+                            menciones={this.state.menciones}
+                          />
+                        </Suspense>
+                      )}
+                    />
+
+
+                    <Route
+                      exact
+                      path="/clase/crear"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <CrearClase
+                            {...props}
+                            usuario={this.state.usuario}
+                            index={this.state.index}
+
+                          />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/clase/habilitar"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HabilitarClases
+                            {...props}
+                            index={this.state.index}
+                            clases={this.state.index.clases}
+                          />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/clase/detalle"
+                      render={(props) =>
+                        <Suspense fallback={<Loader />}>
+                          <DetalleClase />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      exact
+                      path="/materia/lista"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <ListaMaterias {...props} index={this.state.index} datos={this.state.materias} />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/materia/crear"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <CrearMateria {...props} datos={this.state.materias} />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/admin"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <HomeAdmin {...props} index={this.state.index} />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/admin/datos"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <DatosAdmin {...props} index={this.state.index} />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/admin/clases"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <ClasesAdmin {...props} clases={this.state.index.clases} />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/stats"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <EstadisticasAdmin />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/stats/ambiente"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <EstadisticasAmbiente />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/stats/responsable"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <EstadisticasResponsable />
+                        </Suspense>
+                      )}
+                    />
+                  </div>
+                ) : (
+
+                  <div id="print">
+
+                    <Redirect
+                      to={{
+                        pathname: "/",
+                        // search: "?utm=your+face",
+                        state: { referrer: "currentLocation" },
+                      }}
+                    />
+                  </div>
+
+                )}
+                {this.state.tipo === "docente" &&
+                  <div name="rutas_doc">
+                    <Route
+                      exact
+                      path="/clase/crear"
+                      render={(props) => (
+                        <Suspense fallback={<Loader />}>
+                          <CrearClase
+                            {...props}
+                            usuario={this.state.usuario}
+                            index={this.state.index}
+                          />
+                        </Suspense>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/"
+                      render={(props) => (
+                        <Home
+                          {...props}
+                          semestres={this.state.semestres}
+                          ambientes={this.state.ambientes}
+                        />
+                      )}
+                    />
+                  </div>
+                }
+              </div>}
           </div>
+
         </BrowserRouter>
 
         <div className="footer">
