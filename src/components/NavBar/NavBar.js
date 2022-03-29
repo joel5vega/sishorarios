@@ -10,7 +10,7 @@ import NavAdministrativo from "./NavAdministrativo.js";
 import NavDocente from "./NavDocente.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faSignOutAlt, faSignInAlt, faTh ,faHouseUser} from '@fortawesome/free-solid-svg-icons'
-import axios from "axios";
+// import axios from "axios";
 import UrlService from "../../services/UrlService";
 
 class NavBar extends Component {
@@ -24,7 +24,6 @@ class NavBar extends Component {
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
       usuario: this.props.usuario||{ responsable: { id: 0 } },
       fuente: "",
-      titulo: "",
       responsable:"",
     };
     this.handleSelect = this.handleSelect.bind(this);
