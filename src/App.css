@@ -118,12 +118,25 @@
   margin: 0.5rem;
 }
 .tarjeta {
-  /* border: 1px solid #ccc !important; */
+  /* border: 3px solid blue !important; */
   /* border-radius: 5px; */
   /* background-color:cyan; */
   display: flex;
   flex-direction: column;
   align-items: left;
+  flex-wrap: wrap;
+  margin: 0.1rem;
+  flex-shrink: 4;
+  width: fit-content;
+  flex-basis: 7rem;
+  min-width: 150px;
+  max-width: 210px;
+}
+.tarjeta-semestre{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 0.1rem;
   flex-shrink: 4;
@@ -144,12 +157,12 @@
   flex-wrap: wrap;
 }
 .tarjeta-big {
-  /* border: 1px solid #ccc !important; */
+  /* border: 2px solid #ccc !important; */
   /* border-radius: 5%; */
   display: flex;
   /* margin: 2px; */
   height: fit-content;
-  width: 100%;
+  /* width: 100%; */
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
@@ -235,6 +248,8 @@ dropdown-item{
   color:green;
   background-color:green;
 }
+
+
 .considebar {
   display: grid;
   /* align-items: center; */
@@ -242,9 +257,9 @@ dropdown-item{
   gap: 5px;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: transparent;
 
-  height: max-content;
+  
   grid-template-columns: repeat(auto-fill, minmax(min-content, auto));
 }
 .sidebar {
@@ -261,7 +276,7 @@ dropdown-item{
 }
 .contenido {
   width: 100%;
-  height: 200px;
+  /* height: 200px; */
 }
 
 .icon {
@@ -470,6 +485,7 @@ textarea {
   align-items: center;
   border-color: #0095eb solid;
   overflow: hidden;
+  width: fit-content;
 }
 .b {
   margin: 0;
@@ -481,12 +497,14 @@ textarea {
 }
 
 .entrada {
-  padding: 5px;
+  /* border: 2px solid #40826d !important; */
+  padding: 1px;
   display: grid;
-  gap: 2px;
+  gap: 0px;
   grid-template-rows: auto auto;
   margin: 0;
-  width:fit-content
+  width:max-width;
+  max-width: 100%;
 }
 .entrada label {
   font-weight: bolder;
@@ -499,9 +517,13 @@ textarea {
   grid-row-end: 3;
   text-align: left;
   width:fit-content;
-  max-width:150px;
+  max-width:60px;
 }
+.entrada select{
+  width: fit-content;
+  max-width: 120px;
 
+}
 /* //cuando no es movil */
 @media (min-width: 768px) {
   /*

@@ -28,8 +28,8 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
-      disable:false,
-      // disabled: this.props.usuario.tipo == "docente" | false,
+      disabled:false,
+      // disabled: this.props.usuario.tipo === "docente" | false,
       ////selescted
       selectedPeriodo: "default",
       selectedMateria: "default",
@@ -67,7 +67,7 @@ export default class CrearClase extends Component {
   }
   componentDidMount() {
     const user = this.props.usuario;
-    if (user) {
+    if (user.tipo==="docente") {
       this.setState({ disabled: true })
     }
     else { this.setState({ disabled: false }) }
@@ -652,7 +652,6 @@ export default class CrearClase extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className="progreso">
               Crear Clase
-
               <ProgressBar completed={porcentaje} bgcolor="#046193" />
             </div>
 

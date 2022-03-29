@@ -11,6 +11,13 @@ export default class EstadisticasAdmin extends Component {
       responsable: {},
       ambiente: {}
     };
+   
+  }
+  eventClick(event){
+    // console.log("hola",event)
+  }
+  getDateClick(date) {
+    // console.log(date)
   }
   render() {
     var { docente_equivalente } = this.state.responsable;

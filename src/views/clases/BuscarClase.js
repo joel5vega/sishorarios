@@ -345,7 +345,8 @@ class BuscarClase extends Component {
     ];
 
     return (
-      <div className="considebar">
+      
+        <div className="considebar">
         <div className="sidebar" id="print">
 
           <div className="titulo"><FontAwesomeIcon icon={faSearch} /> Buscar Clase</div>

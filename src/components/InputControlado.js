@@ -6,7 +6,6 @@ export default class InputControlado extends Component {
     return (
       <div className="entrada">
         <label>{label}</label>
-        <br />
         <input
           type={tipo ? tipo : "text"}
           placeholder={label}

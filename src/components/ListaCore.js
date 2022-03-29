@@ -112,7 +112,7 @@ class ListaCore extends Component {
   habilitar = (event) => {
     event.preventDefault();
     var id = this.state.idClase;
-    console.log(id);
+    // console.log(id);
     var urlPost
     if (this.props.tipo === "users") {
       urlPost = this.state.url + "users/habilitar/" + id;
@@ -123,7 +123,7 @@ class ListaCore extends Component {
       .post(urlPost)
       .then(
         (response) => {
-          console.log(response);
+          // console.log(response);
           console.log(response.request.response)
         },
         (error) => {
@@ -161,8 +161,8 @@ class ListaCore extends Component {
         selected: { ...e, menciones: mencionesSeleccionadas }
       })
     }
-    console.log("editar en " + this.props.tipo);
-    console.log(e);
+    console.log("editar en " + this.props.tipo,e);
+    // console.log(e);
     /// Enviar para editar
     /// obtener url
     var url = this.url(this.props.tipo) + e.id

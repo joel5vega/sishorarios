@@ -9,7 +9,7 @@ import '../App.css'
 import '../main.scss'
 
 
-export default class EventCalendar extends Component {
+ class EventCalendar extends Component {
 
     state = {
         loading: true,

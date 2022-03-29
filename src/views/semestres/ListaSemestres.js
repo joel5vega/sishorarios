@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import TarjetaMateria from "../../components/TarjetaMateria";
 import UrlService from "../../services/UrlService";
+import { createTheme } from '@material-ui/core/styles';
 export default class ListaSemestres extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ export default class ListaSemestres extends Component {
   }
 
   render() {
-    const color = { "general": "green", "control": "red", "telecom": "blue", "sistemas": "purple" }
+    const color = { "general": "green", "control": "orange", "telecom": "blue", "sistemas": "purple" }
     return (
       <div className="tarjetas">
         <div className="tarjetas-titulo">Ver horarios por Semestres</div>
@@ -40,10 +41,10 @@ export default class ListaSemestres extends Component {
                 >
                   <TarjetaMateria
                     avatar={item.semestre}
-                    tipo="Semestre"
-                    nombre={item.mencion}
-                    ancho="1rem"
-                    size="0.8rem"
+                    // tipo="Semestre"
+                    tipo={item.mencion}
+                    // ancho="1rem"
+                    // size="0.8rem"
                     color={color[item.mencion]}
                   // accion={this.onClick}
                   />

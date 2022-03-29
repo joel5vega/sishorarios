@@ -12,7 +12,7 @@ const useBasicProfileStyles = makeStyles({
     flexGrow:2,
     // flexBasis: "100rem",
     // minWidth: "4rem"
-     maxWidth: (props) => props.ancho,
+    //  maxWidth: (props) => props.ancho,
     // maxHeight: (props) => props.alto,
   },
   info: {
@@ -29,9 +29,9 @@ const useBasicProfileStyles = makeStyles({
   overline: {
     fontSize: (props) => props.size,
     // textTransform: "uppercase",
-    display:"flex",
-    letterSpacing: "0.01em",
-    overflowWrap:'break-word',
+    // display:"flex",
+    // letterSpacing: "0.01em",
+    // overflowWrap:'break-word',
     justifyContent:"center",
     minWidth:"150px"
     // backgroundColor:"red",
@@ -39,11 +39,12 @@ const useBasicProfileStyles = makeStyles({
   },
   name: {
     fontSize: (props) => props.size,
-    display:"flex",
-    flex: "wrap",
+    // display:"flex",
+    // flex: "wrap",
     fontWeight: 500,
-    color: "#495869",
     justifyContent:"center",
+    color: "#495869",
+    // justifyContent:"center",
     // maxWidth: (props) => props.ancho,
   },
 });
