@@ -1,57 +1,90 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import TarjetaMateria from "../../components/TarjetaMateria";
+import TarjetaSemestre from "../../components/tarjetas/TarjetaSemestre";
 import UrlService from "../../services/UrlService";
-import { createTheme } from '@material-ui/core/styles';
 export default class ListaSemestres extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datos: this.props.semestres,
-      url:UrlService.apiUrl()
+
+      url: UrlService.apiUrl()
     };
   }
 
   render() {
-    const color = { "general": "green", "control": "orange", "telecom": "blue", "sistemas": "purple" }
+    const color = { "general": "green", "control": "var(--color-second-1)", "telecom": "var(--color-second-2)", "sistemas": "var(--color-second-3)" }
     return (
-      <div className="tarjetas">
-        <div className="tarjetas-titulo">Ver horarios por Semestres</div>
-        {this.props.semestres.length > 0 &&
-          this.props.semestres.map((item) => {
-            return (
-              <div key={item.id}>
-                <NavLink
-                  to={{
-                    pathname: "/clase/view",
-                    state: {
-                      fuente:
-                        this.state.url+"clases/semestre/" +
-                        item.semestre +
-                        "?mencion=" +
-                        item.mencion_id,
-                      titulo:
-                        item.mencion === "general"
-                          ? item.semestre + " Semestre "
-                          : item.semestre +
-                          " Semestre - Mencion:" +
-                          item.mencion,
-                    },
-                  }}
-                >
-                  <TarjetaMateria
-                    avatar={item.semestre}
-                    // tipo="Semestre"
-                    tipo={item.mencion}
-                    // ancho="1rem"
-                    // size="0.8rem"
+      <div className="home__semestres">
+        {this.props.semestres.general.length > 0 && 
+        <div className="home__menciones">
+          <div className="mencion">
+            <h5>General</h5>
+            <div className="semestres">
+            {this.props.semestres.general.map((item) => {
+              return (
+                <TarjetaSemestre
+                  id={item.id}
+                  semestre={item.semestre}
+                  mencion={item.mencion}
+                  color={color[item.mencion]}
+                />
+              );
+            })
+            }
+            </div>
+          </div>
+          <div className="mencion">
+            <h5>Control</h5>
+            <div className="semestres">
+              {this.props.semestres.control.map((item) => {
+                return (
+                  <TarjetaSemestre
+                    id={item.id}
+                    semestre={item.semestre}
+                    mencion={item.mencion}
                     color={color[item.mencion]}
-                  // accion={this.onClick}
                   />
-                </NavLink>
-              </div>
-            );
-          })}
+                );
+              })
+              }
+            </div>
+          </div>
+          <div className="mencion">
+            <h5 style={{ color: color["sistemas"], width: "100%" }}>Sistemas</h5>
+            <div className="semestres">
+            {this.props.semestres.sistemas.map((item) => {
+              return (
+                <TarjetaSemestre
+                  id={item.id}
+                  semestre={item.semestre}
+                  mencion={item.mencion}
+                  color={color[item.mencion]}
+                />
+              );
+            })
+            }
+            </div>
+          </div>
+          <div className="mencion">
+            <h5>Telecom.</h5>
+            <div className="semestres">
+            {this.props.semestres.telecom.map((item) => {
+              return (
+                <TarjetaSemestre
+                  id={item.id}
+                  semestre={item.semestre}
+                  mencion={item.mencion}
+                  color={color[item.mencion]}
+                />
+              );
+            })
+            }
+            </div>
+          </div>
+        </div>
+        }
+
+
       </div>
     );
   }

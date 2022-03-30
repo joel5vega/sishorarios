@@ -1,7 +1,27 @@
 @import "~@fullcalendar/core/main.css";
 @import "~@fullcalendar/daygrid/main.css";
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: 0;
+  list-style: none;
+  text-decoration: none;
+}
+:root{
+--color-bg: white;
+--color-bg-variant: #F3EFF5;
+--color-primary: #081C15;
+--color-second-1:#1B4332;
+--color-second-2: #2D6A4F;
+--color-second-3: #40916C;
+--color-light: #D8F3DC;
+/* https://coolors.co/palette/d8f3dc-b7e4c7-95d5b2-74c69d-52b788-40916c-2d6a4f-1b4332-081c15 */
+}
 .App {
   text-align: center;
+  /* color:var(--color-bg); */
 }
 .header {
   position: fixed;
@@ -11,9 +31,8 @@
 .body {
   padding-top: 55px;
   margin: 0;
-  background:transparent;
+  background:var(--color-bg);
   width: 100%;
-  /* max-width: 1300px; */
   overflow-x: hidden;
 }
 .footer {
@@ -21,9 +40,9 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  /* border: 1px solid #73ad21; */
-  z-index: 1;
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  background: var(--color-bg);
+  z-index: 2;
 }
 
 .App-logo {
@@ -132,7 +151,13 @@
   min-width: 150px;
   max-width: 210px;
 }
-.tarjeta-semestre{
+/* .tarjeta-ambiente{
+  min-width: 140px;
+  max-width: 220px;
+  height: 100px;
+  border:5px solid --color-primary;
+} */
+/* .tarjeta-semestre{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -144,7 +169,7 @@
   flex-basis: 7rem;
   min-width: 150px;
   max-width: 210px;
-}
+} */
 .tarjeta-peque {
   /* border: 1px solid red !important; */
   display: inline-flex;
@@ -174,9 +199,27 @@
   margin: 0.5rem;
   border-color: red;
 }
+/* Calendario eventos*/
 .dato-cal {
-  margin: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0rem;
+  justify-content: center;
+  text-align: center;
 }
+
+.dato-cal-ambiente{
+  margin: 0rem;
+  font-size: 0.7rem;
+  color: var(--color-bg);
+}
+.dato-cal-sigla{
+  margin: 0rem;
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: var(--color-light);
+}
+/*----------------------------*/
 .sticky {
   position: -webkit-sticky; /* Safari */
   position: sticky;

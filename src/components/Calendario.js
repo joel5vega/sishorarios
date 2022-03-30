@@ -90,22 +90,22 @@ export default class Calendario extends Component {
     // extendedProps is used to access additional event properties.
     const content = (
       <div className="dato-cal">
-        <div className="sigla">
+        <div className="dato-cal-sigla">
           {event.title}-{paralelo}
         </div>
         <div className="responsable">
           {tituloResponsable}.{responsable}
         </div>
-        <div className="texto-grande">{ambiente}</div>
+        <div className="dato-cal-ambiente">{ambiente}</div>
       </div>
     );
     const contentMinimal = (
       <div className="dato-cal">
-        <div className="texto-grande">
+        <div className="dato-cal-ambiente">
           {event.extendedProps.ambiente}
           <br />
         </div>
-        <div className="sigla">
+        <div className="dato-cal-sigla">
           {event.title}-{paralelo}
         </div>
       </div>
@@ -176,7 +176,7 @@ export default class Calendario extends Component {
   DefinirColor = ({ event }) => {
     // extendedProps is used to access additional event properties.
     if ((event.tipo = "teoria")) {
-      return "green";
-    } else return "blue";
+      return "var(--color-second-1)";
+    } else return "var(--color-second-2)";
   };
 }

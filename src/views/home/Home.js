@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../../fontawesome";
-import "../../css/home.css";
+import "./home.css";
 import ListaSemestres from "../semestres/ListaSemestres";
-import TarjetaAmbiente from "../../components/TarjetaAmbiente";
+import TarjetaAmbiente from "../../components/tarjetas/TarjetaAmbiente";
 import UrlService from "../../services/UrlService";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url :UrlService.apiUrl(),
+      url: UrlService.apiUrl(),
       usuario: "",
       datos: this.props.semestres,
       fuente: "",
@@ -27,56 +27,65 @@ class Home extends Component {
   };
   render() {
     return (
-      <div>
-        <h2>
-          {/* Bienvenido al Sistema de Administración de horarios */}
-          {this.state.usuario}
-        </h2>
-        <div className="row flex">
-          <div className="col">
-            <div className="tarjetas-titulo">Ver horarios por Ambientes</div>
-            <div className="tarjetas">
-              {this.props.ambientes.length > 0
-                ? this.props.ambientes.map((item) => {
-                  return (
-                    <div key={item.id}>
-                      <NavLink
-                        to={{
-                          pathname: "/clase/view",
-                          state: {
-                            fuente:
-                              this.state.url +
-                              "clases/ambiente/" +
-                              item.id,
-                            titulo: "" + item.nombre,
-                          },
-                        }}
-                      >
-                        <TarjetaAmbiente
-                          nombre={item.nombre}
-                          tipo={item.tipo}
-                          capacidad={item.capacidad}
-                          color={
-                            item.tipo === "laboratorio"
-                              ? "#006600"
-                              : item.tipo === "auditorio"
-                                ? "#ffa500"
-                                : "#0066CC"
-                          }
-                        />
-                      </NavLink>
-                    </div>
-                  );
-                })
-                : "No existen registros de ambientes ocupados en este momento"}
+      <div className="home__container">
+        <div className="home__columna">
+          <h2>Ver horarios por Semestres</h2>
+          <ListaSemestres semestres={this.props.semestres} />
+        </div>
+        <hr></hr>
+        <div className="home__columna">
+          <h2>Ver horarios por Ambientes</h2>
+          {this.props.ambientes.aula.length > 0 &&
+            <div className="home__ambientes">
+              <div className="ambientes">
+                <h5>Aulas</h5>
+                <div className="ambiente-tipo">
+                  {this.props.ambientes.aula.map((item) => {
+                    return (
+                      <TarjetaAmbiente
+                        id={item.id}
+                        nombre={item.nombre}
+                        tipo={item.tipo}
+                        capacidad={item.capacidad}
+                        color={
+                          item.tipo === "laboratorio"
+                            ? "var(--color-second-1)"
+                            : "var(--color-second-2)"
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="ambientes">
+                <h5>Laboratorios</h5>
+                <div className="ambiente-tipo">
+                  {this.props.ambientes.laboratorio.map((item) => {
+                    return (
+                      <TarjetaAmbiente
+                        id={item.id}
+                        nombre={item.nombre}
+                        tipo={item.tipo}
+                        capacidad={item.capacidad}
+                        color={
+                          item.tipo === "laboratorio"
+                            ? "var(--color-second-1)"
+                            : "var(--color-second-2)"
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
+          }
 
-          <div className="col">
-            <ListaSemestres semestres={this.props.semestres} />
-          </div>
         </div>
       </div>
+
+
+
+
     );
   }
 }

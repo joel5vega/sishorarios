@@ -1,30 +1,32 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import { ThemeProvider } from "react-bootstrap";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouseUser } from '@fortawesome/free-solid-svg-icons'
 const useStyles = makeStyles({
   root: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    flexShrink: "2",
-    flexBasis: "6rem",
-    maxWidth: (props) => props.ancho,
-    margin:"0.02rem",
-    // height:"0.2rem",
-    // maxHeight: "fit-content",
-    // maxHeight: (props) => props.alto,
+    padding: "0.2rem",
+    minWidth: "135px",
+    maxWidth: "85%",
+    maxHeight: "",
+    color: "var(--color-light)",
+    fontSize: "1rem",
     backgroundColor: (props) => props.color,
+    border: "1px solid var(--color-primary)",
+    borderRadius: "0.5rem",
+    margin: "0.1rem",
   },
-  informacion: {
-    margin:0,
-    fontWeight: "bold",
-    fontSize: (props) => props.capacidad / 20 + "rem",
+  nombre: {
+    fontSize: "1rem",
+    color: "var(--color-primary)",
   },
+  comentario: {
+    color: "var(--color-bg)",
+    fontSize: "0.8rem",
+  }
 });
 
 export default function ImgMediaCard(props) {
@@ -32,24 +34,9 @@ export default function ImgMediaCard(props) {
   const size = parseInt(capacidad) / 10 / 4;
   const classes = useStyles(props, size);
   return (
-    <div className="tarjeta">
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardContent>
-            <ThemeProvider>
-              <Typography variant="caption" component="p">
-                {nombre}
-              </Typography>
-              <Typography variant="caption" color="textSecondary" component="p">
-                Capacidad:
-              </Typography>
-              <Typography className={classes.informacion}>
-                {capacidad}
-              </Typography>
-            </ThemeProvider>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <div className={classes.root} >
+      <div className={nombre}>{nombre}</div>
+      <div className={capacidad}>{capacidad}  <FontAwesomeIcon icon={faHouseUser} /></div>
     </div>
   );
 }

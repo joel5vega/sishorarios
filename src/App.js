@@ -71,7 +71,21 @@ class App extends Component {
       auth: false,
       user: Auth.getUser(),
       semestres: DataSemestres,
+      
+      //ordenamos los datos por mencion
+      listaSemestres:DataSemestres.reduce(function (r, a) {
+        r[a.mencion] = r[a.mencion] || [];
+        r[a.mencion].push(a);
+        return r;
+      }, Object.create(null)),
+
       ambientes: DataAmbientes,
+      //ordenamos los datos por tipo aula /lab
+      listaAmbientes: DataAmbientes.reduce(function (r, a) {
+        r[a.tipo] = r[a.tipo] || [];
+        r[a.tipo].push(a);
+        return r;
+      }, Object.create(null)),
       materias: DataMaterias,
     };
   }
@@ -235,8 +249,8 @@ class App extends Component {
                 render={(props) => (
                   <Home
                     {...props}
-                    semestres={this.state.semestres}
-                    ambientes={this.state.ambientes}
+                    semestres={this.state.listaSemestres}
+                    ambientes={this.state.listaAmbientes}
                   />
                 )}
               />
@@ -507,7 +521,7 @@ class App extends Component {
         </BrowserRouter>
 
         <div className="footer">
-          (c) Sistema de horarios de Ingenieria Electrónica - Desarrollado por <a href="https://joelvega.me">Joel Vega</a>
+          (c) Sistema de horarios - Desarrollado por <a href="https://joelvega.me">Joel Vega</a>
         </div>
       </div >
     );

@@ -137,13 +137,11 @@ class NavBar extends Component {
 
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
-            <FontAwesomeIcon icon={faHouseUser} />
-             Horarios ETN
+            {/* <FontAwesomeIcon icon={faHouseUser} /> */}
+              Horarios ETN
           </Navbar.Brand>
           <div className="b">
-            <Navbar.Text
-              style={{ "color": "#40826d", "fontWeight": "bolder", "fontSize": "20px", "whiteSpace": "nowrap" }}
-            >{this.state.titulo}</Navbar.Text>
+            {/* <Navbar.Text style={{ "color": "#40826d", "fontWeight": "bolder", "fontSize": "20px", "whiteSpace": "nowrap" }}>{this.state.titulo}</Navbar.Text> */}
           </div>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" ><FontAwesomeIcon icon={faTh} /></Navbar.Toggle>
