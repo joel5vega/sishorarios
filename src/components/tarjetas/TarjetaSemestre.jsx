@@ -6,8 +6,8 @@ import {faBolt,faSatelliteDish,faServer,faRobot} from "@fortawesome/free-solid-s
 
 const TarjetaSemestre = (props) => {
   return (
-    <div className="tarjeta-semestre" style={{ background: props.color }}>
-      <div className="accion" key={props.id}>
+    <div className="tarjeta-semestre" style={{ background: props.color }}key={props.id}>
+      <div className="accion" >
         <NavLink
           to={{
             pathname: "/clase/view",

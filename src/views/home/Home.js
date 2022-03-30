@@ -42,17 +42,19 @@ class Home extends Component {
                 <div className="ambiente-tipo">
                   {this.props.ambientes.aula.map((item) => {
                     return (
-                      <TarjetaAmbiente
-                        id={item.id}
-                        nombre={item.nombre}
-                        tipo={item.tipo}
-                        capacidad={item.capacidad}
-                        color={
-                          item.tipo === "laboratorio"
-                            ? "var(--color-second-1)"
-                            : "var(--color-second-2)"
-                        }
-                      />
+                      <div key={item.id}>
+                        <TarjetaAmbiente
+                          id={item.id}
+                          nombre={item.nombre}
+                          tipo={item.tipo}
+                          capacidad={item.capacidad}
+                          color={
+                            item.tipo === "laboratorio"
+                              ? "var(--color-second-1)"
+                              : "var(--color-second-2)"
+                          }
+                        />
+                      </div>
                     );
                   })}
                 </div>
@@ -62,17 +64,19 @@ class Home extends Component {
                 <div className="ambiente-tipo">
                   {this.props.ambientes.laboratorio.map((item) => {
                     return (
-                      <TarjetaAmbiente
-                        id={item.id}
-                        nombre={item.nombre}
-                        tipo={item.tipo}
-                        capacidad={item.capacidad}
-                        color={
-                          item.tipo === "laboratorio"
-                            ? "var(--color-second-1)"
-                            : "var(--color-second-2)"
-                        }
-                      />
+                      <div key={item.id}>
+                        <TarjetaAmbiente
+                          id={item.id}
+                          nombre={item.nombre}
+                          tipo={item.tipo}
+                          capacidad={item.capacidad}
+                          color={
+                            item.tipo === "laboratorio"
+                              ? "var(--color-second-1)"
+                              : "var(--color-second-2)"
+                          }
+                        />
+                      </div>
                     );
                   })}
                 </div>
