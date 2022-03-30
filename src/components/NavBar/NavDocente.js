@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook,  faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faCalendarPlus } from '@fortawesome/free-solid-svg-icons'
 
 class NavDocente extends Component {
   constructor(props) {
@@ -12,22 +12,21 @@ class NavDocente extends Component {
   }
 
   render() {
-            // const { usuario } = this.props;
+    // const { usuario } = this.props;
     return (
       <div>
         <Nav>
-          <div className="icon">
 
-            <Nav.Link as={NavLink} exact to="/clase/crear" eventKey="crearClase">
-              <FontAwesomeIcon icon={faCalendarPlus} />  Crear Clase
-            </Nav.Link>
-          </div>
-          <div className="icon">
 
-            <Nav.Link as={NavLink} exact to="/materia/" eventKey="curricula">
-              <FontAwesomeIcon icon={faBook} />  Malla curricular
-            </Nav.Link>
-          </div>
+          <Nav.Link as={NavLink} exact to="/clase/crear" eventKey="crearClase">
+            Crear Clase
+          </Nav.Link>
+
+
+          <Nav.Link as={NavLink} exact to="/materia/" eventKey="curricula">
+            Malla curricular
+          </Nav.Link>
+
         </Nav>
       </div >
     );

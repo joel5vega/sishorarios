@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faUniversity, faGraduationCap, faBook } from '@fortawesome/free-solid-svg-icons'
+import { faUniversity, faGraduationCap, faBook } from '@fortawesome/free-solid-svg-icons'
 import UrlService from "../../services/UrlService";
 class Estudiante extends Component {
   constructor(props) {
@@ -13,87 +13,78 @@ class Estudiante extends Component {
   }
   render() {
     const NavActive = {
-      color: "blue",
+      color: "var(--color-primary)",
     };
 
     const { ambientes } = this.props;
+
+
     return (
-      <div>
-        <Nav style={{ maxHeight: '400px' }}>
-          {/* // navbarScroll> */}
-          <div className="icon">
-
-            <NavDropdown
-              title={<div><FontAwesomeIcon icon={faGraduationCap} />Semestres</div>}
-              id="navbarScrollingDropdown">
-              {this.props.semestres.map((item) => {
-                return (
-                  <div className="opcion" key={item.id}>
-                    <NavDropdown.Item eventKey="semestres"
-                      as={NavLink}
-
-                      to={{
-                        pathname: "/clase/view",
-                        state: {
-                          fuente:
-                            this.state.url + "clases/semestre/" +
-                            item.semestre +
-                            "?mencion=" +
-                            item.mencion_id,
-                          titulo:
-                            item.mencion === "general"
-                              ? item.semestre + " Semestre "
-                              : item.semestre +
-                              " Semestre - Mencion:" +
-                              item.mencion,
-                        },
-                      }}
-                    >
-                      {item.semestre} {item.mencion}
-                    </NavDropdown.Item>
-                  </div>
-                );
-              })}
-            </NavDropdown>
-          </div>
-          <div className="icon">
-
-            <NavDropdown title={<div><FontAwesomeIcon icon={faUniversity} />Ambientes</div>} id="collasible-nav-dropdown">
-              {ambientes.map((item) => (
-                <NavDropdown.Item eventKey="ambientes"
-                  key={item.id}
-
+      <Nav>
+        <NavDropdown
+          title={"Semestres"}
+          id="collasible-nav-dropdown"
+          >
+          {this.props.semestres.map((item) => {
+            return (
+              <div key={item.id}>
+                <NavDropdown.Item eventKey="semestres"
                   as={NavLink}
+
                   to={{
                     pathname: "/clase/view",
                     state: {
                       fuente:
-                        this.state.url+"clases/ambiente/" + item.id,
-                      titulo: " " + item.nombre,
+                        this.state.url + "clases/semestre/" +
+                        item.semestre +
+                        "?mencion=" +
+                        item.mencion_id,
+                      titulo:
+                        item.mencion === "general"
+                          ? item.semestre + " Semestre "
+                          : item.semestre +
+                          " Semestre - Mencion:" +
+                          item.mencion,
                     },
                   }}
                 >
-                  {item.nombre}
+                  {item.semestre} {item.mencion}
                 </NavDropdown.Item>
-              ))}
-            </NavDropdown>
-          </div>
+              </div>
+            );
+          })}
+        </NavDropdown>
 
-          <div className="icon">
+        <NavDropdown title={"Ambientes"} id="collasible-nav-dropdown">
+          {ambientes.map((item) => (
+            <NavDropdown.Item eventKey="ambientes"
+              key={item.id}
 
-            <Nav.Link eventKey="materias"
               as={NavLink}
-
-              exact
-              to="/materia/"
-              activeStyle={NavActive}
+              to={{
+                pathname: "/clase/view",
+                state: {
+                  fuente:
+                    this.state.url + "clases/ambiente/" + item.id,
+                  titulo: " " + item.nombre,
+                },
+              }}
             >
-              <FontAwesomeIcon icon={faBook} />  Malla curricular
-            </Nav.Link>
-          </div>
+              {item.nombre}
+            </NavDropdown.Item>
+          ))}
+        </NavDropdown>
 
-        </Nav>
-      </div>
+        <Nav.Link eventKey="materias"
+          as={NavLink}
+
+          exact
+          to="/materia/"
+          activeStyle={NavActive}
+        >
+          Malla curricular
+        </Nav.Link>
+      </Nav>
     );
   }
 }

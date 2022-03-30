@@ -5,6 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUniversity, faUserGraduate, faBook, faChartBar } from '@fortawesome/free-solid-svg-icons'
 class NavAdministrativo extends Component {
   render() {
+    const NavActive = {
+      color: "var(--color-primary) ",
+      fontWeight: "bold",
+    };
     // const background = {
     //   color: "#40826d",
     // };
@@ -13,9 +17,7 @@ class NavAdministrativo extends Component {
     return (
       <div>
         <Nav>
-          <div className="icon">
-
-            <NavDropdown title={<div><FontAwesomeIcon icon={faCalendar} />Clases</div>} id="collasible-nav-dropdown" >
+            <NavDropdown title={"Clases"} id="collasible-nav-dropdown" >
 
               <NavDropdown.Item eventKey="clase" as={NavLink} exact to="/clase/">
                 Buscar
@@ -39,9 +41,9 @@ class NavAdministrativo extends Component {
                 Crear
               </NavDropdown.Item>
             </NavDropdown>
-          </div>
-          <div className="icon">
-            <NavDropdown title={<div><FontAwesomeIcon icon={faUniversity} />Ambiente</div>} id="collasible-nav-dropdown">
+          
+          
+            <NavDropdown title={"Ambientes"} id="collasible-nav-dropdown">
               <NavDropdown.Item
                 eventKey="ambiente"
                 as={NavLink}
@@ -59,10 +61,10 @@ class NavAdministrativo extends Component {
                 Listado de ambientes
               </NavDropdown.Item>
             </NavDropdown>
-          </div>
-          <div className="icon">
+          
+          
 
-            <NavDropdown title={<div><FontAwesomeIcon icon={faUserGraduate} />Responsable</div>} id="collasible-nav-dropdown">
+            <NavDropdown title={"Responsable"} id="collasible-nav-dropdown">
               <NavDropdown.Item
                 as={NavLink}
                 exact
@@ -82,10 +84,10 @@ class NavAdministrativo extends Component {
               </NavDropdown.Item>
 
             </NavDropdown>
-          </div>
-          <div className="icon">
+          
+          
 
-            <NavDropdown title={<div><FontAwesomeIcon icon={faBook} />Materia</div>} id="collasible-nav-dropdown">
+            <NavDropdown title={"Materias"} id="collasible-nav-dropdown">
               <NavDropdown.Item
                 as={NavLink}
                 exact
@@ -103,9 +105,8 @@ class NavAdministrativo extends Component {
                 Lista de Materias
               </NavDropdown.Item>
             </NavDropdown>
-          </div>
-          <div className="icon">
-            <NavDropdown title={<div><FontAwesomeIcon icon={faChartBar} />Estadística</div>} id="collasible-nav-dropdown">
+          
+            <NavDropdown title={"Estadística"} id="collasible-nav-dropdown">
               <NavDropdown.Item
                 as={NavLink}
                 exact
@@ -123,7 +124,6 @@ class NavAdministrativo extends Component {
                 Responsable
               </NavDropdown.Item>
             </NavDropdown>
-          </div>
         </Nav>
 
       </div >

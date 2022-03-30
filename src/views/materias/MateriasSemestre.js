@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TarjetaMateria from "../../components/TarjetaMateria";
+import TarjetaMateria from "../../components/tarjetas/TarjetaMateria";
 import UrlService from "../../services/UrlService";
 
 export default class MateriasSemestre extends Component {
@@ -26,9 +26,9 @@ export default class MateriasSemestre extends Component {
                     {item.semestre < 7 ? (
                       <div className="itemInfo">
                         <TarjetaMateria
-                          tipo={item.nombre}
-                          avatar={item.sigla}
-                          nombre={item.tipo}
+                          nombre={item.nombre}
+                          sigla={item.sigla}
+                          tipo={item.tipo}
                           ancho={ancho}
                           alto={alto}
                           size="0.7em"

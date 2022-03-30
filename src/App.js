@@ -508,8 +508,8 @@ class App extends Component {
                       render={(props) => (
                         <Home
                           {...props}
-                          semestres={this.state.semestres}
-                          ambientes={this.state.ambientes}
+                          semestres={this.state.listaSemestres}
+                          ambientes={this.state.listaAmbientes}
                         />
                       )}
                     />
