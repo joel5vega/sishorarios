@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import ContextProvider from "../../containers/ContextProvider";
-import TarjetaMateria from "../../components/TarjetaMateria";
-import { NavLink } from "react-router-dom";
+// import TarjetaMateria from "../../components/TarjetaMateria";
+import TarjetaResponsable from "../../components/tarjetas/TarjetaResponsable";
 import UrlService from "../../services/UrlService";
 export default class HomeResponsables extends Component {
   constructor(props) {
@@ -19,32 +19,18 @@ export default class HomeResponsables extends Component {
       <div>
         <div className="">
           <div className="">
-            <div className="tarjetas-titulo">Docentes</div>
-            <div className="cuadricula">
+            <h5>Docentes</h5>
+            <div className="tarjetas">
               {datos.map((item) => {
                 return (
-                  <div key={item.id} className="cuadro">
-                    {item.puesto === "docente" && (
-                      <NavLink
-                        to={{
-                          pathname: "/clase/view",
-                          state: {
-                            fuente:
-                              this.state.url + "clases/responsable/" +
-                              item.id,
-                            titulo: " " + item.titulo + item.nombre,
-                          },
-                        }}
-                      >
-                        <TarjetaMateria
-                          tipo={item.nombre + " " + item.ap_paterno}
-                          nombre={item.puesto}
-                          avatar={item.titulo}
-                          size="1rem"
-                          enlace={this.state.url + "responsable/" + item.id}
-                          color="#0066CC"
-                        />
-                      </NavLink>
+                  <div key={item.id} >
+                    {item.puesto === "docente" && item.puesto && (
+                      <TarjetaResponsable
+                        nombre={item.ap_paterno}
+                        titulo={item.titulo}
+                        puesto={item.puesto}
+                        id={item.id}
+                      />
                     )}
                   </div>
                 );
@@ -53,19 +39,18 @@ export default class HomeResponsables extends Component {
             </div>
 
           </div>
-          <div className="tarjetas">
-            <div className="tarjetas-titulo">Auxiliares</div>
 
+          <h5>Auxiliares</h5>
+          <div className="tarjetas">
             {datos.map((item) => {
               return (
                 <div key={item.id}>
                   {item.puesto === "auxiliar" && (
-                    <TarjetaMateria
+                    <TarjetaResponsable
                       nombre={item.nombre + " " + item.ap_paterno}
-                      tipo={item.puesto}
-                      sigla={item.titulo}
-                      enlace={this.state.url+"responsable/" + item.id}
-                      color="#00CCFF"
+                      puesto={item.puesto}
+                      titulo={item.titulo}
+                      id={item.id}
                     />
                   )}
                 </div>

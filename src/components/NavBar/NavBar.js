@@ -131,7 +131,8 @@ class NavBar extends Component {
           collapseOnSelect
           expand="md"
           fixed="top"
-
+          height="40px"
+          padding="0"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
             <FontAwesomeIcon icon={faHome} />

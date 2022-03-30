@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component, lazy } from "react";
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
 import "../../fontawesome";
@@ -11,6 +11,7 @@ import SelectControlado from "../../components/SelectControlado";
 import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 import UrlService from "../../services/UrlService";
+import "../../css/crear.css";
 // const jsPdf =lazy(()=>import("jspdf"));
 class BuscarClase extends Component {
   constructor(props) {
@@ -124,7 +125,7 @@ class BuscarClase extends Component {
   };
   ////////////////////
   //obtenemos cambio de fuente
- 
+
   /////////////////////////Handler
   handleBuscarChange = (event) => {
     var buscar = event.target.value;
@@ -345,26 +346,26 @@ class BuscarClase extends Component {
     ];
 
     return (
-      
-        <div className="considebar">
-        <div className="sidebar" id="print">
 
-          <div className="titulo"><FontAwesomeIcon icon={faSearch} /> Buscar Clase</div>
-          <div className="tarjetas-big">
+      <div className="crear__container">
+        <div className="form__container" id="print">
+
+          <h5><FontAwesomeIcon icon={faSearch} /> Buscar Clase</h5>
+          <div className="formulario">
             {this.state.loading === false && (
-              <div className="tarjeta">
-                <SelectControlado
-                  label="Periodo"
-                  value={selectedPeriodo}
-                  name="periodo"
-                  handleChange={this.handlePeriodoChange}
-                  datos={periodos}
-                />
+              <div className="form__grupo__tipo"><SelectControlado
+                label="Periodo"
+                value={selectedPeriodo}
+                name="periodo"
+                handleChange={this.handlePeriodoChange}
+                datos={periodos}
+              />
               </div>
             )}
 
-            {this.state.selectedPeriodo && (
-              <div className="tarjeta">
+            <div className="form__grupo__tipo">
+              {this.state.selectedPeriodo && (
+
                 <SelectControlado
                   label="Tipo"
                   value={selectedBuscar}
@@ -372,22 +373,20 @@ class BuscarClase extends Component {
                   handleChange={this.handleBuscarChange}
                   datos={buscar}
                 />
-              </div>
-            )}
-            {this.state.selectedBuscar === "semestre" && (
-              <div className="tarjeta">
+
+              )}
+
+              {this.state.selectedBuscar === "semestre" && (
+
                 <SelectControlado
-                  label="Semestre"
+                  label=""
                   value={selectedSemestre}
                   name="tipo"
                   handleChange={this.handleSemestreChange}
                   datos={listaSemestres}
                 />
-              </div>
-            )}
-
-            {this.state.selectedSemestre > 6 && (
-              <div className="tarjeta">
+              )}
+              {this.state.selectedSemestre > 6 && (
                 <SelectControlado
                   label="Mencion"
                   value={selectedMencion}
@@ -395,21 +394,23 @@ class BuscarClase extends Component {
                   handleChange={this.handleMencionChange}
                   datos={menciones}
                 />
-              </div>
-            )}
-            {this.state.selectedBuscar === "ambiente" && (
-              <div className="tarjeta">
+              )}
+
+
+
+              {this.state.selectedBuscar === "ambiente" && (
+
                 <SelectControlado
-                  label="Ambiente"
+                  label=""
                   value={selectedAmbiente}
                   name="ambiente"
                   handleChange={this.handleAmbienteChange}
                   datos={ambientes}
                 />
-              </div>
-            )}
-            {this.state.selectedBuscar === "responsable" && (
-              <div className="tarjeta">
+
+              )}
+              {this.state.selectedBuscar === "responsable" && (
+
                 <SelectControlado
                   label="Responsable"
                   value={selectedResponsable}
@@ -418,37 +419,41 @@ class BuscarClase extends Component {
                   datos={responsables}
                   index={`item.titulo+" "+item.ap_paterno`}
                 />
-              </div>
-            )}
-          </div>
-          <div className="">
-            <div id="print" className="sticky">
-              <div className="boton">
-                <Link
-                  to={{
-                    pathname: "/clase/view",
-                    state: {
-                      fuente: this.state.fuente,
-                      titulo: this.state.titulo
-                    },
-                  }}
-                >
-                  <FontAwesomeIcon icon={faFilePdf} /> Exportar
-                </Link>
-              </div>
-              <div className="boton">
-                <Link
-                  to={{
-                    pathname: "/clase/crear",
-                  }}
-                >
-                  <FontAwesomeIcon icon={faPlusCircle} /> Crear
-                </Link>
-              </div>
+
+              )}
             </div>
 
+            {this.state.selectedAmbiente!=="default" || this.state.selectedSemestre!=="default" || this.state.selectedResponsable!=="default" ? (
+              <div id="print" className="form__accion">
+                <div className="form__boton">
+                  <Link
+                    to={{
+                      pathname: "/clase/view",
+                      state: {
+                        fuente: this.state.fuente,
+                        titulo: this.state.titulo
+                      },
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faFilePdf} /> Exportar
+                  </Link>
+                </div>
+                <div className="form__boton">
+                  <Link
+                    to={{
+                      pathname: "/clase/crear",
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPlusCircle} /> Crear
+                  </Link>
+                </div>
+              </div>
+              ):""}
+
           </div>
+
         </div>
+
         <div className="contenido" id="calendario">
           <div>
             <div className="col-auto col-md-offset-5">
@@ -517,7 +522,7 @@ class BuscarClase extends Component {
           </Modal>
         </div>
 
-      </div>
+      </div >
     );
   }
 }

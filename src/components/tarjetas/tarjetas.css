@@ -1,0 +1,41 @@
+.tarjetas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space;
+    padding: 0;
+}
+.tarjeta-materia{
+border-radius: 1rem;
+padding: 0.5rem;
+width: 170px;
+/* border: 1px solid var(--color-primary); */
+}
+.tarjeta-materia-sigla{
+    color: var(--color-light);
+}
+.tarjeta-materia-nombre{
+    color: var(--color-primary);
+}
+
+.tarjeta-responsable{
+    border-radius: 2rem;
+    padding: 0.5rem;
+    width: 7rem;
+}
+.tarjeta-responsable-nombre{
+    color: var(--color-primary);
+    font-size: 0.8rem;
+}
+.tarjeta-responsable-puesto{
+    color: var(--color-light);
+    font-size: 0.5rem;
+}
+.tarjeta-responsable:hover .tarjeta-responsable-nombre{
+    background: var(--color-primary);
+    color: var(--color-light);
+}
+.tarjeta-responsable-puesto:hover{
+    background:var(--color-second-3);
+
+}

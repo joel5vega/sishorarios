@@ -39,4 +39,4 @@ const ListaMenciones = (props) => {
     </div>
   );
 };
-export default ListaMenciones;
+// export default ListaMenciones;

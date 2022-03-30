@@ -10,14 +10,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import DataAmbientes from "./data/DataAmbientes";
 import DataSemestres from "./data/DataSemestres";
-
+import DataMaterias from "./data/DataMaterias";
 //Componentes indispensables////////
 
 import NavBar from "./components/NavBar/NavBar";
 import Loader from "./components/Loader.js";
 import Home from "./views/home/Home";
 // import HomeAdmin from "./views/admin/HomeAdmin";
-
+import HomeMaterias from "./views/materias/HomeMaterias";
 
 // servicios
 import UrlService from "./services/UrlService";
@@ -32,7 +32,6 @@ import Register from "./views/auth/Register.js";
 //Componentes No fundamentales////
 ///// Lazy loading******************************************************************************************************
 const HomeAdmin = lazy(() => import("./views/admin/HomeAdmin"));
-const DataMaterias =lazy(() =>import("./data/DataMaterias"));
 //
 const HomeClases = lazy(() => import("./views/clases/HomeClases"));
 // import HomeClases from "./views/clases/HomeClases";
@@ -48,7 +47,7 @@ const CrearResponsable = lazy(() => import("./views/responsables/CrearResponsabl
 ///////Clases
 const CrearClase = lazy(() => import("./views/clases/crearClase"));
 const DetalleClase = lazy(() => import("./views/clases/DetalleClase"));
-const HomeMaterias = lazy(() => import("./views/materias/HomeMaterias"));
+// const HomeMaterias = lazy(() => import("./views/materias/HomeMaterias"));
 const ListaMaterias = lazy(() => import("./views/materias/ListaMaterias"));
 const CrearMateria = lazy(() => import("./views/materias/CrearMateria"));
 const HabilitarClases = lazy(() => import("./views/admin/HabiltarClases"));
@@ -71,9 +70,9 @@ class App extends Component {
       auth: false,
       user: Auth.getUser(),
       semestres: DataSemestres,
-      
+
       //ordenamos los datos por mencion
-      listaSemestres:DataSemestres.reduce(function (r, a) {
+      listaSemestres: DataSemestres.reduce(function (r, a) {
         r[a.mencion] = r[a.mencion] || [];
         r[a.mencion].push(a);
         return r;
@@ -178,22 +177,23 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter basename="/sishorarios">
-
-          <NavBar
-            usuario={this.state.usuario}
-            tipo={this.state.tipo}
-            handleAmbienteSelect={this.handleAmbienteSelect}
-            handleSemestreSelect={this.handleSemestreSelect}
-            handlePeriodoSelect={this.handlePeriodoSelect}
-            periodos={this.state.periodos}
-            aulas={this.state.ambientes}
-            laboratorios={this.state.ambientes}
-            ambientes={this.state.ambientes}
-            handleAuth={this.handleAuth}
-            semestres={this.state.semestres}
-            titulo={this.state.selectedTitle}
-            getTitulo={this.getTitulo}
-          />
+          <div className="header">
+            <NavBar
+              usuario={this.state.usuario}
+              tipo={this.state.tipo}
+              handleAmbienteSelect={this.handleAmbienteSelect}
+              handleSemestreSelect={this.handleSemestreSelect}
+              handlePeriodoSelect={this.handlePeriodoSelect}
+              periodos={this.state.periodos}
+              aulas={this.state.ambientes}
+              laboratorios={this.state.ambientes}
+              ambientes={this.state.ambientes}
+              handleAuth={this.handleAuth}
+              semestres={this.state.semestres}
+              titulo={this.state.selectedTitle}
+              getTitulo={this.getTitulo}
+            />
+          </div>
           <div className="body">
             {/* <Loader /> */}
             <div id="public-routes">
@@ -516,6 +516,9 @@ class App extends Component {
                   </div>
                 }
               </div>}
+
+
+
           </div>
 
         </BrowserRouter>

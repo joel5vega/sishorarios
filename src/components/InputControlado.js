@@ -4,7 +4,7 @@ export default class InputControlado extends Component {
   render() {
     var { tipo, label, valor, nombre, handleChange } = this.props;
     return (
-      <div className="entrada">
+      <div className="form__text">
         <label>{label}</label>
         <input
           type={tipo ? tipo : "text"}

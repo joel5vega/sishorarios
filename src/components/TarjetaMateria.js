@@ -33,7 +33,7 @@ const useBasicProfileStyles = makeStyles({
     // letterSpacing: "0.01em",
     // overflowWrap:'break-word',
     justifyContent:"center",
-    minWidth:"150px"
+    minWidth:"110px"
     // backgroundColor:"red",
     // color: "#8D9CAD",
   },
@@ -43,7 +43,7 @@ const useBasicProfileStyles = makeStyles({
     // flex: "wrap",
     fontWeight: 500,
     justifyContent:"center",
-    color: "#495869",
+    // color: "#495869",
     // justifyContent:"center",
     // maxWidth: (props) => props.ancho,
   },

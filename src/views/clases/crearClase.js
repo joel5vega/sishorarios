@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Calendario from "../../components/Calendario";
-// import "../css/crear.css";
+import "../../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -28,7 +28,7 @@ export default class CrearClase extends Component {
       evento: [],
       view: "timeGridWeek",
       valido: false,
-      disabled:false,
+      disabled: false,
       // disabled: this.props.usuario.tipo === "docente" | false,
       ////selescted
       selectedPeriodo: "default",
@@ -67,7 +67,7 @@ export default class CrearClase extends Component {
   }
   componentDidMount() {
     const user = this.props.usuario;
-    if (user.tipo==="docente") {
+    if (user.tipo === "docente") {
       this.setState({ disabled: true })
     }
     else { this.setState({ disabled: false }) }
@@ -647,182 +647,146 @@ export default class CrearClase extends Component {
     } = this.state;
 
     return (
-      <div className="considebar">
-        <div className="sidebar">
-          <form onSubmit={this.handleSubmit}>
-            <div className="progreso">
-              Crear Clase
-              <ProgressBar completed={porcentaje} bgcolor="#046193" />
+      <div className="crear__container">
+        <div className="form__container">
+          <div className="progreso">
+            Crear Clase
+            <ProgressBar completed={porcentaje} bgColor="#40826d" />
+          </div>
+          <form className="formulario" onSubmit={this.handleSubmit}>
+            <div className="form__grupo">
+              <SelectControlado
+                label="Periodo"
+                value={selectedPeriodo}
+                name="periodo_id"
+                handleChange={this.handlePeriodoChange}
+                datos={periodos}
+              />
             </div>
 
-            <div className="tarjeta-big">
-              <div className="tarjeta">
+            {this.state.selectedPeriodo !== "default" && (
+              <div className="form__grupo">
                 <SelectControlado
-                  label="Periodo"
-                  value={selectedPeriodo}
-                  name="periodo_id"
-                  handleChange={this.handlePeriodoChange}
-                  datos={periodos}
+                  label="Semestre"
+                  value={selectedSemestre}
+                  name="semestre"
+                  handleChange={this.handleSemestreChange}
+                  datos={listaSemestres}
                 />
-              </div>
 
-              {this.state.selectedPeriodo !== "default" && (
-                <div >
-                  <div className="tarjeta">
-                    <SelectControlado
-                      label="Semestre"
-                      value={selectedSemestre}
-                      name="semestre"
-                      handleChange={this.handleSemestreChange}
-                      datos={listaSemestres}
-                    />
-                  </div>
-                  <div className="tarjeta">
-                    {selectedSemestre > 6 && (
-                      <SelectControlado
-                        label="Mencion"
-                        value={selectedMencion}
-                        name="mencion"
-                        handleChange={this.handleMencionChange}
-                        datos={menciones}
-                      />
-                    )}
-                  </div>
-                </div>
-              )}
-              {this.state.selectedSemestre !== "default" && (
-                <div>
-                  <div className="tarjeta">
-                    <SelectControlado
-                      label="Materia"
-                      value={selectedMateria}
-                      name="materia"
-                      handleChange={this.handleMateriaChange}
-                      materia={true}
-                      datos={materias}
-                    />
-                  </div>
-                  <div className="tarjeta">
-                    <InputControlado
-                      label="Paralelo"
-                      nombre="paralelo"
-                      valor={paralelo}
-                      handleChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-              )}
-
-            </div>
-
-            {this.state.selectedMateria !== "default" && (
-              <div className="tarjeta-big">
-                <div className="tarjeta">
+                {selectedSemestre > 6 && (
                   <SelectControlado
-                    label="Nivel"
-                    value={selectedNivel}
-                    name="nivel"
-                    handleChange={this.handleNivelChange}
-                    datos={niveles}
-                    disabled={disabled}
+                    label="Mencion"
+                    value={selectedMencion}
+                    name="mencion"
+                    handleChange={this.handleMencionChange}
+                    datos={menciones}
                   />
-                </div>
-                {this.state.selectedNivel !== "" && (
-
-                  <div className="tarjeta">
-
-                    <SelectControlado
-                      label="Responsable"
-                      value={selectedResponsable}
-                      name="responsable"
-                      handleChange={this.handleResponsableChange}
-                      datos={responsables}
-                      index={true}
-                      disabled={disabled}
-                    />
-                  </div>
                 )}
               </div>
             )}
-            {this.state.selectedResponsable !== "default" && (
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Tipo"
-                    value={selectedTipo}
-                    name="tipo"
-                    handleChange={this.handleTipoChange}
-                    datos={tipos}
-                  />
-                </div>
+            {this.state.selectedSemestre !== "default" && (
+              <div className="form__grupo">
+                <SelectControlado
+                  label="Materia"
+                  value={selectedMateria}
+                  name="materia"
+                  handleChange={this.handleMateriaChange}
+                  materia={true}
+                  datos={materias}
+                />
+                <InputControlado
+                  label="Paralelo"
+                  nombre="paralelo"
+                  valor={paralelo}
+                  handleChange={this.handleChange}
+                />
+              </div>
+            )}
 
+            {this.state.selectedMateria !== "default" && (
+              <div className="form__grupo">
+                <SelectControlado
+                  label="Nivel"
+                  value={selectedNivel}
+                  name="nivel"
+                  handleChange={this.handleNivelChange}
+                  datos={niveles}
+                  disabled={disabled}
+                />
+                {this.state.selectedNivel !== "" && (
+                  <SelectControlado
+                    label="Docente"
+                    value={selectedResponsable}
+                    name="responsable"
+                    handleChange={this.handleResponsableChange}
+                    datos={responsables}
+                    index={true}
+                    disabled={disabled}
+                  />
+                )}
+              </div>
+            )}
+            {this.state.selectedNivel !== "default" && this.state.selectedResponsable !== "default" && (
+              <div className="form__grupo">
+                <SelectControlado
+                  label="Tipo"
+                  value={selectedTipo}
+                  name="tipo"
+                  handleChange={this.handleTipoChange}
+                  datos={tipos}
+                />
                 {this.state.selectedTipo !== "" && (
-                  <div className="tarjeta">
-                    <SelectControlado
-                      label="Ambiente"
-                      value={selectedAmbiente}
-                      name="ambiente"
-                      handleChange={this.handleAmbienteChange}
-                      datos={ambientes}
-                    />
-                  </div>
+                  <SelectControlado
+                    label="Ambiente"
+                    value={selectedAmbiente}
+                    name="ambiente"
+                    handleChange={this.handleAmbienteChange}
+                    datos={ambientes}
+                  />
                 )}
               </div>
             )}
             {this.state.selectedAmbiente !== "default" && (
-              <div className="tarjeta-big">
-                <div className="tarjeta">
-                  <SelectControlado
-                    label="Dia"
-                    value={day}
-                    name="day"
-                    handleChange={this.handleDayChange}
-                    datos={dias}
-                  />
-                </div>
+              <div className="form__grupo">
+                <SelectControlado
+                  label="Dia"
+                  value={day}
+                  name="day"
+                  handleChange={this.handleDayChange}
+                  datos={dias}
+                />
 
                 {this.state.day > 0 && (
-                  <div className="tarjeta">
-                    <InputControlado
-                      label="Inicio"
-                      nombre="startTime"
-                      valor={startTime}
-                      handleChange={this.handleStartChange}
-                    />
-                  </div>
+                  <InputControlado
+                    label="Inicio"
+                    nombre="startTime"
+                    valor={startTime}
+                    handleChange={this.handleStartChange}
+                  />
                 )}
                 {this.state.startTime !== "" && (
-                  <div className="tarjeta">
-                    <InputControlado
-                      label="Final"
-                      nombre="endTime"
-                      valor={endTime}
-                      handleChange={this.handleEndChange}
-                    />
-                  </div>
+                  <InputControlado
+                    label="Final"
+                    nombre="endTime"
+                    valor={endTime}
+                    handleChange={this.handleEndChange}
+                  />
                 )}
               </div>
             )}
-            {this.state.porcentaje === 100 && (
-              <div className="tarjeta-big">
-                <button
-                  className="btn btn-primary mb-2"
-                  type="submit"
-                  disabled={this.state.isSubmitting}
-                >
-                  Crear
-                </button>
-              </div>
-            )}
+
           </form>
-        </div>
-        {/* <div className="col-4">
-          <FormCrear
-            index={this.props.index}
-            getEventos={this.getEventos}
-            evento={this.state.evento}
-          />
-        </div> */}
+          {this.state.porcentaje === 100 && (
+            <button
+              className="form__submit"
+              type="submit"
+              disabled={this.state.isSubmitting}
+            >
+              Crear
+            </button>
+          )}
+        </div >
         <div className="contenido">
           <div className="calendario">
             <Calendario
@@ -833,7 +797,7 @@ export default class CrearClase extends Component {
             />
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

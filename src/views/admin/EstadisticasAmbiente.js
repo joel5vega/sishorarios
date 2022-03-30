@@ -36,7 +36,7 @@ export default class EstadisticasAmbiente extends Component {
       scales: {
         y: {
           ticks: {
-            stepSize: 6,
+            stepSize: 8,
             callback: function (value, index, values) {
               return value + ' hrs.';
             }
@@ -68,11 +68,11 @@ export default class EstadisticasAmbiente extends Component {
       datasets: [{
         type: 'bar',
         label: "Uso total",
-        backgroundColor: '#40826d',
+        backgroundColor: '#40916C',
         borderColor: 'black',
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(0,255,0,0.2)',
-        hoverBorderColor: 'white',
+        hoverBackgroundColor: 'rgba(216,243,220,0.1)',
+        hoverBorderColor: 'rgba(8, 28, 21)',
         data: total,
         skipNull: true
       }]
@@ -80,23 +80,18 @@ export default class EstadisticasAmbiente extends Component {
 
     return (
       <div className="cuadro" >
-        <div className="tarjetas-titulo">Uso de ambientes</div>
-        <div className="diagrama">
-          <Bar data={data} options={opcionT} />
-        </div>
 
         <div className="tarjeta-big">
           <div className="tarjetas-titulo">Uso de Ambientes por día</div>
           {Object.keys(diario).map((aula) => (
             <div className="tarjeta-big" key={aula}>
-              {/* <div className="tarjetas-titulo">{aula}</div> */}
               <div className="tarjeta-peque">
                 <Bar data={{
                   labels: Object.keys(diario[aula]),
                   // labels:["Lun","Ma","mi","J","V"],
                   datasets: [{
                     label: aula,
-                    backgroundColor: "#add8e6",
+                    backgroundColor: "#40916C",
                     borderColor: 'black',
                     data: diario[aula]
                   }]
@@ -117,7 +112,7 @@ export default class EstadisticasAmbiente extends Component {
                         callback: function (value, index, values) {
                           var dias = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab."]
                           if (labels[value] === "length") {
-                            
+
                           }
                           else {
                             return dias[index];
@@ -132,6 +127,13 @@ export default class EstadisticasAmbiente extends Component {
             </div>
           ))}
         </div>
+        <div className="tarjetas-titulo">Uso semanal de ambientes</div>
+        <div className="diagrama">
+          <Bar data={data} options={opcionT} />
+        </div>
+
+
+
 
       </div >
     );

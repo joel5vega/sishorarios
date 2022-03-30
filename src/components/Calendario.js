@@ -93,7 +93,7 @@ export default class Calendario extends Component {
         <div className="dato-cal-sigla">
           {event.title}-{paralelo}
         </div>
-        <div className="responsable">
+        <div className="dato-cal-responsable">
           {tituloResponsable}.{responsable}
         </div>
         <div className="dato-cal-ambiente">{ambiente}</div>

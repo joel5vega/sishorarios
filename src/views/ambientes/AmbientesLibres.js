@@ -25,7 +25,7 @@ export default class AmbientesLibres extends Component {
                   nombre={item.nombre}
                   tipo={item.tipo}
                   capacidad={item.capacidad}
-                  color="#0066CC"
+                  color="var(--color-second-2)"
                 />
               )}
             </div>
@@ -38,7 +38,7 @@ export default class AmbientesLibres extends Component {
                   nombre={item.nombre}
                   tipo={item.tipo}
                   capacidad={item.capacidad}
-                  color="#006600"
+                  color="var(--color-second-1)"
                 />
               )}
             </div>

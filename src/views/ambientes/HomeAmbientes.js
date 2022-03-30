@@ -73,10 +73,8 @@ export default class HomeAmbientes extends Component {
                         capacidad={item.capacidad}
                         color={
                           item.tipo === "laboratorio"
-                            ? "#006600"
-                            : item.tipo === "auditorio"
-                              ? "#ffa500"
-                              : "#0066CC"
+                            ? "var(--color-second-1)"
+                            : "var(--color-second-2)"
                         }
                       />
                     </div>

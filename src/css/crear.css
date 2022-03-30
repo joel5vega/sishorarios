@@ -1,12 +1,121 @@
-.fc .fc-widget-content{
-    border: 1px solid black
+.crear__container {
+  overflow-x: hidden;
 }
-.fc .fc-widget-header {
-    border: 0.5px solid black
+.formulario {
+  width: 100%;
+  /* background-color: whitesmoke; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  gap:1rem;
+  /* border: 1px solid var(--color-primary); */
 }
-.fc .fc-axis{
-    border: 1px solid black
+.progreso {
+  width: 90%;
+  justify-content: center;
+  overflow: hidden;
 }
-.fc .fc-time{
-    font-weight: bold;
+.contenido {
+  grid-column: span 1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  width: 100%;
+  /* border-radius: 2rem; */
+  /* margin: 1px; */
+  padding: 1px;
+  justify-content: center;
+}
+.form__grupo {
+  display: flex;
+  flex-direction: column;
+  background:var(--color-bg-variant);
+  max-width: fit-content;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin: 5px;
+  padding: 0.5rem;
+  min-width:11.5rem;
+}
+.form__grupo__tipo{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    align-items: flex-end;
+}
+
+.form__select {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  flex-wrap: wrap;
+  max-width: fit-content;
+  align-items: center;
+}
+.form__select label {
+  font-weight: bolder;
+  min-width: 3rem;
+  margin-right: 1rem;
+  max-width: fit-content;
+  text-align: right;
+  color: var(--color-primary);
+}
+.form__text {
+  display: flex;
+  max-width: fit-content;
+  flex-direction: row;
+  flex-basis: auto;
+  align-items: center;
+}
+.form__text label {
+  font-weight: bolder;
+  max-width: fit-content;
+  text-align: right;
+  color: var(--color-primary);
+  min-width: 3rem;
+  margin-right: 1rem;
+}
+.form__text input {
+  grid-column: span 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+  max-width: 60px;
+}
+.form__semestre {
+  max-width: inherit;
+}
+.form__materia {
+  background-color: oldlace;
+  max-width: inherit;
+}
+.form__submit {
+  width: 100%;
+  background: var(--color-primary);
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+.form__accion{
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    color:var(--color-primary);
+}
+.form__boton{
+    background:var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.form__boton a{
+    color:var(--color-light);
+}
+@media screen and  (min-width:960px){
+    .formulario {
+        display: flex;
+    }
+    .form__grupo{
+        min-width: 13rem;
+    }
 }
