@@ -21,7 +21,7 @@ class Home extends Component {
   onClick = (e) => {
     //elaboramos la fuente de consulta
     var fuente =
-      this.state.url + "clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
+      this.state.url + "/clases/semestre/" + e.semestre + "?mencion=" + e.mencion_id;
     console.log(fuente);
     this.setState({ fuente: fuente });
   };

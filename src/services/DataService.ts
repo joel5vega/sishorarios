@@ -1,7 +1,7 @@
 import UrlService from "./UrlService";
 import axios from "axios";
 let index ={}
-axios.get(UrlService.apiUrl() + "index").then((response) => {
+axios.get(UrlService.apiUrl() + "/index").then((response) => {
   index= {
     materias: response.data.materias,
     ambientes: response.data.ambientes,

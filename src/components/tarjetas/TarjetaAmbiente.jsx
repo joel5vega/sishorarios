@@ -12,7 +12,7 @@ const TarjetaAmbiente = (props) => {
           to={{
             pathname: "/clase/view",
             state: {
-              fuente: UrlService.apiUrl() + "clases/ambiente/" + props.id,
+              fuente: UrlService.apiUrl() + "/clases/ambiente/" + props.id,
               titulo: "" + props.nombre
             }
           }}

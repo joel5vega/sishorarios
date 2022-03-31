@@ -8,7 +8,7 @@ export default class EditarUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-       url:UrlService.apiUrl(),
+       api:UrlService.apiUrl(),
       selected: { tipo: "default", responsable: { responsable_id: "default" } },
       modo: "crear"
     };
@@ -65,8 +65,8 @@ export default class EditarUser extends Component {
       responsable,
     } = this.state.selected;
     console.log(this.state.selected);
-    var url = this.state.url+
-      "users?email=" +
+    var url = this.state.api+
+      "/users?email=" +
       email +
       "&name=" +
       name +

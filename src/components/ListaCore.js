@@ -40,7 +40,7 @@ class ListaCore extends Component {
       this.setState({
         menciones: this.props.index.menciones,
         pensums: this.props.index.pensums,
-        url: UrlService.apiUrl(),
+        api: UrlService.apiUrl(),
       })
     }
     console.group("Lista")
@@ -115,9 +115,9 @@ class ListaCore extends Component {
     // console.log(id);
     var urlPost
     if (this.props.tipo === "users") {
-      urlPost = this.state.url + "users/habilitar/" + id;
+      urlPost = this.state.api + "/users/habilitar/" + id;
     } else {
-      urlPost = this.state.url + "clases/habilitar/" + id;
+      urlPost = this.state.api + "/clases/habilitar/" + id;
     }
     axios
       .post(urlPost)
@@ -199,32 +199,32 @@ class ListaCore extends Component {
     switch (tipo) {
       case "responsable":
         {
-          url = this.state.url + "responsables/";
+          url = this.state.api + "/responsables/";
           break;
         }
       case "materia":
         {
-          url = this.state.url + "materias/";
+          url = this.state.api + "/materias/";
           break;
         }
       case "clases":
         {
-          url = this.state.url + "clases/"
+          url = this.state.api + "/clases/"
           break;
         }
       case "periodo":
         {
-          url = this.state.url + "periodos/"
+          url = this.state.api + "/periodos/"
           break;
         }
       case "ambiente":
         {
-          url = this.state.url + "ambientes/"
+          url = this.state.api + "/ambientes/"
           break;
         }
       case "users":
         {
-          url = this.state.url + "users/"
+          url = this.state.api + "/users/"
           break;
         }
       default:
@@ -275,22 +275,22 @@ class ListaCore extends Component {
     var url
     switch (this.props.tipo) {
       case "responsable": {
-        url = this.state.url + "api/responsables/" + e;
+        url = this.state.api + "/responsables/" + e;
         break;
       }
       case "clases": {
-        url = this.state.url + "api/clases/" + e;
+        url = this.state.api + "/clases/" + e;
         break;
       }
       case "materia": {
-        url = this.state.url + "api/materias/" + e;
+        url = this.state.api + "/materias/" + e;
         break;
       }
       case "users": {
-        url = this.state.url + "api/users/" + e;
+        url = this.state.api + "/users/" + e;
         break;
       }
-      default: url=this.state.url + "api/users/" + e;
+      default: url=this.state.api + "/users/" + e;
     }
 
     console.log(url);

@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-// import ContextProvider from "../../containers/ContextProvider";
-// import TarjetaMateria from "../../components/TarjetaMateria";
 import TarjetaResponsable from "../../components/tarjetas/TarjetaResponsable";
-import UrlService from "../../services/UrlService";
+
 export default class HomeResponsables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: UrlService.apiUrl(),
     }
   }
   componentDidMount() {

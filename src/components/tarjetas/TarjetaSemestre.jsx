@@ -14,7 +14,7 @@ const TarjetaSemestre = (props) => {
             state: {
               fuente:
                 UrlService.apiUrl() +
-                "clases/semestre/" +
+                "/clases/semestre/" +
                 props.semestre +
                 "?mencion=" +
                 props.mencion_id,

@@ -8,7 +8,7 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       // selected: { tipo: "default" },
       selected: { tipo: "default", responsable: { responsable_id: "default",email:"@mail.com" } },
       modo: "crear"
@@ -68,8 +68,8 @@ export default class Register extends Component {
       responsable,
     } = this.state.selected;
     console.log(this.state.selected);
-    var url = this.state.url+      
-      "users?email=" +
+    var url = this.state.api+      
+      "/users?email=" +
       email +
       "&name=" +
       name +

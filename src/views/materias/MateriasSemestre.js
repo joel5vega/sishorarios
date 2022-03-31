@@ -36,7 +36,7 @@ export default class MateriasSemestre extends Component {
                           color={
                             item.tipo === "laboratorio" ? "#006600" : "#0066CC"
                           }
-                          enlace={this.state.url + "responsable/" + item.id}
+                          enlace={this.state.url + "/responsable/" + item.id}
                         />
                     ) : (
                       item.menciones.length &&
@@ -59,7 +59,7 @@ export default class MateriasSemestre extends Component {
                                     : "#0066CC"
                                 }
                                 enlace={
-                                  this.state.url + "responsable/" + item.id
+                                  this.state.url + "/responsable/" + item.id
                                 }
                               />
 

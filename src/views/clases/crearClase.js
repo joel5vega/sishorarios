@@ -13,7 +13,7 @@ export default class CrearClase extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       privilegio: this.props.usuario | "administrativo",
       ambientes: [],
       materias: [],
@@ -74,15 +74,15 @@ export default class CrearClase extends Component {
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
-    const url = this.state.url;
+    const url = this.state.api;
 
     try {
       this.setState({ loading: true });
       if (mencion !== "") {
         var urlMaterias =
-          url + "materias/semestre/" + semestre + "?mencion=" + mencion;
+          url + "/materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        urlMaterias = url + "materias/semestre/" + semestre;
+        urlMaterias = url + "/materias/semestre/" + semestre;
       }
       axios.get(urlMaterias).then((response) => {
         this.setState({ materias: response.data.materias, loading: false });
@@ -94,10 +94,10 @@ export default class CrearClase extends Component {
   }
   //fetch Ambientes
   async fetchAmbientes(tipo) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
-      var urlAmbientes = url + "ambientes?tipo=" + tipo;
+      var urlAmbientes = url + "/ambientes?tipo=" + tipo;
       axios.get(urlAmbientes).then((response) => {
         var data = response.data;
         //asignamos las aulas del tipo  correspondiente
@@ -110,10 +110,10 @@ export default class CrearClase extends Component {
   }
   //fetch responsables
   async fetchResponsables(nivel) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
-      const urlResponsables = url + "responsables?nivel=" + nivel;
+      const urlResponsables = url + "/responsables?nivel=" + nivel;
       axios.get(urlResponsables).then((response) => {
         var data = response.data.responsables;
         this.setState({ responsables: data });
@@ -125,14 +125,14 @@ export default class CrearClase extends Component {
   }
 
   async fetchChoqueSemestre(semestre, mencion) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       var urlSemestre
       if (mencion !== "") {
         urlSemestre =
           url +
-          "clases/semestre/" +
+          "/clases/semestre/" +
           semestre +
           "?mencion=" +
           mencion +
@@ -141,7 +141,7 @@ export default class CrearClase extends Component {
       } else {
         urlSemestre =
           url +
-          "clases/semestre/" +
+          "/clases/semestre/" +
           semestre +
           "?periodo=" +
           this.state.selectedPeriodo;
@@ -193,12 +193,12 @@ export default class CrearClase extends Component {
     });
   }
   async fetchChoqueAmbiente(ambiente) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "clases/ambiente/" +
+        "/clases/ambiente/" +
         ambiente +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -216,12 +216,12 @@ export default class CrearClase extends Component {
     }
   }
   async fetchChoqueResponsable(responsable) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "clases/responsable/" +
+        "/clases/responsable/" +
         responsable +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -515,7 +515,7 @@ export default class CrearClase extends Component {
     console.log(evento);
     console.log("Para enviar selected:");
     console.log(this.state.selected);
-    let urlPost = this.state.url + "clases";
+    let urlPost = this.state.api + "/clases";
     axios
       .post(urlPost, evento)
       .then(

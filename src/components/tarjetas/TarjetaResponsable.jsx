@@ -16,7 +16,7 @@ const TarjetaResponsable = (props) => {
         to={{
           pathname: "/clase/view",
           state: {
-            fuente: UrlService.apiUrl() + "clases/responsable/" + id,
+            fuente: UrlService.apiUrl() + "/clases/responsable/" + id,
             titulo: " " + titulo + nombre
           }
         }}

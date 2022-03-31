@@ -11,7 +11,7 @@ export default class HomeAmbientes extends Component {
     super(args);
     this.state = {
       loading: true,
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       libres: [],
       ocupados: [],
       showLib: true,
@@ -42,7 +42,7 @@ export default class HomeAmbientes extends Component {
     }));
   };
   async getAmbientes() {
-    axios.get(this.state.url + "now?index=ambientes").then((response) => {
+    axios.get(this.state.api + "/now?index=ambientes").then((response) => {
       this.setState({
         ocupados: response.data.ocupados,
         libres: response.data.libres,

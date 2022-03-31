@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import TarjetaSemestre from "../../components/tarjetas/TarjetaSemestre";
-import UrlService from "../../services/UrlService";
 export default class ListaSemestres extends Component {
   constructor(props) {
     super(props);
     this.state = {
       datos: this.props.semestres,
-
-      url: UrlService.apiUrl()
     };
   }
 

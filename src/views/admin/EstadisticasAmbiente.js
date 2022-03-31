@@ -7,7 +7,7 @@ export default class EstadisticasAmbiente extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       ambiente: {
         total: {},
         diario: {}
@@ -18,7 +18,7 @@ export default class EstadisticasAmbiente extends Component {
     this.getDatosAmbientes();
   }
   async getDatosAmbientes() {
-    var url = this.state.url + 'datos?tipo=ambiente'
+    var url = this.state.api + '/datos?tipo=ambiente'
     try {
       axios.get(url).then((response) => {
         this.setState({ ambiente: response.data.ambiente })

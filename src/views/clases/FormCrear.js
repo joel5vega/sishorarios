@@ -82,9 +82,9 @@ class FormCrear extends Component {
       this.setState({ loading: true });
       if (mencion !== "" && typeof (mencion) !== 'undefined') {
         var urlMaterias =
-          url + "materias/semestre/" + semestre + "?mencion=" + mencion;
+          url + "/materias/semestre/" + semestre + "?mencion=" + mencion;
       } else {
-        urlMaterias = url + "materias/semestre/" + semestre;
+        urlMaterias = url + "/materias/semestre/" + semestre;
       }
       axios.get(urlMaterias).then((response) => {
         this.setState({ materias: response.data.materias, loading: false });
@@ -101,7 +101,7 @@ class FormCrear extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      var urlAmbientes = url + "ambientes?tipo=" + tipo;
+      var urlAmbientes = url + "/ambientes?tipo=" + tipo;
       axios.get(urlAmbientes).then((response) => {
         var data = response.data;
         //asignamos las aulas del tipo  correspondiente
@@ -117,7 +117,7 @@ class FormCrear extends Component {
     const url = this.state.url;
     try {
       this.setState({ loading: true });
-      const urlResponsables = url + "responsables?nivel=" + nivel;
+      const urlResponsables = url + "/responsables?nivel=" + nivel;
       axios.get(urlResponsables).then((response) => {
         var data = response.data.responsables;
         this.setState({ responsables: data });
@@ -145,7 +145,7 @@ class FormCrear extends Component {
       if (mencion !== "") {
         urlSemestre =
           url +
-          "clases/semestre/" +
+          "/clases/semestre/" +
           semestre +
           "?mencion=" +
           mencion +
@@ -154,7 +154,7 @@ class FormCrear extends Component {
       } else {
         urlSemestre =
           url +
-          "clases/semestre/" +
+          "/clases/semestre/" +
           semestre +
           "?periodo=" +
           this.state.selectedPeriodo;
@@ -213,7 +213,7 @@ class FormCrear extends Component {
       this.setState({ loading: true });
       const urlChoque =
         url +
-        "clases/ambiente/" +
+        "/clases/ambiente/" +
         ambiente +
         "?periodo=" +
         this.state.selectedPeriodo;
@@ -504,7 +504,7 @@ class FormCrear extends Component {
   delete = () => {
     var id = this.props.clase.id
     console.log(id)
-    var url = this.state.url + "clases/" + id
+    var url = this.state.url + "/clases/" + id
     axios.delete(url).then((response) => {
       console.log(response);
     },

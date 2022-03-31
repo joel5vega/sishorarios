@@ -8,7 +8,7 @@ class Estudiante extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
     };
   }
   render() {
@@ -35,7 +35,7 @@ class Estudiante extends Component {
                     pathname: "/clase/view",
                     state: {
                       fuente:
-                        this.state.url + "clases/semestre/" +
+                        this.state.api + "/clases/semestre/" +
                         item.semestre +
                         "?mencion=" +
                         item.mencion_id,
@@ -65,7 +65,7 @@ class Estudiante extends Component {
                 pathname: "/clase/view",
                 state: {
                   fuente:
-                    this.state.url + "clases/ambiente/" + item.id,
+                    this.state.api + "/clases/ambiente/" + item.id,
                   titulo: " " + item.nombre,
                 },
               }}

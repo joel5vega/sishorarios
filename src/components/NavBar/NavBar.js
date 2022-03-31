@@ -32,7 +32,7 @@ class NavBar extends Component {
   componentDidMount() {
     var tipo = this.props.tipo || "estudiante";
     var usuario = this.props.usuario || this.state.usuario;
-    var fuente = UrlService.apiUrl() + "clases/responsable/" + usuario.responsable.id + "?periodo=4";
+    var fuente = UrlService.apiUrl() + "/clases/responsable/" + usuario.responsable.id + "?periodo=4";
     var responsable = usuario.responsable.titulo + " " + usuario.responsable.ap_paterno;
     if (tipo !== "estudiante") {
       this.setState({ tipo: tipo, logged: true });
@@ -55,7 +55,7 @@ class NavBar extends Component {
 
   async getUser(id) {
     /*
-        const url = UrlService.apiUrl() + "users/" + id;
+        const url = UrlService.apiUrl() + "/users/" + id;
         try {
           this.setState({ loading: true });
           axios.get(url).then((response) => {

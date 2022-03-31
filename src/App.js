@@ -107,7 +107,7 @@ class App extends Component {
   async fetchIndex() {
     console.group("inicio")
     this.getUser(Auth.getUser())
-    axios.get(UrlService.apiUrl() + "index").then((response) => {
+    axios.get(UrlService.apiUrl() + "/index").then((response) => {
       this.setState({
         materias: response.data.materias,
         ambientes: response.data.ambientes,
@@ -133,7 +133,7 @@ class App extends Component {
       id = user
       // Conseguimos datos del usuario
       axios
-        .get(UrlService.apiUrl() + "users/" + id)
+        .get(UrlService.apiUrl() + "/users/" + id)
         .then((response) => {
           var data = response.data.user
           console.log("Usuario es", data)

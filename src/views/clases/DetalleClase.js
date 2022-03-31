@@ -12,7 +12,7 @@ class DetalleClase extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       externo: false,
       clase: this.props.id,
       clases: {},
@@ -24,7 +24,7 @@ class DetalleClase extends Component {
     // this.getDatos(this.state.clase);
   }
   getDatos(id) {
-    var url = this.state.url + "clases/" + id;
+    var url = this.state.api + "/clases/" + id;
     axios.get(url).then((response) => {
       this.setState({
         clases: response.data,

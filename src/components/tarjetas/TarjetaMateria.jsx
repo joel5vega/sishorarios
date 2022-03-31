@@ -1,7 +1,5 @@
 import React from "react";
 import "./tarjetas.css";
-import { NavLink } from "react-router-dom";
-import UrlService from "../../services/UrlService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook,faFlask } from "@fortawesome/free-solid-svg-icons";
 const color = { "teoria": "var(--color-second-1)", "laboratorio": "var(--color-second-2)",  }

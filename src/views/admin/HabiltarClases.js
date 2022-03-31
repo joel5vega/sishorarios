@@ -10,7 +10,7 @@ export default class HabilitarClases extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       clases: this.props.clases,
     };
   }
@@ -19,14 +19,14 @@ export default class HabilitarClases extends Component {
   }
   
   async getDatos() {
-    var url = this.state.url + "clases?estado=false";
+    var url = this.state.api + "/clases?estado=false";
     axios.get(url).then((response) => {
       this.setState({ clases: response.data });
     });
   }
 
   habilitarTodos = () => {
-    var url = this.state.url + "clases/habilitar/0?todos=yes"
+    var url = this.state.api + "/clases/habilitar/0?todos=yes"
     axios.post(url).then((response) => {
       console.log(response)
     },

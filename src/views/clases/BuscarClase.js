@@ -17,7 +17,7 @@ class BuscarClase extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       width: window.innerWidth,
       view: "timeGridWeek",
       showCal: true,
@@ -141,7 +141,7 @@ class BuscarClase extends Component {
     var periodo = event.target.value;
     // var nombre = this.filtro(this.state.periodos, periodo);
     // console.log(nombre);
-    const fuentePeriodo = this.state.url + "clases?periodo=" + periodo;
+    const fuentePeriodo = this.state.api + "/clases?periodo=" + periodo;
 
     this.setState({
       // periodo: nombre.nombre,
@@ -159,8 +159,8 @@ class BuscarClase extends Component {
     var semestre = event.target.value;
     let title = "Semestre:  " + semestre;
     var nuevaFuente =
-      this.state.url +
-      "clases/semestre/" +
+      this.state.api +
+      "/clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo;
@@ -178,8 +178,8 @@ class BuscarClase extends Component {
     var semestre = this.state.selectedSemestre;
     let title = "Semestre:  " + semestre + " - " + menciones[mencion];
     var fuenteDatos =
-      this.state.url +
-      "clases/semestre/" +
+      this.state.api +
+      "/clases/semestre/" +
       semestre +
       "?periodo=" +
       this.state.selectedPeriodo +
@@ -199,8 +199,8 @@ class BuscarClase extends Component {
     // var nombre = "AULS"
     // console.log("nombre"+nombre)
     var nuevaFuente =
-      this.state.url +
-      "clases/ambiente/" +
+      this.state.api +
+      "/clases/ambiente/" +
       ambiente +
       "?periodo=" +
       this.state.selectedPeriodo;
@@ -219,8 +219,8 @@ class BuscarClase extends Component {
     var item = this.filtro(this.state.responsables, responsable);
     var title = item.titulo + ". " + item.ap_paterno
     var nuevaFuente =
-      this.state.url +
-      "clases/responsable/" +
+      this.state.api +
+      "/clases/responsable/" +
       responsable +
       "?periodo=" +
       this.state.selectedPeriodo;

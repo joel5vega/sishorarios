@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import TarjetaAmbiente from "../../components/TarjetaAmbiente";
-import UrlService from "../../services/UrlService";
 
 export default class AmbientesLibres extends Component {
   constructor(args) {
     super(args);
     this.state = {
       loading: true,
-      url: UrlService.apiUrl(),
       libres: [],
       ocupados: [],
     };

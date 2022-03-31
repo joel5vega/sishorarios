@@ -8,7 +8,7 @@ export default class EstadisticasResponsable extends Component {
     super(props);
     this.state = {
       usuario: "",
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       responsable: {
         responsables: {},
         diario: {}
@@ -20,7 +20,7 @@ export default class EstadisticasResponsable extends Component {
   }
 
   async getDatosDocentes() {
-    var url = this.state.url + 'datos?tipo=responsable'
+    var url = this.state.api + '/datos?tipo=responsable'
     try {
       axios.get(url).then((response) => {
         this.setState({ responsable: response.data.responsable })

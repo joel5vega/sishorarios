@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 
 class UrlService {
   static loginUrl() { return apiDomain + 'api/login'; }
-  static apiUrl(){return apiDomain + 'api/';}
+  static apiUrl(){return apiDomain + 'api';}
 }
 
 export default UrlService;
