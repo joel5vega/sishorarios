@@ -89,10 +89,15 @@
   max-width: inherit;
 }
 .form__submit {
-  width: 100%;
+  width: 10rem;
+  height: 4rem;
   background: var(--color-primary);
   border-radius: 2rem;
   margin-bottom: 1rem;
+  color:var(--color-light);
+  border-color: black;
+  font-size: large;
+  font-weight: bolder;
 }
 .form__accion{
     /* background-color: aquamarine; */

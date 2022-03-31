@@ -15,7 +15,7 @@ class FormCrear extends Component {
   constructor(args) {
     super(args);
     this.state = {
-      url: UrlService.apiUrl(),
+      api: UrlService.apiUrl(),
       ambientes: [],
       materias: [],
       responsables: [],
@@ -76,7 +76,7 @@ class FormCrear extends Component {
   }
   //fetch materias
   async fetchMaterias(semestre, mencion) {
-    const url = this.state.url;
+    const url = this.state.api;
 
     try {
       this.setState({ loading: true });
@@ -98,7 +98,7 @@ class FormCrear extends Component {
   }
   //fetch Ambientes
   async fetchAmbientes(tipo) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       var urlAmbientes = url + "/ambientes?tipo=" + tipo;
@@ -114,7 +114,7 @@ class FormCrear extends Component {
   }
   //fetch responsables
   async fetchResponsables(nivel) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       const urlResponsables = url + "/responsables?nivel=" + nivel;
@@ -138,7 +138,7 @@ class FormCrear extends Component {
   };
   //cHOQUES
   async fetchChoqueSemestre(semestre, mencion) {
-    const url = this.state.url;
+    const url = this.state.api;
     var urlSemestre
     try {
       this.setState({ loading: true });
@@ -208,7 +208,7 @@ class FormCrear extends Component {
     });
   }
   async fetchChoqueAmbiente(ambiente) {
-    const url = this.state.url;
+    const url = this.state.api;
     try {
       this.setState({ loading: true });
       const urlChoque =
@@ -504,7 +504,7 @@ class FormCrear extends Component {
   delete = () => {
     var id = this.props.clase.id
     console.log(id)
-    var url = this.state.url + "/clases/" + id
+    var url = this.state.api + "/clases/" + id
     axios.delete(url).then((response) => {
       console.log(response);
     },
@@ -533,7 +533,7 @@ class FormCrear extends Component {
     console.log(evento);
     console.log("Para enviar selected:");
     // console.log(this.state.selected);
-    let urlPut = this.state.url + "clases/" + id;
+    let urlPut = this.state.api + "/clases/" + id;
     axios
       .put(urlPut, evento)
       .then(
@@ -634,17 +634,14 @@ class FormCrear extends Component {
       selectedNivel,
       tipo,
       paralelo,
-      materias,
       periodo_id,
       materia_id,
-      responsables,
-      ambientes,
       startTime,
       endTime,
       day,
       porcentaje,
     } = this.state.selected;
-    // var { materias, ambientes, responsables } = this.state
+    var { materias, ambientes, responsables } = this.state
 
     return (
       <div className="tarjetas">
@@ -718,6 +715,7 @@ class FormCrear extends Component {
                 datos={niveles}
               />
             </div>
+
             <div className="tarjeta">
               <SelectControlado
                 label="Responsable"
@@ -728,6 +726,7 @@ class FormCrear extends Component {
                 index={true}
               />
             </div>
+
           </div>
           <div className="tarjeta-big">
             <div className="tarjeta">

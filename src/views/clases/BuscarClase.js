@@ -1,4 +1,4 @@
-import React, { Component, lazy } from "react";
+import React, { Component } from "react";
 import html2canvas from "html2canvas";
 import jsPdf from "jspdf";
 import "../../fontawesome";
@@ -12,7 +12,7 @@ import { Modal } from "react-bootstrap";
 import EditarClase from "./EditarClase";
 import UrlService from "../../services/UrlService";
 import "../../css/crear.css";
-// const jsPdf =lazy(()=>import("jspdf"));
+
 class BuscarClase extends Component {
   constructor(props) {
     super(props);
@@ -263,7 +263,6 @@ class BuscarClase extends Component {
     console.log(e);
   };
   eventClick = (e) => {
-
     var id = e.event;
     var clase = e.event.extendedProps;
     var startTime = e.event.start.toLocaleTimeString([], {
@@ -290,6 +289,7 @@ class BuscarClase extends Component {
       color: e.event.backgroundColor,
       title: e.event.title,
     };
+
     this.setState({
       show: true,
       guardar: true,
@@ -298,9 +298,7 @@ class BuscarClase extends Component {
       clase: clase,
       backgroundColor: e.event.backgroundColor,
     });
-
-    // console.log(id);
-    // alert("hola")
+    console.log(this.state.clase)
   };
   onHide = () => {
     var view = this.state.view;
@@ -423,7 +421,7 @@ class BuscarClase extends Component {
               )}
             </div>
 
-            {this.state.selectedAmbiente!=="default" || this.state.selectedSemestre!=="default" || this.state.selectedResponsable!=="default" ? (
+            {this.state.selectedAmbiente !== "default" || this.state.selectedSemestre !== "default" || this.state.selectedResponsable !== "default" ? (
               <div id="print" className="form__accion">
                 <div className="form__boton">
                   <Link
@@ -448,7 +446,7 @@ class BuscarClase extends Component {
                   </Link>
                 </div>
               </div>
-              ):""}
+            ) : ""}
 
           </div>
 

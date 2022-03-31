@@ -40,7 +40,8 @@ export default class CrearClase extends Component {
       paralelo: "A",
       selectedSemestre: "default",
       selectedMencion: "default",
-      selectedResponsable: this.props.usuario.responsable_id | "default",
+      selectedResponsable: "default",
+      // selectedResponsable: this.props.usuario.responsable_id | "default",
       // selectedNivel: this.props.usuario.tipo | "default",
       selectedNivel: "default",
       selectedTipo: "default",
@@ -499,6 +500,7 @@ export default class CrearClase extends Component {
     return nuevo;
   }
   handleSubmit(event) {
+    
     event.preventDefault();
     var evento = {
       materia: this.state.selectedMateria,
@@ -516,14 +518,17 @@ export default class CrearClase extends Component {
     console.log("Para enviar selected:");
     console.log(this.state.selected);
     let urlPost = this.state.api + "/clases";
+    
     axios
       .post(urlPost, evento)
       .then(
         (response) => {
           console.log(response);
+          alert("Evento creado");
         },
         (error) => {
           console.log(error);
+          alert("Error al crear evento");
         }
       )
       .then(this.limpiarForm());
@@ -782,6 +787,7 @@ export default class CrearClase extends Component {
               className="form__submit"
               type="submit"
               disabled={this.state.isSubmitting}
+              onClick={this.handleSubmit}
             >
               Crear
             </button>
