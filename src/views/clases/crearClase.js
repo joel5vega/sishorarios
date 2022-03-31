@@ -535,7 +535,7 @@ export default class CrearClase extends Component {
     this.limpiarForm();
     this.props.history.push("crear");
 
-    alert("El evento se creo exitosamente");
+    // alert("El evento se creo exitosamente");
   }
 
   limpiarForm() {

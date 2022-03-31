@@ -14,7 +14,7 @@ export default class CheckControlado extends Component {
         <div className="fila">
           {datos.map((item) => {
             return (
-              <div>
+              <div key={item.id}>
                 {item.nombre !== "General" && (
                   <div key={item.id} className="tarjeta-peque">
                     <input type="checkbox"

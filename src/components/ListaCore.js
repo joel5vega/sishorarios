@@ -32,7 +32,8 @@ class ListaCore extends Component {
       guardar: false,
       editar: false,
       selected: {},
-      info: { color: "green" }, 
+      info: { color: "green" },
+      api: UrlService.apiUrl(), 
     };
   }
   componentDidMount() {
@@ -87,27 +88,27 @@ class ListaCore extends Component {
   ////////////////////////
   showHabil = (e) => {
     const target = e.target;
-    // const value = target.value;
-    // const name = target.name;
     const id = target.id;
     var tipo = this.props.tipo;
-    console.log(tipo);
+    console.log(id);
 
     const response = this.buscar(id);
-    console.log(response[0]);
+    
+    // console.log(response);
 
     this.setState({
-      info: response[0],
-      selected: response[0],
+      info: response,
+      selected: response,
       showInfo: true,
       showHabilitado: true,
       // selected: { ...this.state.selected, [name]: value },
       idClase: id,
     });
+    
   };
   buscar(id) {
-    var dato = this.props.datos.filter((e) => e.id === id);
-    return dato;
+    var dato = this.props.datos.filter((e) => e.id == id);
+    return dato[0];
   }
   habilitar = (event) => {
     event.preventDefault();
@@ -124,9 +125,11 @@ class ListaCore extends Component {
       .then(
         (response) => {
           // console.log(response);
+          alert("Habilitado")
           console.log(response.request.response)
         },
         (error) => {
+          "No se pudo habilitar"
           console.log(error);
         }
       )
@@ -231,15 +234,18 @@ class ListaCore extends Component {
     }
     return url;
   };
+
   put = (urlPut, dato) => {
     axios
       .put(urlPut, dato)
       .then(
         (response) => {
           console.log(response);
+          alert("Actualizado");
           window.location.reload(false)
         },
         (error) => {
+          alert("Error al actualizar");
           console.log(error);
         }
       )
@@ -251,9 +257,11 @@ class ListaCore extends Component {
       .then(
         (response) => {
           console.log(response);
+          alert("Guardado");
           window.location.reload(false)
         },
         (error) => {
+          alert("Error al guardar");
           console.log(error);
         }
       )
@@ -297,10 +305,13 @@ class ListaCore extends Component {
     axios.delete(url).then(
       (response) => {
         console.log(response);
+        alert("Eliminado con éxito");
         window.location.reload(false)
       },
       (error) => {
+        alert("No se pudo eliminar, revise si el recurso tiene alguna clase asignada");
         console.log(error);
+        this.props.history.push("/clase");
       }
     );
   }
@@ -498,7 +509,7 @@ class ListaCore extends Component {
             onHide={this.onHide}
             aria-labelledby="contained-modal-title-vcenter"
           >
-            <Modal.Header style={{ backgroundColor: info.color }}>
+            <Modal.Header style={{ backgroundColor: info.color |"var(--color-primary)"}}>
               <Modal.Title
                 id="contained-modal-title-vcenter"
                 style={{ color: "white" }}

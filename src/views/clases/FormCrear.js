@@ -507,9 +507,11 @@ class FormCrear extends Component {
     var url = this.state.api + "/clases/" + id
     axios.delete(url).then((response) => {
       console.log(response);
+      alert("Eliminado con éxito")
     },
       (error) => {
         console.log(error);
+        alert("No se pudo eliminar")
       })
     this.props.history.push("");
   }
@@ -539,6 +541,7 @@ class FormCrear extends Component {
       .then(
         (response) => {
           console.log(response);
+          alert("actualizado con éxito");
           window.location.reload(false)
           this.props.history.push("/clase", {
             selectedBuscar: this.state.selectedBuscar,
@@ -547,6 +550,7 @@ class FormCrear extends Component {
         },
         (error) => {
           console.log(error);
+          alert("no se pudo actualizar");
         }
       )
       .then(this.limpiarForm());
@@ -645,7 +649,7 @@ class FormCrear extends Component {
 
     return (
       <div className="tarjetas">
-        <form noValidate onSubmit={this.handleSubmit}>
+        <div noValidate onSubmit={this.handleSubmit}>
           <div className="progreso">
             Editar Clase
             <ProgressBar completed={porcentaje} bgcolor="#046193" />
@@ -798,7 +802,7 @@ class FormCrear extends Component {
               <DeleteOutlineSharpIcon />
             </Fab>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
