@@ -84,7 +84,8 @@ export default class CrearMateria extends Component {
         // var { mencionesSeleccionadas } = this.state
         // var {menciones}=this.props.datos.menciones
         var listaMenciones = this.props.menciones
-        var pensums = this.props.pensums
+        var pensums =[ { id: "1", nombre: "----" },{ id: "1", nombre: "Pensum 2000" }]
+        // {this.props.pensums}
         const semestres = [
             { id: "1", nombre: "1" },
             { id: "2", nombre: "2" },
@@ -159,7 +160,7 @@ export default class CrearMateria extends Component {
                 <div className="itemInfo">
                     <SelectControlado
                         label="Pensum"
-                        value={pensum_id}
+                        value="1"
                         name="pensum"
                         handleChange={this.handleChange}
                         datos={pensums}

@@ -192,7 +192,8 @@ class ListaCore extends Component {
       console.log("editar " + tipo + " en " + url);
       this.put(url, this.state.selected);
     } else {
-      url = this.url(tipo); console.log("guardar " + tipo + " en " + url);
+      url = this.url(tipo);
+      console.log("guardar " + tipo + " en " + url);
       this.post(url, this.state.selected);
     }
     console.log(this.state.selected);
@@ -258,14 +259,14 @@ class ListaCore extends Component {
         (response) => {
           console.log(response);
           alert("Guardado");
-          window.location.reload(false)
+          // window.location.reload(false)
         },
         (error) => {
           alert("Error al guardar");
           console.log(error);
         }
       )
-      .then(this.limpiarForm());
+      // .then(this.limpiarForm());
   };
   // Limpiar formulario
   limpiarForm() {
