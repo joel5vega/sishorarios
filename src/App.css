@@ -9,14 +9,17 @@
   box-sizing: 0;
   list-style: none;
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  /*
+  
+  font-weight: 300;
+  */
 }
 :root {
   --color-bg: white;
   --color-bg-variant: #f3eff5;
-  /* --color-primary: #081C15; */
   --color-primary: #40826d;
-
   --color-second-1: #1b4332;
   --color-second-2: #2d6a4f;
   --color-second-3: #40916c;
@@ -166,6 +169,11 @@
   margin: 0rem;
   font-size: 0.6rem;
   font-weight: bold;
+  color: var(--color-light);
+}
+.dato-cal-responsable {
+  margin: 0rem;
+  font-size: 0;
   color: var(--color-light);
 }
 /*----------------------------*/
@@ -359,7 +367,6 @@ form label {
   color: #0095eb;
 }
 form input {
-  font-family: "Roboto", sans-serif;
   -webkit-box-sizing: border-box;
   color: #525c66;
   width: 6rem;
@@ -371,7 +378,6 @@ form input {
 }
 form select,
 form textarea {
-  font-family: "Roboto", sans-serif;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #525c66;
@@ -387,7 +393,6 @@ form button {
   border: 0;
   font-size: 1em;
   color: white;
-  font-family: "Roboto", sans-serif;
 }
 form button:hover {
   background-color: #046193;
@@ -535,6 +540,9 @@ textarea {
     font-size: 1rem;
     font-weight: bold;
     color: var(--color-light);
+  }
+  .dato-cal-responsable {
+    font-size: 1rem;
   }
   .considebar {
     grid-template-columns: min-content auto;

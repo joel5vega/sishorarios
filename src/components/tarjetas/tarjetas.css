@@ -39,3 +39,12 @@ width: 170px;
     background:var(--color-second-3);
 
 }
+@media screen and (min-width: 768px){
+    
+    .tarjeta-responsable-nombre{
+        font-size: 1.1rem;
+    }
+    .tarjeta-responsable-puesto{
+        font-size: 1rem;
+    }
+}

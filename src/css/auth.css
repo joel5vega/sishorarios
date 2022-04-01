@@ -8,7 +8,7 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-  font-family: "Fira Sans", sans-serif;
+  font-family:  Helvetica Neue, Helvetica, sans-serif;
 }
 
 h1,
@@ -20,7 +20,8 @@ h6,
 label,
 span {
   font-weight: 500;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 body,
