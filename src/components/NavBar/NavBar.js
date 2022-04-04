@@ -22,7 +22,7 @@ class NavBar extends Component {
       titulo: "Sistema de Horarios",
       colorbtn: "btn btn-danger my-2 my-sm-0 ",
       usuario: this.props.usuario || { responsable: { id: 0 } },
-      fuente: "",
+      fuente: UrlService.apiUrl() + "/clases/responsable/1?periodo=2",
       responsable: "",
     };
     this.handleSelect = this.handleSelect.bind(this);
@@ -32,7 +32,7 @@ class NavBar extends Component {
   componentDidMount() {
     var tipo = this.props.tipo || "estudiante";
     var usuario = this.props.usuario || this.state.usuario;
-    var fuente = UrlService.apiUrl() + "/clases/responsable/" + usuario.responsable.id + "?periodo=4";
+    var fuente = UrlService.apiUrl() + "/clases/responsable/" + usuario.responsable.id + "?periodo=2";
     var responsable = usuario.responsable.titulo + " " + usuario.responsable.ap_paterno;
     if (tipo !== "estudiante") {
       this.setState({ tipo: tipo, logged: true });
@@ -135,7 +135,7 @@ class NavBar extends Component {
           padding="0"
         >
           <Navbar.Brand as={NavLink} exact to="/" activeStyle={NavActive}>
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} /> Horarios ETN
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" ><FontAwesomeIcon icon={faTh} /></Navbar.Toggle>

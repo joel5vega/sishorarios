@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "../../css/crear.css";
 import InputControlado from "../../components/InputControlado";
 import SelectControlado from "../../components/SelectControlado";
 import UrlService from "../../services/UrlService";
@@ -79,7 +80,7 @@ export default class Register extends Component {
       c_password +
       "&tipo=" +
       tipo +
-      "&responsable=" +
+      "&responsable_id=" +
       responsable;
 
     axios.post(url).then((response) => {

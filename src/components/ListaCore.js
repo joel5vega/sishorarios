@@ -259,7 +259,7 @@ class ListaCore extends Component {
         (response) => {
           console.log(response);
           alert("Guardado");
-          // window.location.reload(false)
+          window.location.reload(false)
         },
         (error) => {
           alert("Error al guardar");
@@ -275,34 +275,14 @@ class ListaCore extends Component {
       show: false,
     });
     // alert("cambios realizados, actualizar?")
-    // window.location.reload(false);
+     window.location.reload(false);
   }
 
   eliminar(e) {
-    console.log("eliminar: " + e);
-    console.log(this.props.tipo);
-    var url
-    switch (this.props.tipo) {
-      case "responsable": {
-        url = this.state.api + "/responsables/" + e;
-        break;
-      }
-      case "clases": {
-        url = this.state.api + "/clases/" + e;
-        break;
-      }
-      case "materia": {
-        url = this.state.api + "/materias/" + e;
-        break;
-      }
-      case "users": {
-        url = this.state.api + "/users/" + e;
-        break;
-      }
-      default: url=this.state.api + "/users/" + e;
-    }
 
-    console.log(url);
+    var url = this.url(this.props.tipo)+e;
+    console.log("eliminar: "+this.props.tipo + e+ " en " + url);
+    // console.log(url);
     axios.delete(url).then(
       (response) => {
         console.log(response);

@@ -116,11 +116,26 @@
 .form__boton a{
     color:var(--color-light);
 }
-@media screen and  (min-width:960px){
-    .formulario {
+@media screen and (min-width:600px) {
+  .formulario{
+    display: flex;
+  }
+  
+}
+@media screen and  (min-width:800px){
+  .crear__container{
+    display: grid;  
+    grid-template-columns: 70% 30%;
+  }
+  .form_formulario{
+    padding: 1rem;
+  }  
+  .formulario {
         display: flex;
     }
     .form__grupo{
         min-width: 13rem;
+        padding: 0.1rem;
+        margin:0%;
     }
 }

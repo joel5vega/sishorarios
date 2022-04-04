@@ -40,8 +40,8 @@ export default class CrearClase extends Component {
       paralelo: "A",
       selectedSemestre: "default",
       selectedMencion: "default",
-      selectedResponsable: "default",
-      // selectedResponsable: this.props.usuario.responsable_id | "default",
+      // selectedResponsable: "default",
+      selectedResponsable: this.props.usuario.responsable_id | "default",
       // selectedNivel: this.props.usuario.tipo | "default",
       selectedNivel: "default",
       selectedTipo: "default",
@@ -525,6 +525,7 @@ export default class CrearClase extends Component {
         (response) => {
           console.log(response);
           alert("Evento creado");
+          window.location.reload(false)
         },
         (error) => {
           console.log(error);

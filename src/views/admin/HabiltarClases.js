@@ -34,6 +34,7 @@ export default class HabilitarClases extends Component {
         console.log(error);
 
       })
+      window.location.reload(false)
   }
   render() {
     const keys = [
