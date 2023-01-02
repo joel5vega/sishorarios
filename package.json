@@ -38,7 +38,7 @@
     "react-charts": "^2.0.0-beta.7",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "react-swipeable-views": "^0.13.9",
     "rechart": "0.0.1",
     "sass": "^1.49.9",
